@@ -1,0 +1,79 @@
+# Control Form
+Part of the control family Classic.
+
+Control creation keywords:
+```yaml
+Control: Form
+Variant: <variant name> # (optional) see below for the list of variants
+Layout: <layout name> # (required) one of: `Vertical`, `Horizontal`
+```
+
+The `Variant` keyword is optional and can be one of the following:
+- `Classic`
+- `Modern`
+
+Input Properties:
+  - AcceptsFocus: Boolean
+  - BorderColor: Color
+  - BorderStyle: Enum
+      Enum name: BorderStyle
+      Enum values: Dashed, Dotted, None, Solid
+  - BorderThickness: Number
+  - ContentLanguage: Text
+  - DataSource: Table
+  - DefaultMode: Enum
+      Enum name: FormMode
+      Enum values: Edit, New, View
+  - Fill: Color
+  - FocusedBorderColor: Color
+  - FocusedBorderThickness: Number
+  - Height: Number
+  - Item: Record
+  - NumberOfColumns: Number
+  - OnFailure: Boolean
+  - OnReset: Boolean
+  - OnSuccess: Boolean
+  - SnapToColumns: Boolean
+  - Visible: Boolean
+  - Width: Number
+  - X: Number
+  - Y: Number
+
+Additional input properties if a child of a Vertical or Horizontal GroupContainer:
+  - AlignInContainer: Enum
+      Enum name: AlignInContainer
+      Enum values: Center, End, SetByContainer, Start, Stretch
+  - FillPortions: Number
+  - LayoutMaxHeight: Number
+  - LayoutMaxWidth: Number
+  - LayoutMinHeight: Number
+  - LayoutMinWidth: Number
+
+Additional input properties if a child of a Grid GroupContainer:
+  - LayoutGridColumnEnd: Number
+  - LayoutGridColumnStart: Number
+  - LayoutGridRowEnd: Number
+  - LayoutGridRowStart: Number
+
+Output Properties:
+  - AcceptsFocus: Boolean
+  - BorderColor: Color
+  - BorderStyle: Enum
+  - BorderThickness: Number
+  - ContentLanguage: Text
+  - DisplayMode: Enum
+  - Error: Text
+  - ErrorKind: Enum
+  - Fill: Color
+  - FocusedBorderColor: Color
+  - FocusedBorderThickness: Number
+  - Height: Number
+  - LastSubmit: Record
+  - Mode: Enum
+  - Unsaved: Boolean
+  - Updates: Record
+  - Valid: Boolean
+  - Visible: Boolean
+  - Width: Number
+  - X: Number
+  - Y: Number

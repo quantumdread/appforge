@@ -1,0 +1,40 @@
+{
+  "name": "appforge",
+  "version": "3.16.0",
+  "description": "Validate Power Apps YAML, look up controls and Power Fx, and prepare public bug reports.",
+  "author": {
+    "name": "Daryl Tunster",
+    "url": "https://github.com/quantumdread"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/quantumdread/appforge",
+  "repository": "https://github.com/quantumdread/appforge",
+  "keywords": [
+    "power-apps",
+    "power-fx",
+    "yaml",
+    "validation",
+    "mcp"
+  ],
+  "userConfig": {
+    "compile_gate": {
+      "type": "string",
+      "title": "Compile gate",
+      "description": "block (default): stop a compile when AppForge finds a REFUSE. warn: allow every compile but report what AppForge found. off: no check and no post-compile reminder.",
+      "options": [
+        "block",
+        "warn",
+        "off"
+      ],
+      "default": "block"
+    }
+  },
+  "mcpServers": {
+    "appforge": {
+      "command": "node",
+      "args": [
+        "${CLAUDE_PLUGIN_ROOT}/server/dist-local/appforge-mcp.mjs"
+      ]
+    }
+  }
+}

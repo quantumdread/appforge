@@ -1,0 +1,38 @@
+ComponentDefinitions:
+  cExample:
+    DefinitionType: CanvasComponent
+    CustomProperties:
+      Value:
+        PropertyKind: Input
+        DataType: Number
+        Default: =1
+    Children:
+      - componentReader:
+          Control: Label
+          Properties:
+            Text: =cExample.Value()
+Screens:
+  Home:
+    Children:
+      - truncated:
+          Control: Label
+          Properties:
+            Text: ="Price #1 item"
+      - commented:
+          Control: Label
+          Properties:
+            Text: =Price #1
+      - rows:
+          Control: Gallery
+          Variant: Vertical
+          Properties:
+            Items: =SortByColumns(AddColumns(src, "NewValue", 1), "NewValue")
+          Children:
+            - box:
+                Control: GroupContainer
+                Variant: ManualLayout
+                Children:
+                  - tap:
+                      Control: Classic/Button
+                      Properties:
+                        OnSelect: =Select(Parent)

@@ -1,0 +1,15 @@
+Screens:
+  Alpha:
+    Children:
+      - lblAlpha:
+          Control: Label
+          Properties:
+            Text: =lblBeta.Text
+            Wrap: =false
+  Beta:
+    Children:
+      - lblBeta:
+          Control: Label
+          Properties:
+            Text: ="Beta"
+            Wrap: =false

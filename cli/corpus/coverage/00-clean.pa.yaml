@@ -1,0 +1,7 @@
+Screens:
+  CleanCoverage:
+    Children:
+      - btnCleanCoverage:
+          Control: Button
+          Properties:
+            OnSelect: =true

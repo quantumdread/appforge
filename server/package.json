@@ -1,0 +1,30 @@
+{
+  "name": "appforge-server",
+  "version": "3.16.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build:catalog": "node scripts/build-catalog.mjs",
+    "build:core": "npm run build:catalog && node scripts/build-core.mjs",
+    "build:local": "npm run build:core && node scripts/build-local.mjs",
+    "corpus": "npm run build:core && node ../cli/diff-oracle.mjs",
+    "release:check": "node scripts/release-check.mjs",
+    "predev": "npm run build:core",
+    "dev": "wrangler dev",
+    "start": "wrangler dev",
+    "predeploy": "npm run build:core",
+    "deploy": "wrangler deploy",
+    "pretest": "npm run build:core",
+    "test": "vitest run --config vitest.config.mts && vitest run --config vitest.node.config.mts",
+    "cf-typegen": "wrangler types"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.12.4",
+    "@types/node": "^25.7.0",
+    "ajv": "^8.17.1",
+    "esbuild": "^0.27.3",
+    "typescript": "^5.5.2",
+    "vitest": "~3.2.0",
+    "wrangler": "^4.90.1"
+  }
+}

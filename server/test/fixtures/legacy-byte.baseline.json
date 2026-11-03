@@ -1,0 +1,11 @@
+{
+  "generated_at": "2026-08-30T00:00:00.000Z",
+  "tool_version": "2.4.9",
+  "findings": [
+    {
+      "fingerprint": "39cbf8e92587",
+      "rule": "version-pin-in-control-type",
+      "file": "legacy-byte.yaml"
+    }
+  ]
+}

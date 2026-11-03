@@ -1,0 +1,14 @@
+App:
+  Properties:
+    StartScreen: =UnknownTargetStart
+    OnError: =false
+Screens:
+  UnknownTargetStart:
+    Properties:
+      OnVisible: =Navigate(MissingCoverageScreen)
+    Children:
+      - UnknownTargetCaption:
+          Control: Label
+          Properties:
+            Text: ="Missing target in analyzed source"
+            Wrap: =true

@@ -1,0 +1,285 @@
+Screens:
+  Screen2:
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    Children:
+      - PageScroll1:
+          Control: GroupContainer
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutOverflowY: =LayoutOverflow.Scroll
+            PaddingBottom: =24
+            Width: =Parent.Width
+          Children:
+            - HeroSection1:
+                Control: GroupContainer
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =App.Theme.Colors.Lighter70
+                  FillPortions: =0
+                  Height: =If(App.Width < 640, 340, If(App.Width < 1024, 310, 300))
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =14
+                  LayoutJustifyContent: =LayoutJustifyContent.Center
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =40
+                  PaddingLeft: =If(App.Width < 640, 16, 40)
+                  PaddingRight: =If(App.Width < 640, 16, 40)
+                  PaddingTop: =40
+                Children:
+                  - HeroTitle1:
+                      Control: ModernText
+                      Properties:
+                        AutoHeight: =true
+                        FontWeight: =FontWeight.Bold
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Size: =If(App.Width < 640, 22, If(App.Width < 1024, 26, 32))
+                        Text: ="Welcome to Contoso Art Studio!"
+                        Width: =If(App.Width >= 1024, Parent.Width / 2 - 80, Parent.Width - If(App.Width < 640, 40, 80))
+                  - HeroSubtitle1:
+                      Control: ModernText
+                      Properties:
+                        AutoHeight: =true
+                        Color: =RGBA(66, 66, 66, 1)
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Size: =If(App.Width < 640, 12, 14)
+                        Text: ="Step into a world where creativity flows freely. Whether you're a seasoned painter or just starting out, we have everything you need to bring your vision to life."
+                        Width: =If(App.Width >= 1024, Parent.Width / 2 - 80, Parent.Width - If(App.Width < 640, 40, 80))
+                  - HeroButton1:
+                      Control: ModernButton
+                      Properties:
+                        Appearance: =ButtonAppearance.Secondary
+                        Height: =36
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Text: ="Learn more"
+                        Width: =127
+            - QuickHeader1:
+                Control: ModernText
+                Properties:
+                  FontWeight: =FontWeight.Semibold
+                  Height: =72
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =6
+                  PaddingLeft: =If(App.Width < 640, 16, 40)
+                  PaddingTop: =40
+                  Size: =18
+                  Text: ="Quick access"
+                  VerticalAlign: =VerticalAlign.Bottom
+            - QuickCardGrid1:
+                Control: GroupContainer
+                Variant: GridLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(255, 255, 255, 1)
+                  FillPortions: =0
+                  Height: =(RoundUp(3 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0) * If(App.Width < 640, 160, 180)) + ((RoundUp(3 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0) - 1) * 16) + 8 + 100
+                  LayoutGap: =16
+                  LayoutGridColumnMinWidth: =(Parent.Width - 2 * If(App.Width < 640, 16, 40) - (If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)) - 1) * 16) / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)) - 4
+                  LayoutGridColumns: =If(App.Width < 640, 1, If(App.Width < 1024, 2, 3))
+                  LayoutGridRowMinHeight: =If(App.Width < 640, 160, 180)
+                  LayoutGridRows: =RoundUp(3 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0)
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =48
+                  PaddingLeft: =If(App.Width < 640, 16, 40)
+                  PaddingRight: =If(App.Width < 640, 16, 40)
+                  PaddingTop: =0
+                Children:
+                  - QuickCard_11:
+                      Control: ModernCard
+                      Properties:
+                        Subtitle: ="Master class"
+                        Title: ="Beginner Workshop"
+                  - QuickCard_21:
+                      Control: ModernCard
+                      Properties:
+                        HeaderImage: =SampleCardHeaderImageDesigner
+                        Image: =SampleCardImageShapes3D
+                        Subtitle: ="Resources"
+                        Title: ="Acrylic Starter Kits"
+                  - QuickCard_31:
+                      Control: ModernCard
+                      Properties:
+                        HeaderImage: =SampleCardHeaderImageM365
+                        Image: =SampleCardImageFluidTexture
+                        Subtitle: ="Events"
+                        Title: ="Local Artist Showcase"
+            - ExploreSection1:
+                Control: GroupContainer
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =App.Theme.Colors.Lighter80
+                  FillPortions: =0
+                  Height: =40 + 32 + 16 + 40 + 16 + ((RoundUp(6 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0) * 80) + ((RoundUp(6 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0) - 1) * 16) + (2 * 8)) + 48
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =16
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =48
+                  PaddingLeft: =If(App.Width < 640, 16, 40)
+                  PaddingRight: =If(App.Width < 640, 16, 40)
+                  PaddingTop: =40
+                Children:
+                  - ExploreHeader1:
+                      Control: ModernText
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        AutoHeight: =true
+                        FontWeight: =FontWeight.Semibold
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Size: =18
+                        Text: ="Explore"
+                        VerticalAlign: =VerticalAlign.Bottom
+                  - ExploreTabs1:
+                      Control: ModernTabList
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        Appearance: =TabListAppearance.FilledCircular
+                        Height: =40
+                        Items: =["All", "Watercolor", "Acrylic", "Sketch"]
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                  - ExploreCardGrid1:
+                      Control: GroupContainer
+                      Variant: GridLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        FillPortions: =0
+                        Height: =(RoundUp(6 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0) * 80) + ((RoundUp(6 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0) - 1) * 16) + (2 * 8)
+                        LayoutGap: =16
+                        LayoutGridColumnMinWidth: =(Parent.Width - 2 * If(App.Width < 640, 16, 40) - 16 - (If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)) - 1) * 16) / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)) - 4
+                        LayoutGridColumns: =If(App.Width < 640, 1, If(App.Width < 1024, 2, 3))
+                        LayoutGridRowMinHeight: =80
+                        LayoutGridRows: =RoundUp(6 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0)
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                      Children:
+                        - ExploreCard_11:
+                            Control: ModernCard
+                            Properties:
+                              HeaderImage: =SampleCardHeaderImageBrushIcon
+                              Image: =Blank()
+                              ImagePlacement: =ImagePlacement.AfterHeader
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              Subtitle: ="Perfect for beginners and pros who love expressive, flowing art."
+                              Title: ="Watercolor Wonders"
+                        - ExploreCard_21:
+                            Control: ModernCard
+                            Properties:
+                              HeaderImage: =SampleCardHeaderImagePaletteIcon
+                              Image: =Blank()
+                              ImagePlacement: =ImagePlacement.AfterHeader
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              Subtitle: ="Explore techniques that bring your ideas to life with rich acrylic textures."
+                              Title: ="Acrylic Adventures"
+                        - ExploreCard_31:
+                            Control: ModernCard
+                            Properties:
+                              HeaderImage: =SampleCardHeaderImagePenIcon
+                              Image: =Blank()
+                              ImagePlacement: =ImagePlacement.AfterHeader
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              Subtitle: ="Turn simple lines into powerful narratives. Learn how to sketch and tell stories."
+                              Title: ="Sketch & Story"
+                        - ExploreCard_41:
+                            Control: ModernCard
+                            Properties:
+                              HeaderImage: =SampleCardHeaderImageWrenchIcon
+                              Image: =Blank()
+                              ImagePlacement: =ImagePlacement.AfterHeader
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              Subtitle: ="From brushes to palettes, find the essentials that make your creative process inspiring."
+                              Title: ="Tools for Every Vision"
+                        - ExploreCard_51:
+                            Control: ModernCard
+                            Properties:
+                              HeaderImage: =SampleCardHeaderImageBookIcon
+                              Image: =Blank()
+                              ImagePlacement: =ImagePlacement.AfterHeader
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              Subtitle: ="Understand how hues, tones, and contrasts work together to elevate your artwork."
+                              Title: ="Color Theory Made Simple"
+                        - ExploreCard_61:
+                            Control: ModernCard
+                            Properties:
+                              HeaderImage: =SampleCardHeaderImageSearchIcon
+                              Image: =Blank()
+                              ImagePlacement: =ImagePlacement.AfterHeader
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              Subtitle: ="Meet talented artists, explore their work, and get inspired by their unique styles."
+                              Title: ="Local Artist Spotlight"
+            - EventsHeader1:
+                Control: ModernText
+                Properties:
+                  FontWeight: =FontWeight.Semibold
+                  Height: =72
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =6
+                  PaddingLeft: =If(App.Width < 640, 16, 40)
+                  PaddingTop: =40
+                  Size: =18
+                  Text: ="Upcoming Events"
+                  VerticalAlign: =VerticalAlign.Bottom
+            - EventsCardGrid1:
+                Control: GroupContainer
+                Variant: GridLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(255, 255, 255, 1)
+                  FillPortions: =0
+                  Height: =(RoundUp(3 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0) * 200) + ((RoundUp(3 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0) - 1) * 16) + 8 + 48
+                  LayoutGap: =16
+                  LayoutGridColumnMinWidth: =(Parent.Width - 2 * If(App.Width < 640, 16, 40) - (If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)) - 1) * 16) / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)) - 4
+                  LayoutGridColumns: =If(App.Width < 640, 1, If(App.Width < 1024, 2, 3))
+                  LayoutGridRowMinHeight: =140
+                  LayoutGridRows: =RoundUp(3 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0)
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =100
+                  PaddingLeft: =If(App.Width < 640, 16, 40)
+                  PaddingRight: =If(App.Width < 640, 16, 40)
+                  PaddingTop: =0
+                Children:
+                  - EventCard_11:
+                      Control: ModernCard
+                      Properties:
+                        Description: ="Spend two hands-on days exploring bold color and gesture with abstract techniques. Work alongside local artists and leave with a finished canvas of your own."
+                        HeaderImage: =SampleCardHeaderImageWorkshop
+                        Image: =Blank()
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        Subtitle: ="Abstract Expressionism"
+                        Title: ="Weekend Workshop"
+                  - EventCard_21:
+                      Control: ModernCard
+                      Properties:
+                        Description: ="An evening showcase of fresh work from up-and-coming painters and sculptors. Mingle with the artists over live music and discover your next favorite piece."
+                        HeaderImage: =SampleCardHeaderImageGallery
+                        Image: =Blank()
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        Subtitle: ="Emerging Talent"
+                        Title: ="Gallery Night"
+                  - EventCard_31:
+                      Control: ModernCard
+                      Properties:
+                        Description: ="Watch a professional illustrator build a piece from scratch using the latest tablet and software. Ask questions in real time and pick up pro-level techniques."
+                        HeaderImage: =SampleCardHeaderImageDemo
+                        Image: =Blank()
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        Subtitle: ="Digital Art Tools"
+                        Title: ="Live Demo"

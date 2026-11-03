@@ -1,0 +1,23 @@
+Screens:
+  Workshop:
+    Children:
+      - btnLegacy:
+          Control: Button@0.0.45
+          Properties:
+            Text: ="Run internal check"
+            TabIndex: =2
+            OnSelect: =Set(gblInternalReady, true)
+      - txtAliasOne:
+          Control: TextInput
+      - txtAliasTwo:
+          Control: TextInput
+      - txtAliasThree:
+          Control: TextInput
+      - galPending:
+          Control: Gallery
+          Properties:
+            Items: =Search(PendingLedger, txtAliasOne.Value, Title)
+      - btnTypo:
+          Control: ModernButton
+          Properties:
+            Textt: ="Near miss"

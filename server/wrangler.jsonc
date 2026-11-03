@@ -1,0 +1,37 @@
+/**
+ * AppForge MCP — Cloudflare Worker config.
+ * v2.4.10: 17 tools (catalog, validator+lint, templates, rules, PowerFx, verification queue, survey).
+ *
+ * Secrets required:
+ *   MCP_AUTH_TOKEN — bearer token required on /mcp requests. Set with:
+ *                    `npx wrangler secret put MCP_AUTH_TOKEN`
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "appforge",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-05-12",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+  // Workers Paid: analysis of a real app needs ~1 s CPU; the Free plan's 10 ms
+  // limit surfaced as Cloudflare 1102 during delivery-app analysis.
+  // The hosted control cap (src/lib/hosted-limits.ts) keeps requests well inside this.
+  "limits": { "cpu_ms": 30000 },
+  "upload_source_maps": true,
+  "kv_namespaces": [
+    // Create your own namespace: wrangler kv namespace create VERIFICATION_QUEUE
+    // Paste its id below.
+    { "binding": "VERIFICATION_QUEUE", "id": "00000000000000000000000000000000" }
+  ],
+  "durable_objects": {
+    "bindings": [
+      { "name": "SURVEY_TELEMETRY", "class_name": "SurveyTelemetryCoordinator" }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v2.4.10-survey-telemetry",
+      "new_sqlite_classes": ["SurveyTelemetryCoordinator"]
+    }
+  ]
+}

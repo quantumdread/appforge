@@ -1,0 +1,37 @@
+ComponentDefinitions:
+  cCoverage:
+    DefinitionType: CanvasComponent
+    CustomProperties:
+      MaterializedInput:
+        PropertyKind: InputFunction
+        DataType: Text
+        Default: ="materialized"
+      BadKind:
+        PropertyKind: DefinitelyNotAKind
+        DataType: Text
+      UncatalogedType:
+        PropertyKind: Input
+        DataType: CoverageType
+        Default: =0
+      BadOutput:
+        PropertyKind: Output
+        DataType: Text
+        Default: ="not allowed"
+      MissingReturn:
+        PropertyKind: Event
+        Default: =false
+      MissingEventDefault:
+        PropertyKind: Event
+        ReturnType: None
+    Properties:
+      UncatalogedRootProperty: =1
+Screens:
+  ComponentCoverage:
+    Children:
+      - missingNameCoverage:
+          Control: CanvasComponent
+      - undeclaredCoverage:
+          Control: CanvasComponent
+          ComponentName: cCoverage
+          Properties:
+            DefinitelyUndeclared: =1

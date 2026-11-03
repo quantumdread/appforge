@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "description": "Exact intended golden-snapshot discrepancies. References name the release spec or an exact CHANGELOG heading; unused entries fail the gate.",
+  "adjudications": {}
+}

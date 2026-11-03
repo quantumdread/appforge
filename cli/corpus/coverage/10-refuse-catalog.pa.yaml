@@ -1,0 +1,24 @@
+Screens:
+  RefuseCoverage:
+    Children:
+      - ghostCoverage:
+          Control: DefinitelyNotAControl
+      - badVariantCoverage:
+          Control: Button
+          Variant: DefinitelyNotAVariant
+      - badPropertyCoverage:
+          Control: Label
+          Properties:
+            DefinitelyNotAProperty: =1
+      - pa2108Coverage:
+          Control: TextInput
+          Properties:
+            Default: ="legacy trap"
+      - duplicateCoverage:
+          Control: Label
+          Properties:
+            Text: ="first"
+            Text: ="second"
+      - partialCoverage:
+          Control: Circle
+          Variant: CoverageUnknownVariant

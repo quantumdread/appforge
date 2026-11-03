@@ -1,0 +1,50 @@
+App:
+  Properties:
+    StartScreen: =RuleStart
+    OnStart: =ForAll(CoverageSharePoint, ID)
+Screens:
+  RuleStart:
+    Properties:
+      OnVisible: =false
+    Children:
+      - SaveThenGo:
+          Control: Button
+          Properties:
+            Text: ="Save"
+            OnSelect: |-
+              =Patch(CoverageSharePoint, Defaults(CoverageSharePoint), {Title: "Synthetic"}); Navigate(RuleNext)
+      - SaveThenCelebrate:
+          Control: Button
+          Properties:
+            Text: ="Save and notify"
+            OnSelect: |-
+              =Patch(CoverageSharePoint, Defaults(CoverageSharePoint), {Title: "Synthetic"}); Notify("Saved", NotificationType.Success)
+      - SubmitThenGo:
+          Control: Button
+          Properties:
+            Text: ="Submit"
+            OnSelect: |-
+              =SubmitForm(CoverageEditForm); Navigate(RuleNext)
+      - CoverageEditForm:
+          Control: Form
+          Properties:
+            DataSource: =CoverageSharePoint
+            Item: =First(CoverageSharePoint)
+  RuleNext:
+    Properties:
+      OnVisible: =false
+    Children:
+      - RuleNextCaption:
+          Control: Label
+          Properties:
+            Text: ="Next screen"
+            Wrap: =true
+  RuleNoStaticPath:
+    Properties:
+      OnVisible: =false
+    Children:
+      - RuleIsolatedCaption:
+          Control: Label
+          Properties:
+            Text: ="No static entry path in this fixture"
+            Wrap: =true

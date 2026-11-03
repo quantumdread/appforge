@@ -1,0 +1,19 @@
+Screens:
+  FormScreen:
+    Children:
+      - rowName:
+          Control: GroupContainer
+          Variant: AutoLayout
+          Properties:
+            LayoutDirection: =LayoutDirection.Horizontal
+          Children:
+            - txtFirstName:
+                Control: TextInput
+                Properties:
+                  FillPortions: =1
+                  Height: =40
+            - txtLastName:
+                Control: TextInput
+                Properties:
+                  FillPortions: =2
+                  Height: =40

@@ -1,0 +1,662 @@
+{
+  "report_schema": "analysis-report/1",
+  "report_schema_minor": 0,
+  "report_id": "golden-dirty",
+  "identity": {
+    "app_name": {
+      "value": "Component Laboratory",
+      "resolved_by": "manifest"
+    },
+    "app_id": "component-laboratory-9bbaeb8c",
+    "source_kind": "directory",
+    "completeness": "full",
+    "files": [
+      {
+        "id": "dirty.pa.yaml",
+        "sha256": "a18bdb5f227546011620d5b0dafd742cb329b8c7d27447705fe9b1d933df1699"
+      }
+    ],
+    "fingerprint_basis": "directory/src-stripped/v1",
+    "surveyed_at": "2026-08-29T12:00:00.000Z",
+    "analyzer_version": "golden",
+    "catalog": {
+      "version": "2026-09-20T09:08:09.714Z",
+      "extracted_at": "2026-09-20T09:08:09.714Z",
+      "staleness_days": 0
+    }
+  },
+  "gate": {
+    "summary": {
+      "pass": 3,
+      "warn": 4,
+      "refuse": 2,
+      "controls_seen": 6,
+      "files": 1
+    },
+    "per_file": [
+      {
+        "file": "dirty.pa.yaml",
+        "pass": 3,
+        "warn": 4,
+        "refuse": 2,
+        "controls_seen": 6
+      }
+    ],
+    "gate_decision": "BLOCK"
+  },
+  "findings": [
+    {
+      "level": "REFUSE",
+      "rule": "unknown-property",
+      "file": "dirty.pa.yaml",
+      "line": 8,
+      "control": "btnLegacy",
+      "type": "Button",
+      "variant": null,
+      "property": "TabIndex",
+      "detail": "property-not-in-catalog",
+      "fix": "Classic/Button has TabIndex; use Classic/Button if this control needs it",
+      "did_you_mean": null,
+      "controls": [],
+      "near_miss": false,
+      "origin": "analyzer",
+      "fingerprint": "547eb68e13558d60",
+      "severity": "BLOCK",
+      "confidence": "medium",
+      "confidence_basis": "rule-family-default",
+      "claim_ref": null,
+      "group_id": "672bbd5d3aac6148",
+      "baseline_status": "new",
+      "adjudication": null,
+      "members_changed": null,
+      "edits": [],
+      "campaign_ref": null,
+      "queue_refs": []
+    },
+    {
+      "level": "REFUSE",
+      "rule": "unknown-property",
+      "file": "dirty.pa.yaml",
+      "line": 23,
+      "control": "btnTypo",
+      "type": "ModernButton",
+      "variant": null,
+      "property": "Textt",
+      "detail": "property-not-in-catalog",
+      "fix": null,
+      "did_you_mean": "Text",
+      "controls": [],
+      "near_miss": true,
+      "origin": "analyzer",
+      "fingerprint": "3193aeae7884f907",
+      "severity": "BLOCK",
+      "confidence": "medium",
+      "confidence_basis": "rule-family-default",
+      "claim_ref": null,
+      "group_id": "17603e5592db8870",
+      "baseline_status": "new",
+      "adjudication": null,
+      "members_changed": null,
+      "edits": [],
+      "campaign_ref": null,
+      "queue_refs": []
+    },
+    {
+      "level": "WARN",
+      "rule": "version-pin-in-control-type",
+      "file": "dirty.pa.yaml",
+      "line": 4,
+      "control": "btnLegacy",
+      "type": "Button",
+      "variant": null,
+      "property": null,
+      "detail": "1 control type(s) carry @version pins across 1 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. This repository authors bare control types (generator convention). Files: dirty.pa.yaml. Pinned: btnLegacy",
+      "fix": null,
+      "did_you_mean": null,
+      "controls": [
+        "btnLegacy"
+      ],
+      "near_miss": false,
+      "origin": "analyzer",
+      "fingerprint": "5ff7b80c43475b0c",
+      "severity": "MAINTAINABILITY",
+      "confidence": "medium",
+      "confidence_basis": "rule-family-default",
+      "claim_ref": null,
+      "group_id": "5ec1f44f6c829bbc",
+      "baseline_status": "new",
+      "adjudication": null,
+      "members_changed": null,
+      "edits": [],
+      "campaign_ref": null,
+      "queue_refs": []
+    },
+    {
+      "level": "WARN",
+      "rule": "a11y-tabindex-positive",
+      "file": "dirty.pa.yaml",
+      "line": 8,
+      "control": "btnLegacy",
+      "type": "Button",
+      "variant": null,
+      "property": "TabIndex",
+      "detail": "TabIndex 2 is positive — custom tab indexes are retired (treated as 0) and break screen-reader order",
+      "fix": "use TabIndex 0 (focusable) or -1 (skipped); order comes from control/container structure",
+      "did_you_mean": null,
+      "controls": [],
+      "near_miss": false,
+      "origin": "analyzer",
+      "fingerprint": "9b5dfa3ab35f9a16",
+      "severity": "MAINTAINABILITY",
+      "confidence": "medium",
+      "confidence_basis": "rule-family-default",
+      "claim_ref": null,
+      "group_id": "5e18ba6213e71ccd",
+      "baseline_status": "accepted",
+      "adjudication": null,
+      "members_changed": null,
+      "edits": [],
+      "campaign_ref": null,
+      "queue_refs": []
+    },
+    {
+      "level": "WARN",
+      "rule": "a11y-inputs-missing-accessiblelabel",
+      "file": "dirty.pa.yaml",
+      "line": 10,
+      "control": "txtAliasOne",
+      "type": "TextInput",
+      "variant": null,
+      "property": null,
+      "detail": "4 control(s) lack AccessibleLabel — screen readers announce only the control type: txtAliasOne, txtAliasTwo, txtAliasThree, galPending",
+      "fix": "set AccessibleLabel on each input to what the screen reader should announce",
+      "did_you_mean": null,
+      "controls": [
+        "txtAliasOne",
+        "txtAliasTwo",
+        "txtAliasThree",
+        "galPending"
+      ],
+      "near_miss": false,
+      "origin": "analyzer",
+      "fingerprint": "99e75486c494408a",
+      "severity": "MAINTAINABILITY",
+      "confidence": "medium",
+      "confidence_basis": "rule-family-default",
+      "claim_ref": null,
+      "group_id": "1b6b5823fe5ea8c1",
+      "baseline_status": "new",
+      "adjudication": null,
+      "members_changed": null,
+      "edits": [],
+      "campaign_ref": null,
+      "queue_refs": []
+    },
+    {
+      "level": "WARN",
+      "rule": "delegation-search-caveat",
+      "file": "dirty.pa.yaml",
+      "line": 19,
+      "control": "galPending",
+      "type": "Gallery",
+      "variant": null,
+      "property": "Items",
+      "detail": "Search( on bound source 'PendingLedger' — delegation depends on connector and column support; this checker has not established them. Search uses substring matching; supply `datasources` to sharpen this into a source-specific finding. Identifier 'PendingLedger' matches none of the known variable prefixes (col, var, gbl, loc) and is not declared in datasources, so it is assumed to be a bound source.",
+      "fix": "consider Filter(Source, StartsWith(Column, text)) only if prefix matching meets the request and the connector and column type support delegation; prefix and substring matching are not equivalent. StartsWith does not make Excel queries delegable",
+      "did_you_mean": null,
+      "controls": [],
+      "near_miss": false,
+      "origin": "analyzer",
+      "fingerprint": "130164abf82ad7a7",
+      "severity": "UNCERTAINTY",
+      "confidence": "low",
+      "confidence_basis": "provenance",
+      "claim_ref": null,
+      "group_id": "4d0adfa3f871c24d",
+      "baseline_status": "new",
+      "adjudication": null,
+      "members_changed": null,
+      "edits": [],
+      "campaign_ref": null,
+      "queue_refs": []
+    }
+  ],
+  "root_causes": [
+    {
+      "group_id": "17603e5592db8870",
+      "grouping_key": "none",
+      "member_fingerprints": [
+        "3193aeae7884f907"
+      ],
+      "dominant_severity": "BLOCK",
+      "family": "catalog",
+      "priority": {
+        "band": "now",
+        "score": 100,
+        "inputs": {
+          "severity": "BLOCK",
+          "confidence": "medium",
+          "blast": {
+            "controls": 1,
+            "screens": 1,
+            "factor": 0.13513333825658158
+          },
+          "effort_class": "judgment",
+          "descriptor_coverage": "none"
+        },
+        "formula": "priority/1"
+      },
+      "descriptor_coverage": "none",
+      "effort_class": "judgment",
+      "remediation_summary": "property-not-in-catalog",
+      "remediation": {
+        "what": "property-not-in-catalog",
+        "why": "Rule family: catalog.",
+        "how": "Use the known catalog candidate 'Text'."
+      },
+      "action_state": "active"
+    },
+    {
+      "group_id": "672bbd5d3aac6148",
+      "grouping_key": "none",
+      "member_fingerprints": [
+        "547eb68e13558d60"
+      ],
+      "dominant_severity": "BLOCK",
+      "family": "catalog",
+      "priority": {
+        "band": "now",
+        "score": 100,
+        "inputs": {
+          "severity": "BLOCK",
+          "confidence": "medium",
+          "blast": {
+            "controls": 1,
+            "screens": 1,
+            "factor": 0.13513333825658158
+          },
+          "effort_class": "judgment",
+          "descriptor_coverage": "none"
+        },
+        "formula": "priority/1"
+      },
+      "descriptor_coverage": "none",
+      "effort_class": "judgment",
+      "remediation_summary": "Classic/Button has TabIndex; use Classic/Button if this control needs it",
+      "remediation": {
+        "what": "property-not-in-catalog",
+        "why": "Rule family: catalog.",
+        "how": "Classic/Button has TabIndex; use Classic/Button if this control needs it"
+      },
+      "action_state": "active"
+    },
+    {
+      "group_id": "1b6b5823fe5ea8c1",
+      "grouping_key": "file",
+      "member_fingerprints": [
+        "99e75486c494408a"
+      ],
+      "dominant_severity": "MAINTAINABILITY",
+      "family": "accessibility",
+      "priority": {
+        "band": "later",
+        "score": 19,
+        "inputs": {
+          "severity": "MAINTAINABILITY",
+          "confidence": "medium",
+          "blast": {
+            "controls": 4,
+            "screens": 1,
+            "factor": 0.27411205180725307
+          },
+          "effort_class": "judgment",
+          "descriptor_coverage": "none"
+        },
+        "formula": "priority/1"
+      },
+      "descriptor_coverage": "none",
+      "effort_class": "judgment",
+      "remediation_summary": "set AccessibleLabel on each input to what the screen reader should announce",
+      "remediation": {
+        "what": "4 control(s) lack AccessibleLabel — screen readers announce only the control type: txtAliasOne, txtAliasTwo, txtAliasThree, galPending",
+        "why": "Rule family: accessibility.",
+        "how": "set AccessibleLabel on each input to what the screen reader should announce"
+      },
+      "action_state": "active"
+    },
+    {
+      "group_id": "5e18ba6213e71ccd",
+      "grouping_key": "none",
+      "member_fingerprints": [
+        "9b5dfa3ab35f9a16"
+      ],
+      "dominant_severity": "MAINTAINABILITY",
+      "family": "accessibility",
+      "priority": {
+        "band": "later",
+        "score": 15,
+        "inputs": {
+          "severity": "MAINTAINABILITY",
+          "confidence": "medium",
+          "blast": {
+            "controls": 1,
+            "screens": 1,
+            "factor": 0.13513333825658158
+          },
+          "effort_class": "judgment",
+          "descriptor_coverage": "none"
+        },
+        "formula": "priority/1"
+      },
+      "descriptor_coverage": "none",
+      "effort_class": "judgment",
+      "remediation_summary": "use TabIndex 0 (focusable) or -1 (skipped); order comes from control/container structure",
+      "remediation": {
+        "what": "TabIndex 2 is positive — custom tab indexes are retired (treated as 0) and break screen-reader order",
+        "why": "Rule family: accessibility.",
+        "how": "use TabIndex 0 (focusable) or -1 (skipped); order comes from control/container structure"
+      },
+      "action_state": "accepted"
+    },
+    {
+      "group_id": "5ec1f44f6c829bbc",
+      "grouping_key": "file",
+      "member_fingerprints": [
+        "5ff7b80c43475b0c"
+      ],
+      "dominant_severity": "MAINTAINABILITY",
+      "family": "versioning",
+      "priority": {
+        "band": "later",
+        "score": 15,
+        "inputs": {
+          "severity": "MAINTAINABILITY",
+          "confidence": "medium",
+          "blast": {
+            "controls": 1,
+            "screens": 1,
+            "factor": 0.13513333825658158
+          },
+          "effort_class": "judgment",
+          "descriptor_coverage": "none"
+        },
+        "formula": "priority/1"
+      },
+      "descriptor_coverage": "none",
+      "effort_class": "judgment",
+      "remediation_summary": "1 control type(s) carry @version pins across 1 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. This repository authors bare control types (generator convention). Files: dirty.pa.yaml. Pinned: btnLegacy",
+      "remediation": {
+        "what": "1 control type(s) carry @version pins across 1 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. This repository authors bare control types (generator convention). Files: dirty.pa.yaml. Pinned: btnLegacy",
+        "why": "Rule family: versioning.",
+        "how": "No rule-provided fix is available."
+      },
+      "action_state": "active"
+    },
+    {
+      "group_id": "4d0adfa3f871c24d",
+      "grouping_key": "bound-source",
+      "member_fingerprints": [
+        "130164abf82ad7a7"
+      ],
+      "dominant_severity": "UNCERTAINTY",
+      "family": "delegation",
+      "priority": {
+        "band": "verify-first",
+        "score": 4,
+        "inputs": {
+          "severity": "UNCERTAINTY",
+          "confidence": "low",
+          "blast": {
+            "controls": 1,
+            "screens": 1,
+            "factor": 0.13513333825658158
+          },
+          "effort_class": "judgment",
+          "descriptor_coverage": "none"
+        },
+        "formula": "priority/1"
+      },
+      "descriptor_coverage": "none",
+      "effort_class": "judgment",
+      "remediation_summary": "consider Filter(Source, StartsWith(Column, text)) only if prefix matching meets the request and the connector and column type support delegation; prefix and substring matching are not equivalent. StartsWith does not make Excel queries delegable",
+      "remediation": {
+        "what": "Search( on bound source 'PendingLedger' — delegation depends on connector and column support; this checker has not established them. Search uses substring matching; supply `datasources` to sharpen this into a source-specific finding. Identifier 'PendingLedger' matches none of the known variable prefixes (col, var, gbl, loc) and is not declared in datasources, so it is assumed to be a bound source.",
+        "why": "Rule family: delegation.",
+        "how": "consider Filter(Source, StartsWith(Column, text)) only if prefix matching meets the request and the connector and column type support delegation; prefix and substring matching are not equivalent. StartsWith does not make Excel queries delegable"
+      },
+      "action_state": "active"
+    }
+  ],
+  "inventories": {
+    "datasources": {
+      "state": "available",
+      "rows": [
+        {
+          "name": "PendingLedger",
+          "backend": null,
+          "resolved_by": "unresolved",
+          "confidence": "none"
+        }
+      ]
+    },
+    "backend_risks": {
+      "state": "unavailable"
+    },
+    "version_lag": {
+      "state": "available",
+      "rows": [
+        {
+          "control": "btnLegacy",
+          "file": "dirty.pa.yaml",
+          "observed": "Button@0.0.45",
+          "newest_known": "ModernButton@1.0.0",
+          "lower_bound": true,
+          "evidence": "studio-export-2026-08-26",
+          "observed_at": "2026-08-26",
+          "migration": {
+            "target_type": "ModernButton",
+            "target_version": "1.0.0",
+            "note": "Studio: update control versions"
+          }
+        }
+      ]
+    },
+    "modernization": {
+      "state": "available",
+      "rows": [
+        {
+          "source_type": "TextInput",
+          "target_type": "ModernTextInput",
+          "verified": false,
+          "controls": 3,
+          "mechanical": 3,
+          "needs_review": 0,
+          "authored": {
+            "same": 0,
+            "renamed": 0,
+            "manual": 0,
+            "dropped_cosmetic": 0,
+            "dropped_behaviour": 0
+          },
+          "review_reasons": [],
+          "reference_rewrites": 1,
+          "references_unmapped": 0,
+          "sample_review_controls": [],
+          "review_controls_total": 0,
+          "note": "Unknown source properties are not counted here; the gate reports them separately."
+        },
+        {
+          "source_type": "Button",
+          "target_type": "ModernButton",
+          "verified": false,
+          "controls": 1,
+          "mechanical": 1,
+          "needs_review": 0,
+          "authored": {
+            "same": 2,
+            "renamed": 0,
+            "manual": 0,
+            "dropped_cosmetic": 0,
+            "dropped_behaviour": 0
+          },
+          "review_reasons": [],
+          "reference_rewrites": 0,
+          "references_unmapped": 0,
+          "sample_review_controls": [],
+          "review_controls_total": 0,
+          "note": "Unknown source properties are not counted here; the gate reports them separately."
+        }
+      ]
+    },
+    "screens": {
+      "state": "available",
+      "rows": [
+        {
+          "screen": "Workshop",
+          "file": "dirty.pa.yaml",
+          "controls": 6,
+          "threshold": null,
+          "note": "threshold not exercised"
+        }
+      ]
+    },
+    "components": {
+      "state": "empty",
+      "rows": []
+    },
+    "connections": {
+      "state": "unavailable"
+    }
+  },
+  "coverage": {
+    "tiers": {
+      "extractor_verified": 3,
+      "augmentation_verified": 0,
+      "dump_sourced_lower_bound": 0,
+      "component_defined": 0,
+      "unknown": 2
+    },
+    "unit": "classified property occurrences",
+    "exclusions": "Occurrences on unrecognized control types, unknown variants, and the App pseudo-control enter no tier.",
+    "limitations": [
+      {
+        "kind": "metadata-absent",
+        "source": "Connections.json",
+        "detail": "The internal fixture intentionally omits connection metadata."
+      }
+    ],
+    "catalog_staleness": {
+      "days": 0,
+      "stale": false
+    },
+    "unverified_claims": [
+      {
+        "claim_ref": "dump_sourced:ComboBoxDataField",
+        "evidence_class": "dump-sourced-lower-bound"
+      },
+      {
+        "claim_ref": "dump_sourced:TableDataField",
+        "evidence_class": "dump-sourced-lower-bound"
+      }
+    ]
+  },
+  "remediation_plan": [
+    {
+      "group_id": "17603e5592db8870",
+      "band": "now",
+      "score": 100,
+      "action_state": "active",
+      "what": "property-not-in-catalog",
+      "why": "Rule family: catalog.",
+      "how": "Use the known catalog candidate 'Text'.",
+      "descriptor_coverage": "none",
+      "effort_class": "judgment",
+      "dependency_notes": []
+    },
+    {
+      "group_id": "672bbd5d3aac6148",
+      "band": "now",
+      "score": 100,
+      "action_state": "active",
+      "what": "property-not-in-catalog",
+      "why": "Rule family: catalog.",
+      "how": "Classic/Button has TabIndex; use Classic/Button if this control needs it",
+      "descriptor_coverage": "none",
+      "effort_class": "judgment",
+      "dependency_notes": []
+    },
+    {
+      "group_id": "4d0adfa3f871c24d",
+      "band": "verify-first",
+      "score": 4,
+      "action_state": "active",
+      "what": "Search( on bound source 'PendingLedger' — delegation depends on connector and column support; this checker has not established them. Search uses substring matching; supply `datasources` to sharpen this into a source-specific finding. Identifier 'PendingLedger' matches none of the known variable prefixes (col, var, gbl, loc) and is not declared in datasources, so it is assumed to be a bound source.",
+      "why": "Rule family: delegation.",
+      "how": "consider Filter(Source, StartsWith(Column, text)) only if prefix matching meets the request and the connector and column type support delegation; prefix and substring matching are not equivalent. StartsWith does not make Excel queries delegable",
+      "descriptor_coverage": "none",
+      "effort_class": "judgment",
+      "dependency_notes": []
+    },
+    {
+      "group_id": "1b6b5823fe5ea8c1",
+      "band": "later",
+      "score": 19,
+      "action_state": "active",
+      "what": "4 control(s) lack AccessibleLabel — screen readers announce only the control type: txtAliasOne, txtAliasTwo, txtAliasThree, galPending",
+      "why": "Rule family: accessibility.",
+      "how": "set AccessibleLabel on each input to what the screen reader should announce",
+      "descriptor_coverage": "none",
+      "effort_class": "judgment",
+      "dependency_notes": []
+    },
+    {
+      "group_id": "5e18ba6213e71ccd",
+      "band": "later",
+      "score": 15,
+      "action_state": "accepted",
+      "what": "TabIndex 2 is positive — custom tab indexes are retired (treated as 0) and break screen-reader order",
+      "why": "Rule family: accessibility.",
+      "how": "use TabIndex 0 (focusable) or -1 (skipped); order comes from control/container structure",
+      "descriptor_coverage": "none",
+      "effort_class": "judgment",
+      "dependency_notes": []
+    },
+    {
+      "group_id": "5ec1f44f6c829bbc",
+      "band": "later",
+      "score": 15,
+      "action_state": "active",
+      "what": "1 control type(s) carry @version pins across 1 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. This repository authors bare control types (generator convention). Files: dirty.pa.yaml. Pinned: btnLegacy",
+      "why": "Rule family: versioning.",
+      "how": "No rule-provided fix is available.",
+      "descriptor_coverage": "none",
+      "effort_class": "judgment",
+      "dependency_notes": []
+    }
+  ],
+  "baseline": {
+    "formula": "finding-fingerprint/2",
+    "applied_from": "analysis-baseline/1",
+    "basis_matches": true,
+    "accepted_total": 1,
+    "stale_entries": [],
+    "migration_required": false
+  },
+  "suppressions": {
+    "applied_count": 0,
+    "expired": [],
+    "invalid": []
+  },
+  "policy": {
+    "profile_id": "shared",
+    "blocking_policy_applied": true,
+    "severity_overrides": []
+  },
+  "envelope": {
+    "id": null,
+    "path": null,
+    "submission": {
+      "state": "not_requested"
+    }
+  }
+}

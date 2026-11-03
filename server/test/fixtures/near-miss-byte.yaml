@@ -1,0 +1,8 @@
+Screens:
+  Main:
+    Children:
+      - lblOne:
+          Control: Label
+          Properties:
+            Texd: ="hello"
+            Wrap: =false

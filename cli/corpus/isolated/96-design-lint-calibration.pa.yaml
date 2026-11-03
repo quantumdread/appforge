@@ -1,0 +1,17 @@
+Screens:
+  Home:
+    Children:
+      - outer:
+          Control: GroupContainer
+          Variant: AutoLayout
+          Properties:
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutAlignItems: =LayoutAlignItems.Start
+          Children:
+            - manualCard:
+                Control: GroupContainer
+                Variant: ManualLayout
+                Properties:
+                  Height: =100
+                  LayoutMinWidth: =16
+                  LayoutMinHeight: =16

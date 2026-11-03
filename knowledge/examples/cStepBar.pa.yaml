@@ -1,0 +1,49 @@
+ComponentDefinitions:
+  cStepBar:
+    DefinitionType: CanvasComponent
+    AccessAppScope: true
+    CustomProperties:
+      ActiveStep:
+        PropertyKind: Input
+        DisplayName: Active Step
+        Description: Current wizard step (1-5)
+        DataType: Number
+        Default: =1
+      OnStepSelect:
+        PropertyKind: Event
+        DisplayName: On Step Select
+        Description: Raised when a step is tapped; read SelectedStep in the handler
+        ReturnType: None
+        Default: =false
+      SelectedStep:
+        PropertyKind: Output
+        DisplayName: Selected Step
+        Description: Step id the user tapped
+        DataType: Number
+    Properties:
+      Height: =44
+      SelectedStep: =Coalesce(_stepBarTapped, 0)
+    Children:
+      - tabStepBar:
+          Control: ModernTabList
+          Properties:
+            AccessibleLabel: ="Wizard steps"
+            Default: |-
+              =LookUp(
+                  ForAll(
+                      Table({ID: 1, Name: "Details"}, {ID: 2, Name: "Product"}, {ID: 3, Name: "Settings"}, {ID: 4, Name: "Extras"}, {ID: 5, Name: "Finish"}),
+                      {ID: ThisRecord.ID, Value: If(ThisRecord.ID < cStepBar.ActiveStep, "✓ ", "") & ThisRecord.Name}
+                  ),
+                  ID = cStepBar.ActiveStep
+              )
+            Height: =Parent.Height
+            ItemDisplayText: =ThisItem.Value
+            Items: |-
+              =ForAll(
+                  Table({ID: 1, Name: "Details"}, {ID: 2, Name: "Product"}, {ID: 3, Name: "Settings"}, {ID: 4, Name: "Extras"}, {ID: 5, Name: "Finish"}),
+                  {ID: ThisRecord.ID, Value: If(ThisRecord.ID < cStepBar.ActiveStep, "✓ ", "") & ThisRecord.Name}
+              )
+            OnChange: |-
+              =Set(_stepBarTapped, Self.Selected.ID);
+              cStepBar.OnStepSelect()
+            Width: =Parent.Width

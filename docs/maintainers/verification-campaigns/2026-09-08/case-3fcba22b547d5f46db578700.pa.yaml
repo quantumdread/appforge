@@ -1,0 +1,7 @@
+Screens:
+  VerificationScreen:
+    Children:
+      - ctlProbe:
+          Control: Classic/Icon
+          Properties:
+            TabIndex: =0

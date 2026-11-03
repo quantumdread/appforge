@@ -1,0 +1,8 @@
+Screens:
+  Home:
+    Children:
+      - OpenReview:
+          Control: Button
+          Properties:
+            Text: ="Open draft"
+            OnSelect: =Navigate(Review)

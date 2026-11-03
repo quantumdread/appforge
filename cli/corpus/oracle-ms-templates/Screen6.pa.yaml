@@ -1,0 +1,370 @@
+Screens:
+  Screen6:
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    Children:
+      - WelcomeScroll1:
+          Control: GroupContainer
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutOverflowY: =LayoutOverflow.Scroll
+            PaddingBottom: =40
+            Width: =Parent.Width
+          Children:
+            - TopNavWel1:
+                Control: GroupContainer
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(255, 255, 255, 1)
+                  FillPortions: =0
+                  Height: =If(App.Width < 640, 104, 56)
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  Width: =Parent.Width
+                Children:
+                  - TitleRowWel1:
+                      Control: GroupContainer
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(255, 255, 255, 1)
+                        FillPortions: =0
+                        Height: =56
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        LayoutGap: =12
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        PaddingLeft: =If(App.Width < 640, 16, 24)
+                        PaddingRight: =If(App.Width < 640, 16, 24)
+                        Width: =Parent.Width
+                      Children:
+                        - AppTitleWel1:
+                            Control: ModernText
+                            Properties:
+                              FillPortions: =If(App.Width < 640, 1, 0)
+                              Font: =Font.'Segoe UI'
+                              FontWeight: =FontWeight.Semibold
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              PaddingBottom: =0
+                              PaddingTop: =0
+                              Size: =If(App.Width < 640, 13, 16)
+                              Text: ="Contoso Art Studio"
+                              Width: =If(App.Width < 640, 0, 200)
+                        - NavTabsDesktopWel1:
+                            Control: ModernTabList
+                            Properties:
+                              Appearance: =TabListAppearance.Subtle
+                              BasePaletteColor: =RGBA(0, 65, 179, 1)
+                              Default: |-
+                                ={Value: "Home"}
+                              FillPortions: =1
+                              Height: =56
+                              Items: =["Home", "Resources", "Events", "Gallery"]
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Visible: =App.Width >= 640
+                        - IconChatWel1:
+                            Control: ModernIcon
+                            Properties:
+                              Height: =24
+                              Icon: =Icon.Message
+                              IconColor: =RGBA(0, 0, 0, 1)
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =24
+                        - IconShareWel1:
+                            Control: ModernIcon
+                            Properties:
+                              Height: =24
+                              Icon: =Icon.Share
+                              IconColor: =RGBA(0, 0, 0, 1)
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =24
+                        - IconSettingsWel1:
+                            Control: ModernIcon
+                            Properties:
+                              Height: =24
+                              Icon: =Icon.Settings
+                              IconColor: =RGBA(0, 0, 0, 1)
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =24
+                        - AvatarWel1:
+                            Control: ModernAvatar
+                            Properties:
+                              Height: =32
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =32
+                  - NavTabsMobileWel1:
+                      Control: ModernTabList
+                      Properties:
+                        Appearance: =TabListAppearance.Subtle
+                        BasePaletteColor: =RGBA(0, 65, 179, 1)
+                        Default: |-
+                          ={Value: "Home"}
+                        Height: =If(App.Width < 640, 48, 0)
+                        Items: |-
+                          =Table({Value: "Home"}, {Value: "Resources"}, {Value: "Events"}, {Value: "Gallery"})
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Width: =Parent.Width
+            - HeroBandWel1:
+                Control: GroupContainer
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =App.Theme.Colors.Lighter70
+                  FillPortions: =0
+                  Height: =If(App.Width < 640, 520, 320)
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =If(App.Width < 640, LayoutDirection.Vertical, LayoutDirection.Horizontal)
+                  LayoutGap: =24
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =If(App.Width < 640, 24, 40)
+                  PaddingLeft: =If(App.Width < 640, 16, 40)
+                  PaddingRight: =If(App.Width < 640, 16, 40)
+                  PaddingTop: =If(App.Width < 640, 24, 40)
+                  Width: =Parent.Width
+                Children:
+                  - HeroTextColWel1:
+                      Control: GroupContainer
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =16
+                        LayoutJustifyContent: =LayoutJustifyContent.Center
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        PaddingBottom: =8
+                        PaddingLeft: =8
+                        PaddingRight: =8
+                        PaddingTop: =8
+                        Width: =Parent.Width
+                      Children:
+                        - HeroTitleWel1:
+                            Control: ModernText
+                            Properties:
+                              AutoHeight: =true
+                              Color: =App.Theme.Colors.Darker20
+                              FontWeight: =FontWeight.Bold
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              PaddingBottom: =0
+                              PaddingTop: =0
+                              Size: =If(App.Width < 640, 26, 38)
+                              Text: ="Welcome to Contoso Art Studio"
+                              Width: =Parent.Width
+                        - HeroSubtitleWel1:
+                            Control: ModernText
+                            Properties:
+                              AutoHeight: =true
+                              Color: =RGBA(96, 94, 92, 1)
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              PaddingBottom: =0
+                              PaddingTop: =0
+                              Size: =If(App.Width < 640, 14, 16)
+                              Text: ="A home for makers. Learn new techniques, join community events, and share the art you love — all in one creative space."
+                              Width: =Parent.Width
+                        - HeroButtonWel1:
+                            Control: ModernButton
+                            Properties:
+                              Align: =Align.Center
+                              Height: =44
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              PaddingBottom: =5
+                              PaddingLeft: =12
+                              PaddingRight: =12
+                              PaddingTop: =5
+                              RadiusBottomLeft: =4
+                              RadiusBottomRight: =4
+                              RadiusTopLeft: =4
+                              RadiusTopRight: =4
+                              Text: ="Get started"
+                              VerticalAlign: =VerticalAlign.Middle
+                              Width: =160
+            - CapabilitiesHeaderWel1:
+                Control: ModernText
+                Properties:
+                  AlignInContainer: =AlignInContainer.Stretch
+                  FontWeight: =FontWeight.Semibold
+                  Height: =72
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =8
+                  PaddingLeft: =If(App.Width < 640, 16, 40)
+                  Size: =18
+                  Text: ="What you can do"
+                  VerticalAlign: =VerticalAlign.Bottom
+            - CapabilitiesGridWel1:
+                Control: GroupContainer
+                Variant: GridLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(255, 255, 255, 1)
+                  FillPortions: =0
+                  Height: =(RoundUp(6 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0) * 168) + ((RoundUp(6 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0) - 1) * 16) + 8
+                  LayoutGap: =16
+                  LayoutGridColumnMinWidth: =(Parent.Width - 2 * If(App.Width < 640, 16, 40) - (If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)) - 1) * 16) / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)) - 4
+                  LayoutGridColumns: =If(App.Width < 640, 1, If(App.Width < 1024, 2, 3))
+                  LayoutGridRowMinHeight: =120
+                  LayoutGridRows: =RoundUp(6 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0)
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =16
+                  PaddingLeft: =If(App.Width < 640, 16, 40)
+                  PaddingRight: =If(App.Width < 640, 16, 40)
+                  PaddingTop: =0
+                  Width: =Parent.Width
+                Children:
+                  - CapCardWel_11:
+                      Control: ModernCard
+                      Properties:
+                        Description: ="Layer translucent washes and let pigment bloom across wet paper for soft, luminous results."
+                        Image: =Blank()
+                        ImagePlacement: =ImagePlacement.AfterHeader
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        Subtitle: ="Explore fluid color and soft gradients."
+                        Title: ="Watercolor Wonders"
+                  - CapCardWel_21:
+                      Control: ModernCard
+                      Properties:
+                        Description: ="Stack opaque layers, palette-knife textures, and bold strokes that hold their shape as they dry."
+                        Image: =Blank()
+                        ImagePlacement: =ImagePlacement.AfterHeader
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        Subtitle: ="Build bold textures and vivid layers."
+                        Title: ="Acrylic Adventures"
+                  - CapCardWel_31:
+                      Control: ModernCard
+                      Properties:
+                        Description: ="From quick gesture studies to detailed line work, turn pencil and ink into a story worth telling."
+                        Image: =Blank()
+                        ImagePlacement: =ImagePlacement.AfterHeader
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        Subtitle: ="Turn simple lines into visual narratives."
+                        Title: ="Sketch & Story"
+                  - CapCardWel_41:
+                      Control: ModernCard
+                      Properties:
+                        Description: ="Compare brushes, pens, papers, and palettes, and find the right kit for any medium or budget."
+                        Image: =Blank()
+                        ImagePlacement: =ImagePlacement.AfterHeader
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        Subtitle: ="Find the right tools for any project."
+                        Title: ="Tools for Every Vision"
+                  - CapCardWel_51:
+                      Control: ModernCard
+                      Properties:
+                        Description: ="Understand hue, value, and harmony with simple exercises, then bend the rules to make them yours."
+                        Image: =Blank()
+                        ImagePlacement: =ImagePlacement.AfterHeader
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        Subtitle: ="Learn color and composition, then break it."
+                        Title: ="Color Theory Made Simple"
+                  - CapCardWel_61:
+                      Control: ModernCard
+                      Properties:
+                        Description: ="Meet the makers near you, follow their work, and get inspired by the community gallery each week."
+                        Image: =Blank()
+                        ImagePlacement: =ImagePlacement.AfterHeader
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        Subtitle: ="Discover and celebrate local makers."
+                        Title: ="Local Artist Spotlight"
+            - CtaBandWel1:
+                Control: GroupContainer
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =App.Theme.Colors.Primary
+                  FillPortions: =0
+                  Height: =If(App.Width < 640, 200, 140)
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =If(App.Width < 640, LayoutDirection.Vertical, LayoutDirection.Horizontal)
+                  LayoutGap: =16
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =24
+                  PaddingLeft: =If(App.Width < 640, 16, 40)
+                  PaddingRight: =If(App.Width < 640, 16, 40)
+                  PaddingTop: =24
+                  Width: =Parent.Width - If(App.Width < 640, 32, 80)
+                Children:
+                  - CtaTextColWel1:
+                      Control: GroupContainer
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        FillPortions: =If(App.Width < 640, 0, 1)
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =4
+                        LayoutJustifyContent: =LayoutJustifyContent.Center
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        PaddingBottom: =8
+                        PaddingLeft: =8
+                        PaddingRight: =8
+                        PaddingTop: =8
+                        Width: =If(App.Width < 640, Parent.Width, 0)
+                      Children:
+                        - CtaTitleWel1:
+                            Control: ModernText
+                            Properties:
+                              AutoHeight: =true
+                              Color: =RGBA(255, 255, 255, 1)
+                              FontWeight: =FontWeight.Bold
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              PaddingBottom: =0
+                              PaddingTop: =0
+                              Size: =If(App.Width < 640, 20, 24)
+                              Text: ="Ready to create?"
+                              Width: =Parent.Width
+                        - CtaSubtitleWel1:
+                            Control: ModernText
+                            Properties:
+                              AutoHeight: =true
+                              Color: =RGBA(219, 228, 246, 1)
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              PaddingBottom: =0
+                              PaddingTop: =0
+                              Size: =14
+                              Text: ="Browse the community gallery and find your next inspiration."
+                              Width: =Parent.Width
+                  - CtaButtonWel1:
+                      Control: ModernButton
+                      Properties:
+                        Align: =Align.Center
+                        Appearance: =ButtonAppearance.Secondary
+                        Height: =44
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        PaddingBottom: =5
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =5
+                        RadiusBottomLeft: =4
+                        RadiusBottomRight: =4
+                        RadiusTopLeft: =4
+                        RadiusTopRight: =4
+                        Text: ="Browse the gallery"
+                        VerticalAlign: =VerticalAlign.Middle
+                        Width: =200

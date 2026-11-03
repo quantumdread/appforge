@@ -1,0 +1,51 @@
+# studio-export-2026-09-20-legacy-datafields.yaml — PROVENANCE RECORD (not parsed at build time).
+#
+# Two data-field control types of a PRIOR data-card generation, observed in the live
+# co-authoring session of a delivery app (maintainer-authorized read-only sync, 2026-09-20,
+# 20 files, byte-identical to the 2026-09-04 acceptance snapshot). They are the 16
+# `unknown-control` refusals that survived the v3.1.0 catalog refresh on that app.
+#
+# Why they need a dump record: on 2026-09-20 BOTH tenants (a development environment, 127 platform
+# controls; the delivery tenant, 127 platform controls + 4 app-local components) omit
+# these names from `list_controls`, and `describe_control` answers "Control '<name>'
+# not found." Current Studio emits TypedDataCard for new forms and DataTableColumn for
+# new tables, so no fresh export can ever produce them. Studio still emits them for the
+# existing app: Studio emission counts as verification of EXISTENCE; the property lists
+# below are LOWER BOUNDS (Studio emits only non-defaults), so unknown properties WARN.
+#
+# Containment: this record carries control TYPE names, one VARIANT name and PROPERTY
+# names only. No instance names, formulas, labels, paths or hashes from the app.
+#
+# Evidence class: studio-export-2026-09-20 (delivery app, live session).
+
+ComboBoxDataField:
+  parent_observed: ComboBox            # FluentV9 ComboBox — the field definition child
+  instances_observed: 5
+  version_pin_observed: none           # authored as bare `Control: ComboBoxDataField`
+  variants_observed: [textualColumn]
+  input_properties_observed:
+    FieldDisplayName: Text
+    FieldName: Text
+    FieldType: Text
+    Order: Number
+
+TableDataField:
+  parent_observed: Table               # classic data table — the column definition child
+  instances_observed: 11
+  version_pin_observed: none
+  variants_observed: [textualColumn]
+  input_properties_observed:
+    FieldDisplayName: Text
+    FieldName: Text
+    FieldType: Text
+    Order: Number
+
+# Property TYPES above are inferred from the authored values' shape (quoted text; an
+# integer for Order) and are recorded as observations, not extractor truth.
+
+# Also observed this session (extractor hardening note, not a catalog claim):
+# `list_controls` on an app WITH component definitions returns those components' names
+# alongside the 127 platform controls. Route A has only ever run against a scratch app
+# without components. The extractor must exclude names that are the target app's own
+# ComponentDefinitions before describing, or Route A must be pinned to a component-free
+# host app. Recorded in the v3.1.1 handoff.

@@ -1,0 +1,372 @@
+{
+  "schema": "verification-recipes/1",
+  "recipes": [
+    {
+      "claim_ref": "dump-property:Circle.Height",
+      "claim_scope": "compiler_accepts",
+      "claim_text": "Hypothesis: the tenant compiler accepts Height on bare Circle with the exact reviewed literal =64. This does not claim that the property was in the source export or that the dump property list is exhaustive.",
+      "falsifier": {
+        "description": "Compile the unchanged one-control repro and attribute any rejection to the exact Circle.Height property assignment.",
+        "unfalsified_if": "compile_canvas accepts the exact recorded input after tenant prerequisites are complete.",
+        "falsified_if": "compile_canvas rejects the exact input specifically because Circle.Height is not an accepted input property. Setup, transport, missing-control and unrelated-property failures leave this claim pending."
+      },
+      "prerequisites": [
+        {
+          "id": "known-dump-control",
+          "phase": "local",
+          "description": "Current dump_sourced_controls contains exact Circle; the targeted property is absent from its lower-bound input property list. This is a property hypothesis on an existing control, not a new-control proposal.",
+          "satisfied": true
+        },
+        {
+          "id": "reviewed-minimal-repro",
+          "phase": "local",
+          "description": "The reviewed synthetic YAML has VerificationScreen, one root ctlProbe with the exact bare control type, one literal property assignment, no datasource reference and no ancestor requirement identified in the current catalog. T1 must still run its structural and analyzer gates.",
+          "satisfied": true
+        },
+        {
+          "id": "isolated-tenant-app",
+          "phase": "tenant",
+          "description": "The maintainer uses an isolated test app in the authorized delivery-tenant session and records sanitized environment and actual compiler version."
+        },
+        {
+          "id": "exact-compiler-input",
+          "phase": "tenant",
+          "description": "Use compile_canvas on the exact generated repro and retain private input and outcome evidence. If the repro needs another property, ancestor, control version or setup edit, regenerate and review its manifest/hash before collecting a claim result."
+        }
+      ],
+      "expected_compile_outcome": "accept",
+      "target": {
+        "kind": "dump-property",
+        "control": "Circle",
+        "property": "Height",
+        "property_value": "=64"
+      },
+      "reproduction": "In the isolated app, compile the generated VerificationScreen with only ctlProbe (Circle) and Height: =64. Record exact input hash and normalized compiler outcome; this pending hypothesis has no tenant result yet.",
+      "local_lint_context": {
+        "datasources": {}
+      },
+      "ancestors": [],
+      "queue_keys": [
+        "lint:partial-catalog-data:Circle.Height"
+      ],
+      "repro_yaml": "Screens:\n  VerificationScreen:\n    Children:\n      - ctlProbe:\n          Control: Circle\n          Properties:\n            Height: =64\n"
+    },
+    {
+      "claim_ref": "dump-property:Circle.Width",
+      "claim_scope": "compiler_accepts",
+      "claim_text": "Hypothesis: the tenant compiler accepts Width on bare Circle with the exact reviewed literal =64. This does not claim that the property was in the source export or that the dump property list is exhaustive.",
+      "falsifier": {
+        "description": "Compile the unchanged one-control repro and attribute any rejection to the exact Circle.Width property assignment.",
+        "unfalsified_if": "compile_canvas accepts the exact recorded input after tenant prerequisites are complete.",
+        "falsified_if": "compile_canvas rejects the exact input specifically because Circle.Width is not an accepted input property. Setup, transport, missing-control and unrelated-property failures leave this claim pending."
+      },
+      "prerequisites": [
+        {
+          "id": "known-dump-control",
+          "phase": "local",
+          "description": "Current dump_sourced_controls contains exact Circle; the targeted property is absent from its lower-bound input property list. This is a property hypothesis on an existing control, not a new-control proposal.",
+          "satisfied": true
+        },
+        {
+          "id": "reviewed-minimal-repro",
+          "phase": "local",
+          "description": "The reviewed synthetic YAML has VerificationScreen, one root ctlProbe with the exact bare control type, one literal property assignment, no datasource reference and no ancestor requirement identified in the current catalog. T1 must still run its structural and analyzer gates.",
+          "satisfied": true
+        },
+        {
+          "id": "isolated-tenant-app",
+          "phase": "tenant",
+          "description": "The maintainer uses an isolated test app in the authorized delivery-tenant session and records sanitized environment and actual compiler version."
+        },
+        {
+          "id": "exact-compiler-input",
+          "phase": "tenant",
+          "description": "Use compile_canvas on the exact generated repro and retain private input and outcome evidence. If the repro needs another property, ancestor, control version or setup edit, regenerate and review its manifest/hash before collecting a claim result."
+        }
+      ],
+      "expected_compile_outcome": "accept",
+      "target": {
+        "kind": "dump-property",
+        "control": "Circle",
+        "property": "Width",
+        "property_value": "=64"
+      },
+      "reproduction": "In the isolated app, compile the generated VerificationScreen with only ctlProbe (Circle) and Width: =64. Record exact input hash and normalized compiler outcome; this pending hypothesis has no tenant result yet.",
+      "local_lint_context": {
+        "datasources": {}
+      },
+      "ancestors": [],
+      "queue_keys": [
+        "lint:partial-catalog-data:Circle.Width"
+      ],
+      "repro_yaml": "Screens:\n  VerificationScreen:\n    Children:\n      - ctlProbe:\n          Control: Circle\n          Properties:\n            Width: =64\n"
+    },
+    {
+      "claim_ref": "dump-property:Classic/Icon.TabIndex",
+      "claim_scope": "compiler_accepts",
+      "claim_text": "Hypothesis: the tenant compiler accepts TabIndex on bare Classic/Icon with the exact reviewed literal =0. This does not claim that the property was in the source export or that the dump property list is exhaustive.",
+      "falsifier": {
+        "description": "Compile the unchanged one-control repro and attribute any rejection to the exact Classic/Icon.TabIndex property assignment.",
+        "unfalsified_if": "compile_canvas accepts the exact recorded input after tenant prerequisites are complete.",
+        "falsified_if": "compile_canvas rejects the exact input specifically because Classic/Icon.TabIndex is not an accepted input property. Setup, transport, missing-control and unrelated-property failures leave this claim pending."
+      },
+      "prerequisites": [
+        {
+          "id": "known-dump-control",
+          "phase": "local",
+          "description": "Current dump_sourced_controls contains exact Classic/Icon; the targeted property is absent from its lower-bound input property list. This is a property hypothesis on an existing control, not a new-control proposal.",
+          "satisfied": true
+        },
+        {
+          "id": "reviewed-minimal-repro",
+          "phase": "local",
+          "description": "The reviewed synthetic YAML has VerificationScreen, one root ctlProbe with the exact bare control type, one literal property assignment, no datasource reference and no ancestor requirement identified in the current catalog. T1 must still run its structural and analyzer gates.",
+          "satisfied": true
+        },
+        {
+          "id": "isolated-tenant-app",
+          "phase": "tenant",
+          "description": "The maintainer uses an isolated test app in the authorized delivery-tenant session and records sanitized environment and actual compiler version."
+        },
+        {
+          "id": "exact-compiler-input",
+          "phase": "tenant",
+          "description": "Use compile_canvas on the exact generated repro and retain private input and outcome evidence. If the repro needs another property, ancestor, control version or setup edit, regenerate and review its manifest/hash before collecting a claim result."
+        }
+      ],
+      "expected_compile_outcome": "accept",
+      "target": {
+        "kind": "dump-property",
+        "control": "Classic/Icon",
+        "property": "TabIndex",
+        "property_value": "=0"
+      },
+      "reproduction": "In the isolated app, compile the generated VerificationScreen with only ctlProbe (Classic/Icon) and TabIndex: =0. Record exact input hash and normalized compiler outcome; this pending hypothesis has no tenant result yet.",
+      "local_lint_context": {
+        "datasources": {}
+      },
+      "ancestors": [],
+      "queue_keys": [
+        "lint:partial-catalog-data:Classic/Icon.TabIndex"
+      ],
+      "repro_yaml": "Screens:\n  VerificationScreen:\n    Children:\n      - ctlProbe:\n          Control: Classic/Icon\n          Properties:\n            TabIndex: =0\n"
+    },
+    {
+      "claim_ref": "dump-property:Classic/Icon.FocusedBorderColor",
+      "claim_scope": "compiler_accepts",
+      "claim_text": "Hypothesis: the tenant compiler accepts FocusedBorderColor on bare Classic/Icon with the exact reviewed literal =RGBA(0, 120, 212, 1). This does not claim that the property was in the source export or that the dump property list is exhaustive.",
+      "falsifier": {
+        "description": "Compile the unchanged one-control repro and attribute any rejection to the exact Classic/Icon.FocusedBorderColor property assignment.",
+        "unfalsified_if": "compile_canvas accepts the exact recorded input after tenant prerequisites are complete.",
+        "falsified_if": "compile_canvas rejects the exact input specifically because Classic/Icon.FocusedBorderColor is not an accepted input property. Setup, transport, missing-control and unrelated-property failures leave this claim pending."
+      },
+      "prerequisites": [
+        {
+          "id": "known-dump-control",
+          "phase": "local",
+          "description": "Current dump_sourced_controls contains exact Classic/Icon; the targeted property is absent from its lower-bound input property list. This is a property hypothesis on an existing control, not a new-control proposal.",
+          "satisfied": true
+        },
+        {
+          "id": "reviewed-minimal-repro",
+          "phase": "local",
+          "description": "The reviewed synthetic YAML has VerificationScreen, one root ctlProbe with the exact bare control type, one literal property assignment, no datasource reference and no ancestor requirement identified in the current catalog. T1 must still run its structural and analyzer gates.",
+          "satisfied": true
+        },
+        {
+          "id": "isolated-tenant-app",
+          "phase": "tenant",
+          "description": "The maintainer uses an isolated test app in the authorized delivery-tenant session and records sanitized environment and actual compiler version."
+        },
+        {
+          "id": "exact-compiler-input",
+          "phase": "tenant",
+          "description": "Use compile_canvas on the exact generated repro and retain private input and outcome evidence. If the repro needs another property, ancestor, control version or setup edit, regenerate and review its manifest/hash before collecting a claim result."
+        }
+      ],
+      "expected_compile_outcome": "accept",
+      "target": {
+        "kind": "dump-property",
+        "control": "Classic/Icon",
+        "property": "FocusedBorderColor",
+        "property_value": "=RGBA(0, 120, 212, 1)"
+      },
+      "reproduction": "In the isolated app, compile the generated VerificationScreen with only ctlProbe (Classic/Icon) and FocusedBorderColor: =RGBA(0, 120, 212, 1). Record exact input hash and normalized compiler outcome; this pending hypothesis has no tenant result yet.",
+      "local_lint_context": {
+        "datasources": {}
+      },
+      "ancestors": [],
+      "queue_keys": [
+        "lint:partial-catalog-data:Classic/Icon.FocusedBorderColor"
+      ],
+      "repro_yaml": "Screens:\n  VerificationScreen:\n    Children:\n      - ctlProbe:\n          Control: Classic/Icon\n          Properties:\n            FocusedBorderColor: =RGBA(0, 120, 212, 1)\n"
+    },
+    {
+      "claim_ref": "dump-property:ModernCheckbox.Checked",
+      "claim_scope": "compiler_accepts",
+      "claim_text": "Hypothesis: the tenant compiler accepts Checked on bare ModernCheckbox with the exact reviewed literal =true. This does not claim that the property was in the source export or that the dump property list is exhaustive.",
+      "falsifier": {
+        "description": "Compile the unchanged one-control repro and attribute any rejection to the exact ModernCheckbox.Checked property assignment.",
+        "unfalsified_if": "compile_canvas accepts the exact recorded input after tenant prerequisites are complete.",
+        "falsified_if": "compile_canvas rejects the exact input specifically because ModernCheckbox.Checked is not an accepted input property. Setup, transport, missing-control and unrelated-property failures leave this claim pending."
+      },
+      "prerequisites": [
+        {
+          "id": "known-dump-control",
+          "phase": "local",
+          "description": "Current dump_sourced_controls contains exact ModernCheckbox; the targeted property is absent from its lower-bound input property list. This is a property hypothesis on an existing control, not a new-control proposal.",
+          "satisfied": true
+        },
+        {
+          "id": "reviewed-minimal-repro",
+          "phase": "local",
+          "description": "The reviewed synthetic YAML has VerificationScreen, one root ctlProbe with the exact bare control type, one literal property assignment, no datasource reference and no ancestor requirement identified in the current catalog. T1 must still run its structural and analyzer gates.",
+          "satisfied": true
+        },
+        {
+          "id": "isolated-tenant-app",
+          "phase": "tenant",
+          "description": "The maintainer uses an isolated test app in the authorized delivery-tenant session and records sanitized environment and actual compiler version."
+        },
+        {
+          "id": "exact-compiler-input",
+          "phase": "tenant",
+          "description": "Use compile_canvas on the exact generated repro and retain private input and outcome evidence. If the repro needs another property, ancestor, control version or setup edit, regenerate and review its manifest/hash before collecting a claim result."
+        }
+      ],
+      "expected_compile_outcome": "accept",
+      "target": {
+        "kind": "dump-property",
+        "control": "ModernCheckbox",
+        "property": "Checked",
+        "property_value": "=true"
+      },
+      "reproduction": "In the isolated app, compile the generated VerificationScreen with only ctlProbe (ModernCheckbox) and Checked: =true. Record exact input hash and normalized compiler outcome; this pending hypothesis has no tenant result yet.",
+      "local_lint_context": {
+        "datasources": {}
+      },
+      "ancestors": [],
+      "queue_keys": [
+        "lint:partial-catalog-data:ModernCheckbox.Checked"
+      ],
+      "repro_yaml": "Screens:\n  VerificationScreen:\n    Children:\n      - ctlProbe:\n          Control: ModernCheckbox\n          Properties:\n            Checked: =true\n"
+    },
+    {
+      "claim_ref": "rule:delegation-sql-isblank",
+      "claim_scope": "player_behaves",
+      "claim_text": "Hypothesis for the recorded SQL connector, column type and tenant configuration: Filter(VerificationRows, IsBlank(ProbeText)) is evaluated nondelegably and can omit qualifying rows beyond the configured nondelegation window. Compilation tests only syntax acceptance, not this runtime claim.",
+      "falsifier": {
+        "description": "Compare the exact gallery query with a controlled full SQL result using nullable text ProbeText, SQL NULL, empty-string and nonblank rows, including qualifying rows demonstrated to lie beyond the configured client row window.",
+        "unfalsified_if": "With setup and binding proved, the observed gallery result omits qualifying rows beyond the measured nondelegation window, while the independently recorded full expected result includes them; retain available delegation/Monitor evidence and rule out setup or access failures.",
+        "falsified_if": "The exact query returns the independently established complete result including the qualifying rows beyond that measured window, with available delegation/Monitor evidence consistent with server-side predicate evaluation. If the row-window placement or cause cannot be established, leave the claim pending."
+      },
+      "prerequisites": [
+        {
+          "id": "known-gallery",
+          "phase": "local",
+          "description": "The current extractor manifest contains bare Gallery and the local rule metadata contains delegation-sql-isblank. No ancestor is required by this reviewed minimal root-control recipe.",
+          "satisfied": true
+        },
+        {
+          "id": "reviewed-sql-hypothesis",
+          "phase": "local",
+          "description": "VerificationRows:sql is the fixed reviewed synthetic local lint mapping. VerificationRows and ProbeText are placeholders chosen for this test; the map is not evidence of a tenant datasource binding. T1 must still run structural and analyzer gates.",
+          "satisfied": true
+        },
+        {
+          "id": "isolated-tenant-app",
+          "phase": "tenant",
+          "description": "The maintainer uses an isolated test app in the authorized delivery-tenant session and records sanitized environment, player/compiler version and actual SQL connector."
+        },
+        {
+          "id": "bind-verification-rows",
+          "phase": "tenant",
+          "description": "Bind the authored name VerificationRows to an authorized controlled SQL test table with a nullable text ProbeText column and a stable row identifier. Supply private evidence of the authored-name-to-SQL binding; a local map, collection or another connector does not satisfy this prerequisite."
+        },
+        {
+          "id": "controlled-limit-fixture",
+          "phase": "tenant",
+          "description": "Record the actual configured nondelegation limit N. Prepare more than N controlled rows including SQL NULL, empty strings and nonblank text; record positive qualifying rows beyond the observed client window and the independent full expected identifiers/counts. Do not assume SQL primary-key order fixes the client window. If placement cannot be established, stop with the runtime claim pending."
+        },
+        {
+          "id": "exact-input-and-runtime-observation",
+          "phase": "tenant",
+          "description": "Compile the exact generated input with the recorded binding, then observe the player result for that same input. Preserve private input/outcome/runtime evidence and available delegation warnings or Monitor evidence, stating explicitly when Monitor is unavailable. Any repro or authored-binding change requires regeneration/review of the case and hashes first."
+        }
+      ],
+      "expected_compile_outcome": "accept",
+      "target": {
+        "kind": "sql-isblank",
+        "control": "Gallery",
+        "property": "Items",
+        "datasource": "VerificationRows",
+        "property_value": "=Filter(VerificationRows, IsBlank(ProbeText))"
+      },
+      "reproduction": "After all tenant prerequisites are evidenced, compile the unchanged ctlProbe Gallery on VerificationScreen. Record compiler acceptance as the narrower syntax subclaim only. In the player compare returned stable identifiers/counts with the full controlled SQL result and document nondelegation limit, controlled row count, qualifying rows beyond the measured window, observed result and available Monitor evidence. Do not treat an absent design-time warning or compile success as delegation verification.",
+      "local_lint_context": {
+        "datasources": {
+          "VerificationRows": "sql"
+        }
+      },
+      "ancestors": [],
+      "queue_keys": [
+        "lint:delegation-sql-isblank:Gallery.Items"
+      ],
+      "repro_yaml": "Screens:\n  VerificationScreen:\n    Children:\n      - ctlProbe:\n          Control: Gallery\n          Properties:\n            Items: =Filter(VerificationRows, IsBlank(ProbeText))\n"
+    }
+  ],
+  "queue_key_coverage": [
+    {
+      "key": "lint:delegation-sql-isblank:Gallery.Items",
+      "complete": false,
+      "claim_refs": [
+        "rule:delegation-sql-isblank"
+      ]
+    },
+    {
+      "key": "lint:partial-catalog-data:Circle.Height",
+      "complete": true,
+      "claim_refs": [
+        "dump-property:Circle.Height"
+      ]
+    },
+    {
+      "key": "lint:partial-catalog-data:Circle.Width",
+      "complete": true,
+      "claim_refs": [
+        "dump-property:Circle.Width"
+      ]
+    },
+    {
+      "key": "lint:partial-catalog-data:Classic/Icon",
+      "complete": false,
+      "claim_refs": []
+    },
+    {
+      "key": "lint:partial-catalog-data:Classic/Icon.FocusedBorderColor",
+      "complete": true,
+      "claim_refs": [
+        "dump-property:Classic/Icon.FocusedBorderColor"
+      ]
+    },
+    {
+      "key": "lint:partial-catalog-data:Classic/Icon.SomeUnknownProp",
+      "complete": false,
+      "claim_refs": []
+    },
+    {
+      "key": "lint:partial-catalog-data:Classic/Icon.TabIndex",
+      "complete": true,
+      "claim_refs": [
+        "dump-property:Classic/Icon.TabIndex"
+      ]
+    },
+    {
+      "key": "lint:partial-catalog-data:ModernCheckbox.Checked",
+      "complete": true,
+      "claim_refs": [
+        "dump-property:ModernCheckbox.Checked"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+# Synthetic evidence for verification machinery tests, never shipped.
+schema_version: 7
+version_knowledge:
+  "Label@0.0.1":
+    target_type: Label
+    target_version: "1.0.0"
+    property_renames: []
+    formula_rewrites: []
+    evidence: Synthetic version fixture
+    observed_at: "2026-09-08"
+    lower_bound: true
+augmentations:
+  TypedDataCard:
+    legacy_variants:
+      - ClassicTextualEdit
+    observed_variants:
+      evidence:
+        verified_by: runtime_observation
+        claim_scope: studio_materializes
+        environment: Synthetic Studio fixture
+        reproduction: Insert the synthetic card fixture
+        falsifier: "a catalog re-extraction settles the synthetic names"
+      variants:
+        - TextualEdit
+        - ComboBoxEdit
+        - DateEdit
+        - DateTimeEdit
+        - TextualView
+    additional_input_properties:
+      Default:   Text
+      Update:    Text
+      MaxLength: Number
+  Gallery:
+    additional_input_properties:
+      WrapCount: { type: Number, verified: true, verified_at: 2026-05-10, verified_by: compile_canvas }
+      OnSelect: { type: Behavior, verified: true, verified_at: 2026-05-10, verified_by: compile_canvas }
+      TemplateFill: { type: Color, verified: true, verified_at: 2026-05-10, verified_by: compile_canvas }
+dump_sourced_controls:
+  Circle:
+    family: Classic
+    version: "1.0.0"
+    variants: []
+    source: studio-export-2026-09-08
+    input_properties:
+      Fill: Color
+  Classic/Icon:
+    family: Classic
+    version: "1.0.0"
+    variants: []
+    source: studio-export-2026-09-08
+    input_properties:
+      Color: Color
+  ModernCheckbox:
+    family: Modern
+    version: "1.0.0"
+    variants: []
+    source: studio-export-2026-09-08
+    input_properties:
+      AccessibleLabel: Text
+synthetic_controls:
+  CanvasComponent:
+    family: Synthetic
+    source: synthetic
+    verified: true
+    requires_sibling: ComponentName
+    input_properties:
+      Width: Number

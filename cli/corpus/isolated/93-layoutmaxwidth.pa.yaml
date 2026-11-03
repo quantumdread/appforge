@@ -1,0 +1,21 @@
+Screens:
+  Home:
+    Children:
+      - outer:
+          Control: GroupContainer
+          Variant: AutoLayout
+          Properties:
+            LayoutDirection: =LayoutDirection.Vertical
+          Children:
+            - card:
+                Control: GroupContainer
+                Variant: ManualLayout
+                Properties:
+                  LayoutMaxWidth: =600
+                Children:
+                  - caption:
+                      Control: Label
+                      Properties:
+                        Width: =Parent.Width - 16
+                        Text: ="Caption"
+                        Wrap: =false

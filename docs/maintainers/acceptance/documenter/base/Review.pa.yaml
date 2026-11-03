@@ -1,0 +1,13 @@
+Screens:
+  Review:
+    Children:
+      - ApproveRequest:
+          Control: Button
+          Properties:
+            Text: ="Save draft"
+            OnSelect: =Collect(LocalDrafts, {Title: "Draft"})
+      - ReturnHome:
+          Control: Button
+          Properties:
+            Text: ="Back"
+            OnSelect: =Navigate(Home)

@@ -1,0 +1,43 @@
+# studio-export-2026-09-09-ms-templates.yaml — PROVENANCE RECORD (not parsed at build time).
+#
+# Nine first-party Microsoft screen templates inserted through Power Apps Studio's own
+# template gallery into a scratch app in a development environment used by the
+# maintainer, then fetched byte-for-byte from the authoring service via canvas-authoring MCP sync_canvas on
+# 2026-09-09 (server v3.26084.7.380337879, geo eu, cluster 106).
+#
+# Evidence class: studio-export-2026-09-09. Microsoft authored these screens and the
+# authoring service emitted this YAML, so control types and variants appearing here are
+# confirmed-real. Property lists remain LOWER BOUNDS (Studio emits only non-defaults).
+#
+# Captured because AppForge's own gate REFUSED 22 occurrences in them — every refusal a
+# catalog gap, none an app defect.
+#
+# TRIMMED: control/variant vocabulary and the layout scale only. Full sync retained
+# privately outside the repo; re-fetchable on demand.
+
+control_types_observed:
+  GroupContainer: 71
+  ModernText: 56
+  ModernCard: 33
+  ModernIcon: 24
+  ModernTabList: 21
+  ModernDataGridColumn: 14
+  ModernButton: 11
+  ModernAvatar: 8
+  ModernTextInput: 4
+  Form: 3
+  ModernDataGrid: 2
+  Gallery: 2
+
+variants_observed:
+  ModernDataGridColumn: [Textual, Email, Phone, Url]   # emitted by MS templates; describe_control lists NO variants section
+
+layout_scale_observed:
+  gap_8: 15
+  gap_16: 12
+  gap_12: 12
+  gap_4: 3
+  gap_24: 2
+  gap_20: 1
+  gap_14: 1
+  gap_10: 1

@@ -1,0 +1,42 @@
+{
+  "schema": "documenter-cases/1",
+  "cases": [
+    {
+      "id": "misleading-name",
+      "mutations": [],
+      "expected": ["The action appends to LocalDrafts.", "The identifier ApproveRequest does not prove approval, external persistence, or role enforcement."]
+    },
+    {
+      "id": "missing-screen",
+      "mutations": [{"file": "Review.pa.yaml", "delete": true}],
+      "expected": ["The Home navigation target is referenced but its implementation is missing from supplied source.", "The target workflow remains unresolved even if intake labels its remaining input complete."]
+    },
+    {
+      "id": "partial-formula",
+      "mutations": [{"file": "Review.pa.yaml", "before": "=Collect(LocalDrafts, {Title: \"Draft\"})", "after": "=If("}],
+      "expected": ["The selected action is incomplete.", "Do not reconstruct a save, approval, or successful outcome from the button label."]
+    },
+    {
+      "id": "external-operation",
+      "mutations": [{"file": "Review.pa.yaml", "before": "=Collect(LocalDrafts, {Title: \"Draft\"})", "after": "=ApprovalRequest.Run(\"draft\")"}],
+      "expected": ["The source calls an external operation with one argument.", "Its internal actions, persistence guarantees, notifications, and permissions are unknown without its definition or other evidence."]
+    },
+    {
+      "id": "owner-conflict",
+      "mutations": [],
+      "synthetic_owner_answer": "This button should submit the request to an external approval service; local draft creation is not the intended outcome.",
+      "expected": ["Retain the observed local collection operation.", "Record the supplied intended outcome separately, with the disagreement visible in the brief and user guide."]
+    },
+    {
+      "id": "stale-evidence",
+      "mutations": [],
+      "after_capture": {"file": "Review.pa.yaml", "before": "=Collect(LocalDrafts, {Title: \"Draft\"})", "after": "=Collect(LocalDrafts, {Title: \"Revised draft\"})"},
+      "expected": ["A source hash recorded before the mutation no longer matches.", "The old observed statement needs renewed inspection even though its file and line still exist."]
+    },
+    {
+      "id": "absent-inventory",
+      "mutations": [],
+      "expected": ["No UDF or component definition appears in the supplied three-file source.", "Missing connection metadata is unavailable, not proof that the app has no connections.", "A local collection candidate is not a verified backend connection."]
+    }
+  ]
+}

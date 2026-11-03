@@ -1,0 +1,11 @@
+Screens:
+  Main:
+    Children:
+      - typo:
+          Control: Labl
+      - pinned:
+          Control: Button@1.0.0
+          Properties:
+            Text: ="Save"
+            AccessibleLabel: ="Save"
+            OnSelect: =true

@@ -1,0 +1,22 @@
+Screens:
+  Details:
+    Children:
+      - radio:
+          Control: Classic/Radio
+          Properties:
+            Items: |-
+              =Table({Value: "North"}, {Value: "South"})
+            Default: ="North"
+            RadioSize: =35
+      - unknownBadge:
+          Control: Classic/Icon
+          Properties:
+            Icon: =Icon.Add
+      - computedBadge:
+          Control: Classic/Icon
+          Properties:
+            Icon: =Switch(step, 1, Icon.Check, Icon.Home)
+      - date:
+          Control: DatePicker
+          Properties:
+            SelectedDate: =Today()

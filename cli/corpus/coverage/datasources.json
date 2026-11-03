@@ -1,0 +1,7 @@
+{
+  "CoverageSharePoint": "sharepoint",
+  "CoverageSql": "sql",
+  "CoverageExcel": "excel",
+  "colCoverageOrders": "sharepoint",
+  "CoverageCollection": "collection"
+}

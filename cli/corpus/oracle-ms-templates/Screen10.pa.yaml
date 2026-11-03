@@ -1,0 +1,392 @@
+Screens:
+  Screen10:
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    Children:
+      - TFScroll1:
+          Control: GroupContainer
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutOverflowY: =LayoutOverflow.Scroll
+            PaddingBottom: =24
+            Width: =Parent.Width
+          Children:
+            - TopNav7:
+                Control: GroupContainer
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(255, 255, 255, 1)
+                  FillPortions: =0
+                  Height: =If(App.Width < 640, 104, 56)
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  Width: =Parent.Width
+                Children:
+                  - TitleRow7:
+                      Control: GroupContainer
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(255, 255, 255, 1)
+                        FillPortions: =0
+                        Height: =56
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        LayoutGap: =12
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        PaddingLeft: =If(App.Width < 640, 16, 24)
+                        PaddingRight: =If(App.Width < 640, 16, 24)
+                        Width: =Parent.Width
+                      Children:
+                        - AppTitle7:
+                            Control: ModernText
+                            Properties:
+                              FillPortions: =If(App.Width < 640, 1, 0)
+                              Font: =Font.'Segoe UI'
+                              FontWeight: =FontWeight.Semibold
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              PaddingBottom: =0
+                              PaddingTop: =0
+                              Size: =If(App.Width < 640, 13, 16)
+                              Text: ="Contoso Art Studio"
+                              Width: =If(App.Width < 640, 0, 200)
+                        - NavTabsDesktop7:
+                            Control: ModernTabList
+                            Properties:
+                              AlignInContainer: =AlignInContainer.Center
+                              Appearance: =TabListAppearance.Subtle
+                              Default: |-
+                                ={Value: "Gallery"}
+                              FillPortions: =1
+                              Height: =56
+                              Items: =["Home", "Resources", "Events", "Gallery"]
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Visible: =App.Width >= 640
+                        - IconChat7:
+                            Control: ModernIcon
+                            Properties:
+                              Height: =24
+                              Icon: =Icon.Message
+                              IconColor: =RGBA(0, 0, 0, 1)
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =24
+                        - IconShare7:
+                            Control: ModernIcon
+                            Properties:
+                              Height: =24
+                              Icon: =Icon.Share
+                              IconColor: =RGBA(0, 0, 0, 1)
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =24
+                        - IconSettings7:
+                            Control: ModernIcon
+                            Properties:
+                              Height: =24
+                              Icon: =Icon.Settings
+                              IconColor: =RGBA(0, 0, 0, 1)
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =24
+                        - Avatar8:
+                            Control: ModernAvatar
+                            Properties:
+                              Height: =32
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =32
+                  - NavTabsMobile7:
+                      Control: ModernTabList
+                      Properties:
+                        Appearance: =TabListAppearance.Subtle
+                        BasePaletteColor: =RGBA(0, 65, 179, 1)
+                        Default: |-
+                          ={Value: "Gallery"}
+                        Height: =If(App.Width < 640, 48, 0)
+                        Items: |-
+                          =Table({Value: "Home"}, {Value: "Resources"}, {Value: "Events"}, {Value: "Gallery"})
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Width: =Parent.Width
+            - NavDivider7:
+                Control: ModernText
+                Properties:
+                  Fill: =RGBA(237, 237, 237, 1)
+                  Height: =2
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =0
+                  PaddingTop: =0
+                  Text: =""
+                  Width: =Parent.Width
+            - TitleBand6:
+                Control: GroupContainer
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(255, 255, 255, 1)
+                  FillPortions: =0
+                  Height: =If(App.Width < 640, 152, 128)
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =8
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =12
+                  PaddingLeft: =If(App.Width < 640, 16, 40)
+                  PaddingRight: =If(App.Width < 640, 16, 40)
+                  PaddingTop: =28
+                  Width: =Parent.Width
+                Children:
+                  - PageTitle5:
+                      Control: ModernText
+                      Properties:
+                        AutoHeight: =true
+                        FontWeight: =FontWeight.Bold
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Size: =If(App.Width < 640, 22, 28)
+                        Text: ="Manage your collection"
+                        Width: =Parent.Width - If(App.Width < 640, 32, 80)
+                  - PageSubtitle5:
+                      Control: ModernText
+                      Properties:
+                        AutoHeight: =true
+                        Color: =RGBA(96, 94, 92, 1)
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Size: =If(App.Width < 640, 12, 14)
+                        Text: ="Pick an artwork on the left to view and edit its details."
+                        Width: =Parent.Width - If(App.Width < 640, 32, 80)
+            - MasterDetailRow1:
+                Control: GroupContainer
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(255, 255, 255, 1)
+                  FillPortions: =0
+                  Height: =If(App.Width < 640, 900, 580)
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =If(App.Width < 640, LayoutDirection.Vertical, LayoutDirection.Horizontal)
+                  LayoutGap: =20
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =24
+                  PaddingLeft: =If(App.Width < 640, 16, 40)
+                  PaddingRight: =If(App.Width < 640, 16, 40)
+                  Width: =Parent.Width
+                Children:
+                  - MasterPane1:
+                      Control: GroupContainer
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(250, 250, 250, 1)
+                        FillPortions: =3
+                        Height: =If(App.Width < 640, 320, 560)
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =8
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        PaddingBottom: =12
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =12
+                        Width: =If(App.Width < 640, Parent.Width - 32, 0)
+                      Children:
+                        - MasterTopRow1:
+                            Control: GroupContainer
+                            Variant: AutoLayout
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              FillPortions: =0
+                              Height: =40
+                              LayoutAlignItems: =LayoutAlignItems.Center
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutGap: =8
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =Parent.Width - 24
+                            Children:
+                              - MasterSearch1:
+                                  Control: ModernTextInput
+                                  Properties:
+                                    FillPortions: =1
+                                    Height: =36
+                                    LayoutMinHeight: =16
+                                    LayoutMinWidth: =200
+                                    Placeholder: ="Search artworks"
+                                    Width: =0
+                              - MasterNewBtn1:
+                                  Control: ModernButton
+                                  Properties:
+                                    Height: =36
+                                    LayoutMinHeight: =16
+                                    LayoutMinWidth: =16
+                                    Text: ="+ New"
+                        - MasterGallery1:
+                            Control: Gallery
+                            Variant: Vertical
+                            Properties:
+                              BorderColor: =RGBA(245, 245, 245, 1)
+                              Items: |-
+                                =Filter(Table({Title: "Sunrise Study", Medium: "Watercolor", Status: "● Active", Portfolio: "https://www.example.com/sunrise", SubmittedOn: Date(2026, 1, 18), Rating: 4, Description: "A morning light study exploring warm gradients over a quiet harbor."}, {Title: "Abstract No. 7", Medium: "Acrylic", Status: "◐ In review", Portfolio: "https://www.example.com/abstract7", SubmittedOn: Date(2026, 1, 22), Rating: 5, Description: "Bold overlapping planes of colour with a strong diagonal rhythm."}, {Title: "Quiet Harbor", Medium: "Watercolor", Status: "● Active", Portfolio: "https://www.example.com/harbor", SubmittedOn: Date(2026, 2, 1), Rating: 4, Description: "Soft reflections on still water at the end of the day."}, {Title: "City in Motion", Medium: "Gouache", Status: "○ Draft", Portfolio: "https://www.example.com/city", SubmittedOn: Date(2026, 2, 4), Rating: 3, Description: "A busy crossing rendered in quick, gestural strokes."}, {Title: "Golden Fields", Medium: "Oil", Status: "◐ In review", Portfolio: "https://www.example.com/fields", SubmittedOn: Date(2026, 2, 9), Rating: 5, Description: "Late summer light across rolling farmland."}), IsBlank(MasterSearch1.Text) || MasterSearch1.Text in Title || MasterSearch1.Text in Medium)
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              TemplateFill: =If(ThisItem.IsSelected, RGBA(235, 241, 252, 1), RGBA(255, 255, 255, 1))
+                              TemplateSize: =72
+                              Width: =Parent.Width - 24
+                            Children:
+                              - MasterRow1:
+                                  Control: GroupContainer
+                                  Variant: AutoLayout
+                                  Properties:
+                                    DropShadow: =DropShadow.None
+                                    Height: =64
+                                    LayoutAlignItems: =LayoutAlignItems.Center
+                                    LayoutDirection: =LayoutDirection.Vertical
+                                    LayoutJustifyContent: =LayoutJustifyContent.Center
+                                    PaddingLeft: =12
+                                    PaddingRight: =12
+                                    Width: =Parent.TemplateWidth
+                                  Children:
+                                    - MasterRowTitle1:
+                                        Control: ModernText
+                                        Properties:
+                                          FontWeight: =FontWeight.Semibold
+                                          Height: =20
+                                          LayoutMinHeight: =16
+                                          LayoutMinWidth: =16
+                                          PaddingBottom: =0
+                                          PaddingTop: =0
+                                          Size: =14
+                                          Text: =ThisItem.Title
+                                          Width: =Parent.Width - 24
+                                    - MasterRowSub1:
+                                        Control: ModernText
+                                        Properties:
+                                          Color: =RGBA(96, 94, 92, 1)
+                                          Height: =18
+                                          LayoutMinHeight: =16
+                                          LayoutMinWidth: =16
+                                          PaddingBottom: =0
+                                          PaddingTop: =0
+                                          Size: =12
+                                          Text: =ThisItem.Medium & "  ·  " & ThisItem.Status
+                                          Width: =Parent.Width - 24
+                  - DetailPane1:
+                      Control: GroupContainer
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(255, 255, 255, 1)
+                        FillPortions: =7
+                        Height: =If(App.Width < 640, 540, 560)
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =8
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        PaddingBottom: =20
+                        PaddingLeft: =20
+                        PaddingRight: =20
+                        PaddingTop: =16
+                        Width: =If(App.Width < 640, Parent.Width - 32, 0)
+                      Children:
+                        - DetailActionRow1:
+                            Control: GroupContainer
+                            Variant: AutoLayout
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              FillPortions: =0
+                              Height: =44
+                              LayoutAlignItems: =LayoutAlignItems.Center
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutGap: =12
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =Parent.Width - 40
+                            Children:
+                              - DetailHeading1:
+                                  Control: ModernText
+                                  Properties:
+                                    FillPortions: =1
+                                    FontWeight: =FontWeight.Semibold
+                                    Height: =28
+                                    LayoutMinHeight: =16
+                                    LayoutMinWidth: =16
+                                    PaddingBottom: =0
+                                    PaddingTop: =0
+                                    Size: =18
+                                    Text: =Coalesce(MasterGallery1.Selected.Title, "New artwork")
+                                    Width: =0
+                              - DetailDeleteBtn1:
+                                  Control: ModernButton
+                                  Properties:
+                                    Appearance: =ButtonAppearance.Secondary
+                                    Height: =36
+                                    LayoutMinHeight: =16
+                                    LayoutMinWidth: =16
+                                    Text: ="Delete"
+                        - CollectionForm1:
+                            Control: Form
+                            Layout: Vertical
+                            Properties:
+                              BorderColor: =RGBA(245, 245, 245, 1)
+                              DataSource: |-
+                                =Table({Title: "Sunrise Study", Medium: "Watercolor", Status: "● Active", Portfolio: "https://www.example.com/sunrise", SubmittedOn: Date(2026, 1, 18), Rating: 4, Description: "A morning light study exploring warm gradients over a quiet harbor."})
+                              Item: =MasterGallery1.Selected
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              NumberOfColumns: =If(App.Width < 640, 1, 2)
+                        - DetailButtonRow1:
+                            Control: GroupContainer
+                            Variant: AutoLayout
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              FillPortions: =0
+                              Height: =56
+                              LayoutAlignItems: =LayoutAlignItems.Center
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutGap: =12
+                              LayoutJustifyContent: =LayoutJustifyContent.End
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =Parent.Width - 40
+                            Children:
+                              - DetailCancelBtn1:
+                                  Control: ModernButton
+                                  Properties:
+                                    Appearance: =ButtonAppearance.Secondary
+                                    Height: =40
+                                    LayoutMinHeight: =16
+                                    LayoutMinWidth: =16
+                                    OnSelect: =ResetForm(CollectionForm1)
+                                    Text: ="Cancel"
+                                    Width: =120
+                              - DetailSaveBtn1:
+                                  Control: ModernButton
+                                  Properties:
+                                    Height: =40
+                                    LayoutMinHeight: =16
+                                    LayoutMinWidth: =16
+                                    Text: ="Save changes"
+                                    Width: =150

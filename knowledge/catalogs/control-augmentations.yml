@@ -1,0 +1,423 @@
+# control-augmentations.yml — hand-curated overlay for the auto-extracted catalog
+#
+# WHY THIS FILE EXISTS
+# The Canvas Authoring MCP's `describe_control` doesn't surface every property
+# that PA-YAML actually accepts. This file captures what's missing AND records
+# verification status — a tiered allow-list rather than a flat one.
+#
+# FOUR HAND-EDITABLE SECTIONS
+#   augmentations:          — overlay ON TOP of extractor-reachable controls
+#                             (notes, legacy variants, observed_variants,
+#                             additional_input_properties).
+#                             `observed_variants:` (schema_version 7+) is the
+#                             dump-sourced lower-bound doctrine applied at VARIANT
+#                             granularity: variant names current Studio still
+#                             ACCEPTS but no longer EMITS, so no fresh export can
+#                             evidence them. They WARN ('partial-catalog-data'),
+#                             never REFUSE, and the control's properties are still
+#                             validated normally. The block REQUIRES an
+#                             `evidence:` map with verified_by: runtime_observation
+#                             plus all four structured fields (claim_scope,
+#                             environment, reproduction, falsifier) and a nonempty
+#                             `variants:` list disjoint from both legacy_variants
+#                             and the extractor's own variant list. Names here are
+#                             NOT verified — the falsifier names the re-extraction
+#                             that settles them.
+#   dump_sourced_controls:  — entries added only for controls with extraction
+#                             errors and retired as soon as extraction succeeds.
+#                             An empty block means the extractor currently reaches
+#                             everything. Recovered from a
+#                             Studio-emitted PA-YAML export. Because Studio only emits
+#                             NON-DEFAULT properties, these property lists are LOWER
+#                             BOUNDS — incomplete by nature. The validator therefore
+#                             treats unknown properties/variants on these controls as
+#                             WARN ('partial-catalog-data'), never REFUSE: usage feeds
+#                             the verification queue rather than blocking generation.
+#                             Studio emission itself counts as verification
+#                             (source: studio-export-<date>). RETIRE a dump_sourced
+#                             entry the moment the extractor can reach the control —
+#                             the build gate enforces this (no dup with the manifest).
+#   synthetic_controls:     — PA-YAML authoring constructs that are not real
+#                             Studio controls (described below).
+#   version_knowledge:      — field-observed authored-version migrations. Each
+#                             entry is a lower bound, never a general latest-version
+#                             claim for control generations absent from this map.
+#
+# The validator's three-state behaviour:
+#   PASS   — property is in auto-extracted catalog OR here with verified: true
+#   WARN   — property is here with verified: false (default) — generation allowed,
+#            warning emitted, usage tells you what to verify next
+#   REFUSE — property is in neither — error: missing-catalog-entry
+#
+# Property entries support shorthand and longhand forms:
+#   PropName: Number                                     — shorthand, implicit verified: false
+#   PropName: { type: Number, verified: true,
+#               verified_at: 2026-05-10, verified_by: compile_canvas }
+# Optional longhand evidence fields are claim_scope, environment, reproduction,
+# and falsifier. verified_by accepts compile_canvas, studio-export-YYYY-MM-DD,
+# runtime_observation, and the deprecated one-release alias studio-observation.
+# runtime_observation (including its legacy alias) requires all four evidence
+# fields; other existing entries need no backfill.
+#
+# The extractor (cli/extractor.mjs) overwrites control-manifest.yml and
+# control-properties.yml on every run. It NEVER touches this file. Hand-edit
+# only. When verification rejects an entry, REMOVE it (not flag it false) —
+# false-claim entries pollute the warn tier and erode trust in WARN.
+#
+# ─── Verification campaign 2026-05-10 ────────────────────────────────────
+# 22 entries originally lifted from the year-old hand-curated catalog.
+# Tested in batch via compile_canvas against a live tenant.
+# Result: 4 verified, 18 rejected.
+#
+#   Verified (real MCP omissions, all on Gallery):
+#     Gallery.OnSelect, Gallery.WrapCount, Gallery.TemplateFill,
+#     Gallery.ItemAccessibleLabel
+#
+#   Rejected (manual catalog was wrong; auto-extractor was correct):
+#     Camera.Brightness, Camera.Contrast, Camera.Zoom
+#     Classic/CheckBox.Value
+#     Classic/ComboBox.OnNavigate
+#     Classic/Slider.ReadOnly
+#     Classic/Toggle.RailFill, .RailHoverFill, .ValueFill, .ValueHoverFill
+#     ComboBox.TextInputPlaceholder
+#     DatePicker.DefaultDate
+#     Icon.AccessibleLabel, Icon.BasePaletteColor
+#     InfoButton.IconSize
+#     Label.DelayOutput
+#     Radio.OnSelect
+#     Table.Size
+#     TextInput.DelayOutput
+#
+# The augmentations layer is specifically about **Gallery** — `describe_control`
+# misses 4 real Gallery properties. Everywhere else the MCP is correct and the
+# year-old hand-curated catalog had stale or invented names. Worth knowing for
+# future hand-augmentation: skepticism by default; verify before adding.
+
+#   synthetic_controls:      — controls that have NO extractor representation and
+#                             never will, because they are not real Studio controls
+#                             but PA-YAML authoring constructs (e.g. CanvasComponent
+#                             instances, whose real schema is the app-defined
+#                             ComponentDefinition, not a fixed control). The
+#                             extractor can't describe them, and a dump entry would
+#                             be wrong too (their surface is the union of a small
+#                             fixed frame + app-defined custom properties). They are
+#                             folded into the generated catalog like dump_sourced,
+#                             but carry `source: compile_canvas` and a
+#                             `requires_sibling:` key (the sibling line that must
+#                             accompany the Control:, e.g. ComponentName). Verified
+#                             via compile_canvas round-trip. schema_version 4+.
+
+schema_version: 7
+sourced_from: retired hand-curated property table, filtered by verification 2026-05-10; dump_sourced_controls from studio-export-2026-07-08; synthetic_controls (CanvasComponent) verified 2026-07-19; version_knowledge from studio-export-2026-08-26
+last_reviewed: 2026-09-20
+
+# Field-verified Studio "update control versions" migrations, observed in
+# before/after export pairs on 2026-08-26. This block is intentionally limited
+# to those four observations; an authored key absent here remains unresolved.
+version_knowledge:
+  "Button@0.0.45":
+    target_type: ModernButton
+    target_version: "1.0.0"
+    property_renames:
+      - from: FontSize
+        to: [Size]
+      - from: BorderRadius
+        to: [RadiusTopLeft, RadiusTopRight, RadiusBottomLeft, RadiusBottomRight]
+    formula_rewrites:
+      - from: "'ButtonCanvas.Appearance'.X"
+        to: ButtonAppearance.X
+    migration_note: "Studio: update control versions"
+    evidence: studio-export-2026-08-26
+    observed_at: "2026-08-26"
+    lower_bound: true
+
+  "TextInput@0.0.54":
+    target_type: ModernTextInput
+    target_version: "1.1.1"
+    property_renames:
+      - from: Value
+        to: [Default]
+    formula_rewrites: []
+    migration_note: "Studio: update control versions"
+    evidence: studio-export-2026-08-26
+    observed_at: "2026-08-26"
+    lower_bound: true
+
+  "DatePicker@0.0.46":
+    target_type: ModernDatePicker
+    target_version: "1.0.1"
+    property_renames:
+      - from: SelectedDate
+        to: [DefaultDate]
+    formula_rewrites: []
+    migration_note: "Studio: update control versions"
+    evidence: studio-export-2026-08-26
+    observed_at: "2026-08-26"
+    lower_bound: true
+
+  "CheckBox@0.0.30":
+    target_type: ModernCheckbox
+    target_version: "1.0.0"
+    property_renames:
+      - from: Checked
+        to: [Default]
+    formula_rewrites: []
+    migration_note: "Studio: update control versions"
+    evidence: studio-export-2026-08-26
+    observed_at: "2026-08-26"
+    lower_bound: true
+
+augmentations:
+
+  # -------------------------------------------------------------------------
+  # Gallery — the only control with confirmed-real MCP omissions.
+  # All 4 additional input properties verified against compile_canvas.
+  # -------------------------------------------------------------------------
+  Gallery:
+    notes:
+      - "Transition: Pop / Push / None"
+      - "LoadingSpinner: None / Controls / Data"
+    additional_input_properties:
+      OnSelect:            { type: Event,  verified: true, verified_at: 2026-05-10, verified_by: compile_canvas }
+      WrapCount:           { type: Number, verified: true, verified_at: 2026-05-10, verified_by: compile_canvas }
+      TemplateFill:        { type: Color,  verified: true, verified_at: 2026-05-10, verified_by: compile_canvas }
+      ItemAccessibleLabel: { type: Text,   verified: true, verified_at: 2026-05-10, verified_by: compile_canvas }
+    current_variants:
+      # Current Studio Layout presets inserted on 2026-10-06 (vertical,
+      # horizontal, flexible height); compiling the synced app passed.
+      # describe_control omits these presets from its agent-filtered variants.
+      - { name: BrowseLayout_Flexible_SocialFeed_ver5.0, verified: true, verified_at: 2026-10-06, verified_by: compile_canvas }
+      - { name: BrowseLayout_Horizontal_TwoTextOneImageVariant_ver5.0, verified: true, verified_at: 2026-10-06, verified_by: compile_canvas }
+      - { name: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0, verified: true, verified_at: 2026-10-06, verified_by: compile_canvas }
+    legacy_variants:
+      # Studio-emitted old browse layouts; Microsoft's validate-directory accepted
+      # these in a delivery session (2026-10-05, 12 galleries). Findings
+      # report: compile_canvas gap findings, 2026-10-05.
+      - BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0
+      - BrowseLayout_Vertical_TwoTextVariant_ver4.0
+
+  # -------------------------------------------------------------------------
+  # Notes-only augmentations — preserved tribal knowledge that affects how
+  # the generator should emit YAML for these controls. No property additions
+  # (the originally-claimed ones were all rejected by compile_canvas).
+  # -------------------------------------------------------------------------
+
+  AddressInput:
+    notes:
+      - "NOT supported in Teams"
+
+  Attachments:
+    notes:
+      - "Used inside Edit Forms for SP attachment columns"
+      - "MaxAttachmentSize is in MB"
+      - "No OnSelect"
+
+  Badge:
+    notes:
+      - "Appearance: Filled / Outline / Ghost / Inverted"
+      - "ThemeColor: Brand / Danger / Important / Informative / Severe / Subtle / Success / Warning"
+
+  BarcodeReader:
+    notes:
+      - "NOT supported on desktop browsers — requires Power Apps mobile app"
+      - "NOT supported in Teams Mobile"
+
+  Button:
+    notes:
+      - "Icon uses string format e.g. Icon=\"Airplane\""
+      - "Appearance: Primary / Secondary / Outline / Subtle / Transparent"
+
+  Camera:
+    notes:
+      - "iOS: only in mobile app, not browser"
+      - "NOT supported in Teams Mobile — use AddPicture instead"
+
+  Classic/DatePicker:
+    notes:
+      - "Format: ShortDate / LongDate or custom like yyyy/mm/dd"
+
+  Classic/Icon:
+    notes:
+      - "Use for CLICKABLE icons — Modern Icon has NO OnSelect"
+
+  Classic/Radio:
+    notes:
+      - "Layout: Vertical / Horizontal"
+
+  Classic/Slider:
+    notes:
+      - "Layout: Vertical / Horizontal"
+
+  Classic/TextInput:
+    notes:
+      - "Mode: SingleLine / Multiline / Password"
+      - "Format: text / number"
+
+  Classic/Toggle:
+    notes:
+      - "TextPosition: left/right"
+
+  ComboBox:
+    notes:
+      - "Modern ComboBox — for Classic use Classic/ComboBox"
+
+  DatePicker:
+    notes:
+      - "Format: Short / LongAbbreviated / YearMonth / Custom"
+
+  DropDown:
+    notes:
+      - "Modern DropDown — for Classic use Classic/DropDown"
+
+  Form:
+    notes:
+      - "Layout:Vertical"
+
+  FormViewer:
+    notes:
+      - "Layout:Vertical"
+
+  Icon:
+    notes:
+      - "Modern Icon — decorative only — NO OnSelect (use Classic/Icon for clickable)"
+      - "Icon uses STRING values e.g. Icon=\"Money\", not Icon.Currency"
+      - "Use IconColor for color, NOT Color"
+
+  Image:
+    notes:
+      - "ImagePosition: Fill / Fit / Stretch / Tile / Center"
+      - "External URLs must use HTTPS"
+
+  InfoButton:
+    notes:
+      - "IconSize: small / medium / large"
+
+  Label:
+    notes:
+      - "Live: Off / Polite / Assertive (screen-reader announcements)"
+
+  Map:
+    notes:
+      - "NOT supported in Teams"
+
+  Microphone:
+    notes:
+      - "Teams: AAC format only (.MP4)"
+      - "Max 10 min duration"
+      - "Teams blocks control during recording"
+
+  PowerBI:
+    # WorkspaceId is a real input property the extractor's describe_control omits.
+    # Confirmed present via the Studio export 2026-07-08 (PowerBI@2.4.0 emitted it).
+    additional_input_properties:
+      WorkspaceId: { type: Text, verified: true, verified_at: "2026-07-08", verified_by: studio-export-2026-07-08 }
+
+  Progress:
+    notes:
+      - "ProgressColor: brand / error / warning / success"
+      - "Thickness: medium / large"
+
+  Radio:
+    notes:
+      - "Modern Radio — Layout: vertical / horizontal / horizontalStacked"
+      - "Modern Radio does NOT support OnSelect (verified 2026-05-10) — use OnChange"
+
+  Slider:
+    notes:
+      - "Modern Slider — Layout: Vertical / Horizontal"
+
+  Spinner:
+    notes:
+      - "Appearance: Primary / Inverted"
+
+  Table:
+    notes:
+      - "ReflowBehavior: Reflow / GridOnly / ListOnly"
+
+  Text:
+    notes:
+      - "Modern Text — for labels"
+      - "Weight: Bold / Semibold / Regular / Medium"
+
+  TextInput:
+    notes:
+      # verified: true, verified_at: 2026-07-19, verified_by: compile_canvas
+      - "Mode: use ='TextInputCanvas.Mode'.Multiline (lowercase l in line)"
+      - "Type: text / password / search"
+      - "TriggerOutput: Delayed / FocusOut / Keypress"
+
+  Timer:
+    notes:
+      - "Duration in milliseconds — max 24 hours"
+
+  Toggle:
+    notes:
+      - "Modern Toggle — LabelPosition: before / after / above"
+
+  ViewIn3D:
+    notes:
+      - "Mixed Reality — NOT supported in Teams"
+
+# ─── Dump-sourced controls (studio-export-2026-07-08) ──────────────────────
+# Controls with extraction errors (such as describe_control HTTP 500), recovered
+# from a Studio PA-YAML export. Property lists are LOWER BOUNDS — Studio emits
+# only non-default properties — so unknown props/variants WARN, never REFUSE.
+# Property types are inferred from the emitted formula values (=RGBA(→Color,
+# number→Number, =true/false→Boolean, ="..."→Text, On*→Event, real enum
+# namespace→Enum, references/formulas→Unknown). Provenance record:
+# catalogs/sources/studio-export-2026-07-08.yaml. Retire an entry once the
+# extractor reaches the control (build gate enforces). An empty block is valid.
+dump_sourced_controls:
+  # Empty after the 2026-09-20 extraction reached all seven recovered controls.
+  # Legacy data fields added subsequently from the provenance record:
+  # catalogs/sources/studio-export-2026-09-20-legacy-datafields.yaml.
+  # Current Studio does not emit these for new controls, but still emits them
+  # in existing apps. Unknown properties/variants WARN: these are lower bounds.
+  ComboBoxDataField:
+    family: FluentV9
+    variants: [textualColumn]
+    source: studio-export-2026-09-20-legacy-datafields
+    input_properties:
+      FieldDisplayName: Text
+      FieldName: Text
+      FieldType: Text
+      Order: Number
+
+  TableDataField:
+    family: Classic
+    variants: [textualColumn]
+    source: studio-export-2026-09-20-legacy-datafields
+    input_properties:
+      FieldDisplayName: Text
+      FieldName: Text
+      FieldType: Text
+      Order: Number
+
+# ─── Synthetic controls (schema_version 4+) ────────────────────────────────
+# Authoring constructs that are NOT real Studio controls and have no extractor
+# representation. CanvasComponent is an INSTANCE of an app-defined component; its
+# true property surface is the component's ComponentDefinition (app-defined custom
+# properties), not a fixed control schema. The validator therefore treats a
+# CanvasComponent instance's non-frame properties as app-defined: they PASS when a
+# matching ComponentDefinition is in the validated batch, else WARN
+# ('component-custom-property'), never REFUSE. Only the small fixed frame below is
+# a hard allow-list. `requires_sibling: ComponentName` records that a bare
+# `Control: CanvasComponent` is invalid without a `ComponentName:` sibling
+# (REFUSE 'component-name-required'). Verified via compile_canvas round-trip
+# 2026-07-19. Build gate: a synthetic control must NOT exist in the manifest and
+# MUST declare requires_sibling.
+synthetic_controls:
+  CanvasComponent:
+    family: Synthetic
+    source: compile_canvas
+    verified: true
+    verified_at: "2026-07-19"
+    verified_by: compile_canvas
+    requires_sibling: ComponentName
+    input_properties:
+      X: Number
+      Y: Number
+      Width: Number
+      Height: Number
+      Visible: Boolean
+      DisplayMode: "@enum:DisplayMode"

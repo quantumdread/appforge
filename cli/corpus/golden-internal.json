@@ -1,0 +1,2398 @@
+{
+  "schema_version": 1,
+  "comparison_fields": [
+    "level",
+    "rule",
+    "file",
+    "control",
+    "type",
+    "property",
+    "did_you_mean"
+  ],
+  "reported_fields": [
+    "detail",
+    "fix",
+    "line"
+  ],
+  "summary_fields": [
+    "pass",
+    "warn",
+    "refuse",
+    "controls_seen"
+  ],
+  "run": {
+    "exit_code": 1,
+    "files": {
+      "coverage/00-clean.pa.yaml": {
+        "sha256": "e0278755e5aca8debb7b574469d0599e42c3fd59b2ff6b16eacdafa42f39dcc2",
+        "issues": [],
+        "summary": {
+          "pass": 1,
+          "warn": 0,
+          "refuse": 0,
+          "controls_seen": 1
+        }
+      },
+      "coverage/10-refuse-catalog.pa.yaml": {
+        "sha256": "39b034720c6431cf85831fc62e5e039a656bafe3c2334bb4a82632da931cbfaf",
+        "issues": [
+          {
+            "level": "REFUSE",
+            "rule": null,
+            "file": "coverage/10-refuse-catalog.pa.yaml",
+            "control": "badPropertyCoverage",
+            "type": "Label",
+            "property": "DefinitelyNotAProperty",
+            "did_you_mean": null,
+            "detail": "property-not-in-catalog",
+            "fix": null,
+            "line": 12
+          },
+          {
+            "level": "REFUSE",
+            "rule": null,
+            "file": "coverage/10-refuse-catalog.pa.yaml",
+            "control": "badVariantCoverage",
+            "type": "Button",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "variant-not-in-catalog",
+            "fix": null,
+            "line": 6
+          },
+          {
+            "level": "REFUSE",
+            "rule": null,
+            "file": "coverage/10-refuse-catalog.pa.yaml",
+            "control": "ghostCoverage",
+            "type": "DefinitelyNotAControl",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "control-type-not-in-manifest",
+            "fix": null,
+            "line": 4
+          },
+          {
+            "level": "REFUSE",
+            "rule": null,
+            "file": "coverage/10-refuse-catalog.pa.yaml",
+            "control": "pa2108Coverage",
+            "type": "TextInput",
+            "property": "Default",
+            "did_you_mean": null,
+            "detail": "property-not-in-catalog",
+            "fix": null,
+            "line": 16
+          },
+          {
+            "level": "REFUSE",
+            "rule": null,
+            "file": "coverage/10-refuse-catalog.pa.yaml",
+            "control": "partialCoverage",
+            "type": "Circle",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "variant-not-in-catalog",
+            "fix": null,
+            "line": 22
+          },
+          {
+            "level": "REFUSE",
+            "rule": "duplicate-property",
+            "file": "coverage/10-refuse-catalog.pa.yaml",
+            "control": "duplicateCoverage",
+            "type": "Label",
+            "property": "Text",
+            "did_you_mean": null,
+            "detail": "duplicate property 'Text' (first at line 20)",
+            "fix": null,
+            "line": 21
+          },
+          {
+            "level": "WARN",
+            "rule": "a11y-inputs-missing-accessiblelabel",
+            "file": "coverage/10-refuse-catalog.pa.yaml",
+            "control": "pa2108Coverage",
+            "type": "TextInput",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "1 control(s) lack AccessibleLabel — screen readers announce only the control type: pa2108Coverage",
+            "fix": "set AccessibleLabel on each input to what the screen reader should announce",
+            "line": 13
+          }
+        ],
+        "summary": {
+          "pass": 2,
+          "warn": 1,
+          "refuse": 6,
+          "controls_seen": 6
+        }
+      },
+      "coverage/20-components.pa.yaml": {
+        "sha256": "09279ea5792bf8469ccda5b7d07b51a81ba26a29649d3f6912beb5deaf818bde",
+        "issues": [
+          {
+            "level": "REFUSE",
+            "rule": "component-name-required",
+            "file": "coverage/20-components.pa.yaml",
+            "control": "missingNameCoverage",
+            "type": "CanvasComponent",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "CanvasComponent instance 'missingNameCoverage' has no ComponentName sibling — a bare 'Control: CanvasComponent' is invalid; add 'ComponentName: <cName>'.",
+            "fix": "add a ComponentName: line naming the component definition this instance renders",
+            "line": 31
+          },
+          {
+            "level": "REFUSE",
+            "rule": "custom-property-kind",
+            "file": "coverage/20-components.pa.yaml",
+            "control": "cCoverage",
+            "type": "__ComponentDefinition",
+            "property": "BadKind",
+            "did_you_mean": null,
+            "detail": "custom property 'BadKind' has PropertyKind 'DefinitelyNotAKind' — must be one of Input, Output, Event.",
+            "fix": null,
+            "line": 9
+          },
+          {
+            "level": "REFUSE",
+            "rule": "custom-property-kind",
+            "file": "coverage/20-components.pa.yaml",
+            "control": "cCoverage",
+            "type": "__ComponentDefinition",
+            "property": "MissingReturn",
+            "did_you_mean": null,
+            "detail": "Event custom property 'MissingReturn' requires a ReturnType (e.g. ReturnType: None).",
+            "fix": null,
+            "line": 20
+          },
+          {
+            "level": "REFUSE",
+            "rule": "output-property-default",
+            "file": "coverage/20-components.pa.yaml",
+            "control": "cCoverage",
+            "type": "__ComponentDefinition",
+            "property": "BadOutput",
+            "did_you_mean": null,
+            "detail": "Output custom property 'BadOutput' must NOT have a Default — an Output's value is set in the definition's Properties: block (e.g. BadOutput: =...), not as a custom-property Default.",
+            "fix": "remove Default from BadOutput; set its value under the definition's Properties: block instead",
+            "line": 16
+          },
+          {
+            "level": "WARN",
+            "rule": "component-custom-property",
+            "file": "coverage/20-components.pa.yaml",
+            "control": "undeclaredCoverage",
+            "type": "CanvasComponent",
+            "property": "DefinitelyUndeclared",
+            "did_you_mean": null,
+            "detail": "'DefinitelyUndeclared' is not declared on component 'cCoverage' — check spelling (custom properties are app-defined).",
+            "fix": null,
+            "line": 37
+          },
+          {
+            "level": "WARN",
+            "rule": "component-root-property",
+            "file": "coverage/20-components.pa.yaml",
+            "control": "cCoverage",
+            "type": "__ComponentDefinition",
+            "property": "UncatalogedRootProperty",
+            "did_you_mean": null,
+            "detail": "'UncatalogedRootProperty' is not a cataloged component-root property and not a declared CustomProperty — the root surface is not fully cataloged.",
+            "fix": null,
+            "line": 27
+          },
+          {
+            "level": "WARN",
+            "rule": "custom-property-datatype",
+            "file": "coverage/20-components.pa.yaml",
+            "control": "cCoverage",
+            "type": "__ComponentDefinition",
+            "property": "UncatalogedType",
+            "did_you_mean": null,
+            "detail": "custom property 'UncatalogedType' DataType 'CoverageType' is not in the known-legal set (Text, Number, Boolean, Color, Date and time, Screen, Record, Table, Image, Currency, plus \"Video or audio\"). Not necessarily invalid — the legal set is not fully cataloged; verify against compile_canvas.",
+            "fix": null,
+            "line": 12
+          },
+          {
+            "level": "WARN",
+            "rule": "event-default-recommended",
+            "file": "coverage/20-components.pa.yaml",
+            "control": "cCoverage",
+            "type": "__ComponentDefinition",
+            "property": "MissingEventDefault",
+            "did_you_mean": null,
+            "detail": "Event custom property 'MissingEventDefault' should carry Default: =false (the server materializes it; absence can round-trip inconsistently).",
+            "fix": null,
+            "line": 23
+          },
+          {
+            "level": "WARN",
+            "rule": "materialized-property-kind",
+            "file": "coverage/20-components.pa.yaml",
+            "control": "cCoverage",
+            "type": "__ComponentDefinition",
+            "property": "MaterializedInput",
+            "did_you_mean": null,
+            "detail": "server-materialized PropertyKind (sync_canvas emits Input as InputFunction on round-trip); authored source should use Input/Output/Event",
+            "fix": null,
+            "line": 5
+          }
+        ],
+        "summary": {
+          "pass": 0,
+          "warn": 5,
+          "refuse": 4,
+          "controls_seen": 3
+        }
+      },
+      "coverage/30-a11y-centralization-gallery.pa.yaml": {
+        "sha256": "ae663cfbdd17eca0e00c0524a6d4dcce18084b8ddffe193b3ee9df5ab4497694",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "a11y-icon-button-no-label",
+            "file": "coverage/30-a11y-centralization-gallery.pa.yaml",
+            "control": "imgPositiveCoverage",
+            "type": "Image",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "an empty or absent AccessibleLabel hides Image controls from screen readers — fatal for a button",
+            "fix": "set AccessibleLabel to the action (\"Close dialog\"), not the glyph",
+            "line": 7
+          },
+          {
+            "level": "WARN",
+            "rule": "a11y-inputs-missing-accessiblelabel",
+            "file": "coverage/30-a11y-centralization-gallery.pa.yaml",
+            "control": "txtMissingLabelCoverage",
+            "type": "TextInput",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "1 control(s) lack AccessibleLabel — screen readers announce only the control type: txtMissingLabelCoverage",
+            "fix": "set AccessibleLabel on each input to what the screen reader should announce",
+            "line": 21
+          },
+          {
+            "level": "WARN",
+            "rule": "a11y-interactive-not-focusable",
+            "file": "coverage/30-a11y-centralization-gallery.pa.yaml",
+            "control": "lblMouseOnlyCoverage",
+            "type": "Label",
+            "property": "TabIndex",
+            "did_you_mean": null,
+            "detail": "mouse users can click it, but keyboard users cannot reach it",
+            "fix": "set TabIndex: =0 (and visible focus via FocusedBorderColor/FocusedBorderThickness), or use a Button",
+            "line": 19
+          },
+          {
+            "level": "WARN",
+            "rule": "a11y-tabindex-positive",
+            "file": "coverage/30-a11y-centralization-gallery.pa.yaml",
+            "control": "imgPositiveCoverage",
+            "type": "Image",
+            "property": "TabIndex",
+            "did_you_mean": null,
+            "detail": "TabIndex 2 is positive — custom tab indexes are retired (treated as 0) and break screen-reader order",
+            "fix": "use TabIndex 0 (focusable) or -1 (skipped); order comes from control/container structure",
+            "line": 11
+          },
+          {
+            "level": "WARN",
+            "rule": "app-onerror-missing",
+            "file": "coverage/30-a11y-centralization-gallery.pa.yaml",
+            "control": "App",
+            "type": "__App",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "App has no configured OnError handler for global error reporting; the default error banner remains available.",
+            "fix": "Review global error reporting or logging in App.OnError; this handler cannot repair failed calculations.",
+            "line": 1
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "coverage/30-a11y-centralization-gallery.pa.yaml",
+            "control": "imgPositiveCoverage",
+            "type": "Image",
+            "property": "Fill",
+            "did_you_mean": null,
+            "detail": "appears 5× — other locations: coverage/30-a11y-centralization-gallery.pa.yaml:20, coverage/30-a11y-centralization-gallery.pa.yaml:25, coverage/30-a11y-centralization-gallery.pa.yaml:31 — add to your existing App.Formulas as a named formula or UDF",
+            "fix": null,
+            "line": 12
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "coverage/30-a11y-centralization-gallery.pa.yaml",
+            "control": "lblMouseOnlyCoverage",
+            "type": "Label",
+            "property": "Text",
+            "did_you_mean": null,
+            "detail": "appears 3× — other locations: coverage/30-a11y-centralization-gallery.pa.yaml:29, coverage/30-a11y-centralization-gallery.pa.yaml:35 — add to your existing App.Formulas as a named formula or UDF",
+            "fix": null,
+            "line": 16
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula-in-gallery",
+            "file": "coverage/30-a11y-centralization-gallery.pa.yaml",
+            "control": "lblGalleryCoverageOne",
+            "type": "Label",
+            "property": "Text",
+            "did_you_mean": null,
+            "detail": "appears 2× — other locations: coverage/30-a11y-centralization-gallery.pa.yaml:57 — add to your existing App.Formulas; components cannot live in gallery templates — a named formula/UDF is the only centralization mechanism here",
+            "fix": null,
+            "line": 52
+          },
+          {
+            "level": "WARN",
+            "rule": "heavy-onstart",
+            "file": "coverage/30-a11y-centralization-gallery.pa.yaml",
+            "control": "App",
+            "type": "__App",
+            "property": "OnStart",
+            "did_you_mean": null,
+            "detail": "OnStart contains 5 statements at the top level — statement-count heuristic: consider App.Formulas (named formulas) for declarative values and StartScreen for the initial screen; review side-effect initialization separately",
+            "fix": null,
+            "line": 2
+          },
+          {
+            "level": "WARN",
+            "rule": "repeated-color-literal",
+            "file": "coverage/30-a11y-centralization-gallery.pa.yaml",
+            "control": "imgPositiveCoverage",
+            "type": "Image",
+            "property": "Fill",
+            "did_you_mean": null,
+            "detail": "appears 5× — other locations: coverage/30-a11y-centralization-gallery.pa.yaml:20, coverage/30-a11y-centralization-gallery.pa.yaml:25, coverage/30-a11y-centralization-gallery.pa.yaml:31 — add to your existing App.Formulas as a theme token (varTheme.X) or named formula",
+            "fix": null,
+            "line": 12
+          },
+          {
+            "level": "WARN",
+            "rule": "version-pin-in-control-type",
+            "file": "coverage/30-a11y-centralization-gallery.pa.yaml",
+            "control": "imgPositiveCoverage",
+            "type": "Image",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "203 control type(s) carry @version pins across 13 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. This repository authors bare control types (generator convention). Files: coverage/30-a11y-centralization-gallery.pa.yaml, templates/card-template-1.yaml, templates/card-template-2.yaml, templates/card-template-3.yaml, templates/custom-button.yaml, templates/data-table.yaml, templates/form-template-1.yaml, templates/kpi-cards.yaml, templates/screen-table-template-1.yaml, templates/sidebar-collapsible.yaml, templates/tab-bar.yaml, templates/table-template-1.yaml, mcp-test-fixtures/survey/dirty.pa.yaml. Pinned: imgPositiveCoverage, Container_Cards_1, gal_Card_1, imgTemplateBG_1, rootContainer_2, …",
+            "fix": null,
+            "line": 7
+          }
+        ],
+        "summary": {
+          "pass": 21,
+          "warn": 11,
+          "refuse": 0,
+          "controls_seen": 10
+        }
+      },
+      "coverage/40-delegation.pa.yaml": {
+        "sha256": "b0287b3c5daaba8c1001fe4b65530f1b52864004eb5e5747e350d7ea0b01d5d9",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "delegation-excel-any",
+            "file": "coverage/40-delegation.pa.yaml",
+            "control": "galDelegationCoverage",
+            "type": "Gallery",
+            "property": "WrapCount",
+            "did_you_mean": null,
+            "detail": "Search( on the Excel-backed source 'CoverageExcel' — Excel delegates nothing, so every query silently truncates at the data row limit (500 default, 10,000 max)",
+            "fix": "load the sheet once into a collection (ClearCollect) and query the collection, or move the data to Dataverse/SQL/SharePoint",
+            "line": 26
+          },
+          {
+            "level": "WARN",
+            "rule": "delegation-firstn-on-source",
+            "file": "coverage/40-delegation.pa.yaml",
+            "control": "galDelegationCoverage",
+            "type": "Gallery",
+            "property": "Items",
+            "did_you_mean": null,
+            "detail": "FirstN( over bound source 'CoverageSharePoint' is never delegable — the query silently truncates at the data row limit (500 default, 10,000 max), so the \"first/last N\" are picked from that page only.",
+            "fix": "bind a delegable query (Filter/Sort with delegable predicates) directly, or reduce the source server-side before taking N rows",
+            "line": 8
+          },
+          {
+            "level": "WARN",
+            "rule": "delegation-forall-truncation",
+            "file": "coverage/40-delegation.pa.yaml",
+            "control": "galDelegationCoverage",
+            "type": "Gallery",
+            "property": "Default",
+            "did_you_mean": null,
+            "detail": "ForAll over 'CoverageSharePoint' has possible row-limit truncation: a nondelegable iteration can process only the retrieved portion of a datasource.",
+            "fix": "Review required row coverage and connector delegation; consider a delegable source query or server-side processing.",
+            "line": 10
+          },
+          {
+            "level": "WARN",
+            "rule": "delegation-forall-writes",
+            "file": "coverage/40-delegation.pa.yaml",
+            "control": "galDelegationCoverage",
+            "type": "Gallery",
+            "property": "Default",
+            "did_you_mean": null,
+            "detail": "ForAll( over bound source 'CoverageSharePoint' with Patch( in the body — one server round-trip per row (N+1 writes), and the iteration itself silently truncates at the data row limit (500 default, 10,000 max).",
+            "fix": "build the change table first and issue a single Patch(Source, table) / Collect(Source, table), or move the bulk write to Power Automate",
+            "line": 10
+          },
+          {
+            "level": "WARN",
+            "rule": "delegation-search-caveat",
+            "file": "coverage/40-delegation.pa.yaml",
+            "control": "galDelegationCoverage",
+            "type": "Gallery",
+            "property": "LoadingSpinnerColor",
+            "did_you_mean": null,
+            "detail": "Search( on bound source 'CoverageUnmapped' — delegation depends on connector and column support; this checker has not established them. Search uses substring matching; supply `datasources` to sharpen this into a source-specific finding. Identifier 'CoverageUnmapped' matches none of the known variable prefixes (col, var, gbl, loc) and is not declared in datasources, so it is assumed to be a bound source.",
+            "fix": "consider Filter(Source, StartsWith(Column, text)) only if prefix matching meets the request and the connector and column type support delegation; prefix and substring matching are not equivalent. StartsWith does not make Excel queries delegable",
+            "line": 12
+          },
+          {
+            "level": "WARN",
+            "rule": "delegation-sharepoint-id-operator",
+            "file": "coverage/40-delegation.pa.yaml",
+            "control": "galDelegationCoverage",
+            "type": "Gallery",
+            "property": "Transition",
+            "did_you_mean": null,
+            "detail": "the SharePoint ID column delegates only '=' — a comparison operator on ID makes 'CoverageSharePoint' silently truncates at the data row limit (500 default, 10,000 max)",
+            "fix": "filter ID with = (single record), or filter on an indexed column instead",
+            "line": 22
+          },
+          {
+            "level": "WARN",
+            "rule": "delegation-sharepoint-in",
+            "file": "coverage/40-delegation.pa.yaml",
+            "control": "galDelegationCoverage",
+            "type": "Gallery",
+            "property": "TemplateFill",
+            "did_you_mean": null,
+            "detail": "'in' does not delegate to SharePoint — 'CoverageSharePoint' silently truncates at the data row limit (500 default, 10,000 max)",
+            "fix": "restructure the predicate: '=' against explicit values instead of in/exactin, '<>' instead of Not(...)/!, and redesign the data for EndsWith (never delegable on SharePoint)",
+            "line": 16
+          },
+          {
+            "level": "WARN",
+            "rule": "delegation-sharepoint-isblank",
+            "file": "coverage/40-delegation.pa.yaml",
+            "control": "galDelegationCoverage",
+            "type": "Gallery",
+            "property": "TemplatePadding",
+            "did_you_mean": null,
+            "detail": "IsBlank( appears in a SharePoint predicate over 'CoverageSharePoint' — this checker has not established whether the tested value depends on each source row; row-dependent column tests need delegation review",
+            "fix": "if the tested value is a column, check column support and connector delegation support; = Blank() does not treat empty strings as blank, unlike IsBlank — no automatic replacement",
+            "line": 18
+          },
+          {
+            "level": "WARN",
+            "rule": "delegation-sharepoint-search",
+            "file": "coverage/40-delegation.pa.yaml",
+            "control": "galDelegationCoverage",
+            "type": "Gallery",
+            "property": "BorderColor",
+            "did_you_mean": null,
+            "detail": "Search( on SharePoint source 'CoverageSharePoint' — SharePoint does not support delegation of Search; this pattern flags a delegation concern, not proof of truncation in this formula",
+            "fix": "consider Filter(Source, StartsWith(Column, text)) only if prefix matching meets the request and the SharePoint column type supports delegation; prefix and substring matching are not equivalent",
+            "line": 14
+          },
+          {
+            "level": "WARN",
+            "rule": "delegation-sharepoint-text-functions",
+            "file": "coverage/40-delegation.pa.yaml",
+            "control": "galDelegationCoverage",
+            "type": "Gallery",
+            "property": "TemplateSize",
+            "did_you_mean": null,
+            "detail": "Len(Title) in a SharePoint predicate does not delegate — 'CoverageSharePoint' silently truncates at the data row limit (500 default, 10,000 max)",
+            "fix": "keep the column bare in the predicate (delegable = / StartsWith) and apply text functions after retrieval",
+            "line": 20
+          },
+          {
+            "level": "WARN",
+            "rule": "delegation-sql-isblank",
+            "file": "coverage/40-delegation.pa.yaml",
+            "control": "galDelegationCoverage",
+            "type": "Gallery",
+            "property": "Visible",
+            "did_you_mean": null,
+            "detail": "IsBlank( appears in a SQL Server predicate over 'CoverageSql' — this checker has not established whether the tested value depends on each source row. The catalog non-delegation claim is unverified and queued for tenant verification; see the verification queue",
+            "fix": "establish row dependence, column type and connector support before choosing a form; if the tested value is a column, check column support. Check blank/empty-string semantics: = Blank() does not treat empty strings as blank, unlike IsBlank — no automatic replacement or delegation assurance",
+            "line": 24
+          },
+          {
+            "level": "WARN",
+            "rule": "variant-unspecified-property",
+            "file": "coverage/40-delegation.pa.yaml",
+            "control": "galDelegationCoverage",
+            "type": "Gallery",
+            "property": "WrapCount",
+            "did_you_mean": null,
+            "detail": "Gallery.WrapCount is declared by variants Horizontal, Vertical; no Variant is authored.",
+            "fix": "declare Variant: with a variant that accepts this property",
+            "line": 26
+          }
+        ],
+        "summary": {
+          "pass": 10,
+          "warn": 12,
+          "refuse": 0,
+          "controls_seen": 1
+        }
+      },
+      "coverage/50-performance-source.pa.yaml": {
+        "sha256": "7744ee0df4f340d8f22aaeb15f4ed3d370cce33f6a5e3f800ec07df4970a8fc6",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "app-onerror-missing",
+            "file": "coverage/50-performance-source.pa.yaml",
+            "control": "App",
+            "type": "__App",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "App has no configured OnError handler for global error reporting; the default error banner remains available.",
+            "fix": "Review global error reporting or logging in App.OnError; this handler cannot repair failed calculations.",
+            "line": 1
+          },
+          {
+            "level": "WARN",
+            "rule": "perf-lookup-in-gallery-template",
+            "file": "coverage/50-performance-source.pa.yaml",
+            "control": "lblLookupCoverage",
+            "type": "Label",
+            "property": "Text",
+            "did_you_mean": null,
+            "detail": "LookUp( on bound source 'CoverageSharePoint' inside a gallery template — the query re-runs once per rendered row (N+1 requests)",
+            "fix": "pre-join the data in the gallery's Items with AddColumns(...), or centralize the lookup as a UDF / named formula in App.Formulas",
+            "line": 16
+          },
+          {
+            "level": "WARN",
+            "rule": "perf-onstart-no-concurrent",
+            "file": "coverage/50-performance-source.pa.yaml",
+            "control": "App",
+            "type": "__App",
+            "property": "OnStart",
+            "did_you_mean": null,
+            "detail": "OnStart issues 3 Collect/ClearCollect calls with no Concurrent( — sequential loads make app start cost the sum of every request",
+            "fix": "wrap the independent loads in Concurrent(ClearCollect(...), ClearCollect(...), ...), or move them to App.Formulas named formulas that evaluate on demand",
+            "line": 2
+          }
+        ],
+        "summary": {
+          "pass": 6,
+          "warn": 3,
+          "refuse": 0,
+          "controls_seen": 3
+        }
+      },
+      "coverage/51-performance-reference.pa.yaml": {
+        "sha256": "81bc06578f54e5c3c3f3b2da371d0310f8a7c3f2f63d2926d48d8df56dc6a224",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "perf-cross-screen-reference",
+            "file": "coverage/51-performance-reference.pa.yaml",
+            "control": "lblCrossScreenReferenceCoverage",
+            "type": "Label",
+            "property": "Text",
+            "did_you_mean": null,
+            "detail": "references 'lblCrossScreenSourceCoverage', a control on another screen in this batch (PerformanceSourceCoverage, coverage/50-performance-source.pa.yaml:18) — cross-screen references stop each screen from loading independently",
+            "fix": "pass the value through a global variable (Set) or an App.Formulas named formula instead of reaching into another screen's control",
+            "line": 7
+          }
+        ],
+        "summary": {
+          "pass": 2,
+          "warn": 1,
+          "refuse": 0,
+          "controls_seen": 1
+        }
+      },
+      "coverage/60-control-budget.pa.yaml": {
+        "sha256": "4629faf5291bacf09976f2c29ac7c58c8b23dc8ec8d7986c17823265effd662d",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "perf-control-budget",
+            "file": "coverage/60-control-budget.pa.yaml",
+            "control": "covBudget001",
+            "type": "Label",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "screen 'BudgetCoverage' walks 301 controls — over the 300-control warn budget (documented degradation starts around 500)",
+            "fix": "split the screen, or replace repeated control blocks with a Gallery over a data table / a reusable component",
+            "line": 4
+          }
+        ],
+        "summary": {
+          "pass": 0,
+          "warn": 1,
+          "refuse": 0,
+          "controls_seen": 301
+        }
+      },
+      "coverage/70-multi-screen-budget.pa.yaml": {
+        "sha256": "55946439da2c39b81d3fc46b4b4e01da01db123b100cab34bb59f037b42b64fb",
+        "issues": [],
+        "summary": {
+          "pass": 0,
+          "warn": 0,
+          "refuse": 0,
+          "controls_seen": 400
+        }
+      },
+      "coverage/80-orphan-roots.pa.yaml": {
+        "sha256": "a7960fe191d209b4e16b78ff9214077e1f699f1df3546489123b1a50e0bfa3d3",
+        "issues": [
+          {
+            "level": "REFUSE",
+            "rule": null,
+            "file": "coverage/80-orphan-roots.pa.yaml",
+            "control": "orphanUnknown",
+            "type": "CoverageOrphanUnknown",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "control-type-not-in-manifest",
+            "fix": null,
+            "line": 1
+          },
+          {
+            "level": "WARN",
+            "rule": "a11y-icon-button-no-label",
+            "file": "coverage/80-orphan-roots.pa.yaml",
+            "control": "orphanImage",
+            "type": "Image",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "an empty or absent AccessibleLabel hides Image controls from screen readers — fatal for a button",
+            "fix": "set AccessibleLabel to the action (\"Close dialog\"), not the glyph",
+            "line": 3
+          },
+          {
+            "level": "WARN",
+            "rule": "a11y-tabindex-positive",
+            "file": "coverage/80-orphan-roots.pa.yaml",
+            "control": "orphanImage",
+            "type": "Image",
+            "property": "TabIndex",
+            "did_you_mean": null,
+            "detail": "TabIndex 2 is positive — custom tab indexes are retired (treated as 0) and break screen-reader order",
+            "fix": "use TabIndex 0 (focusable) or -1 (skipped); order comes from control/container structure",
+            "line": 7
+          }
+        ],
+        "summary": {
+          "pass": 4,
+          "warn": 2,
+          "refuse": 1,
+          "controls_seen": 3
+        }
+      },
+      "coverage/81-prefixed-explicit-datasource.pa.yaml": {
+        "sha256": "1d9205b80ef93eba0b85e73f9a43587f33b48609ed0817122bb534e79e37fef8",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "delegation-forall-truncation",
+            "file": "coverage/81-prefixed-explicit-datasource.pa.yaml",
+            "control": "galPrefixedOrders",
+            "type": "Gallery",
+            "property": "Default",
+            "did_you_mean": null,
+            "detail": "ForAll over 'colCoverageOrders' has possible row-limit truncation: a nondelegable iteration can process only the retrieved portion of a datasource.",
+            "fix": "Review required row coverage and connector delegation; consider a delegable source query or server-side processing.",
+            "line": 9
+          },
+          {
+            "level": "WARN",
+            "rule": "delegation-forall-writes",
+            "file": "coverage/81-prefixed-explicit-datasource.pa.yaml",
+            "control": "galPrefixedOrders",
+            "type": "Gallery",
+            "property": "Default",
+            "did_you_mean": null,
+            "detail": "ForAll( over bound source 'colCoverageOrders' with Patch( in the body — one server round-trip per row (N+1 writes), and the iteration itself silently truncates at the data row limit (500 default, 10,000 max).",
+            "fix": "build the change table first and issue a single Patch(Source, table) / Collect(Source, table), or move the bulk write to Power Automate",
+            "line": 9
+          },
+          {
+            "level": "WARN",
+            "rule": "delegation-sharepoint-search",
+            "file": "coverage/81-prefixed-explicit-datasource.pa.yaml",
+            "control": "galPrefixedOrders",
+            "type": "Gallery",
+            "property": "Items",
+            "did_you_mean": null,
+            "detail": "Search( on SharePoint source 'colCoverageOrders' — SharePoint does not support delegation of Search; this pattern flags a delegation concern, not proof of truncation in this formula",
+            "fix": "consider Filter(Source, StartsWith(Column, text)) only if prefix matching meets the request and the SharePoint column type supports delegation; prefix and substring matching are not equivalent",
+            "line": 8
+          }
+        ],
+        "summary": {
+          "pass": 3,
+          "warn": 3,
+          "refuse": 0,
+          "controls_seen": 1
+        }
+      },
+      "coverage/82-two-screen-cross-reference.pa.yaml": {
+        "sha256": "97d5c29f7e584c2a44a51ae6785ee51eb20f4e69f46f528cd3246e69eef3c9d1",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "perf-cross-screen-reference",
+            "file": "coverage/82-two-screen-cross-reference.pa.yaml",
+            "control": "lblAlpha",
+            "type": "Label",
+            "property": "Text",
+            "did_you_mean": null,
+            "detail": "references 'lblBeta', a control on another screen in this batch (Beta, coverage/82-two-screen-cross-reference.pa.yaml:11) — cross-screen references stop each screen from loading independently",
+            "fix": "pass the value through a global variable (Set) or an App.Formulas named formula instead of reaching into another screen's control",
+            "line": 7
+          }
+        ],
+        "summary": {
+          "pass": 4,
+          "warn": 1,
+          "refuse": 0,
+          "controls_seen": 2
+        }
+      },
+      "templates/card-template-1.yaml": {
+        "sha256": "f6e3ccd386c12072170a38ab28bcd26c09e885a81ef0cb611a58488abb544bcf",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "templates/card-template-1.yaml",
+            "control": "gal_Card_1",
+            "type": "Gallery",
+            "property": "BorderColor",
+            "did_you_mean": null,
+            "detail": "appears 49× — other locations: templates/card-template-1.yaml:83, templates/card-template-1.yaml:146, templates/card-template-1.yaml:166 — add to your existing App.Formulas as a named formula or UDF",
+            "fix": null,
+            "line": 26
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "templates/card-template-1.yaml",
+            "control": "lblCardTitle_1",
+            "type": "Label",
+            "property": "Color",
+            "did_you_mean": null,
+            "detail": "appears 8× — other locations: templates/card-template-1.yaml:178, templates/screen-table-template-1.yaml:97, templates/screen-table-template-1.yaml:159 — add to your existing App.Formulas as a named formula or UDF",
+            "fix": null,
+            "line": 167
+          },
+          {
+            "level": "WARN",
+            "rule": "repeated-color-literal",
+            "file": "templates/card-template-1.yaml",
+            "control": "gal_Card_1",
+            "type": "Gallery",
+            "property": "BorderColor",
+            "did_you_mean": null,
+            "detail": "appears 49× — other locations: templates/card-template-1.yaml:83, templates/card-template-1.yaml:146, templates/card-template-1.yaml:166 — add to your existing App.Formulas as a theme token (varTheme.X) or named formula",
+            "fix": null,
+            "line": 26
+          },
+          {
+            "level": "WARN",
+            "rule": "repeated-color-literal",
+            "file": "templates/card-template-1.yaml",
+            "control": "gal_Card_1",
+            "type": "Gallery",
+            "property": "Items",
+            "did_you_mean": null,
+            "detail": "appears 16× — other locations: templates/card-template-1.yaml:28, templates/card-template-2.yaml:186, templates/card-template-2.yaml:202 — add to your existing App.Formulas as a theme token (varTheme.X) or named formula",
+            "fix": null,
+            "line": 28
+          },
+          {
+            "level": "WARN",
+            "rule": "repeated-color-literal",
+            "file": "templates/card-template-1.yaml",
+            "control": "gal_Card_1",
+            "type": "Gallery",
+            "property": "Items",
+            "did_you_mean": null,
+            "detail": "appears 5× — other locations: templates/card-template-1.yaml:28, templates/data-table.yaml:134, templates/kpi-cards.yaml:28 — add to your existing App.Formulas as a theme token (varTheme.X) or named formula",
+            "fix": null,
+            "line": 28
+          },
+          {
+            "level": "WARN",
+            "rule": "repeated-color-literal",
+            "file": "templates/card-template-1.yaml",
+            "control": "Image4_1",
+            "type": "Image",
+            "property": "Image",
+            "did_you_mean": null,
+            "detail": "appears 18× — other locations: templates/card-template-1.yaml:167, templates/card-template-1.yaml:178, templates/card-template-2.yaml:152 — add to your existing App.Formulas as a theme token (varTheme.X) or named formula",
+            "fix": null,
+            "line": 149
+          }
+        ],
+        "summary": {
+          "pass": 89,
+          "warn": 6,
+          "refuse": 0,
+          "controls_seen": 9
+        }
+      },
+      "templates/card-template-2.yaml": {
+        "sha256": "09ce6ba0a7023acef8e4bc6dbc8d92b3ceaf3fd1fa1fa35f6518dc4aed569fe2",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "templates/card-template-2.yaml",
+            "control": "Button1_4",
+            "type": "Classic/Button",
+            "property": "Color",
+            "did_you_mean": null,
+            "detail": "appears 14× — other locations: templates/card-template-2.yaml:174, templates/card-template-3.yaml:163, templates/card-template-3.yaml:169 — add to your existing App.Formulas as a named formula or UDF",
+            "fix": null,
+            "line": 168
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "templates/card-template-2.yaml",
+            "control": "Button1_4",
+            "type": "Classic/Button",
+            "property": "DisabledBorderColor",
+            "did_you_mean": null,
+            "detail": "appears 6× — other locations: templates/card-template-3.yaml:164, templates/screen-table-template-1.yaml:128, templates/screen-table-template-1.yaml:520 — add to your existing App.Formulas as a named formula or UDF",
+            "fix": null,
+            "line": 169
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "templates/card-template-2.yaml",
+            "control": "Button1_4",
+            "type": "Classic/Button",
+            "property": "Fill",
+            "did_you_mean": null,
+            "detail": "appears 8× — other locations: templates/card-template-3.yaml:165, templates/screen-table-template-1.yaml:129, templates/screen-table-template-1.yaml:239 — add to your existing App.Formulas as a named formula or UDF",
+            "fix": null,
+            "line": 170
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "templates/card-template-2.yaml",
+            "control": "Button1_4",
+            "type": "Classic/Button",
+            "property": "HoverFill",
+            "did_you_mean": null,
+            "detail": "appears 8× — other locations: templates/card-template-3.yaml:170, templates/custom-button.yaml:206, templates/data-table.yaml:259 — add to your existing App.Formulas as a named formula or UDF",
+            "fix": null,
+            "line": 175
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "templates/card-template-2.yaml",
+            "control": "Button1_4",
+            "type": "Classic/Button",
+            "property": "PressedFill",
+            "did_you_mean": null,
+            "detail": "appears 8× — other locations: templates/card-template-3.yaml:173, templates/custom-button.yaml:207, templates/data-table.yaml:260 — add to your existing App.Formulas as a named formula or UDF",
+            "fix": null,
+            "line": 178
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "templates/card-template-2.yaml",
+            "control": "CustomButton_4",
+            "type": "GroupContainer",
+            "property": "Fill",
+            "did_you_mean": null,
+            "detail": "appears 10× — other locations: templates/card-template-2.yaml:233, templates/card-template-3.yaml:133, templates/card-template-3.yaml:227 — add to your existing App.Formulas as a named formula or UDF",
+            "fix": null,
+            "line": 138
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula-in-gallery",
+            "file": "templates/card-template-2.yaml",
+            "control": "CustomProgessBarContainer7_1",
+            "type": "GroupContainer",
+            "property": "Fill",
+            "did_you_mean": null,
+            "detail": "appears 2× — other locations: templates/card-template-3.yaml:212 — add to your existing App.Formulas; components cannot live in gallery templates — a named formula/UDF is the only centralization mechanism here",
+            "fix": null,
+            "line": 218
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula-in-gallery",
+            "file": "templates/card-template-2.yaml",
+            "control": "Image1_6",
+            "type": "Image",
+            "property": "Image",
+            "did_you_mean": null,
+            "detail": "appears 2× — other locations: templates/card-template-3.yaml:119 — add to your existing App.Formulas; components cannot live in gallery templates — a named formula/UDF is the only centralization mechanism here",
+            "fix": null,
+            "line": 122
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula-in-gallery",
+            "file": "templates/card-template-2.yaml",
+            "control": "Image1_7",
+            "type": "Image",
+            "property": "Image",
+            "did_you_mean": null,
+            "detail": "appears 2× — other locations: templates/card-template-3.yaml:147 — add to your existing App.Formulas; components cannot live in gallery templates — a named formula/UDF is the only centralization mechanism here",
+            "fix": null,
+            "line": 152
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula-in-gallery",
+            "file": "templates/card-template-2.yaml",
+            "control": "Label1_6",
+            "type": "Label",
+            "property": "Color",
+            "did_you_mean": null,
+            "detail": "appears 14× — other locations: templates/card-template-2.yaml:202, templates/card-template-3.yaml:181, templates/card-template-3.yaml:196 — add to your existing App.Formulas; components cannot live in gallery templates — a named formula/UDF is the only centralization mechanism here",
+            "fix": null,
+            "line": 186
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula-in-gallery",
+            "file": "templates/card-template-2.yaml",
+            "control": "Label1_7",
+            "type": "Label",
+            "property": "Text",
+            "did_you_mean": null,
+            "detail": "appears 2× — other locations: templates/card-template-3.yaml:204 — add to your existing App.Formulas; components cannot live in gallery templates — a named formula/UDF is the only centralization mechanism here",
+            "fix": null,
+            "line": 210
+          },
+          {
+            "level": "WARN",
+            "rule": "repeated-color-literal",
+            "file": "templates/card-template-2.yaml",
+            "control": "Button1_4",
+            "type": "Classic/Button",
+            "property": "DisabledBorderColor",
+            "did_you_mean": null,
+            "detail": "appears 6× — other locations: templates/card-template-3.yaml:164, templates/screen-table-template-1.yaml:128, templates/screen-table-template-1.yaml:520 — add to your existing App.Formulas as a theme token (varTheme.X) or named formula",
+            "fix": null,
+            "line": 169
+          },
+          {
+            "level": "WARN",
+            "rule": "repeated-color-literal",
+            "file": "templates/card-template-2.yaml",
+            "control": "Button1_4",
+            "type": "Classic/Button",
+            "property": "HoverFill",
+            "did_you_mean": null,
+            "detail": "appears 8× — other locations: templates/card-template-3.yaml:170, templates/custom-button.yaml:206, templates/data-table.yaml:259 — add to your existing App.Formulas as a theme token (varTheme.X) or named formula",
+            "fix": null,
+            "line": 175
+          },
+          {
+            "level": "WARN",
+            "rule": "repeated-color-literal",
+            "file": "templates/card-template-2.yaml",
+            "control": "Button1_4",
+            "type": "Classic/Button",
+            "property": "PressedFill",
+            "did_you_mean": null,
+            "detail": "appears 8× — other locations: templates/card-template-3.yaml:173, templates/custom-button.yaml:207, templates/data-table.yaml:260 — add to your existing App.Formulas as a theme token (varTheme.X) or named formula",
+            "fix": null,
+            "line": 178
+          },
+          {
+            "level": "WARN",
+            "rule": "repeated-color-literal",
+            "file": "templates/card-template-2.yaml",
+            "control": "Image1_6",
+            "type": "Image",
+            "property": "Image",
+            "did_you_mean": null,
+            "detail": "appears 14× — other locations: templates/card-template-2.yaml:138, templates/card-template-2.yaml:233, templates/card-template-3.yaml:119 — add to your existing App.Formulas as a theme token (varTheme.X) or named formula",
+            "fix": null,
+            "line": 122
+          },
+          {
+            "level": "WARN",
+            "rule": "repeated-color-literal",
+            "file": "templates/card-template-2.yaml",
+            "control": "rightGallery1_1",
+            "type": "Gallery",
+            "property": "Items",
+            "did_you_mean": null,
+            "detail": "appears 5× — other locations: templates/card-template-3.yaml:29, templates/screen-table-template-1.yaml:325, templates/screen-table-template-1.yaml:336 — add to your existing App.Formulas as a theme token (varTheme.X) or named formula",
+            "fix": null,
+            "line": 29
+          },
+          {
+            "level": "WARN",
+            "rule": "repeated-color-literal",
+            "file": "templates/card-template-2.yaml",
+            "control": "rightGallery1_1",
+            "type": "Gallery",
+            "property": "Items",
+            "did_you_mean": null,
+            "detail": "appears 7× — other locations: templates/card-template-3.yaml:29, templates/screen-table-template-1.yaml:325, templates/screen-table-template-1.yaml:336 — add to your existing App.Formulas as a theme token (varTheme.X) or named formula",
+            "fix": null,
+            "line": 29
+          }
+        ],
+        "summary": {
+          "pass": 128,
+          "warn": 17,
+          "refuse": 0,
+          "controls_seen": 12
+        }
+      },
+      "templates/card-template-3.yaml": {
+        "sha256": "89168baf9efdc58e8cd180bce9fb3991c3aa271037585f286f41cfce8b52254b",
+        "issues": [],
+        "summary": {
+          "pass": 126,
+          "warn": 0,
+          "refuse": 0,
+          "controls_seen": 12
+        }
+      },
+      "templates/custom-button.yaml": {
+        "sha256": "b7397343bf4a999f990d7d682aca57c39985eb62fb6cda0b8b7f1035d8857623",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "templates/custom-button.yaml",
+            "control": "primaryBtnOverlay",
+            "type": "Classic/Button",
+            "property": "Color",
+            "did_you_mean": null,
+            "detail": "appears 12× — other locations: templates/custom-button.yaml:73, templates/custom-button.yaml:74, templates/custom-button.yaml:208 — add to your existing App.Formulas as a named formula or UDF",
+            "fix": null,
+            "line": 72
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "templates/custom-button.yaml",
+            "control": "primaryBtnOverlay",
+            "type": "Classic/Button",
+            "property": "PressedBorderColor",
+            "did_you_mean": null,
+            "detail": "appears 4× — other locations: templates/custom-button.yaml:214, templates/sidebar-collapsible.yaml:141, templates/sidebar-collapsible.yaml:287 — add to your existing App.Formulas as a named formula or UDF",
+            "fix": null,
+            "line": 78
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "templates/custom-button.yaml",
+            "control": "primaryButton",
+            "type": "GroupContainer",
+            "property": "Fill",
+            "did_you_mean": null,
+            "detail": "appears 21× — other locations: templates/custom-button.yaml:95, templates/custom-button.yaml:108, templates/custom-button.yaml:147 — add to your existing App.Formulas as a named formula or UDF",
+            "fix": null,
+            "line": 22
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "templates/custom-button.yaml",
+            "control": "secondaryBtnOverlay",
+            "type": "Classic/Button",
+            "property": "HoverFill",
+            "did_you_mean": null,
+            "detail": "appears 3× — other locations: templates/sidebar-collapsible.yaml:283, templates/tab-bar.yaml:99 — add to your existing App.Formulas as a named formula or UDF",
+            "fix": null,
+            "line": 145
+          },
+          {
+            "level": "WARN",
+            "rule": "repeated-color-literal",
+            "file": "templates/custom-button.yaml",
+            "control": "primaryButton",
+            "type": "GroupContainer",
+            "property": "Fill",
+            "did_you_mean": null,
+            "detail": "appears 28× — other locations: templates/custom-button.yaml:95, templates/custom-button.yaml:108, templates/custom-button.yaml:131 — add to your existing App.Formulas as a theme token (varTheme.X) or named formula",
+            "fix": null,
+            "line": 22
+          }
+        ],
+        "summary": {
+          "pass": 133,
+          "warn": 5,
+          "refuse": 0,
+          "controls_seen": 11
+        }
+      },
+      "templates/data-table.yaml": {
+        "sha256": "b2242d27e4358d93466e9a84f3c17f6fd0835c131c63fc6414b8f5d5c63da787",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula-in-gallery",
+            "file": "templates/data-table.yaml",
+            "control": "rowDate",
+            "type": "Label",
+            "property": "Color",
+            "did_you_mean": null,
+            "detail": "appears 3× — other locations: templates/kpi-cards.yaml:120, templates/kpi-cards.yaml:181 — add to your existing App.Formulas; components cannot live in gallery templates — a named formula/UDF is the only centralization mechanism here",
+            "fix": null,
+            "line": 198
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula-in-gallery",
+            "file": "templates/data-table.yaml",
+            "control": "rowDivider",
+            "type": "Rectangle",
+            "property": "Fill",
+            "did_you_mean": null,
+            "detail": "appears 2× — other locations: templates/kpi-cards.yaml:210 — add to your existing App.Formulas; components cannot live in gallery templates — a named formula/UDF is the only centralization mechanism here",
+            "fix": null,
+            "line": 342
+          }
+        ],
+        "summary": {
+          "pass": 207,
+          "warn": 2,
+          "refuse": 0,
+          "controls_seen": 22
+        }
+      },
+      "templates/form-template-1.yaml": {
+        "sha256": "f9da6606e42600445a6ed7d4e95c94f1f57a0777a8996dc36758e96094e54846",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "templates/form-template-1.yaml",
+            "control": "Container_FormField_Date",
+            "type": "GroupContainer",
+            "property": "Fill",
+            "did_you_mean": null,
+            "detail": "appears 6× — other locations: templates/form-template-1.yaml:98, templates/form-template-1.yaml:148, templates/form-template-1.yaml:198 — add to your existing App.Formulas as a named formula or UDF",
+            "fix": null,
+            "line": 47
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "templates/form-template-1.yaml",
+            "control": "lblError",
+            "type": "Label",
+            "property": "Color",
+            "did_you_mean": null,
+            "detail": "appears 6× — other locations: templates/form-template-1.yaml:137, templates/form-template-1.yaml:187, templates/form-template-1.yaml:237 — add to your existing App.Formulas as a named formula or UDF",
+            "fix": null,
+            "line": 87
+          },
+          {
+            "level": "WARN",
+            "rule": "repeated-color-literal",
+            "file": "templates/form-template-1.yaml",
+            "control": "Container_FormField_Date",
+            "type": "GroupContainer",
+            "property": "Fill",
+            "did_you_mean": null,
+            "detail": "appears 6× — other locations: templates/form-template-1.yaml:98, templates/form-template-1.yaml:148, templates/form-template-1.yaml:198 — add to your existing App.Formulas as a theme token (varTheme.X) or named formula",
+            "fix": null,
+            "line": 47
+          },
+          {
+            "level": "WARN",
+            "rule": "repeated-color-literal",
+            "file": "templates/form-template-1.yaml",
+            "control": "lblError",
+            "type": "Label",
+            "property": "Color",
+            "did_you_mean": null,
+            "detail": "appears 6× — other locations: templates/form-template-1.yaml:137, templates/form-template-1.yaml:187, templates/form-template-1.yaml:237 — add to your existing App.Formulas as a theme token (varTheme.X) or named formula",
+            "fix": null,
+            "line": 87
+          }
+        ],
+        "summary": {
+          "pass": 272,
+          "warn": 4,
+          "refuse": 0,
+          "controls_seen": 29
+        }
+      },
+      "templates/kpi-cards.yaml": {
+        "sha256": "e06bb3faf58cc1ff5fa6c529dded3109d42a1a2cd77afbf3c4a764d5cfc95ad6",
+        "issues": [],
+        "summary": {
+          "pass": 140,
+          "warn": 0,
+          "refuse": 0,
+          "controls_seen": 15
+        }
+      },
+      "templates/screen-table-template-1.yaml": {
+        "sha256": "128a8080f6a7dad23906afd02275ea660c6bb15ec398688ce1d5f864dbf7d60b",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "templates/screen-table-template-1.yaml",
+            "control": "Container10_Gallery",
+            "type": "GroupContainer",
+            "property": "BorderColor",
+            "did_you_mean": null,
+            "detail": "appears 12× — other locations: templates/screen-table-template-1.yaml:176, templates/screen-table-template-1.yaml:187, templates/screen-table-template-1.yaml:200 — add to your existing App.Formulas as a named formula or UDF",
+            "fix": null,
+            "line": 144
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "templates/screen-table-template-1.yaml",
+            "control": "Container11_TableHeaders",
+            "type": "GroupContainer",
+            "property": "Visible",
+            "did_you_mean": null,
+            "detail": "appears 4× — other locations: templates/screen-table-template-1.yaml:369, templates/screen-table-template-1.yaml:394, templates/screen-table-template-1.yaml:466 — add to your existing App.Formulas as a named formula or UDF",
+            "fix": null,
+            "line": 169
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "templates/screen-table-template-1.yaml",
+            "control": "img_RightIconSmall_1",
+            "type": "Image",
+            "property": "Image",
+            "did_you_mean": null,
+            "detail": "appears 4× — other locations: templates/screen-table-template-1.yaml:501, templates/table-template-1.yaml:106, templates/table-template-1.yaml:464 — add to your existing App.Formulas as a named formula or UDF",
+            "fix": null,
+            "line": 110
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula-in-gallery",
+            "file": "templates/screen-table-template-1.yaml",
+            "control": "imgIcon",
+            "type": "Image",
+            "property": "BorderColor",
+            "did_you_mean": null,
+            "detail": "appears 2× — other locations: templates/screen-table-template-1.yaml:336 — add to your existing App.Formulas; components cannot live in gallery templates — a named formula/UDF is the only centralization mechanism here",
+            "fix": null,
+            "line": 325
+          },
+          {
+            "level": "WARN",
+            "rule": "repeated-color-literal",
+            "file": "templates/screen-table-template-1.yaml",
+            "control": "Container10_Gallery",
+            "type": "GroupContainer",
+            "property": "BorderColor",
+            "did_you_mean": null,
+            "detail": "appears 12× — other locations: templates/screen-table-template-1.yaml:176, templates/screen-table-template-1.yaml:187, templates/screen-table-template-1.yaml:200 — add to your existing App.Formulas as a theme token (varTheme.X) or named formula",
+            "fix": null,
+            "line": 144
+          }
+        ],
+        "summary": {
+          "pass": 345,
+          "warn": 5,
+          "refuse": 0,
+          "controls_seen": 33
+        }
+      },
+      "templates/sidebar-collapsible.yaml": {
+        "sha256": "b3d6fb408699e0e655a5b3b965e1275cc6103d0df9509d93a34b2fde64aba026",
+        "issues": [],
+        "summary": {
+          "pass": 240,
+          "warn": 0,
+          "refuse": 0,
+          "controls_seen": 19
+        }
+      },
+      "templates/tab-bar.yaml": {
+        "sha256": "c80f003e07601fd805a60a57b66ce0040579abed0f6e654ea23c2dd5cd0a9810",
+        "issues": [],
+        "summary": {
+          "pass": 82,
+          "warn": 0,
+          "refuse": 0,
+          "controls_seen": 6
+        }
+      },
+      "templates/table-template-1.yaml": {
+        "sha256": "666c2380607c594c0b24058694c188bd635a01ab010c14d26a295a8d81595b2c",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula-in-gallery",
+            "file": "templates/table-template-1.yaml",
+            "control": "imgIcon",
+            "type": "Image",
+            "property": "Fill",
+            "did_you_mean": null,
+            "detail": "appears 2× — other locations: templates/table-template-1.yaml:386 — add to your existing App.Formulas; components cannot live in gallery templates — a named formula/UDF is the only centralization mechanism here",
+            "fix": null,
+            "line": 311
+          }
+        ],
+        "summary": {
+          "pass": 340,
+          "warn": 1,
+          "refuse": 0,
+          "controls_seen": 33
+        }
+      },
+      "mcp-test-fixtures/app-formulas-shape.pa.yaml": {
+        "sha256": "d49cf334417908f62686dff1d97b18f68f89da6a8d9ccb7c91aa19c682e6cd99",
+        "issues": [],
+        "summary": {
+          "pass": 0,
+          "warn": 0,
+          "refuse": 0,
+          "controls_seen": 0
+        }
+      },
+      "mcp-test-fixtures/autolayout-fillportions-row.pa.yaml": {
+        "sha256": "de0fbf17956261eb412a785599143a5a83779375543ca2b12e259bac0e10ea3d",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "a11y-inputs-missing-accessiblelabel",
+            "file": "mcp-test-fixtures/autolayout-fillportions-row.pa.yaml",
+            "control": "txtFirstName",
+            "type": "TextInput",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "2 control(s) lack AccessibleLabel — screen readers announce only the control type: txtFirstName, txtLastName",
+            "fix": "set AccessibleLabel on each input to what the screen reader should announce",
+            "line": 10
+          }
+        ],
+        "summary": {
+          "pass": 5,
+          "warn": 1,
+          "refuse": 0,
+          "controls_seen": 3
+        }
+      },
+      "mcp-test-fixtures/cDemoWizard.pa.yaml": {
+        "sha256": "a144675c63c2db66dcad144843af14956a2574a903c0710a753742dcae9ab9db",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "a11y-inputs-missing-accessiblelabel",
+            "file": "mcp-test-fixtures/cDemoWizard.pa.yaml",
+            "control": "galSteps",
+            "type": "Gallery",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "1 control(s) lack AccessibleLabel — screen readers announce only the control type: galSteps",
+            "fix": "set AccessibleLabel on each input to what the screen reader should announce",
+            "line": 29
+          }
+        ],
+        "summary": {
+          "pass": 39,
+          "warn": 1,
+          "refuse": 0,
+          "controls_seen": 5
+        }
+      },
+      "mcp-test-fixtures/survey/clean.pa.yaml": {
+        "sha256": "2d43d62f59cba7296ed6231fa7800e1dc92337c219fe77aea7f79a3df36fdee5",
+        "issues": [],
+        "summary": {
+          "pass": 2,
+          "warn": 0,
+          "refuse": 0,
+          "controls_seen": 1
+        }
+      },
+      "mcp-test-fixtures/survey/dirty.pa.yaml": {
+        "sha256": "a18bdb5f227546011620d5b0dafd742cb329b8c7d27447705fe9b1d933df1699",
+        "issues": [
+          {
+            "level": "REFUSE",
+            "rule": null,
+            "file": "mcp-test-fixtures/survey/dirty.pa.yaml",
+            "control": "btnLegacy",
+            "type": "Button",
+            "property": "TabIndex",
+            "did_you_mean": null,
+            "detail": "property-not-in-catalog",
+            "fix": null,
+            "line": 8
+          },
+          {
+            "level": "REFUSE",
+            "rule": null,
+            "file": "mcp-test-fixtures/survey/dirty.pa.yaml",
+            "control": "btnTypo",
+            "type": "ModernButton",
+            "property": "Textt",
+            "did_you_mean": null,
+            "detail": "property-not-in-catalog",
+            "fix": null,
+            "line": 23
+          },
+          {
+            "level": "WARN",
+            "rule": "a11y-inputs-missing-accessiblelabel",
+            "file": "mcp-test-fixtures/survey/dirty.pa.yaml",
+            "control": "txtAliasOne",
+            "type": "TextInput",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "4 control(s) lack AccessibleLabel — screen readers announce only the control type: txtAliasOne, txtAliasTwo, txtAliasThree, galPending",
+            "fix": "set AccessibleLabel on each input to what the screen reader should announce",
+            "line": 10
+          },
+          {
+            "level": "WARN",
+            "rule": "a11y-tabindex-positive",
+            "file": "mcp-test-fixtures/survey/dirty.pa.yaml",
+            "control": "btnLegacy",
+            "type": "Button",
+            "property": "TabIndex",
+            "did_you_mean": null,
+            "detail": "TabIndex 2 is positive — custom tab indexes are retired (treated as 0) and break screen-reader order",
+            "fix": "use TabIndex 0 (focusable) or -1 (skipped); order comes from control/container structure",
+            "line": 8
+          },
+          {
+            "level": "WARN",
+            "rule": "delegation-search-caveat",
+            "file": "mcp-test-fixtures/survey/dirty.pa.yaml",
+            "control": "galPending",
+            "type": "Gallery",
+            "property": "Items",
+            "did_you_mean": null,
+            "detail": "Search( on bound source 'PendingLedger' — delegation depends on connector and column support; this checker has not established them. Search uses substring matching; supply `datasources` to sharpen this into a source-specific finding. Identifier 'PendingLedger' matches none of the known variable prefixes (col, var, gbl, loc) and is not declared in datasources, so it is assumed to be a bound source.",
+            "fix": "consider Filter(Source, StartsWith(Column, text)) only if prefix matching meets the request and the connector and column type support delegation; prefix and substring matching are not equivalent. StartsWith does not make Excel queries delegable",
+            "line": 19
+          }
+        ],
+        "summary": {
+          "pass": 3,
+          "warn": 3,
+          "refuse": 2,
+          "controls_seen": 6
+        }
+      },
+      "oracle-ms-templates/Screen10.pa.yaml": {
+        "sha256": "385374fdc4a280a7408b850f29a82d5680f22f6cdaa46813c918d13ff239600f",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "a11y-inputs-missing-accessiblelabel",
+            "file": "oracle-ms-templates/Screen10.pa.yaml",
+            "control": "MasterSearch1",
+            "type": "ModernTextInput",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "2 control(s) lack AccessibleLabel — screen readers announce only the control type: MasterSearch1, MasterGallery1",
+            "fix": "set AccessibleLabel on each input to what the screen reader should announce",
+            "line": 229
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "oracle-ms-templates/Screen10.pa.yaml",
+            "control": "AppTitle7",
+            "type": "ModernText",
+            "property": "Size",
+            "did_you_mean": null,
+            "detail": "appears 8× — other locations: oracle-ms-templates/Screen3.pa.yaml:58, oracle-ms-templates/Screen4.pa.yaml:58, oracle-ms-templates/Screen5.pa.yaml:61 — centralize as a named formula or UDF in App.Formulas",
+            "fix": null,
+            "line": 61
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "oracle-ms-templates/Screen10.pa.yaml",
+            "control": "CollectionForm1",
+            "type": "Form",
+            "property": "NumberOfColumns",
+            "did_you_mean": null,
+            "detail": "appears 3× — other locations: oracle-ms-templates/Screen5.pa.yaml:236, oracle-ms-templates/Screen8.pa.yaml:221 — centralize as a named formula or UDF in App.Formulas",
+            "fix": null,
+            "line": 359
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "oracle-ms-templates/Screen10.pa.yaml",
+            "control": "IconChat7",
+            "type": "ModernIcon",
+            "property": "IconColor",
+            "did_you_mean": null,
+            "detail": "appears 24× — other locations: oracle-ms-templates/Screen10.pa.yaml:91, oracle-ms-templates/Screen10.pa.yaml:100, oracle-ms-templates/Screen3.pa.yaml:79 — centralize as a named formula or UDF in App.Formulas",
+            "fix": null,
+            "line": 82
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "oracle-ms-templates/Screen10.pa.yaml",
+            "control": "MasterDetailRow1",
+            "type": "GroupContainer",
+            "property": "LayoutDirection",
+            "did_you_mean": null,
+            "detail": "appears 4× — other locations: oracle-ms-templates/Screen5.pa.yaml:187, oracle-ms-templates/Screen6.pa.yaml:133, oracle-ms-templates/Screen6.pa.yaml:299 — centralize as a named formula or UDF in App.Formulas",
+            "fix": null,
+            "line": 187
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "oracle-ms-templates/Screen10.pa.yaml",
+            "control": "MasterGallery1",
+            "type": "Gallery",
+            "property": "BorderColor",
+            "did_you_mean": null,
+            "detail": "appears 5× — other locations: oracle-ms-templates/Screen10.pa.yaml:353, oracle-ms-templates/Screen5.pa.yaml:229, oracle-ms-templates/Screen5.pa.yaml:321 — centralize as a named formula or UDF in App.Formulas",
+            "fix": null,
+            "line": 249
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "oracle-ms-templates/Screen10.pa.yaml",
+            "control": "MasterPane1",
+            "type": "GroupContainer",
+            "property": "Fill",
+            "did_you_mean": null,
+            "detail": "appears 4× — other locations: oracle-ms-templates/Screen5.pa.yaml:278, oracle-ms-templates/Screen8.pa.yaml:12, oracle-ms-templates/Screen8.pa.yaml:140 — centralize as a named formula or UDF in App.Formulas",
+            "fix": null,
+            "line": 201
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "oracle-ms-templates/Screen10.pa.yaml",
+            "control": "NavDivider7",
+            "type": "ModernText",
+            "property": "Fill",
+            "did_you_mean": null,
+            "detail": "appears 7× — other locations: oracle-ms-templates/Screen3.pa.yaml:124, oracle-ms-templates/Screen4.pa.yaml:124, oracle-ms-templates/Screen5.pa.yaml:127 — centralize as a named formula or UDF in App.Formulas",
+            "fix": null,
+            "line": 127
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "oracle-ms-templates/Screen10.pa.yaml",
+            "control": "NavTabsDesktop7",
+            "type": "ModernTabList",
+            "property": "Visible",
+            "did_you_mean": null,
+            "detail": "appears 9× — other locations: oracle-ms-templates/Screen3.pa.yaml:73, oracle-ms-templates/Screen4.pa.yaml:73, oracle-ms-templates/Screen5.pa.yaml:76 — centralize as a named formula or UDF in App.Formulas",
+            "fix": null,
+            "line": 76
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "oracle-ms-templates/Screen10.pa.yaml",
+            "control": "NavTabsMobile7",
+            "type": "ModernTabList",
+            "property": "BasePaletteColor",
+            "did_you_mean": null,
+            "detail": "appears 11× — other locations: oracle-ms-templates/Screen3.pa.yaml:112, oracle-ms-templates/Screen4.pa.yaml:112, oracle-ms-templates/Screen5.pa.yaml:115 — centralize as a named formula or UDF in App.Formulas",
+            "fix": null,
+            "line": 115
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "oracle-ms-templates/Screen10.pa.yaml",
+            "control": "NavTabsMobile7",
+            "type": "ModernTabList",
+            "property": "Items",
+            "did_you_mean": null,
+            "detail": "appears 8× — other locations: oracle-ms-templates/Screen3.pa.yaml:116, oracle-ms-templates/Screen4.pa.yaml:116, oracle-ms-templates/Screen5.pa.yaml:119 — centralize as a named formula or UDF in App.Formulas",
+            "fix": null,
+            "line": 119
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "oracle-ms-templates/Screen10.pa.yaml",
+            "control": "PageSubtitle5",
+            "type": "ModernText",
+            "property": "Color",
+            "did_you_mean": null,
+            "detail": "appears 10× — other locations: oracle-ms-templates/Screen10.pa.yaml:286, oracle-ms-templates/Screen3.pa.yaml:161, oracle-ms-templates/Screen5.pa.yaml:170 — centralize as a named formula or UDF in App.Formulas",
+            "fix": null,
+            "line": 170
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "oracle-ms-templates/Screen10.pa.yaml",
+            "control": "PageSubtitle5",
+            "type": "ModernText",
+            "property": "Size",
+            "did_you_mean": null,
+            "detail": "appears 7× — other locations: oracle-ms-templates/Screen2.pa.yaml:55, oracle-ms-templates/Screen3.pa.yaml:164, oracle-ms-templates/Screen5.pa.yaml:175 — centralize as a named formula or UDF in App.Formulas",
+            "fix": null,
+            "line": 175
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "oracle-ms-templates/Screen10.pa.yaml",
+            "control": "PageTitle5",
+            "type": "ModernText",
+            "property": "Size",
+            "did_you_mean": null,
+            "detail": "appears 5× — other locations: oracle-ms-templates/Screen5.pa.yaml:163, oracle-ms-templates/Screen7.pa.yaml:163, oracle-ms-templates/Screen8.pa.yaml:163 — centralize as a named formula or UDF in App.Formulas",
+            "fix": null,
+            "line": 163
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "oracle-ms-templates/Screen10.pa.yaml",
+            "control": "TFScroll1",
+            "type": "GroupContainer",
+            "property": "Fill",
+            "did_you_mean": null,
+            "detail": "appears 48× — other locations: oracle-ms-templates/Screen10.pa.yaml:25, oracle-ms-templates/Screen10.pa.yaml:39, oracle-ms-templates/Screen10.pa.yaml:140 — centralize as a named formula or UDF in App.Formulas",
+            "fix": null,
+            "line": 12
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "oracle-ms-templates/Screen10.pa.yaml",
+            "control": "TitleBand6",
+            "type": "GroupContainer",
+            "property": "PaddingLeft",
+            "did_you_mean": null,
+            "detail": "appears 52× — other locations: oracle-ms-templates/Screen10.pa.yaml:150, oracle-ms-templates/Screen10.pa.yaml:192, oracle-ms-templates/Screen10.pa.yaml:193 — centralize as a named formula or UDF in App.Formulas",
+            "fix": null,
+            "line": 149
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "oracle-ms-templates/Screen10.pa.yaml",
+            "control": "TitleRow7",
+            "type": "GroupContainer",
+            "property": "PaddingLeft",
+            "did_you_mean": null,
+            "detail": "appears 16× — other locations: oracle-ms-templates/Screen10.pa.yaml:48, oracle-ms-templates/Screen3.pa.yaml:46, oracle-ms-templates/Screen3.pa.yaml:47 — centralize as a named formula or UDF in App.Formulas",
+            "fix": null,
+            "line": 47
+          },
+          {
+            "level": "WARN",
+            "rule": "repeated-color-literal",
+            "file": "oracle-ms-templates/Screen10.pa.yaml",
+            "control": "IconChat7",
+            "type": "ModernIcon",
+            "property": "IconColor",
+            "did_you_mean": null,
+            "detail": "appears 24× — other locations: oracle-ms-templates/Screen10.pa.yaml:91, oracle-ms-templates/Screen10.pa.yaml:100, oracle-ms-templates/Screen3.pa.yaml:79 — define a theme token (varTheme.X) or named formula",
+            "fix": null,
+            "line": 82
+          },
+          {
+            "level": "WARN",
+            "rule": "repeated-color-literal",
+            "file": "oracle-ms-templates/Screen10.pa.yaml",
+            "control": "MasterGallery1",
+            "type": "Gallery",
+            "property": "BorderColor",
+            "did_you_mean": null,
+            "detail": "appears 5× — other locations: oracle-ms-templates/Screen10.pa.yaml:353, oracle-ms-templates/Screen5.pa.yaml:229, oracle-ms-templates/Screen5.pa.yaml:321 — define a theme token (varTheme.X) or named formula",
+            "fix": null,
+            "line": 249
+          },
+          {
+            "level": "WARN",
+            "rule": "repeated-color-literal",
+            "file": "oracle-ms-templates/Screen10.pa.yaml",
+            "control": "MasterPane1",
+            "type": "GroupContainer",
+            "property": "Fill",
+            "did_you_mean": null,
+            "detail": "appears 6× — other locations: oracle-ms-templates/Screen5.pa.yaml:278, oracle-ms-templates/Screen5.pa.yaml:370, oracle-ms-templates/Screen5.pa.yaml:426 — define a theme token (varTheme.X) or named formula",
+            "fix": null,
+            "line": 201
+          },
+          {
+            "level": "WARN",
+            "rule": "repeated-color-literal",
+            "file": "oracle-ms-templates/Screen10.pa.yaml",
+            "control": "NavDivider7",
+            "type": "ModernText",
+            "property": "Fill",
+            "did_you_mean": null,
+            "detail": "appears 7× — other locations: oracle-ms-templates/Screen3.pa.yaml:124, oracle-ms-templates/Screen4.pa.yaml:124, oracle-ms-templates/Screen5.pa.yaml:127 — define a theme token (varTheme.X) or named formula",
+            "fix": null,
+            "line": 127
+          },
+          {
+            "level": "WARN",
+            "rule": "repeated-color-literal",
+            "file": "oracle-ms-templates/Screen10.pa.yaml",
+            "control": "NavTabsMobile7",
+            "type": "ModernTabList",
+            "property": "BasePaletteColor",
+            "did_you_mean": null,
+            "detail": "appears 13× — other locations: oracle-ms-templates/Screen3.pa.yaml:112, oracle-ms-templates/Screen4.pa.yaml:112, oracle-ms-templates/Screen5.pa.yaml:115 — define a theme token (varTheme.X) or named formula",
+            "fix": null,
+            "line": 115
+          },
+          {
+            "level": "WARN",
+            "rule": "repeated-color-literal",
+            "file": "oracle-ms-templates/Screen10.pa.yaml",
+            "control": "PageSubtitle5",
+            "type": "ModernText",
+            "property": "Color",
+            "did_you_mean": null,
+            "detail": "appears 12× — other locations: oracle-ms-templates/Screen10.pa.yaml:286, oracle-ms-templates/Screen3.pa.yaml:161, oracle-ms-templates/Screen5.pa.yaml:170 — define a theme token (varTheme.X) or named formula",
+            "fix": null,
+            "line": 170
+          }
+        ],
+        "summary": {
+          "pass": 263,
+          "warn": 23,
+          "refuse": 0,
+          "controls_seen": 31
+        }
+      },
+      "oracle-ms-templates/Screen2.pa.yaml": {
+        "sha256": "e32d7867f47e203feb0c7d27b3a04e5b5daf351ee6f5b4dd3658ddee4a32bbc8",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "oracle-ms-templates/Screen2.pa.yaml",
+            "control": "EventCard_11",
+            "type": "ModernCard",
+            "property": "Description",
+            "did_you_mean": null,
+            "detail": "appears 3× — other locations: oracle-ms-templates/Screen3.pa.yaml:255, oracle-ms-templates/Screen4.pa.yaml:165 — centralize as a named formula or UDF in App.Formulas",
+            "fix": null,
+            "line": 262
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "oracle-ms-templates/Screen2.pa.yaml",
+            "control": "EventCard_21",
+            "type": "ModernCard",
+            "property": "Description",
+            "did_you_mean": null,
+            "detail": "appears 3× — other locations: oracle-ms-templates/Screen3.pa.yaml:264, oracle-ms-templates/Screen4.pa.yaml:174 — centralize as a named formula or UDF in App.Formulas",
+            "fix": null,
+            "line": 271
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "oracle-ms-templates/Screen2.pa.yaml",
+            "control": "EventCard_31",
+            "type": "ModernCard",
+            "property": "Description",
+            "did_you_mean": null,
+            "detail": "appears 3× — other locations: oracle-ms-templates/Screen3.pa.yaml:273, oracle-ms-templates/Screen4.pa.yaml:183 — centralize as a named formula or UDF in App.Formulas",
+            "fix": null,
+            "line": 280
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "oracle-ms-templates/Screen2.pa.yaml",
+            "control": "ExploreCard_31",
+            "type": "ModernCard",
+            "property": "Title",
+            "did_you_mean": null,
+            "detail": "appears 4× — other locations: oracle-ms-templates/Screen3.pa.yaml:211, oracle-ms-templates/Screen6.pa.yaml:262, oracle-ms-templates/Screen7.pa.yaml:239 — centralize as a named formula or UDF in App.Formulas",
+            "fix": null,
+            "line": 198
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "oracle-ms-templates/Screen2.pa.yaml",
+            "control": "ExploreCardGrid1",
+            "type": "GroupContainer",
+            "property": "LayoutGridRows",
+            "did_you_mean": null,
+            "detail": "appears 3× — other locations: oracle-ms-templates/Screen6.pa.yaml:227, oracle-ms-templates/Screen7.pa.yaml:218 — centralize as a named formula or UDF in App.Formulas",
+            "fix": null,
+            "line": 168
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "oracle-ms-templates/Screen2.pa.yaml",
+            "control": "QuickCardGrid1",
+            "type": "GroupContainer",
+            "property": "LayoutGridColumns",
+            "did_you_mean": null,
+            "detail": "appears 8× — other locations: oracle-ms-templates/Screen2.pa.yaml:166, oracle-ms-templates/Screen2.pa.yaml:249, oracle-ms-templates/Screen3.pa.yaml:190 — centralize as a named formula or UDF in App.Formulas",
+            "fix": null,
+            "line": 90
+          },
+          {
+            "level": "WARN",
+            "rule": "duplicate-formula",
+            "file": "oracle-ms-templates/Screen2.pa.yaml",
+            "control": "QuickCardGrid1",
+            "type": "GroupContainer",
+            "property": "LayoutGridRows",
+            "did_you_mean": null,
+            "detail": "appears 5× — other locations: oracle-ms-templates/Screen2.pa.yaml:251, oracle-ms-templates/Screen3.pa.yaml:192, oracle-ms-templates/Screen3.pa.yaml:244 — centralize as a named formula or UDF in App.Formulas",
+            "fix": null,
+            "line": 92
+          }
+        ],
+        "summary": {
+          "pass": 192,
+          "warn": 7,
+          "refuse": 0,
+          "controls_seen": 25
+        }
+      },
+      "oracle-ms-templates/Screen3.pa.yaml": {
+        "sha256": "5d8119cf1892ec66296d75a72595822357c269016351f3dba68157a8852b7c79",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "a11y-inputs-missing-accessiblelabel",
+            "file": "oracle-ms-templates/Screen3.pa.yaml",
+            "control": "RecentSearchInput1",
+            "type": "ModernTextInput",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "1 control(s) lack AccessibleLabel — screen readers announce only the control type: RecentSearchInput1",
+            "fix": "set AccessibleLabel on each input to what the screen reader should announce",
+            "line": 340
+          }
+        ],
+        "summary": {
+          "pass": 273,
+          "warn": 1,
+          "refuse": 0,
+          "controls_seen": 38
+        }
+      },
+      "oracle-ms-templates/Screen4.pa.yaml": {
+        "sha256": "9d6d7bbb55d84a3f7c7c86309a9a712e5efa3eb0aac7e8101a88b799b6fd0ea2",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "a11y-inputs-missing-accessiblelabel",
+            "file": "oracle-ms-templates/Screen4.pa.yaml",
+            "control": "RecentSearchInput2",
+            "type": "ModernTextInput",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "1 control(s) lack AccessibleLabel — screen readers announce only the control type: RecentSearchInput2",
+            "fix": "set AccessibleLabel on each input to what the screen reader should announce",
+            "line": 250
+          }
+        ],
+        "summary": {
+          "pass": 211,
+          "warn": 1,
+          "refuse": 0,
+          "controls_seen": 30
+        }
+      },
+      "oracle-ms-templates/Screen5.pa.yaml": {
+        "sha256": "cccc083d3dc7997a236b0cc4c93668eb7e08c04edf3a2a969cee405db72d63ea",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "a11y-inputs-missing-accessiblelabel",
+            "file": "oracle-ms-templates/Screen5.pa.yaml",
+            "control": "ReviewersGallery1",
+            "type": "Gallery",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "1 control(s) lack AccessibleLabel — screen readers announce only the control type: ReviewersGallery1",
+            "fix": "set AccessibleLabel on each input to what the screen reader should announce",
+            "line": 317
+          }
+        ],
+        "summary": {
+          "pass": 365,
+          "warn": 1,
+          "refuse": 0,
+          "controls_seen": 36
+        }
+      },
+      "oracle-ms-templates/Screen6.pa.yaml": {
+        "sha256": "ccc5fe92d7c924d64ff6a329c6fcfa96c37c404b2fc634ae0806cbdf9604ac5d",
+        "issues": [],
+        "summary": {
+          "pass": 261,
+          "warn": 0,
+          "refuse": 0,
+          "controls_seen": 28
+        }
+      },
+      "oracle-ms-templates/Screen7.pa.yaml": {
+        "sha256": "64513fd5341e10c4fa58ff681f26e3fb514d698f721de7ba2eb2b1db911f8b3b",
+        "issues": [],
+        "summary": {
+          "pass": 173,
+          "warn": 0,
+          "refuse": 0,
+          "controls_seen": 23
+        }
+      },
+      "oracle-ms-templates/Screen8.pa.yaml": {
+        "sha256": "0ab715e9cfd806c929cf4d920bddae8a89c8acfeccdedb5042b41aaabf80b53a",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "form-without-failure-path",
+            "file": "oracle-ms-templates/Screen8.pa.yaml",
+            "control": "SubmitArtForm1",
+            "type": "Form",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "No explicit nonempty OnFailure handler or recognized SubmitArtForm1.Error display was found for this submitted Form in analyzed source.",
+            "fix": "Review SubmitArtForm1.OnFailure or a visible error display bound to SubmitArtForm1.Error; App.OnError alone does not establish form-error presentation.",
+            "line": 210
+          }
+        ],
+        "summary": {
+          "pass": 175,
+          "warn": 1,
+          "refuse": 0,
+          "controls_seen": 20
+        }
+      },
+      "oracle-ms-templates/Screen9.pa.yaml": {
+        "sha256": "8e0a1a6b132cf8847553d54c8830881eda181591fd5f550d0ff6f7a33a3f03ae",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "a11y-inputs-missing-accessiblelabel",
+            "file": "oracle-ms-templates/Screen9.pa.yaml",
+            "control": "SearchInput1",
+            "type": "ModernTextInput",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "1 control(s) lack AccessibleLabel — screen readers announce only the control type: SearchInput1",
+            "fix": "set AccessibleLabel on each input to what the screen reader should announce",
+            "line": 219
+          }
+        ],
+        "summary": {
+          "pass": 152,
+          "warn": 1,
+          "refuse": 0,
+          "controls_seen": 18
+        }
+      },
+      "isolated-apps/90-write-form-navigation.pa.yaml": {
+        "sha256": "c2e1fe5cb80c0ec803217bb7b2d9473f85d547fcd440233196e9a0c4a5bb6de1",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "app-onerror-missing",
+            "file": "isolated-apps/90-write-form-navigation.pa.yaml",
+            "control": "App",
+            "type": "__App",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "App has no configured OnError handler for global error reporting; the default error banner remains available.",
+            "fix": "Review global error reporting or logging in App.OnError; this handler cannot repair failed calculations.",
+            "line": 1
+          },
+          {
+            "level": "WARN",
+            "rule": "delegation-forall-truncation",
+            "file": "isolated-apps/90-write-form-navigation.pa.yaml",
+            "control": "App",
+            "type": "__App",
+            "property": "OnStart",
+            "did_you_mean": null,
+            "detail": "ForAll over 'CoverageSharePoint' has possible row-limit truncation: a nondelegable iteration can process only the retrieved portion of a datasource.",
+            "fix": "Review required row coverage and connector delegation; consider a delegable source query or server-side processing.",
+            "line": 4
+          },
+          {
+            "level": "WARN",
+            "rule": "form-without-failure-path",
+            "file": "isolated-apps/90-write-form-navigation.pa.yaml",
+            "control": "CoverageEditForm",
+            "type": "Form",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "No explicit nonempty OnFailure handler or recognized CoverageEditForm.Error display was found for this submitted Form in analyzed source.",
+            "fix": "Review CoverageEditForm.OnFailure or a visible error display bound to CoverageEditForm.Error; App.OnError alone does not establish form-error presentation.",
+            "line": 28
+          },
+          {
+            "level": "WARN",
+            "rule": "submitform-navigation-not-in-onsuccess",
+            "file": "isolated-apps/90-write-form-navigation.pa.yaml",
+            "control": "SubmitThenGo",
+            "type": "Button",
+            "property": "OnSelect",
+            "did_you_mean": null,
+            "detail": "SubmitForm(CoverageEditForm) is immediately followed by navigation outside that submission's success event.",
+            "fix": "Review moving this continuation to CoverageEditForm.OnSuccess; handle failure through the submitted form's lifecycle.",
+            "line": 26
+          },
+          {
+            "level": "WARN",
+            "rule": "success-notification-not-gated",
+            "file": "isolated-apps/90-write-form-navigation.pa.yaml",
+            "control": "SaveThenCelebrate",
+            "type": "Button",
+            "property": "OnSelect",
+            "did_you_mean": null,
+            "detail": "The write to CoverageSharePoint is immediately followed by a success notification without a recognized success gate in this sequence.",
+            "fix": "Review success-gated notification and error handling, such as IfError, for this synchronous datasource write.",
+            "line": 20
+          },
+          {
+            "level": "WARN",
+            "rule": "unreachable-screen",
+            "file": "isolated-apps/90-write-form-navigation.pa.yaml",
+            "control": "RuleNoStaticPath",
+            "type": "Screen",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "Screen 'RuleNoStaticPath': no static path found from recognized entry points in analyzed source.",
+            "fix": "Review real navigation workflows and unmodeled entry points before changing this screen; do not automatically delete it.",
+            "line": 42
+          },
+          {
+            "level": "WARN",
+            "rule": "write-followed-by-unconditional-navigation",
+            "file": "isolated-apps/90-write-form-navigation.pa.yaml",
+            "control": "SaveThenGo",
+            "type": "Button",
+            "property": "OnSelect",
+            "did_you_mean": null,
+            "detail": "The write to CoverageSharePoint is immediately followed by navigation without a recognized success gate in this sequence.",
+            "fix": "Review conditional continuation and error handling, such as IfError, before navigating after a synchronous datasource write.",
+            "line": 14
+          }
+        ],
+        "summary": {
+          "pass": 12,
+          "warn": 7,
+          "refuse": 0,
+          "controls_seen": 6
+        }
+      },
+      "isolated-apps/91-unknown-screen.pa.yaml": {
+        "sha256": "5123e76f65bffbd65e9ba87dd8715411881f400227c1c4f5de8471a044c858fd",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "navigate-to-unknown-screen",
+            "file": "isolated-apps/91-unknown-screen.pa.yaml",
+            "control": "UnknownTargetStart",
+            "type": "Screen",
+            "property": "OnVisible",
+            "did_you_mean": null,
+            "detail": "Navigate target 'MissingCoverageScreen' was not found among analyzed screens; the full app may include additional source.",
+            "fix": "Check the target spelling and that all relevant screen source files were included; do not automatically rename the target.",
+            "line": 8
+          }
+        ],
+        "summary": {
+          "pass": 2,
+          "warn": 1,
+          "refuse": 0,
+          "controls_seen": 1
+        }
+      },
+      "isolated-apps/92-output-reference.pa.yaml": {
+        "sha256": "a800e70f7cbd80cc6185c018e7173e42d72b1a238d403935cb6eb35fad859e5f",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "a11y-inputs-missing-accessiblelabel",
+            "file": "isolated-apps/92-output-reference.pa.yaml",
+            "control": "OutputReferenceInput",
+            "type": "TextInput",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "1 control(s) lack AccessibleLabel — screen readers announce only the control type: OutputReferenceInput",
+            "fix": "set AccessibleLabel on each input to what the screen reader should announce",
+            "line": 4
+          },
+          {
+            "level": "WARN",
+            "rule": "unknown-output-reference",
+            "file": "isolated-apps/92-output-reference.pa.yaml",
+            "control": "OutputReferenceReader",
+            "type": "Label",
+            "property": "Text",
+            "did_you_mean": null,
+            "detail": "reference 'OutputReferenceInput.Text' resolves to 'OutputReferenceInput' (TextInput), whose catalog has no input or output property 'Text'; did you mean 'Value'?",
+            "fix": "review the reference and use OutputReferenceInput.Value if intended",
+            "line": 11
+          }
+        ],
+        "summary": {
+          "pass": 2,
+          "warn": 2,
+          "refuse": 0,
+          "controls_seen": 2
+        }
+      },
+      "isolated-apps/93-layoutmaxwidth.pa.yaml": {
+        "sha256": "3cee0fa85ba3edd97962b4c07cc56af3e4df87827c7659ee4b21146bb22e3199",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "layoutmaxwidth-collapses-children",
+            "file": "isolated-apps/93-layoutmaxwidth.pa.yaml",
+            "control": "card",
+            "type": "GroupContainer",
+            "property": "LayoutMaxWidth",
+            "did_you_mean": null,
+            "detail": "manual GroupContainer inside AutoLayout sets LayoutMaxWidth; this can collapse Parent.Width for direct children: caption",
+            "fix": "review the width cap and use AutoLayout for this group or remove LayoutMaxWidth if appropriate; verify child widths in Studio",
+            "line": 14
+          },
+          {
+            "level": "WARN",
+            "rule": "manual-group-may-stretch",
+            "file": "isolated-apps/93-layoutmaxwidth.pa.yaml",
+            "control": "card",
+            "type": "GroupContainer",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "ManualLayout GroupContainer directly inside vertical AutoLayout has no explicit FillPortions (effective default 1) — is this group meant to stretch?",
+            "fix": null,
+            "line": 10
+          }
+        ],
+        "summary": {
+          "pass": 5,
+          "warn": 2,
+          "refuse": 0,
+          "controls_seen": 3
+        }
+      },
+      "isolated-apps/94-field-report-rules.pa.yaml": {
+        "sha256": "60ed546141e6e3795eb305f23c21b13e864976db704d4c373efbfd39f7839e6b",
+        "issues": [
+          {
+            "level": "REFUSE",
+            "rule": "addcolumns-string-column-name",
+            "file": "isolated-apps/94-field-report-rules.pa.yaml",
+            "control": "rows",
+            "type": "Gallery",
+            "property": "Items",
+            "did_you_mean": null,
+            "detail": "Expected identifier name. The function 'AddColumns' has some invalid arguments: a new column name is a string literal.",
+            "fix": "use an identifier for the new column name: Name, or 'Display Name' with single quotes",
+            "line": 29
+          },
+          {
+            "level": "REFUSE",
+            "rule": "component-input-called-as-function",
+            "file": "isolated-apps/94-field-report-rules.pa.yaml",
+            "control": "componentReader",
+            "type": "Label",
+            "property": "Text",
+            "did_you_mean": null,
+            "detail": "`cExample.Value()` calls an `Input`/`Output` property as a function; `compile_canvas` rejects this ('unknown or unsupported function in namespace').",
+            "fix": "read it without parentheses: `cExample.Value`",
+            "line": 13
+          },
+          {
+            "level": "REFUSE",
+            "rule": "yaml-comment-truncates-formula",
+            "file": "isolated-apps/94-field-report-rules.pa.yaml",
+            "control": "truncated",
+            "type": "Label",
+            "property": "Text",
+            "did_you_mean": null,
+            "detail": "YAML treats ' #' as a comment, so the formula is cut at '#': '=\"Price'",
+            "fix": "quote the value or use a |- block scalar for Text",
+            "line": 20
+          },
+          {
+            "level": "WARN",
+            "rule": "a11y-inputs-missing-accessiblelabel",
+            "file": "isolated-apps/94-field-report-rules.pa.yaml",
+            "control": "rows",
+            "type": "Gallery",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "1 control(s) lack AccessibleLabel — screen readers announce only the control type: rows",
+            "fix": "set AccessibleLabel on each input to what the screen reader should announce",
+            "line": 25
+          },
+          {
+            "level": "WARN",
+            "rule": "select-parent-in-gallery",
+            "file": "isolated-apps/94-field-report-rules.pa.yaml",
+            "control": "tap",
+            "type": "Classic/Button",
+            "property": "OnSelect",
+            "did_you_mean": null,
+            "detail": "Select(Parent) from a control nested inside a container or group in a gallery template compiled cleanly but produced a runtime error when tapped in the field report.",
+            "fix": "repeat the row's OnSelect logic or call a UDF",
+            "line": 38
+          },
+          {
+            "level": "WARN",
+            "rule": "sortbycolumns-on-added-column",
+            "file": "isolated-apps/94-field-report-rules.pa.yaml",
+            "control": "rows",
+            "type": "Gallery",
+            "property": "Items",
+            "did_you_mean": null,
+            "detail": "SortByColumns sorts 'NewValue', which its directly enclosed AddColumns adds; this pattern failed compilation on a Dataverse-backed Items formula. Generality across sources is unproven.",
+            "fix": "sort the source first, then add: AddColumns(Sort(src, col, SortOrder.Ascending), newCol, col)",
+            "line": 29
+          },
+          {
+            "level": "WARN",
+            "rule": "yaml-inline-comment-after-formula",
+            "file": "isolated-apps/94-field-report-rules.pa.yaml",
+            "control": "commented",
+            "type": "Label",
+            "property": "Text",
+            "did_you_mean": null,
+            "detail": "The text after # is a YAML comment and is not part of the formula.",
+            "fix": "quote the value or use a |- block scalar for Text",
+            "line": 24
+          }
+        ],
+        "summary": {
+          "pass": 5,
+          "warn": 4,
+          "refuse": 3,
+          "controls_seen": 7
+        }
+      },
+      "isolated-apps/95-coauthoring-errata.pa.yaml": {
+        "sha256": "c0e2746d0b0bccbab22f5119e94b356acbc22ab9ed35171e706f2211f94bcbed",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "a11y-inputs-missing-accessiblelabel",
+            "file": "isolated-apps/95-coauthoring-errata.pa.yaml",
+            "control": "rows",
+            "type": "Gallery",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "1 control(s) lack AccessibleLabel — screen readers announce only the control type: rows",
+            "fix": "set AccessibleLabel on each input to what the screen reader should announce",
+            "line": 22
+          },
+          {
+            "level": "WARN",
+            "rule": "filter-constant-or-column",
+            "file": "isolated-apps/95-coauthoring-errata.pa.yaml",
+            "control": "filterExample",
+            "type": "Label",
+            "property": "Text",
+            "did_you_mean": null,
+            "detail": "A constant-or-variable equality in a non-collection Filter disjunction can fail at runtime: \"The left side of the 'Equal' operator must be a property of the entity\".",
+            "fix": "branch outside the Filter: If(varX = \"all\", Src, Filter(Src, Col = varX))",
+            "line": 7
+          },
+          {
+            "level": "WARN",
+            "rule": "index-literal-position",
+            "file": "isolated-apps/95-coauthoring-errata.pa.yaml",
+            "control": "indexExample",
+            "type": "Label",
+            "property": "Text",
+            "did_you_mean": null,
+            "detail": "A literal Index position can exceed a short table; hidden controls still evaluate formulas even when Visible is false, causing a runtime error.",
+            "fix": "use First(t) or Last(FirstN(t, n)) to avoid an out-of-range error on short tables",
+            "line": 11
+          },
+          {
+            "level": "WARN",
+            "rule": "modern-text-height-below-size",
+            "file": "isolated-apps/95-coauthoring-errata.pa.yaml",
+            "control": "textExample",
+            "type": "ModernText",
+            "property": "Height",
+            "did_you_mean": null,
+            "detail": "A scrollbar can appear inside modern text when Height is below 1.5 × Size plus vertical padding; two independent runtime reports observed this.",
+            "fix": "set Height to at least 1.5 × Size + PaddingTop + PaddingBottom for one line, or enable AutoHeight",
+            "line": 16
+          },
+          {
+            "level": "WARN",
+            "rule": "select-parent-in-gallery",
+            "file": "isolated-apps/95-coauthoring-errata.pa.yaml",
+            "control": "tap",
+            "type": "ModernText",
+            "property": "OnSelect",
+            "did_you_mean": null,
+            "detail": "Select(Parent) inside a gallery in a component definition produced a runtime error even for a direct gallery child after a clean compile.",
+            "fix": "put the action on the gallery's OnSelect or the control's own OnSelect",
+            "line": 28
+          }
+        ],
+        "summary": {
+          "pass": 6,
+          "warn": 5,
+          "refuse": 0,
+          "controls_seen": 6
+        }
+      },
+      "isolated-apps/96-design-lint-calibration.pa.yaml": {
+        "sha256": "bd68e77766354ee5faa453e30c8cbe0c7d4c0b2c2d13530d747f337c44e835c1",
+        "issues": [
+          {
+            "level": "WARN",
+            "rule": "manual-group-may-stretch",
+            "file": "isolated-apps/96-design-lint-calibration.pa.yaml",
+            "control": "manualCard",
+            "type": "GroupContainer",
+            "property": null,
+            "did_you_mean": null,
+            "detail": "ManualLayout GroupContainer directly inside vertical AutoLayout has no explicit FillPortions (effective default 1) — is this group meant to stretch?",
+            "fix": null,
+            "line": 11
+          }
+        ],
+        "summary": {
+          "pass": 5,
+          "warn": 1,
+          "refuse": 0,
+          "controls_seen": 2
+        }
+      }
+    }
+  }
+}

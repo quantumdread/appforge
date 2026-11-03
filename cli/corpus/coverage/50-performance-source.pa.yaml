@@ -1,0 +1,22 @@
+App:
+  OnStart: |-
+    =ClearCollect(covOne, CoverageSharePoint); ClearCollect(covTwo, CoverageSql); Collect(covThree, CoverageExcel)
+Screens:
+  PerformanceSourceCoverage:
+    Children:
+      - galPerformanceCoverage:
+          Control: Gallery
+          Properties:
+            AccessibleLabel: ="Performance coverage"
+            Items: =CoverageSharePoint
+          Children:
+            - lblLookupCoverage:
+                Control: Label
+                Properties:
+                  Text: =LookUp(CoverageSharePoint, ID = ThisItem.ID, Title)
+                  Wrap: =false
+      - lblCrossScreenSourceCoverage:
+          Control: Label
+          Properties:
+            Text: ="source"
+            Wrap: =false

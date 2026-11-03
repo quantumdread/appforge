@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "description": "Ordered acceptance-corpus roots for analyzer golden-snapshot regression runs.",
+  "expected_rules": [
+    "yaml-comment-truncates-formula",
+    "yaml-inline-comment-after-formula",
+    "component-input-called-as-function",
+    "addcolumns-string-column-name",
+    "sortbycolumns-on-added-column",
+    "select-parent-in-gallery",
+    "filter-constant-or-column",
+    "index-literal-position",
+    "modern-text-height-below-size",
+    "unknown-output-reference",
+    "layoutmaxwidth-collapses-children",
+    "duplicate-property",
+    "variant-unspecified-property",
+    "duplicate-formula",
+    "duplicate-formula-in-gallery",
+    "repeated-color-literal",
+    "heavy-onstart",
+    "version-pin-in-control-type",
+    "a11y-tabindex-positive",
+    "a11y-interactive-not-focusable",
+    "a11y-icon-button-no-label",
+    "a11y-inputs-missing-accessiblelabel",
+    "delegation-firstn-on-source",
+    "delegation-forall-writes",
+    "delegation-forall-truncation",
+    "app-onerror-missing",
+    "write-followed-by-unconditional-navigation",
+    "submitform-navigation-not-in-onsuccess",
+    "form-without-failure-path",
+    "success-notification-not-gated",
+    "navigate-to-unknown-screen",
+    "unreachable-screen",
+    "delegation-search-caveat",
+    "delegation-sharepoint-search",
+    "delegation-sharepoint-in",
+    "delegation-sharepoint-isblank",
+    "delegation-sharepoint-text-functions",
+    "delegation-sharepoint-id-operator",
+    "delegation-sql-isblank",
+    "delegation-excel-any",
+    "perf-lookup-in-gallery-template",
+    "perf-onstart-no-concurrent",
+    "perf-cross-screen-reference",
+    "perf-control-budget",
+    "materialized-property-kind",
+    "custom-property-kind",
+    "custom-property-datatype",
+    "output-property-default",
+    "event-default-recommended",
+    "component-root-property",
+    "component-name-required",
+    "component-custom-property",
+    "control-type-not-in-manifest",
+    "variant-not-in-catalog",
+    "property-not-in-catalog",
+    "manual-group-may-stretch"
+  ],
+  "datasources": "coverage/datasources.json",
+  "roots": [
+    {
+      "id": "isolated-apps",
+      "scope": "internal",
+      "path": "isolated",
+      "analysis_mode": "isolated",
+      "include": [
+        "**/*.pa.yaml"
+      ],
+      "description": "Each fixture is one independent app, preserving whole-app entry and navigation semantics."
+    },
+    {
+      "id": "coverage",
+      "scope": "internal",
+      "path": "coverage",
+      "include": [
+        "**/*.pa.yaml"
+      ],
+      "description": "Hand-written tripwire fixtures that fire every local CLI rule family and REFUSE detail code."
+    },
+    {
+      "id": "templates",
+      "scope": "internal",
+      "path": "../../knowledge/templates",
+      "include": [
+        "**/*.yaml"
+      ],
+      "description": "Repository-owned PA-YAML templates. Files are passed explicitly because template names end in .yaml rather than .pa.yaml."
+    },
+    {
+      "id": "mcp-test-fixtures",
+      "scope": "internal",
+      "path": "../../server/test/fixtures",
+      "include": [
+        "**/*.pa.yaml"
+      ],
+      "description": "Repository-owned analyzer test fixtures."
+    },
+    {
+      "id": "oracle-ms-templates",
+      "scope": "internal",
+      "path": "oracle-ms-templates",
+      "include": [
+        "Screen*.pa.yaml"
+      ],
+      "description": "Microsoft first-party Studio template screens, synced 2026-09-20; independent calibration app, excluding the capture's own App.pa.yaml."
+    },
+    {
+      "id": "delivery-repositories",
+      "scope": "external",
+      "paths_from_env": "APPFORGE_CORPUS_EXTERNAL_ROOTS",
+      "path_separator": "OS path delimiter (; on Windows, : on POSIX)",
+      "include": [
+        "**/*.pa.yaml"
+      ],
+      "required": false,
+      "description": "Set APPFORGE_CORPUS_EXTERNAL_ROOTS to an ordered list of absolute delivery-repository roots. The runner references these files in place; it never copies customer YAML into AppForge."
+    }
+  ],
+  "excluded_roots": [
+    {
+      "pattern": "**/catalogs/sources/**",
+      "reason": "Catalog provenance files are not app source and must never enter the analyzer acceptance corpus."
+    }
+  ]
+}

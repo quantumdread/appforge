@@ -1,0 +1,516 @@
+Screens:
+  Screen5:
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    Children:
+      - ApprScroll1:
+          Control: GroupContainer
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutOverflowY: =LayoutOverflow.Scroll
+            PaddingBottom: =24
+            Width: =Parent.Width
+          Children:
+            - TopNav3:
+                Control: GroupContainer
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(255, 255, 255, 1)
+                  FillPortions: =0
+                  Height: =If(App.Width < 640, 104, 56)
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  Width: =Parent.Width
+                Children:
+                  - TitleRow3:
+                      Control: GroupContainer
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(255, 255, 255, 1)
+                        FillPortions: =0
+                        Height: =56
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        LayoutGap: =12
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        PaddingLeft: =If(App.Width < 640, 16, 24)
+                        PaddingRight: =If(App.Width < 640, 16, 24)
+                        Width: =Parent.Width
+                      Children:
+                        - AppTitle3:
+                            Control: ModernText
+                            Properties:
+                              FillPortions: =If(App.Width < 640, 1, 0)
+                              Font: =Font.'Segoe UI'
+                              FontWeight: =FontWeight.Semibold
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              PaddingBottom: =0
+                              PaddingTop: =0
+                              Size: =If(App.Width < 640, 13, 16)
+                              Text: ="Contoso Art Studio"
+                              Width: =If(App.Width < 640, 0, 200)
+                        - NavTabsDesktop3:
+                            Control: ModernTabList
+                            Properties:
+                              AlignInContainer: =AlignInContainer.Center
+                              Appearance: =TabListAppearance.Subtle
+                              Default: |-
+                                ={Value: "Gallery"}
+                              FillPortions: =1
+                              Height: =56
+                              Items: =["Home", "Resources", "Events", "Gallery"]
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Visible: =App.Width >= 640
+                        - IconChat3:
+                            Control: ModernIcon
+                            Properties:
+                              Height: =24
+                              Icon: =Icon.Message
+                              IconColor: =RGBA(0, 0, 0, 1)
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =24
+                        - IconShare3:
+                            Control: ModernIcon
+                            Properties:
+                              Height: =24
+                              Icon: =Icon.Share
+                              IconColor: =RGBA(0, 0, 0, 1)
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =24
+                        - IconSettings3:
+                            Control: ModernIcon
+                            Properties:
+                              Height: =24
+                              Icon: =Icon.Settings
+                              IconColor: =RGBA(0, 0, 0, 1)
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =24
+                        - Avatar4:
+                            Control: ModernAvatar
+                            Properties:
+                              Height: =32
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =32
+                  - NavTabsMobile3:
+                      Control: ModernTabList
+                      Properties:
+                        Appearance: =TabListAppearance.Subtle
+                        BasePaletteColor: =RGBA(0, 65, 179, 1)
+                        Default: |-
+                          ={Value: "Gallery"}
+                        Height: =If(App.Width < 640, 48, 0)
+                        Items: |-
+                          =Table({Value: "Home"}, {Value: "Resources"}, {Value: "Events"}, {Value: "Gallery"})
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Width: =Parent.Width
+            - NavDivider3:
+                Control: ModernText
+                Properties:
+                  Fill: =RGBA(237, 237, 237, 1)
+                  Height: =2
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =0
+                  PaddingTop: =0
+                  Text: =""
+                  Width: =Parent.Width
+            - TitleBand2:
+                Control: GroupContainer
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(255, 255, 255, 1)
+                  FillPortions: =0
+                  Height: =If(App.Width < 640, 152, 128)
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =8
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =12
+                  PaddingLeft: =If(App.Width < 640, 16, 40)
+                  PaddingRight: =If(App.Width < 640, 16, 40)
+                  PaddingTop: =32
+                  Width: =Parent.Width
+                Children:
+                  - PageTitle1:
+                      Control: ModernText
+                      Properties:
+                        AutoHeight: =true
+                        FontWeight: =FontWeight.Bold
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Size: =If(App.Width < 640, 22, 28)
+                        Text: ="Request a review"
+                        Width: =Parent.Width - If(App.Width < 640, 32, 80)
+                  - PageSubtitle1:
+                      Control: ModernText
+                      Properties:
+                        AutoHeight: =true
+                        Color: =RGBA(96, 94, 92, 1)
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Size: =If(App.Width < 640, 12, 14)
+                        Text: ="Send your piece for approval and track where it is in the review process."
+                        Width: =Parent.Width - If(App.Width < 640, 32, 80)
+            - TwoColRow1:
+                Control: GroupContainer
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(255, 255, 255, 1)
+                  FillPortions: =0
+                  Height: =If(App.Width < 640, 760, 560)
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =If(App.Width < 640, LayoutDirection.Vertical, LayoutDirection.Horizontal)
+                  LayoutGap: =24
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =24
+                  PaddingLeft: =If(App.Width < 640, 16, 40)
+                  PaddingRight: =If(App.Width < 640, 16, 40)
+                  Width: =Parent.Width
+                Children:
+                  - FormCard1:
+                      Control: GroupContainer
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(255, 255, 255, 1)
+                        FillPortions: =7
+                        Height: =If(App.Width < 640, 460, 512)
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =8
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        PaddingBottom: =20
+                        PaddingLeft: =20
+                        PaddingRight: =20
+                        PaddingTop: =20
+                      Children:
+                        - FormHeading1:
+                            Control: ModernText
+                            Properties:
+                              FontWeight: =FontWeight.Semibold
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              PaddingBottom: =0
+                              PaddingTop: =0
+                              Size: =18
+                              Text: ="Submission details"
+                              Width: =Parent.Width - 40
+                        - ReviewForm1:
+                            Control: Form
+                            Layout: Vertical
+                            Properties:
+                              BorderColor: =RGBA(245, 245, 245, 1)
+                              DataSource: |-
+                                =Table({Title: "Sunrise Study", Medium: "Watercolor", Reviewer: "Ava Mitchell", DueDate: Date(2026, 2, 12), Priority: "Standard", Notes: "Please review the warm gradient transitions and the harbor composition."})
+                              Item: |-
+                                =First(Table({Title: "Sunrise Study", Medium: "Watercolor", Reviewer: "Ava Mitchell", DueDate: Date(2026, 2, 12), Priority: "Standard", Notes: "Please review the warm gradient transitions and the harbor composition."}))
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              NumberOfColumns: =If(App.Width < 640, 1, 2)
+                        - ApprButtonRow1:
+                            Control: GroupContainer
+                            Variant: AutoLayout
+                            Properties:
+                              DropShadow: =DropShadow.None
+                              FillPortions: =0
+                              Height: =56
+                              LayoutAlignItems: =LayoutAlignItems.Center
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutGap: =12
+                              LayoutJustifyContent: =LayoutJustifyContent.End
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              PaddingBottom: =8
+                              PaddingLeft: =8
+                              PaddingRight: =8
+                              PaddingTop: =8
+                              Width: =Parent.Width - 40
+                            Children:
+                              - SendReviewBtnR1:
+                                  Control: ModernButton
+                                  Properties:
+                                    Height: =40
+                                    LayoutMinHeight: =16
+                                    LayoutMinWidth: =16
+                                    Text: ="Send for review"
+                                    Width: =160
+                              - CancelReviewBtnR1:
+                                  Control: ModernButton
+                                  Properties:
+                                    Appearance: =ButtonAppearance.Secondary
+                                    Height: =40
+                                    LayoutMinHeight: =16
+                                    LayoutMinWidth: =16
+                                    Text: ="Cancel"
+                                    Width: =120
+                  - ReviewersCard1:
+                      Control: GroupContainer
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(250, 250, 250, 1)
+                        FillPortions: =3
+                        Height: =If(App.Width < 640, 260, 512)
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =4
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        PaddingBottom: =16
+                        PaddingLeft: =16
+                        PaddingRight: =16
+                        PaddingTop: =16
+                        Visible: =App.Width >= 640
+                        Width: =If(App.Width < 640, Parent.Width - 32, 0)
+                      Children:
+                        - ReviewersHeading1:
+                            Control: ModernText
+                            Properties:
+                              FontWeight: =FontWeight.Semibold
+                              Height: =28
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              PaddingBottom: =0
+                              PaddingTop: =0
+                              Size: =16
+                              Text: ="Approval flow"
+                              Width: =Parent.Width - 32
+                        - ReviewersSub1:
+                            Control: ModernText
+                            Properties:
+                              Color: =RGBA(96, 94, 92, 1)
+                              Height: =20
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              PaddingBottom: =0
+                              PaddingTop: =0
+                              Size: =12
+                              Text: ="Step 2 of 4 · Curator review in progress"
+                              Width: =Parent.Width - 32
+                        - ReviewersGallery1:
+                            Control: Gallery
+                            Variant: Vertical
+                            Properties:
+                              BorderColor: =RGBA(245, 245, 245, 1)
+                              FillPortions: =0
+                              Height: =384
+                              Items: |-
+                                =Table({Step: 1, Name: "You", Role: "Submitted", Status: "done", IsFirst: true, IsLast: false}, {Step: 2, Name: "Ava Mitchell", Role: "Curator review", Status: "current", IsFirst: false, IsLast: false}, {Step: 3, Name: "Noah Bennett", Role: "Medium approval", Status: "waiting", IsFirst: false, IsLast: false}, {Step: 4, Name: "Studio Lead", Role: "Final sign-off", Status: "waiting", IsFirst: false, IsLast: true})
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              TemplatePadding: =0
+                              TemplateSize: =96
+                              Width: =Parent.Width - 32
+                            Children:
+                              - StepRow1:
+                                  Control: GroupContainer
+                                  Variant: AutoLayout
+                                  Properties:
+                                    DropShadow: =DropShadow.None
+                                    Height: =96
+                                    LayoutAlignItems: =LayoutAlignItems.Center
+                                    LayoutDirection: =LayoutDirection.Horizontal
+                                    LayoutGap: =12
+                                    PaddingBottom: =8
+                                    PaddingLeft: =8
+                                    PaddingRight: =8
+                                    PaddingTop: =8
+                                    Width: =Parent.TemplateWidth
+                                  Children:
+                                    - StepRail1:
+                                        Control: GroupContainer
+                                        Variant: AutoLayout
+                                        Properties:
+                                          DropShadow: =DropShadow.None
+                                          FillPortions: =0
+                                          Height: =96
+                                          LayoutAlignItems: =LayoutAlignItems.Center
+                                          LayoutDirection: =LayoutDirection.Vertical
+                                          LayoutMinHeight: =16
+                                          LayoutMinWidth: =16
+                                          PaddingBottom: =8
+                                          PaddingLeft: =8
+                                          PaddingRight: =8
+                                          PaddingTop: =8
+                                          Width: =40
+                                        Children:
+                                          - StepTopLine1:
+                                              Control: GroupContainer
+                                              Variant: AutoLayout
+                                              Properties:
+                                                AlignInContainer: =AlignInContainer.Center
+                                                DropShadow: =DropShadow.None
+                                                Fill: =If(ThisItem.IsFirst, RGBA(250, 250, 250, 1), If(ThisItem.Status = "waiting", RGBA(225, 223, 221, 1), RGBA(16, 124, 16, 1)))
+                                                FillPortions: =0
+                                                Height: =34
+                                                LayoutAlignItems: =LayoutAlignItems.Center
+                                                LayoutDirection: =LayoutDirection.Horizontal
+                                                LayoutMinHeight: =16
+                                                LayoutMinWidth: =16
+                                                PaddingBottom: =8
+                                                PaddingLeft: =8
+                                                PaddingRight: =8
+                                                PaddingTop: =8
+                                                Width: =2
+                                          - StepBadge1:
+                                              Control: GroupContainer
+                                              Variant: AutoLayout
+                                              Properties:
+                                                AlignInContainer: =AlignInContainer.Center
+                                                DropShadow: =DropShadow.None
+                                                Fill: =Switch(ThisItem.Status, "done", RGBA(16, 124, 16, 1), "current", RGBA(0, 65, 179, 1), RGBA(225, 223, 221, 1))
+                                                FillPortions: =0
+                                                Height: =28
+                                                LayoutAlignItems: =LayoutAlignItems.Center
+                                                LayoutDirection: =LayoutDirection.Vertical
+                                                LayoutJustifyContent: =LayoutJustifyContent.Center
+                                                LayoutMinHeight: =16
+                                                LayoutMinWidth: =16
+                                                PaddingBottom: =8
+                                                PaddingLeft: =8
+                                                PaddingRight: =8
+                                                PaddingTop: =8
+                                                RadiusBottomLeft: =100
+                                                RadiusBottomRight: =100
+                                                RadiusTopLeft: =100
+                                                RadiusTopRight: =100
+                                                Width: =28
+                                              Children:
+                                                - StepBadgeText1:
+                                                    Control: ModernText
+                                                    Properties:
+                                                      Align: =Align.Center
+                                                      Color: =If(ThisItem.Status = "waiting", RGBA(96, 94, 92, 1), RGBA(255, 255, 255, 1))
+                                                      FontWeight: =FontWeight.Semibold
+                                                      Height: =20
+                                                      LayoutMinHeight: =16
+                                                      LayoutMinWidth: =16
+                                                      PaddingBottom: =0
+                                                      PaddingTop: =0
+                                                      Size: =13
+                                                      Text: =If(ThisItem.Status = "done", "✓", Text(ThisItem.Step))
+                                                      Width: =28
+                                          - StepBottomLine1:
+                                              Control: GroupContainer
+                                              Variant: AutoLayout
+                                              Properties:
+                                                AlignInContainer: =AlignInContainer.Center
+                                                DropShadow: =DropShadow.None
+                                                Fill: =If(ThisItem.IsLast, RGBA(250, 250, 250, 1), If(ThisItem.Status = "done", RGBA(16, 124, 16, 1), RGBA(225, 223, 221, 1)))
+                                                FillPortions: =0
+                                                Height: =34
+                                                LayoutAlignItems: =LayoutAlignItems.Center
+                                                LayoutDirection: =LayoutDirection.Horizontal
+                                                LayoutMinHeight: =16
+                                                LayoutMinWidth: =16
+                                                PaddingBottom: =8
+                                                PaddingLeft: =8
+                                                PaddingRight: =8
+                                                PaddingTop: =8
+                                                Width: =2
+                                    - StepContent1:
+                                        Control: GroupContainer
+                                        Variant: AutoLayout
+                                        Properties:
+                                          DropShadow: =DropShadow.None
+                                          Height: =96
+                                          LayoutAlignItems: =LayoutAlignItems.Center
+                                          LayoutDirection: =LayoutDirection.Vertical
+                                          LayoutGap: =4
+                                          LayoutJustifyContent: =LayoutJustifyContent.Center
+                                          LayoutMinHeight: =16
+                                          LayoutMinWidth: =16
+                                          PaddingBottom: =8
+                                          PaddingLeft: =8
+                                          PaddingRight: =8
+                                          PaddingTop: =8
+                                        Children:
+                                          - StepName1:
+                                              Control: ModernText
+                                              Properties:
+                                                FontWeight: =FontWeight.Semibold
+                                                Height: =20
+                                                LayoutMinHeight: =16
+                                                LayoutMinWidth: =16
+                                                PaddingBottom: =0
+                                                PaddingTop: =0
+                                                Size: =14
+                                                Text: =ThisItem.Name
+                                                Width: =Parent.Width
+                                          - StepRole1:
+                                              Control: ModernText
+                                              Properties:
+                                                Color: =RGBA(96, 94, 92, 1)
+                                                Height: =18
+                                                LayoutMinHeight: =16
+                                                LayoutMinWidth: =16
+                                                PaddingBottom: =0
+                                                PaddingTop: =0
+                                                Size: =12
+                                                Text: =ThisItem.Role
+                                                Width: =Parent.Width
+                                          - StepChip1:
+                                              Control: GroupContainer
+                                              Variant: AutoLayout
+                                              Properties:
+                                                AlignInContainer: =AlignInContainer.Start
+                                                DropShadow: =DropShadow.None
+                                                Fill: =Switch(ThisItem.Status, "done", RGBA(223, 246, 221, 1), "current", RGBA(223, 237, 255, 1), RGBA(243, 242, 241, 1))
+                                                FillPortions: =0
+                                                Height: =24
+                                                LayoutAlignItems: =LayoutAlignItems.Center
+                                                LayoutDirection: =LayoutDirection.Horizontal
+                                                LayoutJustifyContent: =LayoutJustifyContent.Center
+                                                LayoutMinHeight: =16
+                                                LayoutMinWidth: =16
+                                                PaddingBottom: =8
+                                                PaddingLeft: =10
+                                                PaddingRight: =10
+                                                PaddingTop: =8
+                                                RadiusBottomLeft: =100
+                                                RadiusBottomRight: =100
+                                                RadiusTopLeft: =100
+                                                RadiusTopRight: =100
+                                                Width: =Switch(ThisItem.Status, "done", 116, "current", 116, 92)
+                                              Children:
+                                                - StepChipText1:
+                                                    Control: ModernText
+                                                    Properties:
+                                                      Align: =Align.Center
+                                                      Color: =Switch(ThisItem.Status, "done", RGBA(16, 124, 16, 1), "current", RGBA(0, 65, 179, 1), RGBA(96, 94, 92, 1))
+                                                      FontWeight: =FontWeight.Semibold
+                                                      Height: =18
+                                                      LayoutMinHeight: =16
+                                                      LayoutMinWidth: =16
+                                                      PaddingBottom: =0
+                                                      PaddingTop: =0
+                                                      Size: =12
+                                                      Text: =Switch(ThisItem.Status, "done", "✓ Completed", "current", "● In progress", "○ Waiting")
+                                                      Width: =Parent.Width - 20

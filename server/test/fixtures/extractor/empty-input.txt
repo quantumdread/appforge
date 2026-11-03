@@ -1,0 +1,4 @@
+# Control Rectangle
+Part of the control family Classic.
+Input Properties:
+  Width -> Number

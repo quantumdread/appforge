@@ -1,0 +1,84 @@
+{
+  "Button@0.0.45": {
+    "target_type": "ModernButton",
+    "target_version": "1.0.0",
+    "property_renames": [
+      {
+        "from": "FontSize",
+        "to": [
+          "Size"
+        ]
+      },
+      {
+        "from": "BorderRadius",
+        "to": [
+          "RadiusTopLeft",
+          "RadiusTopRight",
+          "RadiusBottomLeft",
+          "RadiusBottomRight"
+        ]
+      }
+    ],
+    "formula_rewrites": [
+      {
+        "from": "'ButtonCanvas.Appearance'.X",
+        "to": "ButtonAppearance.X"
+      }
+    ],
+    "migration_note": "Studio: update control versions",
+    "evidence": "studio-export-2026-08-26",
+    "observed_at": "2026-08-26",
+    "lower_bound": true
+  },
+  "TextInput@0.0.54": {
+    "target_type": "ModernTextInput",
+    "target_version": "1.1.1",
+    "property_renames": [
+      {
+        "from": "Value",
+        "to": [
+          "Default"
+        ]
+      }
+    ],
+    "formula_rewrites": [],
+    "migration_note": "Studio: update control versions",
+    "evidence": "studio-export-2026-08-26",
+    "observed_at": "2026-08-26",
+    "lower_bound": true
+  },
+  "DatePicker@0.0.46": {
+    "target_type": "ModernDatePicker",
+    "target_version": "1.0.1",
+    "property_renames": [
+      {
+        "from": "SelectedDate",
+        "to": [
+          "DefaultDate"
+        ]
+      }
+    ],
+    "formula_rewrites": [],
+    "migration_note": "Studio: update control versions",
+    "evidence": "studio-export-2026-08-26",
+    "observed_at": "2026-08-26",
+    "lower_bound": true
+  },
+  "CheckBox@0.0.30": {
+    "target_type": "ModernCheckbox",
+    "target_version": "1.0.0",
+    "property_renames": [
+      {
+        "from": "Checked",
+        "to": [
+          "Default"
+        ]
+      }
+    ],
+    "formula_rewrites": [],
+    "migration_note": "Studio: update control versions",
+    "evidence": "studio-export-2026-08-26",
+    "observed_at": "2026-08-26",
+    "lower_bound": true
+  }
+}

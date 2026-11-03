@@ -1,0 +1,139 @@
+# Control ModernDataGridColumn
+Part of the control family React.
+
+Control creation keywords:
+```yaml
+Control: ModernDataGridColumn
+Variant: <variant name> # (required) see below for the list of variants
+```
+
+The `Variant` keyword is required and must be one of the following:
+- `Boolean`
+- `Button`
+- `ComplexOptionSet`
+- `ComplexType`
+- `Currency`
+- `DateTime`
+- `Email`
+- `Image`
+- `Number`
+- `Phone`
+- `Textual`
+- `Url`
+
+Input Properties:
+  - ContentLanguage: Text
+      Default: ""
+  - FieldDisplayName: Text
+  - FieldName: Text
+  - FieldVariantName: Text
+  - Visible: Boolean
+      Default: true
+  - Width: Number
+      Default: 150
+
+Additional input properties for variant `Boolean`:
+  - DisplayType: Enum
+      Default: BooleanDisplay.Text
+      Enum name: BooleanDisplay
+      Enum values: Checkbox, Text, Toggle
+  - Icon: Text
+      Default: ""
+  - Text: Text
+  - Value: Boolean
+
+Additional input properties for variant `Button`:
+  - AccessibleLabel: Text
+      Default: ""
+  - Appearance: Enum
+      Default: ButtonAppearance.Primary
+      Enum name: ButtonAppearance
+      Enum values: Outline, Primary, Secondary, Subtle, Transparent
+  - Icon: Text
+      Default: ""
+  - OnSelect: Boolean
+      Default: false
+  - Text: Text
+  - Wrap: Boolean
+      Default: false
+
+Additional input properties for variant `ComplexOptionSet`:
+  - Icon: Text
+      Default: ""
+  - Text: Text
+
+Additional input properties for variant `ComplexType`:
+  - Icon: Text
+      Default: ""
+  - Text: Text
+
+Additional input properties for variant `Currency`:
+  - Icon: Text
+      Default: ""
+  - Text: Text
+
+Additional input properties for variant `DateTime`:
+  - Icon: Text
+      Default: ""
+  - Text: Text
+
+Additional input properties for variant `Email`:
+  - Icon: Text
+      Default: ""
+  - Text: Text
+
+Additional input properties for variant `Image`:
+  - AccessibleLabel: Text
+      Default: ""
+  - Image: Image
+
+Additional input properties for variant `Number`:
+  - Icon: Text
+      Default: ""
+  - Value: Number
+
+Additional input properties for variant `Phone`:
+  - Icon: Text
+      Default: ""
+  - Text: Text
+
+Additional input properties for variant `Textual`:
+  - Icon: Text
+      Default: ""
+  - Text: Text
+  - Wrap: Boolean
+      Default: false
+
+Additional input properties for variant `Url`:
+  - Icon: Text
+      Default: ""
+  - Text: Text
+  - URL: Text
+
+Additional input properties if a child of a Vertical or Horizontal GroupContainer:
+  - AlignInContainer: Enum
+      Default: AlignInContainer.SetByContainer
+      Enum name: AlignInContainer
+      Enum values: Center, End, SetByContainer, Start, Stretch
+  - FillPortions: Number
+      Default: 0
+  - LayoutMaxHeight: Number
+      Default: 0
+  - LayoutMaxWidth: Number
+      Default: 0
+  - LayoutMinHeight: Number
+      Default: Parent.Height
+  - LayoutMinWidth: Number
+      Default: 150
+
+Additional input properties if a child of a Grid GroupContainer:
+  - LayoutGridColumnEnd: Number
+  - LayoutGridColumnStart: Number
+  - LayoutGridRowEnd: Number
+  - LayoutGridRowStart: Number
+
+Output Properties:
+  - ContentLanguage: Text
+  - FieldDisplayName: Text
+  - Visible: Boolean
+  - Width: Number

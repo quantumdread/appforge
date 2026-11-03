@@ -1,0 +1,103 @@
+# Control ModernAvatar
+Part of the control family React.
+
+Control creation keywords:
+```yaml
+Control: ModernAvatar
+```
+
+Input Properties:
+  - AccessibleLabel: Text
+  - Appearance: Enum
+      Enum name: AvatarColor
+      Enum values: Anchor, Beige, Blue, Brand, Brass, Brown, Cornflower, Cranberry, DarkGreen, DarkRed, Forest, Gold, Grape, Lavender, LightTeal, Lilac, Magenta, Marigold, Mink, Navy, Peach, Pink, Platinum, Plum, Pumpkin, Purple, Red, RoyalBlue, Seafoam, Steel, Teal
+  - Badge: Enum
+      Enum name: PresenceBadge
+      Enum values: Available, Away, Blocked, Busy, Do not disturb, None, Offline, Out of office, Unknown
+  - BasePaletteColor: Color
+  - BorderColor: Color
+  - BorderStyle: Enum
+      Enum name: BorderStyle
+      Enum values: Dashed, Dotted, None, Solid
+  - BorderThickness: Number
+  - Color: Color
+  - ContentLanguage: Text
+  - DisplayMode: Enum
+      Enum name: DisplayMode
+      Enum values: Disabled, Edit, View
+  - Fill: Color
+  - Font: Enum
+      Enum name: Font
+      Enum values: Arial, Courier New, Dancing Script, Georgia, Great Vibes, Lato, Lato Black, Lato Hairline, Lato Light, Open Sans, Open Sans Condensed, Patrick Hand, Segoe UI, Verdana
+  - FontWeight: Enum
+      Enum name: FontWeight
+      Enum values: Bold, Lighter, Normal, Semibold
+  - Height: Number
+  - Image: Image
+  - Italic: Boolean
+  - Name: Text
+  - OnSelect: Boolean
+  - PaddingBottom: Number
+  - PaddingLeft: Number
+  - PaddingRight: Number
+  - PaddingTop: Number
+  - RadiusBottomLeft: Number
+  - RadiusBottomRight: Number
+  - RadiusTopLeft: Number
+  - RadiusTopRight: Number
+  - Shape: Enum
+      Enum name: AvatarShape
+      Enum values: Circular, Square
+  - Size: Number
+  - Strikethrough: Boolean
+  - Tooltip: Text
+  - Underline: Boolean
+  - Visible: Boolean
+  - Width: Number
+  - X: Number
+  - Y: Number
+
+Additional input properties if a child of a Vertical or Horizontal GroupContainer:
+  - LayoutMinWidth: Number
+  - LayoutMaxWidth: Number
+  - LayoutMinHeight: Number
+  - LayoutMaxHeight: Number
+  - FillPortions: Number
+  - AlignInContainer: Enum (SetByContainer, Start, Center, End, Stretch)
+
+Additional input properties if a child of a Grid GroupContainer:
+  - LayoutGridColumnStart: Number
+  - LayoutGridColumnEnd: Number
+  - LayoutGridRowStart: Number
+  - LayoutGridRowEnd: Number
+
+Output Properties:
+  - AccessibleLabel: Text
+  - BasePaletteColor: Color
+  - BorderColor: Color
+  - BorderStyle: Enum
+  - BorderThickness: Number
+  - Color: Color
+  - ContentLanguage: Text
+  - DisplayMode: Enum
+  - Fill: Color
+  - Font: Enum
+  - FontWeight: Enum
+  - Height: Number
+  - Italic: Boolean
+  - PaddingBottom: Number
+  - PaddingLeft: Number
+  - PaddingRight: Number
+  - PaddingTop: Number
+  - RadiusBottomLeft: Number
+  - RadiusBottomRight: Number
+  - RadiusTopLeft: Number
+  - RadiusTopRight: Number
+  - Size: Number
+  - Strikethrough: Boolean
+  - Tooltip: Text
+  - Underline: Boolean
+  - Visible: Boolean
+  - Width: Number
+  - X: Number
+  - Y: Number

@@ -1,0 +1,116 @@
+# Control GroupContainer
+Part of the control family Classic.
+
+Control creation keywords:
+```yaml
+Control: GroupContainer
+Variant: <variant name> # (required) see below for the list of variants
+```
+
+The `Variant` keyword is required and must be one of the following:
+- `AutoLayout`
+- `GridLayout`
+- `ManualLayout`
+
+Input Properties:
+  - BorderColor: Color
+  - BorderStyle: Enum
+      Enum name: BorderStyle
+      Enum values: Dashed, Dotted, None, Solid
+  - BorderThickness: Number
+  - ContentLanguage: Text
+  - DropShadow: Enum
+      Enum name: DropShadow
+      Enum values: Bold, ExtraBold, Light, None, Regular, Semibold, Semilight
+  - EnableChildFocus: Boolean
+  - Fill: Color
+  - Height: Number
+  - PaddingBottom: Number
+  - PaddingLeft: Number
+  - PaddingRight: Number
+  - PaddingTop: Number
+  - RadiusBottomLeft: Number
+  - RadiusBottomRight: Number
+  - RadiusTopLeft: Number
+  - RadiusTopRight: Number
+  - Visible: Boolean
+  - Width: Number
+  - X: Number
+  - Y: Number
+
+Additional input properties for variant `AutoLayout`:
+  - LayoutAlignItems: Enum
+      Enum name: LayoutAlignItems
+      Enum values: Center, End, Start, Stretch
+  - LayoutDirection: Enum
+      Enum name: LayoutDirection
+      Enum values: Horizontal, Vertical
+  - LayoutGap: Number
+  - LayoutJustifyContent: Enum
+      Enum name: LayoutJustifyContent
+      Enum values: Center, End, SpaceBetween, Start
+  - LayoutOverflowX: Enum
+      Enum name: LayoutOverflow
+      Enum values: Hide, Scroll
+  - LayoutOverflowY: Enum
+      Enum name: LayoutOverflow
+      Enum values: Hide, Scroll
+  - LayoutWrap: Boolean
+
+Additional input properties for variant `GridLayout`:
+  - ChildTabPriority: Boolean
+  - LayoutGap: Number
+  - LayoutGridColumnMinWidth: Number
+  - LayoutGridColumns: Number
+  - LayoutGridRowMinHeight: Number
+  - LayoutGridRows: Number
+  - LayoutOverflowX: Enum
+      Enum name: LayoutOverflow
+      Enum values: Hide, Scroll
+  - LayoutOverflowY: Enum
+      Enum name: LayoutOverflow
+      Enum values: Hide, Scroll
+
+Additional input properties for variant `ManualLayout`:
+  - ChildTabPriority: Boolean
+
+Additional input properties if a child of a Vertical or Horizontal GroupContainer:
+  - LayoutMinWidth: Number
+  - LayoutMaxWidth: Number
+  - LayoutMinHeight: Number
+  - LayoutMaxHeight: Number
+  - FillPortions: Number
+  - AlignInContainer: Enum (SetByContainer, Start, Center, End, Stretch)
+
+Additional input properties if a child of a Grid GroupContainer:
+  - LayoutGridColumnStart: Number
+  - LayoutGridColumnEnd: Number
+  - LayoutGridRowStart: Number
+  - LayoutGridRowEnd: Number
+
+Output Properties:
+  - BorderColor: Color
+  - BorderStyle: Enum
+  - BorderThickness: Number
+  - ChildTabPriority: Boolean
+  - ContentLanguage: Text
+  - DropShadow: Enum
+  - EnableChildFocus: Boolean
+  - Fill: Color
+  - Height: Number
+  - LayoutGridColumnMinWidth: Number
+  - LayoutGridColumns: Number
+  - LayoutGridRowMinHeight: Number
+  - LayoutGridRows: Number
+  - PaddingBottom: Number
+  - PaddingLeft: Number
+  - PaddingRight: Number
+  - PaddingTop: Number
+  - RadiusBottomLeft: Number
+  - RadiusBottomRight: Number
+  - RadiusTopLeft: Number
+  - RadiusTopRight: Number
+  - Visible: Boolean
+  - Width: Number
+  - X: Number
+  - Y: Number

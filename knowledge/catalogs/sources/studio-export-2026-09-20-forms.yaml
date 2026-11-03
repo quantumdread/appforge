@@ -1,0 +1,44 @@
+# studio-export-2026-09-20-forms.yaml — PROVENANCE RECORD (not parsed at build time).
+#
+# The maintainer added four Edit forms bound to four sources (one standard Dataverse entity with
+# stock localized field names, three scratch lists) to a scratch app in a development environment and
+# exported the screen from Studio on 2026-09-20 (raw export kept out of the repo).
+# 114 controls, 4 Forms, 21 TypedDataCards.
+#
+# Purpose: second first-party oracle for the v3.1.0 catalog refresh, and the answer to
+# tenant worklist item "ComboBoxDataField / TableDataField": those two control types do
+# NOT appear in any current Studio form output. They are an older data-card generation
+# (the acceptance app carries them; current Studio emits TypedDataCard instead), so no
+# fresh export can evidence them. See the note at the end.
+#
+# Gate result (v3.1.0, shared profile): PASS 1293 / WARN 31 / REFUSE 6.
+#   All six refusals are block-scalar-required on inline `{...}` records (paste-hazard
+#   policy; WARN under --profile existing-export). Zero unknown-control, zero
+#   unknown-variant, zero unknown-property, zero partial-catalog-data.
+
+typed_data_card_variants_observed:
+  ModernTextualEdit: 6
+  ModernComboBoxEdit: 5          # not present in studio-export-2026-08-31; enumerated by the 2026-09-20 extraction
+  ModernComboBoxOptionSetSingleEdit: 3
+  ClassicDateTimeEdit: 3
+  ModernComboBoxOptionSetSingleView: 2
+  ModernTextualMultilineEdit: 1
+  ModernNumberEdit: 1
+
+data_card_children_observed:
+  ModernText: 50
+  Label: 12
+  ModernCombobox: 10
+  ModernTextInput: 7
+  Classic/DropDown: 6
+  Classic/DatePicker: 3
+  ModernNumberInput: 1
+
+# Studio still emits @version pins on Control: lines in exports (e.g. ModernText@1.0.0,
+# Form@2.4.4) — the compile path strips them; one version-pin-in-control-type WARN fired.
+
+# NOTE on ComboBoxDataField / TableDataField (16 refusals on the acceptance app):
+# not producible from current Studio. Evidencing them requires a trimmed record from the
+# app that carries them — control type, variant and property NAMES only, no instance names,
+# formulas or paths. Whether that record may be written from a customer app is the maintainer's
+# call; it was not written here.

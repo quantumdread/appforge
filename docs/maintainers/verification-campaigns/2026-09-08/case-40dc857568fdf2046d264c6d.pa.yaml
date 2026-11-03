@@ -1,0 +1,7 @@
+Screens:
+  VerificationScreen:
+    Children:
+      - ctlProbe:
+          Control: Gallery
+          Properties:
+            Items: =Filter(VerificationRows, IsBlank(ProbeText))

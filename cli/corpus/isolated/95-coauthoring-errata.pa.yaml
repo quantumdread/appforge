@@ -1,0 +1,28 @@
+Screens:
+  RuntimeExamples:
+    Children:
+      - filterExample:
+          Control: Label
+          Properties:
+            Text: =CountRows(Filter(Src, "all" = varX || Col = varX))
+      - indexExample:
+          Control: Label
+          Properties:
+            Text: =Index(rows, 2).Value
+            Visible: =false
+      - textExample:
+          Control: ModernText
+          Properties:
+            Height: =28
+            Size: =20
+ComponentDefinitions:
+  cRows:
+    DefinitionType: CanvasComponent
+    Children:
+      - rows:
+          Control: Gallery
+          Children:
+            - tap:
+                Control: ModernText
+                Properties:
+                  OnSelect: =Select(Parent)

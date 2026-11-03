@@ -1,0 +1,103 @@
+# Control Star
+Part of the control family Classic.
+
+Control creation keywords:
+```yaml
+Control: Star
+Variant: <variant name> # (required) see below for the list of variants
+```
+
+The `Variant` keyword is required and must be one of the following:
+- `12Points`
+- `5Points`
+- `6Points`
+- `8Points`
+
+Input Properties:
+  - AccessibleLabel: Text
+      Default: ""
+  - BorderColor: Color
+      Default: App.Theme.Colors.Darker40
+  - BorderStyle: Enum
+      Default: BorderStyle.Solid
+      Enum name: BorderStyle
+      Enum values: Dashed, Dotted, None, Solid
+  - BorderThickness: Number
+      Default: 0
+  - ContentLanguage: Text
+      Default: ""
+  - DisabledFill: Color
+      Default: Self.Fill
+  - DisplayMode: Enum
+      Default: DisplayMode.Edit
+      Enum name: DisplayMode
+      Enum values: Disabled, Edit, View
+  - Fill: Color
+      Default: App.Theme.Colors.Primary
+  - FocusedBorderColor: Color
+      Default: Self.BorderColor
+  - FocusedBorderThickness: Number
+      Default: 2
+  - Height: Number
+      Default: 100
+  - HoverFill: Color
+      Default: Self.Fill
+  - OnSelect: Boolean
+      Default: false
+  - PressedFill: Color
+      Default: Self.Fill
+  - TabIndex: Number
+      Default: -1
+  - Tooltip: Text
+      Default: ""
+  - Visible: Boolean
+      Default: true
+  - Width: Number
+      Default: 100
+  - X: Number
+      Default: 0
+  - Y: Number
+      Default: 0
+
+Additional input properties if a child of a Vertical or Horizontal GroupContainer:
+  - AlignInContainer: Enum
+      Default: AlignInContainer.SetByContainer
+      Enum name: AlignInContainer
+      Enum values: Center, End, SetByContainer, Start, Stretch
+  - FillPortions: Number
+      Default: 0
+  - LayoutMaxHeight: Number
+      Default: 0
+  - LayoutMaxWidth: Number
+      Default: 0
+  - LayoutMinHeight: Number
+      Default: 100
+  - LayoutMinWidth: Number
+      Default: 100
+
+Additional input properties if a child of a Grid GroupContainer:
+  - LayoutGridColumnEnd: Number
+  - LayoutGridColumnStart: Number
+  - LayoutGridRowEnd: Number
+  - LayoutGridRowStart: Number
+
+Output Properties:
+  - AccessibleLabel: Text
+  - BorderColor: Color
+  - BorderStyle: Enum
+  - BorderThickness: Number
+  - ContentLanguage: Text
+  - DisabledFill: Color
+  - DisplayMode: Enum
+  - Fill: Color
+  - FocusedBorderColor: Color
+  - FocusedBorderThickness: Number
+  - Height: Number
+  - HoverFill: Color
+  - PressedFill: Color
+  - TabIndex: Number
+  - Tooltip: Text
+  - Visible: Boolean
+  - Width: Number
+  - X: Number
+  - Y: Number

@@ -1,0 +1,43 @@
+Screens:
+  Home:
+    Properties:
+      OnVisible: |-
+        =ClearCollect(iconRows, {Glyph: Icon.Trash}, {Glyph: Icon.Phone})
+    Children:
+      - button:
+          Control: Button
+          Properties:
+            Text: ="Continue"
+            FontSize: =14
+            BorderRadius: =8
+            BorderRadiusTopLeft: =2
+            TabIndex: =0
+            OnSelect: =Set(step, 1)
+      - entry:
+          Control: TextInput
+          Properties:
+            Value: ="Synthetic"
+            BorderRadius: =6
+            Mode: ='TextInputCanvas.Mode'.Multiline
+            TabIndex: =0
+            OnChange: =Set(total, Value(Self.Value))
+      - chooser:
+          Control: Classic/ComboBox
+          Properties:
+            Items: |-
+              =Table({Caption: "North"}, {Caption: "South"})
+            DisplayFields: =["Caption"]
+            SearchFields: =["Caption"]
+            NoSelectionText: ="Pick a direction"
+            TabIndex: =0
+      - choice:
+          Control: Classic/DropDown
+          Properties:
+            Items: =["North", "South"]
+            Default: ="North"
+      - badge:
+          Control: Classic/Icon
+          Properties:
+            Icon: =Icon.Check
+            TabIndex: =0
+            OnSelect: =Set(confirmed, true)

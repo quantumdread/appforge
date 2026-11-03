@@ -1,0 +1,273 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://appforge.example/schemas/survey-envelope-v1.json",
+  "title": "SurveyEnvelopeV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "envelope_schema",
+    "privacy_schema",
+    "id",
+    "manifest",
+    "versions",
+    "source_kind",
+    "size_buckets",
+    "rule_counts",
+    "opportunity_denominators",
+    "extractor_control_types",
+    "near_miss_buckets"
+  ],
+  "properties": {
+    "envelope_schema": { "const": "survey-envelope/1" },
+    "privacy_schema": { "const": "survey-minimization/1" },
+    "id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["included_field_kinds"],
+      "properties": {
+        "included_field_kinds": {
+          "const": [
+            "rule_counts",
+            "opportunity_denominators",
+            "delta_rule_counts",
+            "extractor_control_types",
+            "versions",
+            "source_kind",
+            "coarse_size_buckets",
+            "near_miss_buckets"
+          ]
+        }
+      }
+    },
+    "versions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["analyzer", "catalog"],
+      "properties": {
+        "analyzer": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "pattern": "^(?:0|[1-9][0-9]{0,4})\\.(?:0|[1-9][0-9]{0,4})\\.(?:0|[1-9][0-9]{0,4})(?:-[0-9A-Za-z]+(?:\\.[0-9A-Za-z]+)*)?$"
+        },
+        "catalog": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 24,
+          "pattern": "^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:[0-2][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]\\.[0-9]{3}Z$"
+        }
+      }
+    },
+    "source_kind": { "enum": ["directory", "msapp", "solution", "inline"] },
+    "size_buckets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["files", "controls", "findings"],
+      "properties": {
+        "files": { "enum": ["1", "2-5", "6-20", "21-50", "51+"] },
+        "controls": { "enum": ["0", "1-25", "26-100", "101-300", "301+"] },
+        "findings": { "enum": ["0", "1-10", "11-50", "51-200", "201+"] }
+      }
+    },
+    "rule_counts": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/rule_count" }
+    },
+    "opportunity_denominators": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/opportunity_count" }
+    },
+    "delta_rule_counts": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/delta_count" }
+    },
+    "extractor_control_types": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "near_miss_buckets": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          { "$ref": "#/definitions/control_near_miss" },
+          { "$ref": "#/definitions/property_near_miss" }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "rule_id": {
+      "enum": [
+        "yaml-comment-truncates-formula",
+        "yaml-inline-comment-after-formula",
+        "component-input-called-as-function",
+        "addcolumns-string-column-name",
+        "sortbycolumns-on-added-column",
+        "select-parent-in-gallery",
+        "modern-text-height-below-size",
+        "index-literal-position",
+        "filter-constant-or-column",
+        "formula-missing-equals",
+        "block-scalar-required",
+        "bare-color-name",
+        "enum-value-invalid",
+        "duplicate-property",
+        "unknown-control",
+        "unknown-variant",
+        "unknown-property",
+        "pa2108-trap",
+        "duplicate-control-name",
+        "custom-property-kind",
+        "event-return-type-required",
+        "output-property-default",
+        "input-property-empty-default",
+        "component-name-required",
+        "unknown-output-reference",
+        "layoutmaxwidth-collapses-children",
+        "delegation-firstn-on-source",
+        "delegation-forall-writes",
+        "delegation-forall-truncation",
+        "write-followed-by-unconditional-navigation",
+        "submitform-navigation-not-in-onsuccess",
+        "form-without-failure-path",
+        "success-notification-not-gated",
+        "navigate-to-unknown-screen",
+        "delegation-search-caveat",
+        "delegation-sharepoint-search",
+        "delegation-sharepoint-in",
+        "delegation-sharepoint-isblank",
+        "delegation-sharepoint-text-functions",
+        "delegation-sharepoint-id-operator",
+        "delegation-sql-isblank",
+        "delegation-excel-any",
+        "a11y-interactive-not-focusable",
+        "a11y-icon-button-no-label",
+        "perf-lookup-in-gallery-template",
+        "perf-onstart-no-concurrent",
+        "perf-cross-screen-reference",
+        "perf-control-budget",
+        "heavy-onstart",
+        "duplicate-formula",
+        "duplicate-formula-in-gallery",
+        "repeated-color-literal",
+        "version-pin-in-control-type",
+        "a11y-tabindex-positive",
+        "a11y-inputs-missing-accessiblelabel",
+        "fillportions-with-fixed-size",
+        "missing-layout-min",
+        "missing-align-in-container",
+        "manual-group-may-stretch",
+        "label-missing-wrap",
+        "scroll-child-fillportions",
+        "inline-formula-paste-hygiene",
+        "long-inline-formula",
+        "app-onerror-missing",
+        "unreachable-screen",
+        "custom-property-datatype",
+        "event-default-recommended",
+        "component-root-property",
+        "component-custom-property",
+        "materialized-property-kind",
+        "partial-catalog-data",
+        "variant-unspecified-property",
+        "unverified-augmentation"
+      ]
+    },
+    "rule_count": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rule_id", "count"],
+      "properties": {
+        "rule_id": { "$ref": "#/definitions/rule_id" },
+        "count": { "type": "integer", "minimum": 1, "maximum": 209715200 }
+      }
+    },
+    "opportunity_count": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rule_id", "count"],
+      "properties": {
+        "rule_id": { "$ref": "#/definitions/rule_id" },
+        "count": { "type": "integer", "minimum": 0, "maximum": 209715200 }
+      }
+    },
+    "delta_count": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rule_id", "resolved", "persisted"],
+      "properties": {
+        "rule_id": { "$ref": "#/definitions/rule_id" },
+        "resolved": { "type": "integer", "minimum": 0, "maximum": 209715200 },
+        "persisted": { "type": "integer", "minimum": 0, "maximum": 209715200 }
+      }
+    },
+    "control_near_miss": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rule_id", "reason_code", "edit_distance_bucket", "count"],
+      "properties": {
+        "rule_id": { "const": "unknown-control" },
+        "reason_code": { "enum": ["case-mismatch", "edit-distance"] },
+        "edit_distance_bucket": { "enum": ["0", "1", "2"] },
+        "known_candidate": { "type": "string", "minLength": 1 },
+        "count": { "type": "integer", "minimum": 1, "maximum": 209715200 }
+      },
+      "oneOf": [
+        {
+          "required": ["reason_code", "edit_distance_bucket"],
+          "properties": {
+            "reason_code": { "const": "case-mismatch" },
+            "edit_distance_bucket": { "const": "0" }
+          }
+        },
+        {
+          "required": ["reason_code", "edit_distance_bucket"],
+          "properties": {
+            "reason_code": { "const": "edit-distance" },
+            "edit_distance_bucket": { "enum": ["1", "2"] }
+          }
+        }
+      ]
+    },
+    "property_near_miss": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rule_id",
+        "control_type",
+        "reason_code",
+        "edit_distance_bucket",
+        "count"
+      ],
+      "properties": {
+        "rule_id": { "const": "unknown-property" },
+        "control_type": { "type": "string", "minLength": 1 },
+        "reason_code": { "enum": ["case-mismatch", "edit-distance"] },
+        "edit_distance_bucket": { "enum": ["0", "1", "2"] },
+        "known_candidate": { "type": "string", "minLength": 1 },
+        "count": { "type": "integer", "minimum": 1, "maximum": 209715200 }
+      },
+      "oneOf": [
+        {
+          "required": ["reason_code", "edit_distance_bucket"],
+          "properties": {
+            "reason_code": { "const": "case-mismatch" },
+            "edit_distance_bucket": { "const": "0" }
+          }
+        },
+        {
+          "required": ["reason_code", "edit_distance_bucket"],
+          "properties": {
+            "reason_code": { "const": "edit-distance" },
+            "edit_distance_bucket": { "enum": ["1", "2"] }
+          }
+        }
+      ]
+    }
+  }
+}

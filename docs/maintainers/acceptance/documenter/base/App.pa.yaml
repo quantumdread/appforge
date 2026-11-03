@@ -1,0 +1,3 @@
+App:
+  Properties:
+    OnStart: =Set(sessionLabel, "Draft session")

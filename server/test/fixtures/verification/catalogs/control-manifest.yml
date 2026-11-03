@@ -1,0 +1,29 @@
+# Synthetic verification fixture; no platform evidence is asserted.
+extracted_at: 2026-09-07T00:00:00.000Z
+counts:
+  controls_in_this_file: 8
+controls:
+  - type: Gallery
+    family: Classic
+    variants: []
+  - type: TypedDataCard
+    family: Classic
+    variants: [ModernTextualEdit]
+  - type: Form
+    family: Classic
+    variants: []
+  - type: Label
+    family: Classic
+    variants: []
+  - type: DatePicker
+    family: Classic
+    variants: []
+  - type: ModernDatePicker
+    family: Modern
+    variants: []
+  - type: Text
+    family: FluentV9
+    variants: []
+  - type: ModernText
+    family: React
+    variants: []

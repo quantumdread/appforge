@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://appforge.example/schemas/analysis-baseline-v1.json",
+  "title": "AnalysisBaselineV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["baseline_schema", "formula", "fingerprint_basis", "entries"],
+  "properties": {
+    "baseline_schema": { "const": "analysis-baseline/1" },
+    "formula": { "const": "finding-fingerprint/2" },
+    "migrated_from": { "const": "finding-fingerprint/1" },
+    "fingerprint_basis": {
+      "type": "string",
+      "pattern": "^(directory|msapp)/src-stripped/v1$|^solution/.+/src-stripped/v1$"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["fingerprint", "rule", "accepted_at"],
+        "properties": {
+          "fingerprint": { "type": "string", "pattern": "^[0-9a-f]{16}$" },
+          "rule": { "type": "string", "minLength": 1 },
+          "accepted_at": { "type": "string", "minLength": 1 },
+          "note": { "type": "string" }
+        }
+      }
+    }
+  }
+}

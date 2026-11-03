@@ -1,0 +1,31 @@
+# Synthetic verification fixture; intentionally limited property surface.
+enums:
+  Align: [Center, Justify, Left, Right]
+parent_context_properties:
+controls:
+  Gallery:
+    input_properties:
+      Items: Table
+      AccessibleLabel: Text
+  TypedDataCard:
+    input_properties:
+      Width: Number
+    variant_input_properties:
+      ModernTextualEdit: {}
+  Form:
+    input_properties: {}
+  Label:
+    input_properties:
+      Text: Text
+  DatePicker:
+    input_properties:
+      SelectedDate: Date
+  ModernDatePicker:
+    input_properties:
+      SelectedDate: Date
+  Text:
+    input_properties:
+      Text: Text
+  ModernText:
+    input_properties:
+      Text: Text

@@ -1,0 +1,74 @@
+# Control Triangle
+Part of the control family Classic.
+
+Control creation keywords:
+```yaml
+Control: Triangle
+Variant: <variant name> # (optional) see below for the list of variants
+```
+
+The `Variant` keyword is optional and can be one of the following:
+- `RightAngled`
+
+Input Properties:
+  - AccessibleLabel: Text
+  - BorderColor: Color
+  - BorderStyle: Enum
+      Enum name: BorderStyle
+      Enum values: Dashed, Dotted, None, Solid
+  - BorderThickness: Number
+  - ContentLanguage: Text
+  - DisabledFill: Color
+  - DisplayMode: Enum
+      Enum name: DisplayMode
+      Enum values: Disabled, Edit, View
+  - Fill: Color
+  - FocusedBorderColor: Color
+  - FocusedBorderThickness: Number
+  - Height: Number
+  - HoverFill: Color
+  - OnSelect: Boolean
+  - PressedFill: Color
+  - TabIndex: Number
+  - Tooltip: Text
+  - Visible: Boolean
+  - Width: Number
+  - X: Number
+  - Y: Number
+
+Additional input properties if a child of a Vertical or Horizontal GroupContainer:
+  - AlignInContainer: Enum
+      Enum name: AlignInContainer
+      Enum values: Center, End, SetByContainer, Start, Stretch
+  - FillPortions: Number
+  - LayoutMaxHeight: Number
+  - LayoutMaxWidth: Number
+  - LayoutMinHeight: Number
+  - LayoutMinWidth: Number
+
+Additional input properties if a child of a Grid GroupContainer:
+  - LayoutGridColumnEnd: Number
+  - LayoutGridColumnStart: Number
+  - LayoutGridRowEnd: Number
+  - LayoutGridRowStart: Number
+
+Output Properties:
+  - AccessibleLabel: Text
+  - BorderColor: Color
+  - BorderStyle: Enum
+  - BorderThickness: Number
+  - ContentLanguage: Text
+  - DisabledFill: Color
+  - DisplayMode: Enum
+  - Fill: Color
+  - FocusedBorderColor: Color
+  - FocusedBorderThickness: Number
+  - Height: Number
+  - HoverFill: Color
+  - PressedFill: Color
+  - TabIndex: Number
+  - Tooltip: Text
+  - Visible: Boolean
+  - Width: Number
+  - X: Number
+  - Y: Number

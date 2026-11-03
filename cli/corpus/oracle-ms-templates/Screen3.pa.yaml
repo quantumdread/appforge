@@ -1,0 +1,428 @@
+Screens:
+  Screen3:
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    Children:
+      - FeatureScroll1:
+          Control: GroupContainer
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutOverflowY: =LayoutOverflow.Scroll
+            PaddingBottom: =24
+            Width: =Parent.Width
+          Children:
+            - TopNav1:
+                Control: GroupContainer
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(255, 255, 255, 1)
+                  FillPortions: =0
+                  Height: =If(App.Width < 640, 104, 56)
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                Children:
+                  - TitleRow1:
+                      Control: GroupContainer
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(255, 255, 255, 1)
+                        FillPortions: =0
+                        Height: =56
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        LayoutGap: =12
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        PaddingLeft: =If(App.Width < 640, 16, 24)
+                        PaddingRight: =If(App.Width < 640, 16, 24)
+                        Width: =Parent.Width
+                      Children:
+                        - AppTitle1:
+                            Control: ModernText
+                            Properties:
+                              FillPortions: =If(App.Width < 640, 1, 0)
+                              Font: =Font.'Segoe UI'
+                              FontWeight: =FontWeight.Semibold
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Size: =If(App.Width < 640, 13, 16)
+                              Text: ="Watercolor Wonders"
+                              Width: =If(App.Width < 640, 0, 200)
+                        - NavTabsDesktop1:
+                            Control: ModernTabList
+                            Properties:
+                              AlignInContainer: =AlignInContainer.Center
+                              Appearance: =TabListAppearance.Subtle
+                              Default: |-
+                                ={Value: "Home"}
+                              FillPortions: =1
+                              Height: =56
+                              Items: =["Home", "Resources", "Events", "Gallery"]
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Visible: =App.Width >= 640
+                        - IconChat1:
+                            Control: ModernIcon
+                            Properties:
+                              Height: =24
+                              Icon: ="Message"
+                              IconColor: =RGBA(0, 0, 0, 1)
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =24
+                        - IconShare1:
+                            Control: ModernIcon
+                            Properties:
+                              Height: =24
+                              Icon: ="Share"
+                              IconColor: =RGBA(0, 0, 0, 1)
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =24
+                        - IconSettings1:
+                            Control: ModernIcon
+                            Properties:
+                              Height: =24
+                              Icon: ="Settings"
+                              IconColor: =RGBA(0, 0, 0, 1)
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =24
+                        - Avatar2:
+                            Control: ModernAvatar
+                            Properties:
+                              Height: =32
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =32
+                  - NavTabsMobile1:
+                      Control: ModernTabList
+                      Properties:
+                        Appearance: =TabListAppearance.Subtle
+                        BasePaletteColor: =RGBA(0, 65, 179, 1)
+                        Default: |-
+                          ={Value: "Home"}
+                        Height: =If(App.Width < 640, 48, 0)
+                        Items: |-
+                          =Table({Value: "Home"}, {Value: "Resources"}, {Value: "Events"}, {Value: "Gallery"})
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Width: =Parent.Width
+            - NavDivider1:
+                Control: ModernText
+                Properties:
+                  Fill: =RGBA(237, 237, 237, 1)
+                  Height: =2
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  Text: =""
+            - TitleBand1:
+                Control: GroupContainer
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(255, 255, 255, 1)
+                  FillPortions: =0
+                  Height: =If(App.Width < 640, 200, 180)
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =8
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =48
+                  PaddingLeft: =If(App.Width < 640, 16, 40)
+                  PaddingRight: =If(App.Width < 640, 16, 40)
+                  PaddingTop: =40
+                Children:
+                  - FeatureTitle1:
+                      Control: ModernText
+                      Properties:
+                        AutoHeight: =true
+                        FontWeight: =FontWeight.Bold
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Size: =If(App.Width < 640, 22, 32)
+                        Text: ="Watercolor Wonders"
+                        Width: =Parent.Width - If(App.Width < 640, 32, 80)
+                  - FeatureSubtitle1:
+                      Control: ModernText
+                      Properties:
+                        AutoHeight: =true
+                        Color: =RGBA(96, 94, 92, 1)
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Size: =If(App.Width < 640, 12, 14)
+                        Text: ="Discover the beauty of fluid colors and soft gradients. Perfect for beginners and seasoned artists who love the elegance of water-based art."
+                        Width: =Parent.Width - If(App.Width < 640, 32, 80)
+            - QuickHeader2:
+                Control: ModernText
+                Properties:
+                  FontWeight: =FontWeight.Semibold
+                  Height: =72
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =6
+                  PaddingLeft: =If(App.Width < 640, 16, 40)
+                  PaddingTop: =40
+                  Size: =18
+                  Text: ="Quick access"
+                  VerticalAlign: =VerticalAlign.Bottom
+            - QuickCardGrid2:
+                Control: GroupContainer
+                Variant: GridLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(255, 255, 255, 1)
+                  FillPortions: =0
+                  Height: =(RoundUp(3 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0) * If(App.Width < 640, 200, 220)) + ((RoundUp(3 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0) - 1) * 16) + 8 + 8
+                  LayoutGap: =16
+                  LayoutGridColumnMinWidth: =(Parent.Width - 2 * If(App.Width < 640, 16, 40) - (If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)) - 1) * 16) / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)) - 4
+                  LayoutGridColumns: =If(App.Width < 640, 1, If(App.Width < 1024, 2, 3))
+                  LayoutGridRowMinHeight: =If(App.Width < 640, 200, 220)
+                  LayoutGridRows: =RoundUp(3 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0)
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =48
+                  PaddingLeft: =If(App.Width < 640, 16, 40)
+                  PaddingRight: =If(App.Width < 640, 16, 40)
+                  PaddingTop: =0
+                Children:
+                  - QuickCard_12:
+                      Control: ModernCard
+                      Properties:
+                        Subtitle: ="Explore techniques that bring your ideas to life with rich acrylic textures."
+                        Title: ="Acrylic Adventures"
+                  - QuickCard_22:
+                      Control: ModernCard
+                      Properties:
+                        HeaderImage: =SampleCardHeaderImageDesigner
+                        Image: =SampleCardImageShapes3D
+                        Subtitle: ="Turn simple lines into powerful narratives. Learn how to sketch and tell stories."
+                        Title: ="Sketch & Story"
+                  - QuickCard_32:
+                      Control: ModernCard
+                      Properties:
+                        HeaderImage: =SampleCardHeaderImageM365
+                        Image: =SampleCardImageFluidTexture
+                        Subtitle: ="Perfect for beginners and pros who love expressive, flowing art."
+                        Title: ="Watercolor Wonders"
+            - EventsHeader2:
+                Control: ModernText
+                Properties:
+                  FontWeight: =FontWeight.Semibold
+                  Height: =72
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =6
+                  PaddingLeft: =If(App.Width < 640, 16, 40)
+                  PaddingTop: =40
+                  Size: =18
+                  Text: =If(App.Width < 640, "Upcoming Events", "Events")
+                  VerticalAlign: =VerticalAlign.Bottom
+            - EventsCardGrid2:
+                Control: GroupContainer
+                Variant: GridLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(255, 255, 255, 1)
+                  FillPortions: =0
+                  Height: =(RoundUp(3 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0) * 140) + ((RoundUp(3 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0) - 1) * 16) + 8 + 8
+                  LayoutGap: =16
+                  LayoutGridColumnMinWidth: =(Parent.Width - 2 * If(App.Width < 640, 16, 40) - (If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)) - 1) * 16) / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)) - 4
+                  LayoutGridColumns: =If(App.Width < 640, 1, If(App.Width < 1024, 2, 3))
+                  LayoutGridRowMinHeight: =140
+                  LayoutGridRows: =RoundUp(3 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0)
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =48
+                  PaddingLeft: =If(App.Width < 640, 16, 40)
+                  PaddingRight: =If(App.Width < 640, 16, 40)
+                  PaddingTop: =0
+                Children:
+                  - EventCard_12:
+                      Control: ModernCard
+                      Properties:
+                        Description: ="Spend two hands-on days exploring bold color and gesture with abstract techniques. Work alongside local artists and leave with a finished canvas of your own."
+                        HeaderImage: =SampleCardHeaderImageWorkshop
+                        Image: =Blank()
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        Subtitle: ="Abstract Expressionism"
+                        Title: ="Weekend Workshop"
+                  - EventCard_22:
+                      Control: ModernCard
+                      Properties:
+                        Description: ="An evening showcase of fresh work from up-and-coming painters and sculptors. Mingle with the artists over live music and discover your next favorite piece."
+                        HeaderImage: =SampleCardHeaderImageGallery
+                        Image: =Blank()
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        Subtitle: ="Emerging Talent"
+                        Title: ="Gallery Night"
+                  - EventCard_32:
+                      Control: ModernCard
+                      Properties:
+                        Description: ="Watch a professional illustrator build a piece from scratch using the latest tablet and software. Ask questions in real time and pick up pro-level techniques."
+                        HeaderImage: =SampleCardHeaderImageDemo
+                        Image: =Blank()
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        Subtitle: ="Digital Art Tools"
+                        Title: ="Live Demo"
+            - RecentFilesSection1:
+                Control: GroupContainer
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(255, 255, 255, 1)
+                  FillPortions: =0
+                  Height: =If(App.Width < 640, 712, 700)
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =8
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =48
+                  PaddingLeft: =If(App.Width < 640, 16, 40)
+                  PaddingRight: =If(App.Width < 640, 16, 40)
+                  PaddingTop: =40
+                Children:
+                  - RecentFilesHeader1:
+                      Control: ModernText
+                      Properties:
+                        FontWeight: =FontWeight.Semibold
+                        Height: =40
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Size: =18
+                        Text: ="Recent files"
+                        Width: =Parent.Width - If(App.Width < 640, 32, 80)
+                  - RecentFilesFilterRow1:
+                      Control: GroupContainer
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(255, 255, 255, 1)
+                        FillPortions: =0
+                        Height: =52
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        LayoutGap: =8
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Width: =Parent.Width - If(App.Width < 640, 32, 80)
+                      Children:
+                        - RecentFilterTabs1:
+                            Control: ModernTabList
+                            Properties:
+                              Appearance: =TabListAppearance.FilledCircular
+                              Height: =36
+                              Items: =["All", "Meetings", "Files", "Events", "Photos"]
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =If(App.Width < 640, Parent.Width, 420)
+                        - RecentFilterSpacer1:
+                            Control: ModernText
+                            Properties:
+                              FillPortions: =1
+                              Height: =36
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Text: =""
+                              Width: =0
+                        - RecentSearchInput1:
+                            Control: ModernTextInput
+                            Properties:
+                              Height: =36
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Placeholder: ="Search"
+                              Width: =If(App.Width < 640, 0, 200)
+                  - RecentFilesGrid1:
+                      Control: ModernDataGrid
+                      Properties:
+                        DisplayMode: =DisplayMode.View
+                        Height: =536
+                        Items: |-
+                          =Filter(Table({Artwork: "Color Harmony Study", Artist: "Emma Carter", Email: "emma.carter@example.com", Phone: "(555) 555-0142", Portfolio: "https://www.example.com/emma", Medium: "Watercolor", Status: "● Active"}, {Artwork: "Brush Technique Vol.2", Artist: "Liam Brooks", Email: "liam.brooks@example.com", Phone: "(555) 555-0188", Portfolio: "https://www.example.com/liam", Medium: "Acrylic", Status: "◐ In review"}, {Artwork: "Palette Preferences", Artist: "Ava Mitchell", Email: "ava.mitchell@example.com", Phone: "(555) 555-0119", Portfolio: "https://www.example.com/ava", Medium: "Watercolor", Status: "● Active"}, {Artwork: "Texture Study Sheet", Artist: "Noah Bennett", Email: "noah.bennett@example.com", Phone: "(555) 555-0204", Portfolio: "https://www.example.com/noah", Medium: "Gouache", Status: "○ Draft"}, {Artwork: "Gradient Flow Guide", Artist: "Sophia Reed", Email: "sophia.reed@example.com", Phone: "(555) 555-0337", Portfolio: "https://www.example.com/sophia", Medium: "Watercolor", Status: "◐ In review"}, {Artwork: "Wash Layer Tracker", Artist: "Mason Clark", Email: "mason.clark@example.com", Phone: "(555) 555-0153", Portfolio: "https://www.example.com/mason", Medium: "Ink", Status: "○ Draft"}, {Artwork: "Pigment Mix Log", Artist: "Olivia Nash", Email: "olivia.nash@example.com", Phone: "(555) 555-0291", Portfolio: "https://www.example.com/olivia", Medium: "Oil", Status: "● Active"}, {Artwork: "Water Ratio Form", Artist: "Ethan Rice", Email: "ethan.rice@example.com", Phone: "(555) 555-0420", Portfolio: "https://www.example.com/ethan", Medium: "Watercolor", Status: "● Active"}, {Artwork: "Edge Control Survey", Artist: "Harper Gray", Email: "harper.gray@example.com", Phone: "(555) 555-0176", Portfolio: "https://www.example.com/harper", Medium: "Graphite", Status: "◐ In review"}, {Artwork: "Bloom Effect Report", Artist: "Isabella Fox", Email: "isabella.fox@example.com", Phone: "(555) 555-0388", Portfolio: "https://www.example.com/isabella", Medium: "Acrylic", Status: "○ Draft"}), IsBlank(RecentSearchInput1.Text) || RecentSearchInput1.Text in Artwork || RecentSearchInput1.Text in Artist || RecentSearchInput1.Text in Email || RecentSearchInput1.Text in Phone || RecentSearchInput1.Text in Portfolio || RecentSearchInput1.Text in Medium || RecentSearchInput1.Text in Status)
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Width: =Parent.Width - If(App.Width < 640, 32, 80)
+                      Children:
+                        - Medium_Col1:
+                            Control: ModernDataGridColumn
+                            Variant: Textual
+                            IsLocked: true
+                            Properties:
+                              FieldDisplayName: ="Medium"
+                              FieldName: ="%DATACARD_FIELD_NAME.ID%"
+                              FieldVariantName: ="%DATACARD_FIELD_VARIANT_NAME.ID%"
+                              Text: =ThisItem.Medium
+                              Width: =130
+                        - Portfolio_Col1:
+                            Control: ModernDataGridColumn
+                            Variant: Url
+                            IsLocked: true
+                            Properties:
+                              FieldDisplayName: ="Portfolio"
+                              FieldName: ="%DATACARD_FIELD_NAME.ID%"
+                              FieldVariantName: ="%DATACARD_FIELD_VARIANT_NAME.ID%"
+                              Text: =ThisItem.Portfolio
+                              URL: =ThisItem.Portfolio
+                        - Phone_Col1:
+                            Control: ModernDataGridColumn
+                            Variant: Phone
+                            IsLocked: true
+                            Properties:
+                              FieldDisplayName: ="Phone"
+                              FieldName: ="%DATACARD_FIELD_NAME.ID%"
+                              FieldVariantName: ="%DATACARD_FIELD_VARIANT_NAME.ID%"
+                              Text: =ThisItem.Phone
+                              Width: =160
+                        - Email_Col1:
+                            Control: ModernDataGridColumn
+                            Variant: Email
+                            IsLocked: true
+                            Properties:
+                              FieldDisplayName: ="Email"
+                              FieldName: ="%DATACARD_FIELD_NAME.ID%"
+                              FieldVariantName: ="%DATACARD_FIELD_VARIANT_NAME.ID%"
+                              Text: =ThisItem.Email
+                              Width: =210
+                        - Artist_Col1:
+                            Control: ModernDataGridColumn
+                            Variant: Textual
+                            IsLocked: true
+                            Properties:
+                              FieldDisplayName: ="Artist"
+                              FieldName: ="%DATACARD_FIELD_NAME.ID%"
+                              FieldVariantName: ="%DATACARD_FIELD_VARIANT_NAME.ID%"
+                              Text: =ThisItem.Artist
+                              Width: =140
+                        - Status_Col1:
+                            Control: ModernDataGridColumn
+                            Variant: Textual
+                            IsLocked: true
+                            Properties:
+                              FieldDisplayName: ="Status"
+                              FieldName: ="%DATACARD_FIELD_NAME.ID%"
+                              FieldVariantName: ="%DATACARD_FIELD_VARIANT_NAME.ID%"
+                              Text: =ThisItem.Status
+                              Width: =120
+                        - Artwork_Col1:
+                            Control: ModernDataGridColumn
+                            Variant: Textual
+                            IsLocked: true
+                            Properties:
+                              FieldDisplayName: ="Artwork"
+                              FieldName: ="%DATACARD_FIELD_NAME.ID%"
+                              FieldVariantName: ="%DATACARD_FIELD_VARIANT_NAME.ID%"
+                              Text: =ThisItem.Artwork
+                              Width: =200

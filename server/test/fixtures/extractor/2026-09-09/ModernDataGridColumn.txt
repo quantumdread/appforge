@@ -1,0 +1,110 @@
+# Control ModernDataGridColumn
+Part of the control family React.
+
+Control creation keywords:
+```yaml
+Control: ModernDataGridColumn
+Variant: <variant name> # (required) see below for the list of variants
+```
+
+The `Variant` keyword is required and must be one of the following:
+- `Boolean`
+- `Button`
+- `ComplexOptionSet`
+- `ComplexType`
+- `Currency`
+- `DateTime`
+- `Email`
+- `Image`
+- `Number`
+- `Phone`
+- `Textual`
+- `Url`
+
+Input Properties:
+  - ContentLanguage: Text
+  - FieldDisplayName: Text
+  - FieldName: Text
+  - FieldVariantName: Text
+  - Visible: Boolean
+  - Width: Number
+
+Additional input properties for variant `Boolean`:
+  - DisplayType: Enum
+      Enum name: BooleanDisplay
+      Enum values: Checkbox, Text, Toggle
+  - Icon: Text
+  - Text: Text
+  - Value: Boolean
+
+Additional input properties for variant `Button`:
+  - AccessibleLabel: Text
+  - Appearance: Enum
+      Enum name: ButtonAppearance
+      Enum values: Outline, Primary, Secondary, Subtle, Transparent
+  - Icon: Text
+  - OnSelect: Boolean
+  - Text: Text
+  - Wrap: Boolean
+
+Additional input properties for variant `ComplexOptionSet`:
+  - Icon: Text
+  - Text: Text
+
+Additional input properties for variant `ComplexType`:
+  - Icon: Text
+  - Text: Text
+
+Additional input properties for variant `Currency`:
+  - Icon: Text
+  - Text: Text
+
+Additional input properties for variant `DateTime`:
+  - Icon: Text
+  - Text: Text
+
+Additional input properties for variant `Email`:
+  - Icon: Text
+  - Text: Text
+
+Additional input properties for variant `Image`:
+  - AccessibleLabel: Text
+  - Image: Image
+
+Additional input properties for variant `Number`:
+  - Icon: Text
+  - Value: Number
+
+Additional input properties for variant `Phone`:
+  - Icon: Text
+  - Text: Text
+
+Additional input properties for variant `Textual`:
+  - Icon: Text
+  - Text: Text
+  - Wrap: Boolean
+
+Additional input properties for variant `Url`:
+  - Icon: Text
+  - Text: Text
+  - URL: Text
+
+Additional input properties if a child of a Vertical or Horizontal GroupContainer:
+  - LayoutMinWidth: Number
+  - LayoutMaxWidth: Number
+  - LayoutMinHeight: Number
+  - LayoutMaxHeight: Number
+  - FillPortions: Number
+  - AlignInContainer: Enum (SetByContainer, Start, Center, End, Stretch)
+
+Additional input properties if a child of a Grid GroupContainer:
+  - LayoutGridColumnStart: Number
+  - LayoutGridColumnEnd: Number
+  - LayoutGridRowStart: Number
+  - LayoutGridRowEnd: Number
+
+Output Properties:
+  - ContentLanguage: Text
+  - FieldDisplayName: Text
+  - Visible: Boolean
+  - Width: Number

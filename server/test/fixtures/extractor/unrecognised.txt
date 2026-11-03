@@ -1,0 +1,6 @@
+Control creation keywords:
+```yaml
+Control: Rectangle
+```
+Inputs:
+  - Width: Number

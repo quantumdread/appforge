@@ -1,0 +1,89 @@
+# Synthetic test fixture — exercises the validator states.
+# Run: node cli/validate.mjs cli/validator-test-fixture.pa.yaml
+# Expected (catalog tier): PASS on valid props, 0 WARN, 3 REFUSE
+#   (camRefuse.Brightness + btnRefuseProp x2); 0 REFUSE on type/variant.
+# NOTE (2026-05-10 verification campaign fallout):
+#   - Camera augmentations (Brightness/Contrast/Zoom) were removed, so
+#     Camera.Brightness now demonstrates REFUSE, not WARN.
+#   - The Gallery augmentations (OnSelect/WrapCount/TemplateFill/
+#     ItemAccessibleLabel) were all promoted to verified: true → PASS. No
+#     unverified augmentation remains in the catalog, so the catalog tier
+#     currently produces no WARN. WARN is now exercised by the lint tier.
+#   The lint-rule block at the bottom exercises the MCP validate_yaml lint
+#   tier (lint.ts) — the local catalog validator scores those controls as
+#   catalog-PASS Labels; the annotations note what the lint tier flags.
+Screens:
+  TestScreen:
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+    Children:
+      - btnPass:
+          Control: Button
+          Properties:
+            Text: ="Hello"                  # PASS — in auto input_properties
+            OnSelect: =Notify("ok")         # PASS — in auto input_properties (retagged Event)
+
+      - galPassVerified:
+          Control: Gallery
+          Variant: Vertical
+          Properties:
+            Items: '=Table({n: 1})'
+            OnSelect: =Notify("verified")   # PASS — augmentation, verified: true
+
+      - galVerifiedAugs:
+          Control: Gallery
+          Variant: Vertical
+          Properties:
+            Items: '=Table({n: 1})'
+            WrapCount: =3                   # PASS — augmentation verified: true (2026-05-10 campaign)
+            ItemAccessibleLabel: ="row"     # PASS — augmentation verified: true (2026-05-10 campaign)
+
+      - camRefuse:
+          Control: Camera
+          Properties:
+            Brightness: =0.5                # REFUSE — Camera augmentations removed 2026-05-10; no longer in any catalog
+
+      - btnRefuseProp:
+          Control: Button
+          Properties:
+            NonsenseProperty: ="x"          # REFUSE — not in any catalog
+            AnotherFakeProp: =1             # REFUSE — not in any catalog
+
+      # ── Lint-rule examples (validate_yaml lint tier, 2026-07-06) ──
+      # Catalog-valid Labels that trip the MCP lint checks. validate.mjs scores
+      # these as catalog-PASS; the annotations note what the lint tier flags.
+
+      # REFUSE: formula-missing-equals — value is a bare string, not a formula
+      - lblMissingEquals:
+          Control: Label
+          Properties:
+            Text: "missing equals sign"
+            Wrap: =true
+
+      # REFUSE: bare-color-name — named color needs the Color. prefix
+      - lblBareColor:
+          Control: Label
+          Properties:
+            Text: ="bare color"
+            Fill: =White
+            Wrap: =true
+
+      # REFUSE: block-scalar-required — multi-statement formula must use |-
+      - lblBlockScalar:
+          Control: Label
+          Properties:
+            Text: =Set(a, 1); Set(b, 2); Concatenate("x", "y")
+            Wrap: =true
+
+      # WARN: label-missing-wrap — Label with Text but no Wrap property
+      - lblMissingWrap:
+          Control: Label
+          Properties:
+            Text: ="no wrap set"
+
+      # WARN: long-inline-formula — long single-line formula should be a |- block
+      - lblLongFormula:
+          Control: Label
+          Properties:
+            Text: =Concatenate("aaaaaaaaaaaaaaaaaaaa", "bbbbbbbbbbbbbbbbbbbb", "cccccccccccccccccccc", "dddddddddddddddddddd", "eeeeeeeeeeeeeeeeeeee")
+            Wrap: =true

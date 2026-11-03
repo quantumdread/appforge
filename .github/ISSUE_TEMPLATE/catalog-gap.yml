@@ -1,0 +1,156 @@
+{
+  "name": "Catalog gap",
+  "description": "Report a control, property or variant missing from the catalog.",
+  "body": [
+    {
+      "type": "markdown",
+      "attributes": {
+        "value": "This repository is public. Remove customer, company and person names; tenant, environment and app ids; internal URLs; real data values; and screen or control names that identify a customer app. Replace them with neutral names and keep the repro minimal."
+      }
+    },
+    {
+      "type": "dropdown",
+      "id": "kind",
+      "attributes": {
+        "label": "Report kind",
+        "options": [
+          "catalog-gap"
+        ]
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "input",
+      "id": "appforge_version",
+      "attributes": {
+        "label": "AppForge version",
+        "description": "Use the version returned when the MCP server initializes."
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "summary",
+      "attributes": {
+        "label": "Summary",
+        "description": "Describe the problem using neutral names and invented data."
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "input",
+      "id": "control_type",
+      "attributes": {
+        "label": "Control type",
+        "description": "Use the catalog type, such as ModernButton."
+      },
+      "validations": {
+        "required": false
+      }
+    },
+    {
+      "type": "input",
+      "id": "property_or_variant",
+      "attributes": {
+        "label": "Property or variant",
+        "description": "Name the missing property or variant."
+      },
+      "validations": {
+        "required": false
+      }
+    },
+    {
+      "type": "input",
+      "id": "rule_id",
+      "attributes": {
+        "label": "Rule id",
+        "description": "If a finding names a rule, paste its id here."
+      },
+      "validations": {
+        "required": false
+      }
+    },
+    {
+      "type": "input",
+      "id": "tool_name",
+      "attributes": {
+        "label": "Tool name",
+        "description": "Name the tool involved, if any."
+      },
+      "validations": {
+        "required": false
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "expected",
+      "attributes": {
+        "label": "Expected result",
+        "description": "Describe the result you expected."
+      },
+      "validations": {
+        "required": false
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "actual",
+      "attributes": {
+        "label": "Actual result",
+        "description": "Describe the result you observed."
+      },
+      "validations": {
+        "required": false
+      }
+    },
+    {
+      "type": "dropdown",
+      "id": "evidence_class",
+      "attributes": {
+        "label": "Evidence class",
+        "description": "Choose the evidence supporting this report.",
+        "options": [
+          "compile_canvas",
+          "studio_observation",
+          "visual",
+          "inferred"
+        ]
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "repro_yaml",
+      "attributes": {
+        "label": "Minimal PA-YAML repro",
+        "description": "Use neutral screen and control names and invented values.",
+        "render": "yaml"
+      }
+    },
+    {
+      "type": "checkboxes",
+      "id": "containment",
+      "attributes": {
+        "label": "Public report checks",
+        "options": [
+          {
+            "label": "I removed customer and company names, tenant, environment and app ids, internal URLs and real data",
+            "required": true
+          },
+          {
+            "label": "The repro is the smallest YAML that shows the problem",
+            "required": true
+          }
+        ]
+      },
+      "validations": {
+        "required": true
+      }
+    }
+  ]
+}

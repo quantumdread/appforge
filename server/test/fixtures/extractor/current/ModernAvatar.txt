@@ -1,0 +1,136 @@
+# Control ModernAvatar
+Part of the control family React.
+
+Control creation keywords:
+```yaml
+Control: ModernAvatar
+```
+
+Input Properties:
+  - AccessibleLabel: Text
+      Default: ""
+  - Appearance: Enum
+      Default: AvatarColor.Brand
+      Enum name: AvatarColor
+      Enum values: Anchor, Beige, Blue, Brand, Brass, Brown, Cornflower, Cranberry, DarkGreen, DarkRed, Forest, Gold, Grape, Lavender, LightTeal, Lilac, Magenta, Marigold, Mink, Navy, Peach, Pink, Platinum, Plum, Pumpkin, Purple, Red, RoyalBlue, Seafoam, Steel, Teal
+  - Badge: Enum
+      Default: PresenceBadge.Available
+      Enum name: PresenceBadge
+      Enum values: Available, Away, Blocked, Busy, Do not disturb, None, Offline, Out of office, Unknown
+  - BasePaletteColor: Color
+  - BorderColor: Color
+  - BorderStyle: Enum
+      Default: ""
+      Enum name: BorderStyle
+      Enum values: Dashed, Dotted, None, Solid
+  - BorderThickness: Number
+  - Color: Color
+  - ContentLanguage: Text
+      Default: ""
+  - DisplayMode: Enum
+      Default: DisplayMode.Edit
+      Enum name: DisplayMode
+      Enum values: Disabled, Edit, View
+  - Fill: Color
+  - Font: Enum
+      Default: ""
+      Enum name: Font
+      Enum values: Arial, Courier New, Dancing Script, Georgia, Great Vibes, Lato, Lato Black, Lato Hairline, Lato Light, Open Sans, Open Sans Condensed, Patrick Hand, Segoe UI, Verdana
+  - FontWeight: Enum
+      Enum name: FontWeight
+      Enum values: Bold, Lighter, Normal, Semibold
+  - Height: Number
+      Default: 64
+  - Image: Image
+      Default: User().Image
+  - Italic: Boolean
+      Default: false
+  - Name: Text
+      Default: User().FullName
+  - OnSelect: Boolean
+      Default: false
+  - PaddingBottom: Number
+      Default: 0
+  - PaddingLeft: Number
+      Default: 0
+  - PaddingRight: Number
+      Default: 0
+  - PaddingTop: Number
+      Default: 0
+  - RadiusBottomLeft: Number
+  - RadiusBottomRight: Number
+  - RadiusTopLeft: Number
+  - RadiusTopRight: Number
+  - Shape: Enum
+      Default: AvatarShape.Circular
+      Enum name: AvatarShape
+      Enum values: Circular, Square
+  - Size: Number
+      Default: 0
+  - Strikethrough: Boolean
+      Default: false
+  - Tooltip: Text
+      Default: ""
+  - Underline: Boolean
+      Default: false
+  - Visible: Boolean
+      Default: true
+  - Width: Number
+      Default: 64
+  - X: Number
+      Default: 0
+  - Y: Number
+      Default: 0
+
+Additional input properties if a child of a Vertical or Horizontal GroupContainer:
+  - AlignInContainer: Enum
+      Default: AlignInContainer.SetByContainer
+      Enum name: AlignInContainer
+      Enum values: Center, End, SetByContainer, Start, Stretch
+  - FillPortions: Number
+      Default: 0
+  - LayoutMaxHeight: Number
+      Default: 0
+  - LayoutMaxWidth: Number
+      Default: 0
+  - LayoutMinHeight: Number
+      Default: 64
+  - LayoutMinWidth: Number
+      Default: 64
+
+Additional input properties if a child of a Grid GroupContainer:
+  - LayoutGridColumnEnd: Number
+  - LayoutGridColumnStart: Number
+  - LayoutGridRowEnd: Number
+  - LayoutGridRowStart: Number
+
+Output Properties:
+  - AccessibleLabel: Text
+  - BasePaletteColor: Color
+  - BorderColor: Color
+  - BorderStyle: Enum
+  - BorderThickness: Number
+  - Color: Color
+  - ContentLanguage: Text
+  - DisplayMode: Enum
+  - Fill: Color
+  - Font: Enum
+  - FontWeight: Enum
+  - Height: Number
+  - Italic: Boolean
+  - PaddingBottom: Number
+  - PaddingLeft: Number
+  - PaddingRight: Number
+  - PaddingTop: Number
+  - RadiusBottomLeft: Number
+  - RadiusBottomRight: Number
+  - RadiusTopLeft: Number
+  - RadiusTopRight: Number
+  - Size: Number
+  - Strikethrough: Boolean
+  - Tooltip: Text
+  - Underline: Boolean
+  - Visible: Boolean
+  - Width: Number
+  - X: Number
+  - Y: Number

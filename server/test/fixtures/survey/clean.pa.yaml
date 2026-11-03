@@ -1,0 +1,8 @@
+Screens:
+  Landing:
+    Children:
+      - btnProceed:
+          Control: ModernButton
+          Properties:
+            Text: ="Proceed"
+            OnSelect: =Back()

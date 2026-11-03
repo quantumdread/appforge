@@ -1,0 +1,104 @@
+# Control Form
+Part of the control family Classic.
+
+Control creation keywords:
+```yaml
+Control: Form
+Variant: <variant name> # (optional) see below for the list of variants
+Layout: <layout name> # (required) one of: `Vertical`, `Horizontal`
+```
+
+The `Variant` keyword is optional and can be one of the following:
+- `Classic`
+- `Modern`
+
+Input Properties:
+  - AcceptsFocus: Boolean
+      Default: false
+  - BorderColor: Color
+      Default: App.Theme.Colors.Darker40
+  - BorderStyle: Enum
+      Default: BorderStyle.Solid
+      Enum name: BorderStyle
+      Enum values: Dashed, Dotted, None, Solid
+  - BorderThickness: Number
+      Default: 0
+  - ContentLanguage: Text
+      Default: ""
+  - DataSource: Table
+  - DefaultMode: Enum
+      Default: FormMode.Edit
+      Enum name: FormMode
+      Enum values: Edit, New, View
+  - Fill: Color
+      Default: RGBA(0, 0, 0, 0)
+  - FocusedBorderColor: Color
+      Default: Self.BorderColor
+  - FocusedBorderThickness: Number
+      Default: 4
+  - Height: Number
+      Default: 500
+  - Item: Record
+  - NumberOfColumns: Number
+      Default: 3
+  - OnFailure: Boolean
+      Default: false
+  - OnReset: Boolean
+      Default: false
+  - OnSuccess: Boolean
+      Default: false
+  - SnapToColumns: Boolean
+      Default: true
+  - Visible: Boolean
+      Default: true
+  - Width: Number
+      Default: 800
+  - X: Number
+      Default: 0
+  - Y: Number
+      Default: 0
+
+Additional input properties if a child of a Vertical or Horizontal GroupContainer:
+  - AlignInContainer: Enum
+      Default: AlignInContainer.Stretch
+      Enum name: AlignInContainer
+      Enum values: Center, End, SetByContainer, Start, Stretch
+  - FillPortions: Number
+      Default: 1
+  - LayoutMaxHeight: Number
+      Default: 0
+  - LayoutMaxWidth: Number
+      Default: 0
+  - LayoutMinHeight: Number
+      Default: 250
+  - LayoutMinWidth: Number
+      Default: 400
+
+Additional input properties if a child of a Grid GroupContainer:
+  - LayoutGridColumnEnd: Number
+  - LayoutGridColumnStart: Number
+  - LayoutGridRowEnd: Number
+  - LayoutGridRowStart: Number
+
+Output Properties:
+  - AcceptsFocus: Boolean
+  - BorderColor: Color
+  - BorderStyle: Enum
+  - BorderThickness: Number
+  - ContentLanguage: Text
+  - DisplayMode: Enum
+  - Error: Text
+  - ErrorKind: Enum
+  - Fill: Color
+  - FocusedBorderColor: Color
+  - FocusedBorderThickness: Number
+  - Height: Number
+  - LastSubmit: Record
+  - Mode: Enum
+  - Unsaved: Boolean
+  - Updates: Record
+  - Valid: Boolean
+  - Visible: Boolean
+  - Width: Number
+  - X: Number
+  - Y: Number

@@ -1,0 +1,355 @@
+# studio-export-2026-08-31.yaml — provenance record (PROVENANCE ONLY; not parsed at build time).
+# Power Apps Studio-emitted PA-YAML, captured 2026-08-31 from a scratch app whose Modern Edit
+# form is bound to the standard Dataverse Activities entity (stock localized field names only —
+# no customer vocabulary). Source of truth for the TypedDataCard `legacy_variants` augmentation:
+# six variants Studio emits today that the 2026-05-10 extraction does not list. Studio emits
+# only NON-DEFAULT properties, so every property list here is a LOWER BOUND.
+#
+# TRIMMED RECORD: one complete card block per distinct variant, verbatim from the export.
+# Children are retained on the first modern card and the first classic card as shape evidence
+# for the control-level `IsLocked:` key and child-level `MetadataKey:` key (both relevant to
+# the D2 walker investigation); remaining cards' children are trimmed and marked. The full export was
+# inspected in-session; re-exportable from the scratch app on demand.
+#
+# Variants evidenced: ModernTextualEdit, ModernTextualMultilineEdit, ModernNumberEdit,
+# ModernComboBoxOptionSetSingleEdit, ModernComboBoxOptionSetSingleView, ClassicDateTimeEdit.
+Screens:
+  Screen1:
+    Children:
+      - Form3:
+          Control: Form@2.4.4
+          Variant: Modern
+          Layout: Vertical
+          Properties:
+            BorderColor: =RGBA(245, 245, 245, 1)
+            DataSource: =Aktiviteter
+            X: =566
+            Y: =268
+          Children:
+            - Ämne_DataCard1:
+                Control: TypedDataCard@1.0.7
+                Variant: ModernTextualEdit
+                IsLocked: true
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="subject"
+                  Default: =ThisItem.Ämne
+                  DisplayName: =DataSourceInfo([@Aktiviteter],DataSourceInfo.DisplayName,'subject')
+                  MaxLength: =DataSourceInfo([@Aktiviteter], DataSourceInfo.MaxLength, 'subject')
+                  Required: =true
+                  Update: =DataCardValue1.Text
+                  Width: =266
+                  X: =0
+                  Y: =0
+                Children:
+                  - DataCardKey1:
+                      Control: ModernText@1.0.0
+                      MetadataKey: FieldName
+                      Properties:
+                        FontWeight: =FontWeight.Semibold
+                        Height: =22
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Size: =14
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 48
+                        Wrap: =false
+                        X: =24
+                        Y: =10
+                  - DataCardValue1:
+                      Control: ModernTextInput@1.1.1
+                      MetadataKey: FieldValue
+                      Properties:
+                        AccessibleLabel: =Parent.DisplayName
+                        Default: =Parent.Default
+                        DisplayMode: =Parent.DisplayMode
+                        MaxLength: =Parent.MaxLength
+                        Required: =Parent.Required
+                        ValidationState: =If(IsBlank(Parent.Error), ValidationState.None, ValidationState.Error)
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardKey1.Y + DataCardKey1.Height + 4
+                  - ErrorMessage1:
+                      Control: ModernText@1.0.0
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        Height: =30
+                        Size: =14
+                        Text: =Parent.Error
+                        Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =Parent.Width - 48
+                        X: =24
+                        Y: =DataCardValue1.Y + DataCardValue1.Height
+                  - StarVisible1:
+                      Control: ModernText@1.0.0
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        Color: =Color.Red
+                        Height: =DataCardKey1.Height
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Y: =DataCardKey1.Y
+            - Faktiskt startdatum_DataCard1:
+                Control: TypedDataCard@1.0.7
+                Variant: ClassicDateTimeEdit
+                IsLocked: true
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="actualstart"
+                  Default: =ThisItem.'Faktiskt startdatum'
+                  DisplayName: =DataSourceInfo([@Aktiviteter],DataSourceInfo.DisplayName,'actualstart')
+                  Required: =false
+                  Update: =If(Not IsBlank(DateValue1.SelectedDate), DateTime(Year(DateValue1.SelectedDate), Month(DateValue1.SelectedDate), Day(DateValue1.SelectedDate), Value(HourValue1.Selected.Value), Value(MinuteValue1.Selected.Value), 0))
+                  Width: =266
+                  X: =1
+                  Y: =0
+                Children:
+                  - DataCardKey2:
+                      Control: Label@2.5.1
+                      MetadataKey: FieldName
+                      Properties:
+                        AutoHeight: =true
+                        FontWeight: =FontWeight.Semibold
+                        Height: =34
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                  - DateValue1:
+                      Control: Classic/DatePicker@2.6.0
+                      MetadataKey: DateFieldValue
+                      Properties:
+                        DefaultDate: =Parent.Default
+                        DisplayMode: =Parent.DisplayMode
+                        EndYear: =Year(Today())+100
+                        IsEditable: =true
+                        StartYear: =1899
+                        Tooltip: =Parent.DisplayName
+                        Width: =(Parent.Width - 60) / 2
+                        X: =30
+                        Y: =DataCardKey2.Y + DataCardKey2.Height + 5
+                  - HourValue1:
+                      Control: Classic/DropDown@2.3.1
+                      MetadataKey: HourFieldValue
+                      Properties:
+                        Default: =Text(Hour(Parent.Default),"00")
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =DateValue1.Height
+                        Items: =["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"]
+                        Items.Value: =Value
+                        Tooltip: =Parent.DisplayName
+                        Width: =DateValue1.Width / 2 - 10
+                        X: =DateValue1.X + DateValue1.Width + 10
+                        Y: =DateValue1.Y
+                  - Separator3:
+                      Control: Label@2.5.1
+                      MetadataKey: HourMinuteSeparator
+                      Properties:
+                        Align: =Align.Center
+                        Text: =":"
+                        Width: =10
+                        Wrap: =false
+                        X: =HourValue1.X + HourValue1.Width
+                        Y: =HourValue1.Y
+                  - MinuteValue1:
+                      Control: Classic/DropDown@2.3.1
+                      MetadataKey: MinuteFieldValue
+                      Properties:
+                        Default: =Text(Minute(Parent.Default),"00")
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =HourValue1.Height
+                        Items.Value: =Value
+                        Tooltip: =Parent.DisplayName
+                        Width: =HourValue1.Width
+                        X: =HourValue1.X + HourValue1.Width + Separator3.Width
+                        Y: =HourValue1.Y
+                  - ErrorMessage2:
+                      Control: Label@2.5.1
+                      MetadataKey: ErrorMessage
+                      Properties:
+                        AutoHeight: =true
+                        Live: =Live.Assertive
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =HourValue1.Y + HourValue1.Height
+                  - StarVisible2:
+                      Control: Label@2.5.1
+                      MetadataKey: FieldRequired
+                      Properties:
+                        Align: =Align.Center
+                        Height: =DataCardKey2.Height
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =DataCardKey2.Y
+            - Beskrivning_DataCard1:
+                Control: TypedDataCard@1.0.7
+                Variant: ModernTextualMultilineEdit
+                IsLocked: true
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="description"
+                  Default: =ThisItem.Beskrivning
+                  DisplayName: =DataSourceInfo([@Aktiviteter],DataSourceInfo.DisplayName,'description')
+                  MaxLength: =DataSourceInfo([@Aktiviteter], DataSourceInfo.MaxLength, 'description')
+                  Required: =false
+                  Update: =DataCardValue2.Text
+                  Width: =266
+                  X: =0
+                  Y: =1
+                # Children trimmed (ModernText FieldName/ErrorMessage/FieldRequired +
+                # ModernTextInput FieldValue with Type: =TextInputType.Multiline).
+            - Prioritet_DataCard1:
+                Control: TypedDataCard@1.0.7
+                Variant: ModernComboBoxOptionSetSingleEdit
+                IsLocked: true
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="prioritycode"
+                  Default: =ThisItem.Prioritet
+                  DisplayName: =DataSourceInfo([@Aktiviteter],DataSourceInfo.DisplayName,'prioritycode')
+                  Required: =false
+                  Update: =DataCardValue3.Selected.Value
+                  Width: =266
+                  X: =1
+                  Y: =1
+                # Children trimmed (ModernText FieldName/ErrorMessage/FieldRequired +
+                # ModernCombobox FieldValue with Items: =Choices(...)).
+            - Schemalagd varaktighet_DataCard1:
+                Control: TypedDataCard@1.0.7
+                Variant: ModernNumberEdit
+                IsLocked: true
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="scheduleddurationminutes"
+                  Default: =ThisItem.'Schemalagd varaktighet'
+                  DisplayName: =DataSourceInfo([@Aktiviteter],DataSourceInfo.DisplayName,'scheduleddurationminutes')
+                  Max: =DataSourceInfo([@Aktiviteter], DataSourceInfo.MaxValue, 'scheduleddurationminutes')
+                  Min: =DataSourceInfo([@Aktiviteter], DataSourceInfo.MinValue, 'scheduleddurationminutes')
+                  Required: =false
+                  Update: =DataCardValue4.Value
+                  Width: =266
+                  X: =2
+                  Y: =1
+                # Children trimmed (ModernText FieldName/ErrorMessage/FieldRequired +
+                # ModernNumberInput FieldValue with Max/Min from Parent).
+            - Återkommande instanstyp_DataCard1:
+                Control: TypedDataCard@1.0.7
+                Variant: ModernComboBoxOptionSetSingleView
+                IsLocked: true
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="instancetypecode"
+                  Default: =ThisItem.'Återkommande instanstyp'
+                  DisplayName: =DataSourceInfo([@Aktiviteter],DataSourceInfo.DisplayName,'instancetypecode')
+                  Width: =266
+                  X: =0
+                  Y: =3
+                # Children trimmed (ModernText FieldName + ModernCombobox FieldValue
+                # pinned to DisplayMode.View). Note: View-variant card carries no
+                # Required/Update — a lower-bound observation, not a completeness claim.
+# ── Classic-form capture (same session, same scratch app, same Activities
+# entity; Form4 Variant: Classic). TRIMMED to variant-bearing card headers +
+# one full card as shape evidence; children of the rest trimmed and marked.
+# Variants evidenced: ClassicTextualEdit, ClassicTextualMultilineEdit,
+# ClassicNumberEdit, ClassicComboBoxOptionSetSingleEdit,
+# ClassicComboBoxOptionSetSingleView (+ ClassicDateTimeEdit re-observed).
+# NOTE: even the CLASSIC form emits prefixed variant names in current Studio —
+# the unprefixed generation observed in older real apps is not reproducible
+# from any fresh export.
+      - Form4:
+          Control: Form@2.4.4
+          Variant: Classic
+          Layout: Vertical
+          Properties:
+            BorderColor: =RGBA(245, 245, 245, 1)
+            DataSource: =Aktiviteter
+            X: =566
+            Y: =268
+          Children:
+            - Ämne_DataCard2:
+                Control: TypedDataCard@1.0.7
+                Variant: ClassicTextualEdit
+                IsLocked: true
+                Properties:
+                  BorderColor: =RGBA(245, 245, 245, 1)
+                  DataField: ="subject"
+                  Default: =ThisItem.Ämne
+                  DisplayName: =DataSourceInfo([@Aktiviteter],DataSourceInfo.DisplayName,'subject')
+                  MaxLength: =DataSourceInfo([@Aktiviteter], DataSourceInfo.MaxLength, 'subject')
+                  Required: =true
+                  Update: =DataCardValue8.Text
+                  Width: =266
+                  X: =0
+                  Y: =0
+                Children:
+                  - DataCardKey12:
+                      Control: Label@2.5.1
+                      MetadataKey: FieldName
+                      Properties:
+                        AutoHeight: =true
+                        FontWeight: =FontWeight.Semibold
+                        Height: =34
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                  - DataCardValue8:
+                      Control: Classic/TextInput@2.3.2
+                      MetadataKey: FieldValue
+                      Properties:
+                        Default: =Parent.Default
+                        DelayOutput: =true
+                        DisplayMode: =Parent.DisplayMode
+                        MaxLength: =Parent.MaxLength
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardKey12.Y + DataCardKey12.Height + 5
+                  # ErrorMessage/FieldRequired children trimmed (Label@2.5.1,
+                  # MetadataKey: ErrorMessage / FieldRequired — same shape as
+                  # the modern capture above).
+            - Beskrivning_DataCard2:
+                Control: TypedDataCard@1.0.7
+                Variant: ClassicTextualMultilineEdit
+                IsLocked: true
+                Properties:
+                  DataField: ="description"
+                  Default: =ThisItem.Beskrivning
+                  Update: =DataCardValue9.Text
+                # Children trimmed (Classic/TextInput FieldValue with
+                # Mode: =TextMode.MultiLine).
+            - Schemalagd varaktighet_DataCard2:
+                Control: TypedDataCard@1.0.7
+                Variant: ClassicNumberEdit
+                IsLocked: true
+                Properties:
+                  DataField: ="scheduleddurationminutes"
+                  Update: =Value(DataCardValue11.Text)
+                # Children trimmed (Classic/TextInput FieldValue with
+                # Format: =TextFormat.Number).
+            - Prioritet_DataCard2:
+                Control: TypedDataCard@1.0.7
+                Variant: ClassicComboBoxOptionSetSingleEdit
+                IsLocked: true
+                Properties:
+                  DataField: ="prioritycode"
+                  Update: =DataCardValue10.Selected.Value
+                # Children trimmed (Classic/ComboBox FieldValue with
+                # Items: =Choices('Prioritet (Aktiviteter)')).
+            - Återkommande instanstyp_DataCard2:
+                Control: TypedDataCard@1.0.7
+                Variant: ClassicComboBoxOptionSetSingleView
+                IsLocked: true
+                Properties:
+                  DataField: ="instancetypecode"
+                # Children trimmed (Classic/ComboBox FieldValue; View-mode card).

@@ -1,0 +1,8 @@
+Screens:
+  PerformanceReferenceCoverage:
+    Children:
+      - lblCrossScreenReferenceCoverage:
+          Control: Label
+          Properties:
+            Text: =lblCrossScreenSourceCoverage.Text
+            Wrap: =false

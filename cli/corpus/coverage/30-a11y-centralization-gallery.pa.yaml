@@ -1,0 +1,58 @@
+App:
+  OnStart: |-
+    =Set(covA, 1); Set(covB, 2); Set(covC, 3); Set(covD, 4); Set(covE, 5)
+Screens:
+  A11yCentralCoverage:
+    Children:
+      - imgPositiveCoverage:
+          Control: Image@2.2.3
+          Properties:
+            OnSelect: =Set(covOpen, true)
+            TabIndex: =2
+            Fill: =RGBA(12,34,56,1)
+      - lblMouseOnlyCoverage:
+          Control: Label
+          Properties:
+            Text: =If(covMode = 1, "A", "B")
+            Wrap: =false
+            OnSelect: =Set(covOpen, true)
+            TabIndex: =-1
+            Fill: =RGBA(12,34,56,1)
+      - txtMissingLabelCoverage:
+          Control: TextInput
+          Properties:
+            AccessibleLabel:
+            Fill: =RGBA(12,34,56,1)
+      - lblDuplicateGeneralTwo:
+          Control: Label
+          Properties:
+            Text: =If(covMode = 1, "A", "B")
+            Wrap: =false
+            Fill: =RGBA(12,34,56,1)
+      - lblDuplicateGeneralThree:
+          Control: Label
+          Properties:
+            Text: =If(covMode = 1, "A", "B")
+            Wrap: =false
+            Fill: =RGBA(12,34,56,1)
+      - galNestedCoverage:
+          Control: Gallery
+          Properties:
+            AccessibleLabel: ="Coverage gallery"
+          Children:
+            - grpNestedCoverageOne:
+                Control: GroupContainer
+                Children:
+                  - grpNestedCoverageTwo:
+                      Control: GroupContainer
+                      Children:
+                        - lblGalleryCoverageOne:
+                            Control: Label
+                            Properties:
+                              Text: =If(ThisItem.CoverageStatus = "Open", "Open", "Closed")
+                              Wrap: =false
+                        - lblGalleryCoverageTwo:
+                            Control: Label
+                            Properties:
+                              Text: =If(ThisItem.CoverageStatus = "Open", "Open", "Closed")
+                              Wrap: =false

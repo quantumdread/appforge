@@ -1,0 +1,9 @@
+Screens:
+  PrefixedDatasourceCoverage:
+    Children:
+      - galPrefixedOrders:
+          Control: Gallery
+          Properties:
+            AccessibleLabel: ="Prefixed datasource coverage"
+            Items: =Search(colCoverageOrders, txtPrefixedSearch.Text, Title)
+            Default: =ForAll(colCoverageOrders, Patch(colCoverageOrders, ThisRecord))

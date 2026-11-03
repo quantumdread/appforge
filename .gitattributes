@@ -1,0 +1,12 @@
+# Committed build bundles: collapsed in diffs and excluded from language statistics.
+cli/dist/** linguist-generated=true
+server/dist-local/** linguist-generated=true
+
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.ico binary
+*.zip binary
+
+# Extractor captures keep their original bytes (CRLF included); tests depend on it
+server/test/fixtures/extractor/** -text

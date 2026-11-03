@@ -1,0 +1,11 @@
+Screens:
+  OutputReferenceHome:
+    Children:
+      - OutputReferenceInput:
+          Control: TextInput
+          Properties:
+            Value: ="Example"
+      - OutputReferenceReader:
+          Control: Label
+          Properties:
+            Text: =OutputReferenceInput.Text

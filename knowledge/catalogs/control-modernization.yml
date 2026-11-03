@@ -1,0 +1,3879 @@
+# Classic/FluentV9-to-Modern* (React) modernization drafts; all pairs remain unverified.
+# Grammar: same OR to (+ optional values/scale) OR manual + targets OR drop + impact.
+# to + transform: display-field (one literal column) or placeholder (authored target wins).
+# text-input-mode: mapped Multiline -> Type; SingleLine drops; unless_present guards conflicts.
+# value-record: literal single-column Items only; wrap text Default as a record block scalar.
+# values may supply fallback_manual to classify unmatched formulas for review.
+# transform requires fallback_manual; unsafe shapes remain precise review items.
+# to: [A, B] splits the same formula to absent targets; authored corner overrides win.
+# Pair add: block list of { property, value, basis, when? }; write only when absent.
+# Pair open_items: block list of { property, reason, basis, when? }; report without guessing values.
+# Optional when: single-column-items recognizes literal lists or Table records with only Value.
+# Drop restore_default: true permits omission of a compatible target property to use its default.
+# Drop unless_present: property list (block or [A,B]) + fallback_manual reason.
+# Pair never_convert_when: ordered block list of { property, condition, reason, basis }.
+# Conditions: present means authored, empty means absent/empty/="". First match always skips.
+# field-report-2026-10-08#n records the modernizer field findings for this job.
+# Every non-same entry requires basis. Catalog surfaces include augmentations.
+# Evidence: inferred; catalog-name-match with explanation; field-report-2026-10-05#n
+# and -followup#n only for applicable facts; studio-update-2026-10-06 for report §2;
+# version-knowledge-<Type>@<version> for the catalog migration observations.
+# Studio Update evidence concerns FluentV9 -> React, not classic -> React semantics.
+# Gallery/Form/shapes/containers have no scoped modern counterpart.
+schema_version: 1
+last_reviewed: 2026-10-09
+deferred:
+  - source: DataTable
+    reason: "Migration to Table requires structural changes."
+  - source: Classic/StreamVideo
+    reason: "No scoped counterpart."
+  - source: Rating
+    reason: "No scoped counterpart."
+  - source: ListBox
+    reason: "No scoped counterpart."
+modernization:
+  Label:
+    target: ModernText
+    add:
+      - property: PaddingTop
+        value: "=0"
+        basis: field-report-2026-10-08#2
+      - property: PaddingBottom
+        value: "=0"
+        basis: field-report-2026-10-08#2
+      - property: VerticalAlign
+        value: "=VerticalAlign.Middle"
+        basis: field-report-2026-10-08#4 # Classic Label default is not recorded in the catalog.
+    behaviour:
+      - "Draft classic-to-Modern* conversion; catalog surface checks do not prove formula or runtime equivalence."
+      - "Do not generate FluentV9 bare types or rely on Studio Update; the 2026-10-06 generation report records lossy updates."
+      - "The 2026-10-05 report distinguishes React ModernText Color/FontWeight/Size from FluentV9 Text. Its 4/3 Size factor and AutoHeight thresholds concern Text only and are not applied here."
+      - "Studio Update on 2026-10-06 changed Text FontColor/Weight/Align to ModernText Color/FontWeight/Align and restored OnSelect; it dropped Size and VerticalAlign. These observations do not prove a classic conversion."
+    properties:
+      Align: same
+      AutoHeight: same
+      BorderColor: same
+      BorderStyle: same
+      BorderThickness: same
+      Color: same
+      ContentLanguage: same
+      DisabledBorderColor:
+        drop: "ModernText has no DisabledBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisabledColor:
+        drop: "ModernText has no DisabledColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisabledFill:
+        drop: "ModernText has no DisabledFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisplayMode: same
+      Fill: same
+      FocusedBorderColor:
+        drop: "ModernText has no FocusedBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      FocusedBorderThickness:
+        drop: "ModernText has no FocusedBorderThickness input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Font: same
+      FontWeight: same
+      Height: same
+      HoverBorderColor:
+        drop: "ModernText has no HoverBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      HoverColor:
+        drop: "ModernText has no HoverColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      HoverFill:
+        drop: "ModernText has no HoverFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Italic: same
+      LineHeight:
+        drop: "ModernText has no line-height multiplier; wrapping, total height and clipping may differ."
+        impact: behaviour
+        basis: inferred
+      Live:
+        drop: "ModernText has no live-region announcement setting."
+        impact: behaviour
+        basis: inferred
+      OnSelect: same
+      Overflow:
+        drop: "ModernText has no Overflow.Scroll mode; review scrolling, wrapping, AutoHeight, Height and container layout."
+        impact: behaviour
+        basis: inferred
+      PaddingBottom: same
+      PaddingLeft: same
+      PaddingRight: same
+      PaddingTop: same
+      PressedBorderColor:
+        drop: "ModernText has no PressedBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      PressedColor:
+        drop: "ModernText has no PressedColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      PressedFill:
+        drop: "ModernText has no PressedFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Role:
+        drop: "ModernText has no semantic Role override; review heading and screen-reader semantics."
+        impact: behaviour
+        basis: inferred
+      Size:
+        to: Size
+        scale: "4/3"
+        basis: scratch-compile-2026-10-07
+      Strikethrough: same
+      TabIndex:
+        drop: "ModernText has no keyboard order override; plain labels do not need a focus stop."
+        impact: cosmetic
+        unless_present: [OnSelect]
+        fallback_manual: "ModernText has no keyboard order override; review focus traversal for this selectable label."
+        basis: field-report-2026-10-08#8
+      Text: same
+      Tooltip:
+        drop: "ModernText has no hover help text; provide an accessible alternative."
+        impact: cosmetic
+        basis: field-report-2026-10-08#9
+      Underline: same
+      VerticalAlign: same
+      Visible: same
+      Width: same
+      Wrap: same
+      X: same
+      Y: same
+    references:
+      Align: Align
+      AutoHeight: AutoHeight
+      BorderColor: BorderColor
+      BorderStyle: BorderStyle
+      BorderThickness: BorderThickness
+      Color: Color
+      ContentLanguage: ContentLanguage
+      DisabledBorderColor: ~ # No safe member-only counterpart; manual review.
+      DisabledColor: ~ # No safe member-only counterpart; manual review.
+      DisabledFill: ~ # No safe member-only counterpart; manual review.
+      DisplayMode: DisplayMode
+      Fill: Fill
+      FocusedBorderColor: ~ # No safe member-only counterpart; manual review.
+      FocusedBorderThickness: ~ # No safe member-only counterpart; manual review.
+      Font: Font
+      FontWeight: FontWeight
+      Height: Height
+      HoverBorderColor: ~ # No safe member-only counterpart; manual review.
+      HoverColor: ~ # No safe member-only counterpart; manual review.
+      HoverFill: ~ # No safe member-only counterpart; manual review.
+      Italic: Italic
+      LineHeight: ~ # No safe member-only counterpart; manual review.
+      Live: ~ # No safe member-only counterpart; manual review.
+      OnSelect: OnSelect
+      Overflow: ~ # No safe member-only counterpart; manual review.
+      PaddingBottom: PaddingBottom
+      PaddingLeft: PaddingLeft
+      PaddingRight: PaddingRight
+      PaddingTop: PaddingTop
+      PressedBorderColor: ~ # No safe member-only counterpart; manual review.
+      PressedColor: ~ # No safe member-only counterpart; manual review.
+      PressedFill: ~ # No safe member-only counterpart; manual review.
+      Role: ~ # No safe member-only counterpart; manual review.
+      Size: Size
+      Strikethrough: Strikethrough
+      TabIndex: ~ # No safe member-only counterpart; manual review.
+      Text: Text
+      Tooltip: ~ # No safe member-only counterpart; manual review.
+      Underline: Underline
+      VerticalAlign: VerticalAlign
+      Visible: Visible
+      Width: Width
+      Wrap: Wrap
+      X: X
+      Y: Y
+    verified: false
+  Classic/TextInput:
+    target: ModernTextInput
+    behaviour:
+      - "Draft classic-to-Modern* conversion; catalog surface checks do not prove formula or runtime equivalence."
+      - "Do not generate FluentV9 bare types or rely on Studio Update; the 2026-10-06 generation report records lossy updates."
+      - "version_knowledge TextInput@0.0.54 -> ModernTextInput records Value -> Default; the classic Default input and Text output already match ModernTextInput. No Text -> Value reference rewrite applies."
+      - "Mode maps to TextInputType, including Password; Format.Number has no numeric Type. Review Type/Mode/Format together."
+    properties:
+      AccessibleLabel: same
+      Align: same
+      BorderColor: same
+      BorderStyle: same
+      BorderThickness: same
+      Clear:
+        drop: "ModernTextInput has no built-in clear-affordance switch."
+        impact: behaviour
+        basis: inferred
+      Color: same
+      ContentLanguage: same
+      Default: same
+      DelayOutput:
+        manual: "Choose TriggerOutput Keypress, FocusOut or Delayed to preserve the intended update timing; reconcile DelayOutput with any existing TriggerOutput and show the owner the timing difference."
+        targets:
+          - TriggerOutput
+        basis: inferred
+      DisabledBorderColor:
+        drop: "ModernTextInput has no DisabledBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisabledColor:
+        drop: "ModernTextInput has no DisabledColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisabledFill:
+        drop: "ModernTextInput has no DisabledFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisplayMode: same
+      EnableSpellCheck:
+        drop: "ModernTextInput has no spell-check override."
+        impact: behaviour
+        basis: inferred
+      Fill: same
+      FocusedBorderColor:
+        drop: "ModernTextInput has no FocusedBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      FocusedBorderThickness:
+        drop: "ModernTextInput has no FocusedBorderThickness input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Font: same
+      FontWeight: same
+      Format:
+        manual: "TextFormat.Text can use Type SingleLine, Multiline or Password according to Mode; TextFormat.Number has no numeric Type. Review Format and Mode together; retain Classic/TextInput if a numeric keypad is required."
+        targets:
+          - Type
+        basis: inferred
+      Height: same
+      HintText:
+        to: Placeholder
+        basis: catalog-name-match # Text prompts on both catalogs; HintText and Placeholder are Text.
+      HoverBorderColor:
+        drop: "ModernTextInput has no HoverBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      HoverColor:
+        drop: "ModernTextInput has no HoverColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      HoverFill:
+        drop: "ModernTextInput has no HoverFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Italic: same
+      LineHeight:
+        drop: "ModernTextInput has no line-height multiplier; wrapping, total height and clipping may differ."
+        impact: behaviour
+        basis: inferred
+      MaxLength: same
+      Mode:
+        to: Type
+        values:
+          "TextMode.MultiLine": "TextInputType.Multiline"
+          "TextMode.SingleLine": "TextInputType.SingleLine"
+          "TextMode.Password": "TextInputType.Password"
+        basis: catalog-name-match # TextMode and TextInputType list these corresponding named modes; verify computed formulas separately.
+      OnChange: same
+      OnSelect:
+        drop: "ModernTextInput has no click/tap handler; move the action to an explicit supported event or control."
+        impact: behaviour
+        basis: inferred
+      PaddingBottom: same
+      PaddingLeft: same
+      PaddingRight: same
+      PaddingTop: same
+      PressedBorderColor:
+        drop: "ModernTextInput has no PressedBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      PressedColor:
+        drop: "ModernTextInput has no PressedColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      PressedFill:
+        drop: "ModernTextInput has no PressedFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      RadiusBottomLeft: same
+      RadiusBottomRight: same
+      RadiusTopLeft: same
+      RadiusTopRight: same
+      Reset:
+        drop: "ModernTextInput has no Boolean Reset input; formula-driven reset triggers would be lost."
+        impact: behaviour
+        basis: inferred
+      Size:
+        to: Size
+        scale: "4/3"
+        basis: inferred
+      Strikethrough: same
+      TabIndex:
+        drop: "ModernTextInput has no keyboard order override; review focus traversal."
+        impact: behaviour
+        basis: inferred
+      Tooltip:
+        drop: "ModernTextInput has no hover help text; provide an accessible alternative."
+        impact: behaviour
+        basis: inferred
+      Underline: same
+      VirtualKeyboardMode:
+        drop: "ModernTextInput has no virtual-keyboard mode override."
+        impact: behaviour
+        basis: inferred
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AccessibleLabel: AccessibleLabel
+      Align: Align
+      BorderColor: BorderColor
+      BorderStyle: BorderStyle
+      BorderThickness: BorderThickness
+      Clear: ~ # No safe member-only counterpart; manual review.
+      Color: Color
+      ContentLanguage: ContentLanguage
+      Default: Default
+      DelayOutput: ~ # No safe member-only counterpart; manual review.
+      DisabledBorderColor: ~ # No safe member-only counterpart; manual review.
+      DisabledColor: ~ # No safe member-only counterpart; manual review.
+      DisabledFill: ~ # No safe member-only counterpart; manual review.
+      DisplayMode: DisplayMode
+      EnableSpellCheck: ~ # No safe member-only counterpart; manual review.
+      Fill: Fill
+      FocusedBorderColor: ~ # No safe member-only counterpart; manual review.
+      FocusedBorderThickness: ~ # No safe member-only counterpart; manual review.
+      Font: Font
+      FontWeight: FontWeight
+      Format: ~ # No safe member-only counterpart; manual review.
+      Height: Height
+      HintText: Placeholder
+      HoverBorderColor: ~ # No safe member-only counterpart; manual review.
+      HoverColor: ~ # No safe member-only counterpart; manual review.
+      HoverFill: ~ # No safe member-only counterpart; manual review.
+      Italic: Italic
+      LineHeight: ~ # No safe member-only counterpart; manual review.
+      MaxLength: MaxLength
+      Mode: ~ # No safe member-only counterpart; manual review.
+      OnChange: OnChange
+      OnSelect: ~ # No safe member-only counterpart; manual review.
+      PaddingBottom: PaddingBottom
+      PaddingLeft: PaddingLeft
+      PaddingRight: PaddingRight
+      PaddingTop: PaddingTop
+      PressedBorderColor: ~ # No safe member-only counterpart; manual review.
+      PressedColor: ~ # No safe member-only counterpart; manual review.
+      PressedFill: ~ # No safe member-only counterpart; manual review.
+      RadiusBottomLeft: RadiusBottomLeft
+      RadiusBottomRight: RadiusBottomRight
+      RadiusTopLeft: RadiusTopLeft
+      RadiusTopRight: RadiusTopRight
+      Reset: ~ # No safe member-only counterpart; manual review.
+      Size: Size
+      Strikethrough: Strikethrough
+      TabIndex: ~ # No safe member-only counterpart; manual review.
+      Tooltip: ~ # No safe member-only counterpart; manual review.
+      Underline: Underline
+      VirtualKeyboardMode: ~ # No safe member-only counterpart; manual review.
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+      Text: Text
+    verified: false
+  Classic/Button:
+    target: ModernButton
+    never_convert_when:
+      - property: Text
+        condition: empty
+        reason: "Tap overlay: use the parent gallery or container OnSelect instead of a button."
+        basis: field-report-2026-10-08#11
+      - property: Fill
+        condition: present
+        reason: "ModernButton has no Fill; Fluent derives its own shades, so custom fills and pills render differently. Keep Classic/Button."
+        basis: field-report-2026-10-08#11
+    behaviour:
+      - "Draft classic-to-Modern* conversion; catalog surface checks do not prove formula or runtime equivalence."
+      - "Do not generate FluentV9 bare types or rely on Studio Update; the 2026-10-06 generation report records lossy updates."
+      - "version_knowledge Button@0.0.45 -> ModernButton records FontSize -> Size and BorderRadius -> Radius*; classic Size and Radius* already match the React inputs, so no FluentV9 rename or radius collapse is applied."
+    properties:
+      Align: same
+      AutoDisableOnSelect:
+        drop: "ModernButton has no automatic disable-on-select protection; repeated activation protection is lost."
+        impact: behaviour
+        basis: inferred
+      BorderColor: same
+      BorderStyle: same
+      BorderThickness: same
+      Color: same
+      ContentLanguage: same
+      DisabledBorderColor:
+        drop: "ModernButton has no DisabledBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisabledColor:
+        drop: "ModernButton has no DisabledColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisabledFill:
+        drop: "ModernButton has no DisabledFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisplayMode: same
+      Fill:
+        drop: "Authored Fill is protected by never_convert_when; retain Classic/Button."
+        impact: cosmetic
+        basis: field-report-2026-10-08#11
+      FocusedBorderColor:
+        drop: "ModernButton has no FocusedBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      FocusedBorderThickness:
+        drop: "ModernButton has no FocusedBorderThickness input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Font: same
+      FontWeight: same
+      Height: same
+      HoverBorderColor:
+        drop: "ModernButton has no HoverBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      HoverColor:
+        drop: "ModernButton has no HoverColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      HoverFill:
+        drop: "ModernButton has no HoverFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Italic: same
+      OnSelect: same
+      PaddingBottom: same
+      PaddingLeft: same
+      PaddingRight: same
+      PaddingTop: same
+      PressedBorderColor:
+        drop: "ModernButton has no PressedBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      PressedColor:
+        drop: "ModernButton has no PressedColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      PressedFill:
+        drop: "ModernButton has no PressedFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      RadiusBottomLeft: same
+      RadiusBottomRight: same
+      RadiusTopLeft: same
+      RadiusTopRight: same
+      Size:
+        to: Size
+        scale: "4/3"
+        basis: inferred
+      Strikethrough: same
+      TabIndex:
+        drop: "Modern control has no keyboard order override; review focus traversal for selectable icons and buttons."
+        impact: behaviour
+        basis: field-report-2026-10-08#9
+      Text: same
+      Tooltip: same
+      Underline: same
+      VerticalAlign: same
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      Align: Align
+      AutoDisableOnSelect: ~ # No safe member-only counterpart; manual review.
+      BorderColor: BorderColor
+      BorderStyle: BorderStyle
+      BorderThickness: BorderThickness
+      Color: Color
+      ContentLanguage: ContentLanguage
+      DisabledBorderColor: ~ # No safe member-only counterpart; manual review.
+      DisabledColor: ~ # No safe member-only counterpart; manual review.
+      DisabledFill: ~ # No safe member-only counterpart; manual review.
+      DisplayMode: DisplayMode
+      Fill: ~ # No safe member-only counterpart; manual review.
+      FocusedBorderColor: ~ # No safe member-only counterpart; manual review.
+      FocusedBorderThickness: ~ # No safe member-only counterpart; manual review.
+      Font: Font
+      FontWeight: FontWeight
+      Height: Height
+      HoverBorderColor: ~ # No safe member-only counterpart; manual review.
+      HoverColor: ~ # No safe member-only counterpart; manual review.
+      HoverFill: ~ # No safe member-only counterpart; manual review.
+      Italic: Italic
+      OnSelect: OnSelect
+      PaddingBottom: PaddingBottom
+      PaddingLeft: PaddingLeft
+      PaddingRight: PaddingRight
+      PaddingTop: PaddingTop
+      PressedBorderColor: ~ # No safe member-only counterpart; manual review.
+      PressedColor: ~ # No safe member-only counterpart; manual review.
+      PressedFill: ~ # No safe member-only counterpart; manual review.
+      RadiusBottomLeft: RadiusBottomLeft
+      RadiusBottomRight: RadiusBottomRight
+      RadiusTopLeft: RadiusTopLeft
+      RadiusTopRight: RadiusTopRight
+      Size: Size
+      Strikethrough: Strikethrough
+      TabIndex: ~ # No safe member-only counterpart; manual review.
+      Text: Text
+      Tooltip: Tooltip
+      Underline: Underline
+      VerticalAlign: VerticalAlign
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+      Pressed: ~ # No safe member-only counterpart; manual review.
+    verified: false
+  Classic/CheckBox:
+    target: ModernCheckbox
+    behaviour:
+      - "Draft classic-to-Modern* conversion; catalog surface checks do not prove formula or runtime equivalence."
+      - "Do not generate FluentV9 bare types or rely on Studio Update; the 2026-10-06 generation report records lossy updates."
+    properties:
+      BorderColor:
+        drop: "ModernCheckbox has no BorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      BorderStyle:
+        drop: "ModernCheckbox has no BorderStyle input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      BorderThickness:
+        drop: "ModernCheckbox has no BorderThickness input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      CheckboxBackgroundFill:
+        drop: "ModernCheckbox has no CheckboxBackgroundFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      CheckboxBorderColor:
+        drop: "ModernCheckbox has no CheckboxBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      CheckboxSize: same
+      CheckmarkFill:
+        drop: "ModernCheckbox has no CheckmarkFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Color: same
+      ContentLanguage: same
+      Default: same
+      DisabledBorderColor:
+        drop: "ModernCheckbox has no DisabledBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisabledColor:
+        drop: "ModernCheckbox has no DisabledColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisabledFill:
+        drop: "ModernCheckbox has no DisabledFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisplayMode: same
+      Fill:
+        drop: "ModernCheckbox has no Fill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      FocusedBorderColor:
+        drop: "ModernCheckbox has no FocusedBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      FocusedBorderThickness:
+        drop: "ModernCheckbox has no FocusedBorderThickness input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Font: same
+      FontWeight: same
+      Height: same
+      HoverBorderColor:
+        drop: "ModernCheckbox has no HoverBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      HoverColor:
+        drop: "ModernCheckbox has no HoverColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      HoverFill:
+        drop: "ModernCheckbox has no HoverFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Italic: same
+      OnCheck: same
+      OnSelect:
+        drop: "ModernCheckbox has no click/tap handler; move the action to an explicit supported event or control."
+        impact: behaviour
+        basis: inferred
+      OnUncheck: same
+      PaddingBottom:
+        drop: "ModernCheckbox has no PaddingBottom input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      PaddingLeft:
+        drop: "ModernCheckbox has no PaddingLeft input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      PaddingRight:
+        drop: "ModernCheckbox has no PaddingRight input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      PaddingTop:
+        drop: "ModernCheckbox has no PaddingTop input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      PressedBorderColor:
+        drop: "ModernCheckbox has no PressedBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      PressedColor:
+        drop: "ModernCheckbox has no PressedColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      PressedFill:
+        drop: "ModernCheckbox has no PressedFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Reset:
+        drop: "ModernCheckbox has no Boolean Reset input; formula-driven reset triggers would be lost."
+        impact: behaviour
+        basis: inferred
+      Size:
+        to: Size
+        scale: "4/3"
+        basis: inferred
+      Strikethrough: same
+      TabIndex:
+        drop: "ModernCheckbox has no keyboard order override; review focus traversal."
+        impact: behaviour
+        basis: inferred
+      Text:
+        to: Label
+        basis: catalog-name-match # Text and Label are both Text; named checkbox caption counterpart.
+      Tooltip: same
+      Underline: same
+      VerticalAlign:
+        drop: "ModernCheckbox has no VerticalAlign input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      BorderColor: ~ # No safe member-only counterpart; manual review.
+      BorderStyle: ~ # No safe member-only counterpart; manual review.
+      BorderThickness: ~ # No safe member-only counterpart; manual review.
+      CheckboxBackgroundFill: ~ # No safe member-only counterpart; manual review.
+      CheckboxBorderColor: ~ # No safe member-only counterpart; manual review.
+      CheckboxSize: CheckboxSize
+      CheckmarkFill: ~ # No safe member-only counterpart; manual review.
+      Color: Color
+      ContentLanguage: ContentLanguage
+      Default: Default
+      DisabledBorderColor: ~ # No safe member-only counterpart; manual review.
+      DisabledColor: ~ # No safe member-only counterpart; manual review.
+      DisabledFill: ~ # No safe member-only counterpart; manual review.
+      DisplayMode: DisplayMode
+      Fill: ~ # No safe member-only counterpart; manual review.
+      FocusedBorderColor: ~ # No safe member-only counterpart; manual review.
+      FocusedBorderThickness: ~ # No safe member-only counterpart; manual review.
+      Font: Font
+      FontWeight: FontWeight
+      Height: Height
+      HoverBorderColor: ~ # No safe member-only counterpart; manual review.
+      HoverColor: ~ # No safe member-only counterpart; manual review.
+      HoverFill: ~ # No safe member-only counterpart; manual review.
+      Italic: Italic
+      OnCheck: OnCheck
+      OnSelect: ~ # No safe member-only counterpart; manual review.
+      OnUncheck: OnUncheck
+      PaddingBottom: ~ # No safe member-only counterpart; manual review.
+      PaddingLeft: ~ # No safe member-only counterpart; manual review.
+      PaddingRight: ~ # No safe member-only counterpart; manual review.
+      PaddingTop: ~ # No safe member-only counterpart; manual review.
+      PressedBorderColor: ~ # No safe member-only counterpart; manual review.
+      PressedColor: ~ # No safe member-only counterpart; manual review.
+      PressedFill: ~ # No safe member-only counterpart; manual review.
+      Reset: ~ # No safe member-only counterpart; manual review.
+      Size: Size
+      Strikethrough: Strikethrough
+      TabIndex: ~ # No safe member-only counterpart; manual review.
+      Text: Label
+      Tooltip: Tooltip
+      Underline: Underline
+      VerticalAlign: ~ # No safe member-only counterpart; manual review.
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+      Value: Checked
+    verified: false
+  Classic/ComboBox:
+    target: ModernCombobox
+    behaviour:
+      - "Draft classic-to-Modern* conversion; catalog surface checks do not prove formula or runtime equivalence."
+      - "Do not generate FluentV9 bare types or rely on Studio Update; the 2026-10-06 generation report records lossy updates."
+    properties:
+      AccessibleLabel: same
+      BorderColor: same
+      BorderStyle: same
+      BorderThickness: same
+      ChevronBackground:
+        drop: "ModernCombobox has no ChevronBackground input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      ChevronDisabledBackground:
+        drop: "ModernCombobox has no ChevronDisabledBackground input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      ChevronDisabledFill:
+        drop: "ModernCombobox has no ChevronDisabledFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      ChevronFill:
+        drop: "ModernCombobox has no ChevronFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      ChevronHoverBackground:
+        drop: "ModernCombobox has no ChevronHoverBackground input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      ChevronHoverFill:
+        drop: "ModernCombobox has no ChevronHoverFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Color: same
+      ContentLanguage: same
+      Default:
+        manual: "Wrap the Default record as a one-row table; reconcile with any existing DefaultSelectedItems."
+        targets:
+          - DefaultSelectedItems
+        basis: inferred
+      DefaultSelectedItems: same
+      DisabledBorderColor:
+        drop: "ModernCombobox has no DisabledBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisabledColor:
+        drop: "ModernCombobox has no DisabledColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisabledFill:
+        drop: "ModernCombobox has no DisabledFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisplayFields:
+        to: ItemDisplayText
+        transform: display-field
+        fallback_manual: "DisplayFields requires a one-element literal text list; choose an ItemDisplayText formula for multiple fields or computed lists."
+        basis: field-report-2026-10-08#9
+      DisplayMode: same
+      Fill: same
+      FocusedBorderColor:
+        drop: "ModernCombobox has no FocusedBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      FocusedBorderThickness:
+        drop: "ModernCombobox has no FocusedBorderThickness input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Font: same
+      FontWeight: same
+      Height: same
+      HoverBorderColor:
+        drop: "ModernCombobox has no HoverBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      HoverColor:
+        drop: "ModernCombobox has no HoverColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      HoverFill:
+        drop: "ModernCombobox has no HoverFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      InputTextPlaceholder: same
+      IsSearchable: same
+      Italic: same
+      Items: same
+      MultiValueDelimiter: same
+      NoSelectionText:
+        to: InputTextPlaceholder
+        transform: placeholder
+        fallback_manual: "Reconcile NoSelectionText with InputTextPlaceholder."
+        basis: field-report-2026-10-08#9
+      OnChange: same
+      OnSelect:
+        drop: "ModernCombobox has no click/tap handler; move the action to an explicit supported event or control."
+        impact: behaviour
+        basis: inferred
+      PaddingBottom: same
+      PaddingLeft: same
+      PaddingRight: same
+      PaddingTop: same
+      PressedBorderColor:
+        drop: "ModernCombobox has no PressedBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      PressedColor:
+        drop: "ModernCombobox has no PressedColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      PressedFill:
+        drop: "ModernCombobox has no PressedFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Reset:
+        drop: "ModernCombobox has no Boolean Reset input; formula-driven reset triggers would be lost."
+        impact: behaviour
+        basis: inferred
+      SearchFields:
+        drop: "ModernCombobox searches its display text"
+        impact: cosmetic
+        basis: field-report-2026-10-08#9
+      SelectionColor:
+        drop: "ModernCombobox has no SelectionColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      SelectionFill:
+        drop: "ModernCombobox has no SelectionFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      SelectionTagColor:
+        drop: "ModernCombobox has no SelectionTagColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      SelectionTagFill:
+        drop: "ModernCombobox has no SelectionTagFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      SelectMultiple: same
+      Size:
+        to: Size
+        scale: "4/3"
+        basis: inferred
+      Strikethrough: same
+      TabIndex:
+        drop: "Modern control has no keyboard order override; review focus traversal."
+        impact: cosmetic
+        basis: field-report-2026-10-08#9
+      Tooltip:
+        drop: "ModernCombobox has no hover help text; provide an accessible alternative."
+        impact: behaviour
+        basis: inferred
+      Underline: same
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AccessibleLabel: AccessibleLabel
+      BorderColor: BorderColor
+      BorderStyle: BorderStyle
+      BorderThickness: BorderThickness
+      ChevronBackground: ~ # No safe member-only counterpart; manual review.
+      ChevronDisabledBackground: ~ # No safe member-only counterpart; manual review.
+      ChevronDisabledFill: ~ # No safe member-only counterpart; manual review.
+      ChevronFill: ~ # No safe member-only counterpart; manual review.
+      ChevronHoverBackground: ~ # No safe member-only counterpart; manual review.
+      ChevronHoverFill: ~ # No safe member-only counterpart; manual review.
+      Color: Color
+      ContentLanguage: ContentLanguage
+      Default: ~ # No safe member-only counterpart; manual review.
+      DefaultSelectedItems: DefaultSelectedItems
+      DisabledBorderColor: ~ # No safe member-only counterpart; manual review.
+      DisabledColor: ~ # No safe member-only counterpart; manual review.
+      DisabledFill: ~ # No safe member-only counterpart; manual review.
+      DisplayFields: ~ # No safe member-only counterpart; manual review.
+      DisplayMode: DisplayMode
+      Fill: Fill
+      FocusedBorderColor: ~ # No safe member-only counterpart; manual review.
+      FocusedBorderThickness: ~ # No safe member-only counterpart; manual review.
+      Font: Font
+      FontWeight: FontWeight
+      Height: Height
+      HoverBorderColor: ~ # No safe member-only counterpart; manual review.
+      HoverColor: ~ # No safe member-only counterpart; manual review.
+      HoverFill: ~ # No safe member-only counterpart; manual review.
+      InputTextPlaceholder: InputTextPlaceholder
+      IsSearchable: IsSearchable
+      Italic: Italic
+      Items: Items
+      MultiValueDelimiter: MultiValueDelimiter
+      NoSelectionText: ~ # No safe member-only counterpart; manual review.
+      OnChange: OnChange
+      OnSelect: ~ # No safe member-only counterpart; manual review.
+      PaddingBottom: PaddingBottom
+      PaddingLeft: PaddingLeft
+      PaddingRight: PaddingRight
+      PaddingTop: PaddingTop
+      PressedBorderColor: ~ # No safe member-only counterpart; manual review.
+      PressedColor: ~ # No safe member-only counterpart; manual review.
+      PressedFill: ~ # No safe member-only counterpart; manual review.
+      Reset: ~ # No safe member-only counterpart; manual review.
+      SearchFields: ~ # No safe member-only counterpart; manual review.
+      SelectionColor: ~ # No safe member-only counterpart; manual review.
+      SelectionFill: ~ # No safe member-only counterpart; manual review.
+      SelectionTagColor: ~ # No safe member-only counterpart; manual review.
+      SelectionTagFill: ~ # No safe member-only counterpart; manual review.
+      SelectMultiple: SelectMultiple
+      Size: Size
+      Strikethrough: Strikethrough
+      TabIndex: ~ # No safe member-only counterpart; manual review.
+      Tooltip: ~ # No safe member-only counterpart; manual review.
+      Underline: Underline
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+      NavigateItem: ~ # No safe member-only counterpart; manual review.
+      SearchText: SearchText
+      Selected: Selected
+      SelectedItems: SelectedItems
+    verified: false
+  Classic/DatePicker:
+    target: ModernDatePicker
+    open_items:
+      - property: "ContentLanguage"
+        reason: "ModernDatePicker does not inherit the app's locale; set ContentLanguage, StartOfWeek and Format if the app needs a specific locale."
+        basis: "field-report-2026-10-08#6"
+    behaviour:
+      - "Draft classic-to-Modern* conversion; catalog surface checks do not prove formula or runtime equivalence."
+      - "Do not generate FluentV9 bare types or rely on Studio Update; the 2026-10-06 generation report records lossy updates."
+      - "StartOfWeek and DateTimeZone use the same enums; DefaultDate requires DateTime-to-Date review, and Format needs a DatePickerFormat choice."
+    properties:
+      AccessibleLabel: same
+      BorderColor: same
+      BorderStyle: same
+      BorderThickness: same
+      Color: same
+      ContentLanguage:
+        to: ContentLanguage
+        basis: field-report-2026-10-08#6
+      DateTimeZone: same
+      DefaultDate:
+        manual: "Convert the classic DateTime DefaultDate to the intended Date, preserving the chosen DateTimeZone and reviewing time truncation and timezone boundaries."
+        targets:
+          - DefaultDate
+          - DateTimeZone
+        basis: inferred
+      DisabledBorderColor:
+        drop: "ModernDatePicker has no DisabledBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisabledColor:
+        drop: "ModernDatePicker has no DisabledColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisabledFill:
+        drop: "ModernDatePicker has no DisabledFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisplayMode: same
+      EndYear:
+        manual: "Construct EndDate as Date(<EndYear>, 12, 31); reconcile with any existing EndDate."
+        targets:
+          - EndDate
+        basis: inferred
+      Fill: same
+      FocusedBorderColor:
+        drop: "ModernDatePicker has no FocusedBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      FocusedBorderThickness:
+        drop: "ModernDatePicker has no FocusedBorderThickness input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Font: same
+      FontWeight: same
+      Format:
+        to: Format
+        fallback_manual: "Choose a ModernDatePicker Format for this custom or long text format; only ShortDate has a scoped safe mapping."
+        values:
+          "DateTimeFormat.ShortDate": "DatePickerFormat.Short"
+          "'DateTimeFormat'.ShortDate": "DatePickerFormat.Short"
+          "\"ShortDate\"": "DatePickerFormat.Short"
+          "\"Short\"": "DatePickerFormat.Short"
+        basis: field-report-2026-10-08#6 # Custom or long text formats require owner review.
+      Height: same
+      IconBackground:
+        drop: "ModernDatePicker has no IconBackground input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      IconFill:
+        drop: "ModernDatePicker has no IconFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      InputTextPlaceholder:
+        to: Placeholder
+        basis: catalog-name-match # Both Text properties name the empty date prompt.
+      IsEditable: same
+      Italic: same
+      Language:
+        to: ContentLanguage
+        basis: field-report-2026-10-08#6
+      OnChange: same
+      OnSelect:
+        drop: "ModernDatePicker has no click/tap handler; move the action to an explicit supported event or control."
+        impact: behaviour
+        basis: inferred
+      PaddingBottom: same
+      PaddingLeft: same
+      PaddingRight: same
+      PaddingTop: same
+      Reset:
+        drop: "ModernDatePicker has no Boolean Reset input; formula-driven reset triggers would be lost."
+        impact: behaviour
+        basis: inferred
+      Size:
+        to: Size
+        scale: "4/3"
+        basis: inferred
+      StartOfWeek:
+        to: StartOfWeek
+        basis: field-report-2026-10-08#6
+      StartYear:
+        manual: "Construct StartDate as Date(<StartYear>, 1, 1); reconcile with any existing StartDate."
+        targets:
+          - StartDate
+        basis: inferred
+      TabIndex:
+        drop: "ModernDatePicker has no keyboard order override; review focus traversal."
+        impact: behaviour
+        basis: inferred
+      Tooltip:
+        drop: "ModernDatePicker has no hover help text; provide an accessible alternative."
+        impact: behaviour
+        basis: inferred
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AccessibleLabel: AccessibleLabel
+      BorderColor: BorderColor
+      BorderStyle: BorderStyle
+      BorderThickness: BorderThickness
+      Color: Color
+      ContentLanguage: ContentLanguage
+      DateTimeZone: DateTimeZone
+      DefaultDate: DefaultDate
+      DisabledBorderColor: ~ # No safe member-only counterpart; manual review.
+      DisabledColor: ~ # No safe member-only counterpart; manual review.
+      DisabledFill: ~ # No safe member-only counterpart; manual review.
+      DisplayMode: DisplayMode
+      EndYear: ~ # No safe member-only counterpart; manual review.
+      Fill: Fill
+      FocusedBorderColor: ~ # No safe member-only counterpart; manual review.
+      FocusedBorderThickness: ~ # No safe member-only counterpart; manual review.
+      Font: Font
+      FontWeight: FontWeight
+      Format: Format
+      Height: Height
+      IconBackground: ~ # No safe member-only counterpart; manual review.
+      IconFill: ~ # No safe member-only counterpart; manual review.
+      InputTextPlaceholder: Placeholder
+      IsEditable: IsEditable
+      Italic: Italic
+      Language: ContentLanguage
+      OnChange: OnChange
+      OnSelect: ~ # No safe member-only counterpart; manual review.
+      PaddingBottom: PaddingBottom
+      PaddingLeft: PaddingLeft
+      PaddingRight: PaddingRight
+      PaddingTop: PaddingTop
+      Reset: ~ # No safe member-only counterpart; manual review.
+      Size: Size
+      StartOfWeek: StartOfWeek
+      StartYear: ~ # No safe member-only counterpart; manual review.
+      TabIndex: ~ # No safe member-only counterpart; manual review.
+      Tooltip: ~ # No safe member-only counterpart; manual review.
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+      SelectedDate: SelectedDate
+    verified: false
+  Classic/DropDown:
+    target: ModernDropdown
+    add:
+      - property: "ItemDisplayText"
+        value: "=ThisItem.Value"
+        when: "single-column-items"
+        basis: "field-report-2026-10-08#10"
+    behaviour:
+      - "Draft classic-to-Modern* conversion; catalog surface checks do not prove formula or runtime equivalence."
+      - "Do not generate FluentV9 bare types or rely on Studio Update; the 2026-10-06 generation report records lossy updates."
+    properties:
+      AccessibleLabel: same
+      AllowEmptySelection:
+        drop: "ModernDropdown has no allow-empty-selection switch; review clearing the selection."
+        impact: behaviour
+        basis: inferred
+      BorderColor: same
+      BorderStyle: same
+      BorderThickness: same
+      ChevronBackground:
+        drop: "ModernDropdown has no ChevronBackground input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      ChevronDisabledBackground:
+        drop: "ModernDropdown has no ChevronDisabledBackground input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      ChevronDisabledFill:
+        drop: "ModernDropdown has no ChevronDisabledFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      ChevronFill:
+        drop: "ModernDropdown has no ChevronFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      ChevronHoverBackground:
+        drop: "ModernDropdown has no ChevronHoverBackground input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      ChevronHoverFill:
+        drop: "ModernDropdown has no ChevronHoverFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Color: same
+      ContentLanguage: same
+      Default:
+        to: Default
+        transform: value-record
+        fallback_manual: "Look up the Default text in Items and supply the matching record as Default; reconcile the displayed column with ItemDisplayText and review blank or missing matches."
+        basis: field-report-2026-10-08#9
+      DisabledBorderColor:
+        drop: "ModernDropdown has no DisabledBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisabledColor:
+        drop: "ModernDropdown has no DisabledColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisabledFill:
+        drop: "ModernDropdown has no DisabledFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisplayMode: same
+      Fill: same
+      FocusedBorderColor:
+        drop: "ModernDropdown has no FocusedBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      FocusedBorderThickness:
+        drop: "ModernDropdown has no FocusedBorderThickness input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Font: same
+      FontWeight: same
+      Height: same
+      HoverBorderColor:
+        drop: "ModernDropdown has no HoverBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      HoverColor:
+        drop: "ModernDropdown has no HoverColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      HoverFill:
+        drop: "ModernDropdown has no HoverFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Italic: same
+      Items: same
+      OnChange: same
+      OnSelect:
+        drop: "ModernDropdown has no click/tap handler; move the action to an explicit supported event or control."
+        impact: behaviour
+        basis: inferred
+      PaddingBottom: same
+      PaddingLeft: same
+      PaddingRight: same
+      PaddingTop: same
+      PressedBorderColor:
+        drop: "ModernDropdown has no PressedBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      PressedColor:
+        drop: "ModernDropdown has no PressedColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      PressedFill:
+        drop: "ModernDropdown has no PressedFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Reset:
+        drop: "ModernDropdown has no Boolean Reset input; formula-driven reset triggers would be lost."
+        impact: behaviour
+        basis: inferred
+      SelectionColor:
+        drop: "ModernDropdown has no SelectionColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      SelectionFill:
+        drop: "ModernDropdown has no SelectionFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Size:
+        to: Size
+        scale: "4/3"
+        basis: inferred
+      Strikethrough: same
+      TabIndex:
+        drop: "ModernDropdown has no keyboard order override; review focus traversal."
+        impact: behaviour
+        basis: inferred
+      Tooltip:
+        drop: "ModernDropdown has no hover help text; provide an accessible alternative."
+        impact: behaviour
+        basis: inferred
+      Underline: same
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AccessibleLabel: AccessibleLabel
+      AllowEmptySelection: ~ # No safe member-only counterpart; manual review.
+      BorderColor: BorderColor
+      BorderStyle: BorderStyle
+      BorderThickness: BorderThickness
+      ChevronBackground: ~ # No safe member-only counterpart; manual review.
+      ChevronDisabledBackground: ~ # No safe member-only counterpart; manual review.
+      ChevronDisabledFill: ~ # No safe member-only counterpart; manual review.
+      ChevronFill: ~ # No safe member-only counterpart; manual review.
+      ChevronHoverBackground: ~ # No safe member-only counterpart; manual review.
+      ChevronHoverFill: ~ # No safe member-only counterpart; manual review.
+      Color: Color
+      ContentLanguage: ContentLanguage
+      Default: Default
+      DisabledBorderColor: ~ # No safe member-only counterpart; manual review.
+      DisabledColor: ~ # No safe member-only counterpart; manual review.
+      DisabledFill: ~ # No safe member-only counterpart; manual review.
+      DisplayMode: DisplayMode
+      Fill: Fill
+      FocusedBorderColor: ~ # No safe member-only counterpart; manual review.
+      FocusedBorderThickness: ~ # No safe member-only counterpart; manual review.
+      Font: Font
+      FontWeight: FontWeight
+      Height: Height
+      HoverBorderColor: ~ # No safe member-only counterpart; manual review.
+      HoverColor: ~ # No safe member-only counterpart; manual review.
+      HoverFill: ~ # No safe member-only counterpart; manual review.
+      Italic: Italic
+      Items: Items
+      OnChange: OnChange
+      OnSelect: ~ # No safe member-only counterpart; manual review.
+      PaddingBottom: PaddingBottom
+      PaddingLeft: PaddingLeft
+      PaddingRight: PaddingRight
+      PaddingTop: PaddingTop
+      PressedBorderColor: ~ # No safe member-only counterpart; manual review.
+      PressedColor: ~ # No safe member-only counterpart; manual review.
+      PressedFill: ~ # No safe member-only counterpart; manual review.
+      Reset: ~ # No safe member-only counterpart; manual review.
+      SelectionColor: ~ # No safe member-only counterpart; manual review.
+      SelectionFill: ~ # No safe member-only counterpart; manual review.
+      Size: Size
+      Strikethrough: Strikethrough
+      TabIndex: ~ # No safe member-only counterpart; manual review.
+      Tooltip: ~ # No safe member-only counterpart; manual review.
+      Underline: Underline
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+      Selected: Selected
+      SelectedText: ~ # No safe member-only counterpart; manual review.
+    verified: false
+  Classic/Radio:
+    target: ModernRadio
+    open_items:
+      - property: "ItemDisplayText"
+        reason: "ModernRadio has ItemDisplayText but the catalog records no default; review =ThisItem.Value for single-column Items in a scratch app."
+        when: "single-column-items"
+        basis: "field-report-2026-10-08#10"
+    behaviour:
+      - "Draft classic-to-Modern* conversion; catalog surface checks do not prove formula or runtime equivalence."
+      - "Do not generate FluentV9 bare types or rely on Studio Update; the 2026-10-06 generation report records lossy updates."
+    properties:
+      AccessibleLabel: same
+      Align:
+        drop: "ModernRadio has no Align input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      BorderColor: same
+      BorderStyle: same
+      BorderThickness: same
+      Color: same
+      ContentLanguage: same
+      Default:
+        to: Default
+        transform: value-record
+        fallback_manual: "Look up the Default text in Items and supply the matching record as Default; reconcile the displayed column with ItemDisplayText and review blank or missing matches."
+        basis: field-report-2026-10-08#9
+      DisabledBorderColor:
+        drop: "ModernRadio has no DisabledBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisabledColor: same
+      DisabledFill:
+        drop: "ModernRadio has no DisabledFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisplayMode: same
+      Fill: same
+      FocusedBorderColor:
+        drop: "ModernRadio has no FocusedBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      FocusedBorderThickness:
+        drop: "ModernRadio has no FocusedBorderThickness input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Font: same
+      FontWeight: same
+      Height: same
+      HoverColor:
+        drop: "ModernRadio has no HoverColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      HoverFill:
+        drop: "ModernRadio has no HoverFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Italic: same
+      Items: same
+      Layout:
+        to: Layout
+        values:
+          "Layout.Horizontal": "OptionLayout.Horizontal"
+          "Layout.Vertical": "OptionLayout.Vertical"
+        basis: catalog-name-match # Both enum catalogs include Horizontal and Vertical; HorizontalStacked has no classic member.
+      LineHeight: same
+      OnChange: same
+      OnSelect:
+        drop: "ModernRadio has no click/tap handler; move the action to an explicit supported event or control."
+        impact: behaviour
+        basis: inferred
+      PaddingBottom: same
+      PaddingLeft: same
+      PaddingRight: same
+      PaddingTop: same
+      PressedColor:
+        drop: "ModernRadio has no PressedColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      PressedFill:
+        drop: "ModernRadio has no PressedFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      RadioBackgroundFill: same
+      RadioBorderColor: same
+      RadioSelectionFill: same
+      RadioSize:
+        drop: "Fluent default circle size; classic pixel sizes made huge circles and clipped rows"
+        impact: cosmetic
+        restore_default: true
+        basis: field-report-2026-10-08#12
+      Reset:
+        drop: "ModernRadio has no Boolean Reset input; formula-driven reset triggers would be lost."
+        impact: behaviour
+        basis: inferred
+      Size:
+        to: Size
+        scale: "4/3"
+        basis: inferred
+      Strikethrough: same
+      TabIndex:
+        drop: "ModernRadio has no keyboard order override; review focus traversal."
+        impact: behaviour
+        basis: inferred
+      Tooltip:
+        drop: "ModernRadio has no hover help text; provide an accessible alternative."
+        impact: behaviour
+        basis: inferred
+      Underline: same
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AccessibleLabel: AccessibleLabel
+      Align: ~ # No safe member-only counterpart; manual review.
+      BorderColor: BorderColor
+      BorderStyle: BorderStyle
+      BorderThickness: BorderThickness
+      Color: Color
+      ContentLanguage: ContentLanguage
+      Default: Default
+      DisabledBorderColor: ~ # No safe member-only counterpart; manual review.
+      DisabledColor: DisabledColor
+      DisabledFill: ~ # No safe member-only counterpart; manual review.
+      DisplayMode: DisplayMode
+      Fill: Fill
+      FocusedBorderColor: ~ # No safe member-only counterpart; manual review.
+      FocusedBorderThickness: ~ # No safe member-only counterpart; manual review.
+      Font: Font
+      FontWeight: FontWeight
+      Height: Height
+      HoverColor: ~ # No safe member-only counterpart; manual review.
+      HoverFill: ~ # No safe member-only counterpart; manual review.
+      Italic: Italic
+      Items: Items
+      Layout: Layout
+      LineHeight: LineHeight
+      OnChange: OnChange
+      OnSelect: ~ # No safe member-only counterpart; manual review.
+      PaddingBottom: PaddingBottom
+      PaddingLeft: PaddingLeft
+      PaddingRight: PaddingRight
+      PaddingTop: PaddingTop
+      PressedColor: ~ # No safe member-only counterpart; manual review.
+      PressedFill: ~ # No safe member-only counterpart; manual review.
+      RadioBackgroundFill: RadioBackgroundFill
+      RadioBorderColor: RadioBorderColor
+      RadioSelectionFill: RadioSelectionFill
+      RadioSize: RadioSize
+      Reset: ~ # No safe member-only counterpart; manual review.
+      Size: Size
+      Strikethrough: Strikethrough
+      TabIndex: ~ # No safe member-only counterpart; manual review.
+      Tooltip: ~ # No safe member-only counterpart; manual review.
+      Underline: Underline
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+      Selected: Selected
+      SelectedText: ~ # No safe member-only counterpart; manual review.
+    verified: false
+  Classic/Slider:
+    target: ModernSlider
+    behaviour:
+      - "Draft classic-to-Modern* conversion; catalog surface checks do not prove formula or runtime equivalence."
+      - "Do not generate FluentV9 bare types or rely on Studio Update; the 2026-10-06 generation report records lossy updates."
+    properties:
+      AccessibleLabel: same
+      BorderColor:
+        drop: "ModernSlider has no BorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      BorderStyle:
+        drop: "ModernSlider has no BorderStyle input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      BorderThickness:
+        drop: "ModernSlider has no BorderThickness input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      ContentLanguage: same
+      Default: same
+      DisabledBorderColor:
+        drop: "ModernSlider has no DisabledBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisplayMode: same
+      FocusedBorderColor:
+        drop: "ModernSlider has no FocusedBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      FocusedBorderThickness:
+        drop: "ModernSlider has no FocusedBorderThickness input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      HandleActiveFill:
+        drop: "ModernSlider has no HandleActiveFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      HandleFill:
+        drop: "ModernSlider has no HandleFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      HandleHoverFill:
+        drop: "ModernSlider has no HandleHoverFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      HandleSize:
+        drop: "ModernSlider has no HandleSize input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Height: same
+      HoverBorderColor:
+        drop: "ModernSlider has no HoverBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Layout:
+        to: LayoutDirection
+        values:
+          "Layout.Horizontal": "LayoutDirection.Horizontal"
+          "Layout.Vertical": "LayoutDirection.Vertical"
+        basis: catalog-name-match # Both enum catalogs contain the same Horizontal and Vertical names.
+      Max: same
+      Min: same
+      OnChange: same
+      OnSelect:
+        drop: "ModernSlider has no click/tap handler; move the action to an explicit supported event or control."
+        impact: behaviour
+        basis: inferred
+      PressedBorderColor:
+        drop: "ModernSlider has no PressedBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      RailFill:
+        drop: "ModernSlider has no RailFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      RailHoverFill:
+        drop: "ModernSlider has no RailHoverFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      RailThickness:
+        drop: "ModernSlider has no RailThickness input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Reset:
+        drop: "ModernSlider has no Boolean Reset input; formula-driven reset triggers would be lost."
+        impact: behaviour
+        basis: inferred
+      ShowValue:
+        drop: "ModernSlider has no value-readout switch; provide a separate accessible value display."
+        impact: behaviour
+        basis: inferred
+      TabIndex:
+        drop: "ModernSlider has no keyboard order override; review focus traversal."
+        impact: behaviour
+        basis: inferred
+      Tooltip: same
+      ValueFill:
+        drop: "ModernSlider has no ValueFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      ValueHoverFill:
+        drop: "ModernSlider has no ValueHoverFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AccessibleLabel: AccessibleLabel
+      BorderColor: ~ # No safe member-only counterpart; manual review.
+      BorderStyle: ~ # No safe member-only counterpart; manual review.
+      BorderThickness: ~ # No safe member-only counterpart; manual review.
+      ContentLanguage: ContentLanguage
+      Default: Default
+      DisabledBorderColor: ~ # No safe member-only counterpart; manual review.
+      DisplayMode: DisplayMode
+      FocusedBorderColor: ~ # No safe member-only counterpart; manual review.
+      FocusedBorderThickness: ~ # No safe member-only counterpart; manual review.
+      HandleActiveFill: ~ # No safe member-only counterpart; manual review.
+      HandleFill: ~ # No safe member-only counterpart; manual review.
+      HandleHoverFill: ~ # No safe member-only counterpart; manual review.
+      HandleSize: ~ # No safe member-only counterpart; manual review.
+      Height: Height
+      HoverBorderColor: ~ # No safe member-only counterpart; manual review.
+      Layout: LayoutDirection
+      Max: Max
+      Min: Min
+      OnChange: OnChange
+      OnSelect: ~ # No safe member-only counterpart; manual review.
+      PressedBorderColor: ~ # No safe member-only counterpart; manual review.
+      RailFill: ~ # No safe member-only counterpart; manual review.
+      RailHoverFill: ~ # No safe member-only counterpart; manual review.
+      RailThickness: ~ # No safe member-only counterpart; manual review.
+      Reset: ~ # No safe member-only counterpart; manual review.
+      ShowValue: ~ # No safe member-only counterpart; manual review.
+      TabIndex: ~ # No safe member-only counterpart; manual review.
+      Tooltip: Tooltip
+      ValueFill: ~ # No safe member-only counterpart; manual review.
+      ValueHoverFill: ~ # No safe member-only counterpart; manual review.
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+      Value: Value
+    verified: false
+  Classic/Toggle:
+    target: ModernToggle
+    behaviour:
+      - "Draft classic-to-Modern* conversion; catalog surface checks do not prove formula or runtime equivalence."
+      - "Do not generate FluentV9 bare types or rely on Studio Update; the 2026-10-06 generation report records lossy updates."
+      - "Combine TrueText/FalseText/ShowLabel into one Label and append OnChange to both OnCheck/OnUncheck; review ordering and directionality."
+    properties:
+      AccessibleLabel: same
+      BorderColor:
+        drop: "ModernToggle has no BorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      BorderStyle:
+        drop: "ModernToggle has no BorderStyle input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      BorderThickness:
+        drop: "ModernToggle has no BorderThickness input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Color: same
+      ContentLanguage: same
+      Default: same
+      DisabledBorderColor:
+        drop: "ModernToggle has no DisabledBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisabledColor:
+        drop: "ModernToggle has no DisabledColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisplayMode: same
+      FalseFill:
+        drop: "ModernToggle has no FalseFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      FalseHoverFill:
+        drop: "ModernToggle has no FalseHoverFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      FalseText:
+        manual: "Merge FalseText and TrueText into one Label; when both are set use If(Self.Checked, <TrueText>, <FalseText>), then reconcile ShowLabel and any existing Label."
+        targets:
+          - Label
+        basis: inferred
+      FocusedBorderColor:
+        drop: "ModernToggle has no FocusedBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      FocusedBorderThickness:
+        drop: "ModernToggle has no FocusedBorderThickness input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Font: same
+      FontWeight: same
+      HandleFill:
+        drop: "ModernToggle has no HandleFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Height: same
+      HoverBorderColor:
+        drop: "ModernToggle has no HoverBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Italic: same
+      LabelPaddingLeft:
+        drop: "ModernToggle has no LabelPaddingLeft input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      LabelPaddingRight:
+        drop: "ModernToggle has no LabelPaddingRight input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      OnChange:
+        manual: "Append the OnChange formula to both OnCheck and OnUncheck, after any existing formula in each event."
+        targets:
+          - OnCheck
+          - OnUncheck
+        basis: inferred
+      OnCheck: same
+      OnSelect:
+        drop: "ModernToggle has no click/tap handler; move the action to an explicit supported event or control."
+        impact: behaviour
+        basis: inferred
+      OnUncheck: same
+      PressedBorderColor:
+        drop: "ModernToggle has no PressedBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Reset:
+        drop: "ModernToggle has no Boolean Reset input; formula-driven reset triggers would be lost."
+        impact: behaviour
+        basis: inferred
+      ShowLabel:
+        manual: "Apply ShowLabel to the merged Label formula: If(<ShowLabel>, <merged label>, \"\"); reconcile TrueText, FalseText and any existing Label."
+        targets:
+          - Label
+        basis: inferred
+      Size:
+        to: Size
+        scale: "4/3"
+        basis: inferred
+      Strikethrough: same
+      TabIndex:
+        drop: "ModernToggle has no keyboard order override; review focus traversal."
+        impact: behaviour
+        basis: inferred
+      TextPosition:
+        to: LabelPosition
+        values:
+          "TextPosition.Left": "ToggleLabelPosition.Before"
+          "TextPosition.Right": "ToggleLabelPosition.After"
+        basis: inferred
+      Tooltip: same
+      TrueFill:
+        drop: "ModernToggle has no TrueFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      TrueHoverFill:
+        drop: "ModernToggle has no TrueHoverFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      TrueText:
+        manual: "Merge TrueText and FalseText into one Label; when both are set use If(Self.Checked, <TrueText>, <FalseText>), then reconcile ShowLabel and any existing Label."
+        targets:
+          - Label
+        basis: inferred
+      Underline: same
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AccessibleLabel: AccessibleLabel
+      BorderColor: ~ # No safe member-only counterpart; manual review.
+      BorderStyle: ~ # No safe member-only counterpart; manual review.
+      BorderThickness: ~ # No safe member-only counterpart; manual review.
+      Color: Color
+      ContentLanguage: ContentLanguage
+      Default: Default
+      DisabledBorderColor: ~ # No safe member-only counterpart; manual review.
+      DisabledColor: ~ # No safe member-only counterpart; manual review.
+      DisplayMode: DisplayMode
+      FalseFill: ~ # No safe member-only counterpart; manual review.
+      FalseHoverFill: ~ # No safe member-only counterpart; manual review.
+      FalseText: ~ # No safe member-only counterpart; manual review.
+      FocusedBorderColor: ~ # No safe member-only counterpart; manual review.
+      FocusedBorderThickness: ~ # No safe member-only counterpart; manual review.
+      Font: Font
+      FontWeight: FontWeight
+      HandleFill: ~ # No safe member-only counterpart; manual review.
+      Height: Height
+      HoverBorderColor: ~ # No safe member-only counterpart; manual review.
+      Italic: Italic
+      LabelPaddingLeft: ~ # No safe member-only counterpart; manual review.
+      LabelPaddingRight: ~ # No safe member-only counterpart; manual review.
+      OnChange: ~ # No safe member-only counterpart; manual review.
+      OnCheck: OnCheck
+      OnSelect: ~ # No safe member-only counterpart; manual review.
+      OnUncheck: OnUncheck
+      PressedBorderColor: ~ # No safe member-only counterpart; manual review.
+      Reset: ~ # No safe member-only counterpart; manual review.
+      ShowLabel: ~ # No safe member-only counterpart; manual review.
+      Size: Size
+      Strikethrough: Strikethrough
+      TabIndex: ~ # No safe member-only counterpart; manual review.
+      TextPosition: LabelPosition
+      Tooltip: Tooltip
+      TrueFill: ~ # No safe member-only counterpart; manual review.
+      TrueHoverFill: ~ # No safe member-only counterpart; manual review.
+      TrueText: ~ # No safe member-only counterpart; manual review.
+      Underline: Underline
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+      Value: Checked
+    verified: false
+  Classic/Icon:
+    target: ModernIcon
+    behaviour:
+      - "Draft classic-to-Modern* conversion; catalog surface checks do not prove formula or runtime equivalence."
+      - "Do not generate FluentV9 bare types or rely on Studio Update; the 2026-10-06 generation report records lossy updates."
+    properties:
+      AccessibleLabel: same
+      AutoDisableOnSelect:
+        drop: "ModernIcon has no automatic disable-on-select protection; repeated activation protection is lost."
+        impact: behaviour
+        basis: inferred
+      BorderColor: same
+      BorderStyle: same
+      BorderThickness: same
+      Color:
+        to: IconColor
+        basis: catalog-name-match # Color and IconColor are both Color; named icon foreground counterpart.
+      ContentLanguage: same
+      DisabledBorderColor:
+        drop: "ModernIcon has no DisabledBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisabledColor:
+        drop: "ModernIcon has no DisabledColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisabledFill:
+        drop: "ModernIcon has no DisabledFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      DisplayMode: same
+      Fill: same
+      FocusedBorderColor:
+        drop: "ModernIcon has no FocusedBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      FocusedBorderThickness:
+        drop: "ModernIcon has no FocusedBorderThickness input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Height: same
+      HoverBorderColor:
+        drop: "ModernIcon has no HoverBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      HoverColor:
+        drop: "ModernIcon has no HoverColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      HoverFill:
+        drop: "ModernIcon has no HoverFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Icon:
+        to: Icon
+        fallback_manual: "Choose a ModernIcon text Icon name for an unmapped enum or computed formula; review the icon set and all formula branches."
+        values:
+          "Icon.Check": "\"Checkmark\""
+          "'Icon'.Check": "\"Checkmark\""
+          "\"Check\"": "\"Checkmark\""
+          "Icon.Information": "\"Info\""
+          "'Icon'.Information": "\"Info\""
+          "\"Information\"": "\"Info\""
+          # basis: field-report-2026-10-08#9; Delete: compiled, render not seen
+          "Icon.Trash": "\"Delete\""
+          "'Icon'.Trash": "\"Delete\""
+          "\"Trash\"": "\"Delete\""
+          "Icon.CheckBadge": "\"CheckmarkCircle\""
+          "'Icon'.CheckBadge": "\"CheckmarkCircle\""
+          "\"CheckBadge\"": "\"CheckmarkCircle\""
+          "Icon.OfficeBuilding": "\"Building\""
+          "'Icon'.OfficeBuilding": "\"Building\""
+          "\"OfficeBuilding\"": "\"Building\""
+          "Icon.Phone": "\"Call\""
+          "'Icon'.Phone": "\"Call\""
+          "\"Phone\"": "\"Call\""
+          "Icon.CalendarBlank": "\"Calendar\""
+          "'Icon'.CalendarBlank": "\"Calendar\""
+          "\"CalendarBlank\"": "\"Calendar\""
+          "Icon.DocumentWithContent": "\"Document\""
+          "'Icon'.DocumentWithContent": "\"Document\""
+          "\"DocumentWithContent\"": "\"Document\""
+          "Icon.ChevronRight": "\"ChevronRight\""
+          "'Icon'.ChevronRight": "\"ChevronRight\""
+          "\"ChevronRight\"": "\"ChevronRight\""
+          "Icon.ChevronLeft": "\"ChevronLeft\""
+          "'Icon'.ChevronLeft": "\"ChevronLeft\""
+          "\"ChevronLeft\"": "\"ChevronLeft\""
+          "Icon.Home": "\"Home\""
+          "'Icon'.Home": "\"Home\""
+          "\"Home\"": "\"Home\""
+          "Icon.Mail": "\"Mail\""
+          "'Icon'.Mail": "\"Mail\""
+          "\"Mail\"": "\"Mail\""
+          "Icon.Warning": "\"Warning\""
+          "'Icon'.Warning": "\"Warning\""
+          "\"Warning\"": "\"Warning\""
+          "Icon.Person": "\"Person\""
+          "'Icon'.Person": "\"Person\""
+          "\"Person\"": "\"Person\""
+          "Icon.Settings": "\"Settings\""
+          "'Icon'.Settings": "\"Settings\""
+          "\"Settings\"": "\"Settings\""
+          "Icon.History": "\"History\""
+          "'Icon'.History": "\"History\""
+          "\"History\"": "\"History\""
+          # basis: field-report-2026-10-08#9; Camera: compiled, render not seen
+          "Icon.Camera": "\"Camera\""
+          "'Icon'.Camera": "\"Camera\""
+          "\"Camera\"": "\"Camera\""
+          # basis: field-report-2026-10-08#9; Location: compiled, render not seen
+          "Icon.Location": "\"Location\""
+          "'Icon'.Location": "\"Location\""
+          "\"Location\"": "\"Location\""
+        basis: field-report-2026-10-08#9
+      OnSelect: same
+      PaddingBottom: same
+      PaddingLeft: same
+      PaddingRight: same
+      PaddingTop: same
+      PressedBorderColor:
+        drop: "ModernIcon has no PressedBorderColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      PressedColor:
+        drop: "ModernIcon has no PressedColor input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      PressedFill:
+        drop: "ModernIcon has no PressedFill input override; the classic appearance setting is lost."
+        impact: cosmetic
+        basis: inferred
+      Rotation: same
+      TabIndex:
+        drop: "Modern control has no keyboard order override; review focus traversal for selectable icons and buttons."
+        impact: behaviour
+        basis: field-report-2026-10-08#9
+      Tooltip: same
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AccessibleLabel: AccessibleLabel
+      AutoDisableOnSelect: ~ # No safe member-only counterpart; manual review.
+      BorderColor: BorderColor
+      BorderStyle: BorderStyle
+      BorderThickness: BorderThickness
+      Color: IconColor
+      ContentLanguage: ContentLanguage
+      DisabledBorderColor: ~ # No safe member-only counterpart; manual review.
+      DisabledColor: ~ # No safe member-only counterpart; manual review.
+      DisabledFill: ~ # No safe member-only counterpart; manual review.
+      DisplayMode: DisplayMode
+      Fill: Fill
+      FocusedBorderColor: ~ # No safe member-only counterpart; manual review.
+      FocusedBorderThickness: ~ # No safe member-only counterpart; manual review.
+      Height: Height
+      HoverBorderColor: ~ # No safe member-only counterpart; manual review.
+      HoverColor: ~ # No safe member-only counterpart; manual review.
+      HoverFill: ~ # No safe member-only counterpart; manual review.
+      Icon: Icon
+      OnSelect: OnSelect
+      PaddingBottom: PaddingBottom
+      PaddingLeft: PaddingLeft
+      PaddingRight: PaddingRight
+      PaddingTop: PaddingTop
+      PressedBorderColor: ~ # No safe member-only counterpart; manual review.
+      PressedColor: ~ # No safe member-only counterpart; manual review.
+      PressedFill: ~ # No safe member-only counterpart; manual review.
+      Rotation: Rotation
+      TabIndex: ~ # No safe member-only counterpart; manual review.
+      Tooltip: Tooltip
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+    verified: false
+  Text:
+    target: ModernText
+    behaviour:
+      - "Draft FluentV9-to-Modern* conversion; catalog surface checks do not prove formula, styling or runtime equivalence."
+      - "Unauthored properties use target defaults. Compile in a scratch app and visually check; do not rely on Studio Update."
+      - "Member renames do not transform enum comparisons or record shapes in other formulas; review those formulas separately."
+      - "studio-update-2026-10-06: FontColor/Weight/Align changed. Keep Size and VerticalAlign, with no scaling. Never insert Select(Parent), empty FontWeight or zero Size. Medium Weight has no exact FontWeight counterpart; computed or unmapped values remain open for review. Justify is a catalog-matched extension to the observed Center/Start/End alignment conversion."
+    properties:
+      Align:
+        to: Align
+        values:
+          "\"Center\"": "Align.Center"
+          "TextCanvas.Align.Center": "Align.Center"
+          "'TextCanvas.Align'.Center": "Align.Center"
+          "\"Start\"": "Align.Left"
+          "TextCanvas.Align.Start": "Align.Left"
+          "'TextCanvas.Align'.Start": "Align.Left"
+          "\"End\"": "Align.Right"
+          "TextCanvas.Align.End": "Align.Right"
+          "'TextCanvas.Align'.End": "Align.Right"
+          "\"Justify\"": "Align.Justify"
+          "TextCanvas.Align.Justify": "Align.Justify"
+          "'TextCanvas.Align'.Justify": "Align.Justify"
+        basis: studio-update-2026-10-06
+      AutoHeight: same
+      BorderColor: same
+      BorderRadius:
+        to: [RadiusTopLeft, RadiusTopRight, RadiusBottomLeft, RadiusBottomRight]
+        basis: field-report-2026-10-08#9
+      BorderRadiusBottomLeft:
+        to: RadiusBottomLeft
+        basis: catalog-name-match # BorderRadiusBottomLeft and RadiusBottomLeft are both Number; named catalog counterpart, runtime equivalence unverified.
+      BorderRadiusBottomRight:
+        to: RadiusBottomRight
+        basis: catalog-name-match # BorderRadiusBottomRight and RadiusBottomRight are both Number; named catalog counterpart, runtime equivalence unverified.
+      BorderRadiusTopLeft:
+        to: RadiusTopLeft
+        basis: catalog-name-match # BorderRadiusTopLeft and RadiusTopLeft are both Number; named catalog counterpart, runtime equivalence unverified.
+      BorderRadiusTopRight:
+        to: RadiusTopRight
+        basis: catalog-name-match # BorderRadiusTopRight and RadiusTopRight are both Number; named catalog counterpart, runtime equivalence unverified.
+      BorderStyle: same
+      BorderThickness: same
+      ContentLanguage: same
+      DisplayMode: same
+      Fill: same
+      Font: same
+      FontColor:
+        to: Color
+        basis: studio-update-2026-10-06
+      FontItalic:
+        to: Italic
+        basis: catalog-name-match # FontItalic and Italic are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontStrikethrough:
+        to: Strikethrough
+        basis: catalog-name-match # FontStrikethrough and Strikethrough are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontUnderline:
+        to: Underline
+        basis: catalog-name-match # FontUnderline and Underline are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      Height: same
+      PaddingBottom: same
+      PaddingLeft: same
+      PaddingRight: same
+      PaddingTop: same
+      Size: same
+      Text: same
+      VerticalAlign: same
+      Visible: same
+      Weight:
+        to: FontWeight
+        values:
+          "\"Regular\"": "FontWeight.Normal"
+          "TextCanvas.Weight.Regular": "FontWeight.Normal"
+          "'TextCanvas.Weight'.Regular": "FontWeight.Normal"
+          "\"Semibold\"": "FontWeight.Semibold"
+          "TextCanvas.Weight.Semibold": "FontWeight.Semibold"
+          "'TextCanvas.Weight'.Semibold": "FontWeight.Semibold"
+          "\"Bold\"": "FontWeight.Bold"
+          "TextCanvas.Weight.Bold": "FontWeight.Bold"
+          "'TextCanvas.Weight'.Bold": "FontWeight.Bold"
+        basis: studio-update-2026-10-06
+      Width: same
+      Wrap: same
+      X: same
+      Y: same
+    references:
+      Align: Align
+      AutoHeight: AutoHeight
+      BorderColor: BorderColor
+      BorderRadius: ~ # No safe member-only counterpart; manual review.
+      BorderRadiusBottomLeft: RadiusBottomLeft
+      BorderRadiusBottomRight: RadiusBottomRight
+      BorderRadiusTopLeft: RadiusTopLeft
+      BorderRadiusTopRight: RadiusTopRight
+      BorderStyle: BorderStyle
+      BorderThickness: BorderThickness
+      ContentLanguage: ContentLanguage
+      DisplayMode: DisplayMode
+      Fill: Fill
+      Font: Font
+      FontColor: Color
+      FontItalic: Italic
+      FontStrikethrough: Strikethrough
+      FontUnderline: Underline
+      Height: Height
+      PaddingBottom: PaddingBottom
+      PaddingLeft: PaddingLeft
+      PaddingRight: PaddingRight
+      PaddingTop: PaddingTop
+      Size: Size
+      Text: Text
+      VerticalAlign: VerticalAlign
+      Visible: Visible
+      Weight: FontWeight
+      Width: Width
+      Wrap: Wrap
+      X: X
+      Y: Y
+    verified: false
+  TextInput:
+    target: ModernTextInput
+    behaviour:
+      - "Draft FluentV9-to-Modern* conversion; catalog surface checks do not prove formula, styling or runtime equivalence."
+      - "Unauthored properties use target defaults. Compile in a scratch app and visually check; do not rely on Studio Update."
+      - "Member renames do not transform enum comparisons or record shapes in other formulas; review those formulas separately."
+      - "version_knowledge TextInput@0.0.54 (Studio 2026-08-26): authored Value -> Default; formula reads Value -> Text. Mode and Type must be merged into one TextInputType."
+    properties:
+      AccessibleLabel: same
+      Align: same
+      Appearance:
+        to: Appearance
+        values:
+          "\"FilledDarker\"": "Appearance.FilledDarker"
+          "TextInputCanvas.Appearance.FilledDarker": "Appearance.FilledDarker"
+          "'TextInputCanvas.Appearance'.FilledDarker": "Appearance.FilledDarker"
+          "\"FilledLighter\"": "Appearance.FilledLighter"
+          "TextInputCanvas.Appearance.FilledLighter": "Appearance.FilledLighter"
+          "'TextInputCanvas.Appearance'.FilledLighter": "Appearance.FilledLighter"
+          "\"Outline\"": "Appearance.Outline"
+          "TextInputCanvas.Appearance.Outline": "Appearance.Outline"
+          "'TextInputCanvas.Appearance'.Outline": "Appearance.Outline"
+        basis: catalog-name-match # @enum:TextInputCanvas.Appearance -> @enum:Appearance: corresponding named catalog members; computed formulas require review.
+      BasePaletteColor: same
+      BorderColor: same
+      BorderRadius:
+        to: [RadiusTopLeft, RadiusTopRight, RadiusBottomLeft, RadiusBottomRight]
+        basis: field-report-2026-10-08#9
+      BorderStyle: same
+      BorderThickness: same
+      ContentLanguage: same
+      DisplayMode: same
+      Fill: same
+      Font: same
+      FontColor:
+        to: Color
+        basis: catalog-name-match # FontColor and Color are both Color; named catalog counterpart, runtime equivalence unverified.
+      FontItalic:
+        to: Italic
+        basis: catalog-name-match # FontItalic and Italic are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontSize:
+        to: Size
+        basis: catalog-name-match # FontSize and Size are both Number; named catalog counterpart, runtime equivalence unverified.
+      FontStrikethrough:
+        to: Strikethrough
+        basis: catalog-name-match # FontStrikethrough and Strikethrough are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontUnderline:
+        to: Underline
+        basis: catalog-name-match # FontUnderline and Underline are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontWeight: same
+      Height: same
+      MaxLength: same
+      Mode:
+        to: Type
+        transform: text-input-mode
+        unless_present: [Type]
+        fallback_manual: "Merge Mode and Type into one Type formula: Password/Search takes the corresponding TextInputType, while Text takes SingleLine or Multiline from Mode. Review computed formulas and conflicts before replacing both source inputs."
+        values:
+          "\"Multiline\"": "'TextInputType'.Multiline"
+          "TextInputCanvas.Mode.Multiline": "'TextInputType'.Multiline"
+          "'TextInputCanvas.Mode'.Multiline": "'TextInputType'.Multiline"
+        basis: field-report-2026-10-08#9
+      OnChange: same
+      PaddingBottom: same
+      PaddingLeft: same
+      PaddingRight: same
+      PaddingTop: same
+      Placeholder: same
+      Required: same
+      TriggerOutput:
+        to: TriggerOutput
+        values:
+          "\"Delayed\"": "TriggerOutput.Delayed"
+          "TextInputCanvas.TriggerOutput.Delayed": "TriggerOutput.Delayed"
+          "'TextInputCanvas.TriggerOutput'.Delayed": "TriggerOutput.Delayed"
+          "\"FocusOut\"": "TriggerOutput.FocusOut"
+          "TextInputCanvas.TriggerOutput.FocusOut": "TriggerOutput.FocusOut"
+          "'TextInputCanvas.TriggerOutput'.FocusOut": "TriggerOutput.FocusOut"
+          "\"Keypress\"": "TriggerOutput.Keypress"
+          "TextInputCanvas.TriggerOutput.Keypress": "TriggerOutput.Keypress"
+          "'TextInputCanvas.TriggerOutput'.Keypress": "TriggerOutput.Keypress"
+        basis: catalog-name-match # @enum:TextInputCanvas.TriggerOutput -> @enum:TriggerOutput: corresponding named catalog members; computed formulas require review.
+      Type:
+        manual: "Merge Mode and Type into one Type formula: Password/Search takes the corresponding TextInputType, while Text takes SingleLine or Multiline from Mode. Review computed formulas and conflicts before replacing both source inputs."
+        targets:
+          - Type
+        basis: inferred
+      ValidationState:
+        to: ValidationState
+        values:
+          "\"Error\"": "ValidationState.Error"
+          "TextInputCanvas.ValidationState.Error": "ValidationState.Error"
+          "'TextInputCanvas.ValidationState'.Error": "ValidationState.Error"
+          "\"None\"": "ValidationState.None"
+          "TextInputCanvas.ValidationState.None": "ValidationState.None"
+          "'TextInputCanvas.ValidationState'.None": "ValidationState.None"
+        basis: catalog-name-match # @enum:TextInputCanvas.ValidationState -> @enum:ValidationState: corresponding named catalog members; computed formulas require review.
+      Value:
+        to: Default
+        basis: version-knowledge-TextInput@0.0.54
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AccessibleLabel: AccessibleLabel
+      Align: Align
+      Appearance: Appearance
+      BasePaletteColor: BasePaletteColor
+      BorderColor: BorderColor
+      BorderRadius: ~ # No safe member-only counterpart; manual review.
+      BorderStyle: BorderStyle
+      BorderThickness: BorderThickness
+      ContentLanguage: ContentLanguage
+      DisplayMode: DisplayMode
+      Fill: Fill
+      Font: Font
+      FontColor: Color
+      FontItalic: Italic
+      FontSize: Size
+      FontStrikethrough: Strikethrough
+      FontUnderline: Underline
+      FontWeight: FontWeight
+      Height: Height
+      MaxLength: MaxLength
+      Mode: ~ # No safe member-only counterpart; manual review.
+      OnChange: OnChange
+      PaddingBottom: PaddingBottom
+      PaddingLeft: PaddingLeft
+      PaddingRight: PaddingRight
+      PaddingTop: PaddingTop
+      Placeholder: Placeholder
+      Required: Required
+      TriggerOutput: TriggerOutput
+      Type: Type
+      ValidationState: ValidationState
+      Value: Text
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+    verified: false
+  Button:
+    target: ModernButton
+    behaviour:
+      - "Draft FluentV9-to-Modern* conversion; catalog surface checks do not prove formula, styling or runtime equivalence."
+      - "Unauthored properties use target defaults. Compile in a scratch app and visually check; do not rely on Studio Update."
+      - "Member renames do not transform enum comparisons or record shapes in other formulas; review those formulas separately."
+      - "version_knowledge Button@0.0.45 (Studio 2026-08-26): FontSize -> Size, BorderRadius -> four Radius* inputs, ButtonCanvas.Appearance -> ButtonAppearance. Coordinate uniform and per-corner radii."
+    properties:
+      AcceptsFocus:
+        drop: "ModernButton has no AcceptsFocus switch; explicit keyboard focus acceptance is lost. Review focus traversal."
+        impact: behaviour
+        basis: inferred
+      AccessibleLabel: same
+      Align: same
+      Appearance:
+        to: Appearance
+        values:
+          "\"Outline\"": "ButtonAppearance.Outline"
+          "ButtonCanvas.Appearance.Outline": "ButtonAppearance.Outline"
+          "'ButtonCanvas.Appearance'.Outline": "ButtonAppearance.Outline"
+          "\"Primary\"": "ButtonAppearance.Primary"
+          "ButtonCanvas.Appearance.Primary": "ButtonAppearance.Primary"
+          "'ButtonCanvas.Appearance'.Primary": "ButtonAppearance.Primary"
+          "\"Secondary\"": "ButtonAppearance.Secondary"
+          "ButtonCanvas.Appearance.Secondary": "ButtonAppearance.Secondary"
+          "'ButtonCanvas.Appearance'.Secondary": "ButtonAppearance.Secondary"
+          "\"Subtle\"": "ButtonAppearance.Subtle"
+          "ButtonCanvas.Appearance.Subtle": "ButtonAppearance.Subtle"
+          "'ButtonCanvas.Appearance'.Subtle": "ButtonAppearance.Subtle"
+          "\"Transparent\"": "ButtonAppearance.Transparent"
+          "ButtonCanvas.Appearance.Transparent": "ButtonAppearance.Transparent"
+          "'ButtonCanvas.Appearance'.Transparent": "ButtonAppearance.Transparent"
+        basis: version-knowledge-Button@0.0.45
+      BasePaletteColor: same
+      BorderColor: same
+      BorderRadius:
+        to: [RadiusTopLeft, RadiusTopRight, RadiusBottomLeft, RadiusBottomRight]
+        basis: field-report-2026-10-08#9
+      BorderRadiusBottomLeft:
+        to: RadiusBottomLeft
+        basis: catalog-name-match # BorderRadiusBottomLeft and RadiusBottomLeft are both Number; named catalog counterpart, runtime equivalence unverified.
+      BorderRadiusBottomRight:
+        to: RadiusBottomRight
+        basis: catalog-name-match # BorderRadiusBottomRight and RadiusBottomRight are both Number; named catalog counterpart, runtime equivalence unverified.
+      BorderRadiusTopLeft:
+        to: RadiusTopLeft
+        basis: catalog-name-match # BorderRadiusTopLeft and RadiusTopLeft are both Number; named catalog counterpart, runtime equivalence unverified.
+      BorderRadiusTopRight:
+        to: RadiusTopRight
+        basis: catalog-name-match # BorderRadiusTopRight and RadiusTopRight are both Number; named catalog counterpart, runtime equivalence unverified.
+      BorderStyle: same
+      BorderThickness: same
+      ContentLanguage: same
+      DisplayMode: same
+      Font: same
+      FontColor:
+        to: Color
+        basis: catalog-name-match # FontColor and Color are both Color; named catalog counterpart, runtime equivalence unverified.
+      FontItalic:
+        to: Italic
+        basis: catalog-name-match # FontItalic and Italic are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontSize:
+        to: Size
+        basis: version-knowledge-Button@0.0.45
+      FontStrikethrough:
+        to: Strikethrough
+        basis: catalog-name-match # FontStrikethrough and Strikethrough are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontUnderline:
+        to: Underline
+        basis: catalog-name-match # FontUnderline and Underline are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontWeight: same
+      Height: same
+      Icon: same
+      IconRotation: same
+      IconStyle:
+        to: IconStyle
+        values:
+          "\"Filled\"": "IconStyle.Filled"
+          "ButtonCanvas.IconStyle.Filled": "IconStyle.Filled"
+          "'ButtonCanvas.IconStyle'.Filled": "IconStyle.Filled"
+          "\"Outline\"": "IconStyle.Outline"
+          "ButtonCanvas.IconStyle.Outline": "IconStyle.Outline"
+          "'ButtonCanvas.IconStyle'.Outline": "IconStyle.Outline"
+        basis: catalog-name-match # @enum:ButtonCanvas.IconStyle -> @enum:IconStyle: corresponding named catalog members; computed formulas require review.
+      Layout:
+        to: Layout
+        values:
+          "\"IconAfter\"": "ButtonLayout.IconAfter"
+          "ButtonCanvas.Layout.IconAfter": "ButtonLayout.IconAfter"
+          "'ButtonCanvas.Layout'.IconAfter": "ButtonLayout.IconAfter"
+          "\"IconBefore\"": "ButtonLayout.IconBefore"
+          "ButtonCanvas.Layout.IconBefore": "ButtonLayout.IconBefore"
+          "'ButtonCanvas.Layout'.IconBefore": "ButtonLayout.IconBefore"
+          "\"IconOnly\"": "ButtonLayout.IconOnly"
+          "ButtonCanvas.Layout.IconOnly": "ButtonLayout.IconOnly"
+          "'ButtonCanvas.Layout'.IconOnly": "ButtonLayout.IconOnly"
+          "\"TextOnly\"": "ButtonLayout.TextOnly"
+          "ButtonCanvas.Layout.TextOnly": "ButtonLayout.TextOnly"
+          "'ButtonCanvas.Layout'.TextOnly": "ButtonLayout.TextOnly"
+        basis: catalog-name-match # @enum:ButtonCanvas.Layout -> @enum:ButtonLayout: corresponding named catalog members; computed formulas require review.
+      OnSelect: same
+      PaddingBottom: same
+      PaddingLeft: same
+      PaddingRight: same
+      PaddingTop: same
+      Text: same
+      VerticalAlign: same
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AcceptsFocus: ~ # No safe member-only counterpart; manual review.
+      AccessibleLabel: AccessibleLabel
+      Align: Align
+      Appearance: Appearance
+      BasePaletteColor: BasePaletteColor
+      BorderColor: BorderColor
+      BorderRadius: ~ # No safe member-only counterpart; manual review.
+      BorderRadiusBottomLeft: RadiusBottomLeft
+      BorderRadiusBottomRight: RadiusBottomRight
+      BorderRadiusTopLeft: RadiusTopLeft
+      BorderRadiusTopRight: RadiusTopRight
+      BorderStyle: BorderStyle
+      BorderThickness: BorderThickness
+      ContentLanguage: ContentLanguage
+      DisplayMode: DisplayMode
+      Font: Font
+      FontColor: Color
+      FontItalic: Italic
+      FontSize: Size
+      FontStrikethrough: Strikethrough
+      FontUnderline: Underline
+      FontWeight: FontWeight
+      Height: Height
+      Icon: Icon
+      IconRotation: IconRotation
+      IconStyle: IconStyle
+      Layout: Layout
+      OnSelect: OnSelect
+      PaddingBottom: PaddingBottom
+      PaddingLeft: PaddingLeft
+      PaddingRight: PaddingRight
+      PaddingTop: PaddingTop
+      Text: Text
+      VerticalAlign: VerticalAlign
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+    verified: false
+  CheckBox:
+    target: ModernCheckbox
+    behaviour:
+      - "Draft FluentV9-to-Modern* conversion; catalog surface checks do not prove formula, styling or runtime equivalence."
+      - "Unauthored properties use target defaults. Compile in a scratch app and visually check; do not rely on Studio Update."
+      - "Member renames do not transform enum comparisons or record shapes in other formulas; review those formulas separately."
+      - "version_knowledge CheckBox@0.0.30 (Studio 2026-08-26): authored Checked -> Default; reads remain Checked."
+    properties:
+      AccessibleLabel: same
+      BasePaletteColor: same
+      CheckboxSize: same
+      Checked:
+        to: Default
+        basis: version-knowledge-CheckBox@0.0.30
+      ContentLanguage: same
+      DisplayMode: same
+      Font: same
+      FontColor:
+        to: Color
+        basis: catalog-name-match # FontColor and Color are both Color; named catalog counterpart, runtime equivalence unverified.
+      FontItalic:
+        to: Italic
+        basis: catalog-name-match # FontItalic and Italic are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontSize:
+        to: Size
+        basis: catalog-name-match # FontSize and Size are both Number; named catalog counterpart, runtime equivalence unverified.
+      FontStrikethrough:
+        to: Strikethrough
+        basis: catalog-name-match # FontStrikethrough and Strikethrough are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontUnderline:
+        to: Underline
+        basis: catalog-name-match # FontUnderline and Underline are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontWeight: same
+      Height: same
+      Label: same
+      OnCheck: same
+      OnSelect:
+        drop: "ModernCheckbox has no click/tap handler; move the action to a supported event or control."
+        impact: behaviour
+        basis: inferred
+      OnUncheck: same
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AccessibleLabel: AccessibleLabel
+      BasePaletteColor: BasePaletteColor
+      CheckboxSize: CheckboxSize
+      Checked: Checked
+      ContentLanguage: ContentLanguage
+      DisplayMode: DisplayMode
+      Font: Font
+      FontColor: Color
+      FontItalic: Italic
+      FontSize: Size
+      FontStrikethrough: Strikethrough
+      FontUnderline: Underline
+      FontWeight: FontWeight
+      Height: Height
+      Label: Label
+      OnCheck: OnCheck
+      OnSelect: ~ # No safe member-only counterpart; manual review.
+      OnUncheck: OnUncheck
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+    verified: false
+  ComboBox:
+    target: ModernCombobox
+    behaviour:
+      - "Draft FluentV9-to-Modern* conversion; catalog surface checks do not prove formula, styling or runtime equivalence."
+      - "Unauthored properties use target defaults. Compile in a scratch app and visually check; do not rely on Studio Update."
+      - "Member renames do not transform enum comparisons or record shapes in other formulas; review those formulas separately."
+    properties:
+      AccessibleLabel: same
+      Appearance:
+        to: Appearance
+        values:
+          "\"FilledDarker\"": "Appearance.FilledDarker"
+          "ComboboxCanvas.Appearance.FilledDarker": "Appearance.FilledDarker"
+          "'ComboboxCanvas.Appearance'.FilledDarker": "Appearance.FilledDarker"
+          "\"FilledLighter\"": "Appearance.FilledLighter"
+          "ComboboxCanvas.Appearance.FilledLighter": "Appearance.FilledLighter"
+          "'ComboboxCanvas.Appearance'.FilledLighter": "Appearance.FilledLighter"
+          "\"Outline\"": "Appearance.Outline"
+          "ComboboxCanvas.Appearance.Outline": "Appearance.Outline"
+          "'ComboboxCanvas.Appearance'.Outline": "Appearance.Outline"
+        basis: catalog-name-match # @enum:ComboboxCanvas.Appearance -> @enum:Appearance: corresponding named catalog members; computed formulas require review.
+      BasePaletteColor: same
+      BorderColor: same
+      BorderRadius:
+        to: [RadiusTopLeft, RadiusTopRight, RadiusBottomLeft, RadiusBottomRight]
+        basis: field-report-2026-10-08#9
+      BorderStyle: same
+      BorderThickness: same
+      ContentLanguage: same
+      DefaultSelectedItems: same
+      DisplayMode: same
+      Fill: same
+      Font: same
+      FontColor:
+        to: Color
+        basis: catalog-name-match # FontColor and Color are both Color; named catalog counterpart, runtime equivalence unverified.
+      FontItalic:
+        to: Italic
+        basis: catalog-name-match # FontItalic and Italic are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontSize:
+        to: Size
+        basis: catalog-name-match # FontSize and Size are both Number; named catalog counterpart, runtime equivalence unverified.
+      FontStrikethrough:
+        to: Strikethrough
+        basis: catalog-name-match # FontStrikethrough and Strikethrough are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontUnderline:
+        to: Underline
+        basis: catalog-name-match # FontUnderline and Underline are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontWeight: same
+      Height: same
+      InputTextPlaceholder: same
+      IsSearchable: same
+      Items: same
+      MultiValueDelimiter: same
+      OnChange: same
+      PaddingBottom: same
+      PaddingLeft: same
+      PaddingRight: same
+      PaddingTop: same
+      Required: same
+      SelectMultiple: same
+      TriggerOutput:
+        manual: "Choose DelayOutput after reviewing TriggerOutput timing: Delayed suggests true and Keypress false; FocusOut has no exact DelayOutput counterpart. Verify update timing before conversion."
+        targets:
+          - DelayOutput
+        basis: inferred
+      ValidationState:
+        to: ValidationState
+        values:
+          "\"Error\"": "ValidationState.Error"
+          "ComboboxCanvas.ValidationState.Error": "ValidationState.Error"
+          "'ComboboxCanvas.ValidationState'.Error": "ValidationState.Error"
+          "\"None\"": "ValidationState.None"
+          "ComboboxCanvas.ValidationState.None": "ValidationState.None"
+          "'ComboboxCanvas.ValidationState'.None": "ValidationState.None"
+        basis: catalog-name-match # @enum:ComboboxCanvas.ValidationState -> @enum:ValidationState: corresponding named catalog members; computed formulas require review.
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AccessibleLabel: AccessibleLabel
+      Appearance: Appearance
+      BasePaletteColor: BasePaletteColor
+      BorderColor: BorderColor
+      BorderRadius: ~ # No safe member-only counterpart; manual review.
+      BorderStyle: BorderStyle
+      BorderThickness: BorderThickness
+      ContentLanguage: ContentLanguage
+      DefaultSelectedItems: DefaultSelectedItems
+      DisplayMode: DisplayMode
+      Fill: Fill
+      Font: Font
+      FontColor: Color
+      FontItalic: Italic
+      FontSize: Size
+      FontStrikethrough: Strikethrough
+      FontUnderline: Underline
+      FontWeight: FontWeight
+      Height: Height
+      InputTextPlaceholder: InputTextPlaceholder
+      IsSearchable: IsSearchable
+      Items: Items
+      MultiValueDelimiter: MultiValueDelimiter
+      OnChange: OnChange
+      PaddingBottom: PaddingBottom
+      PaddingLeft: PaddingLeft
+      PaddingRight: PaddingRight
+      PaddingTop: PaddingTop
+      Required: Required
+      SelectMultiple: SelectMultiple
+      TriggerOutput: ~ # No safe member-only counterpart; manual review.
+      ValidationState: ValidationState
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+      SearchText: SearchText
+      Selected: Selected
+      SelectedItems: SelectedItems
+    verified: false
+  DatePicker:
+    target: ModernDatePicker
+    open_items:
+      - property: "ContentLanguage"
+        reason: "ModernDatePicker does not inherit the app's locale; set ContentLanguage, StartOfWeek and Format if the app needs a specific locale."
+        basis: "field-report-2026-10-08#6"
+    behaviour:
+      - "Draft FluentV9-to-Modern* conversion; catalog surface checks do not prove formula, styling or runtime equivalence."
+      - "Unauthored properties use target defaults. Compile in a scratch app and visually check; do not rely on Studio Update."
+      - "Member renames do not transform enum comparisons or record shapes in other formulas; review those formulas separately."
+      - "version_knowledge DatePicker@0.0.46 (Studio 2026-08-26): authored SelectedDate -> DefaultDate; reads remain SelectedDate."
+    properties:
+      AccessibleLabel: same
+      Appearance:
+        to: Appearance
+        values:
+          "\"FilledDarker\"": "Appearance.FilledDarker"
+          "DatePickerCanvas.Appearance.FilledDarker": "Appearance.FilledDarker"
+          "'DatePickerCanvas.Appearance'.FilledDarker": "Appearance.FilledDarker"
+          "\"FilledLighter\"": "Appearance.FilledLighter"
+          "DatePickerCanvas.Appearance.FilledLighter": "Appearance.FilledLighter"
+          "'DatePickerCanvas.Appearance'.FilledLighter": "Appearance.FilledLighter"
+          "\"Outline\"": "Appearance.Outline"
+          "DatePickerCanvas.Appearance.Outline": "Appearance.Outline"
+          "'DatePickerCanvas.Appearance'.Outline": "Appearance.Outline"
+        basis: catalog-name-match # @enum:DatePickerCanvas.Appearance -> @enum:Appearance: corresponding named catalog members; computed formulas require review.
+      BasePaletteColor: same
+      BorderColor: same
+      BorderRadius:
+        to: [RadiusTopLeft, RadiusTopRight, RadiusBottomLeft, RadiusBottomRight]
+        basis: field-report-2026-10-08#9
+      BorderStyle: same
+      BorderThickness: same
+      ContentLanguage:
+        to: ContentLanguage
+        basis: field-report-2026-10-08#6
+      DateTimeZone:
+        to: DateTimeZone
+        values:
+          "\"Local\"": "DateTimeZone.Local"
+          "DatePickerCanvas.DateTimeZone.Local": "DateTimeZone.Local"
+          "'DatePickerCanvas.DateTimeZone'.Local": "DateTimeZone.Local"
+          "\"UTC\"": "DateTimeZone.UTC"
+          "DatePickerCanvas.DateTimeZone.UTC": "DateTimeZone.UTC"
+          "'DatePickerCanvas.DateTimeZone'.UTC": "DateTimeZone.UTC"
+        basis: catalog-name-match # @enum:DatePickerCanvas.DateTimeZone -> @enum:DateTimeZone: corresponding named catalog members; computed formulas require review.
+      DisplayMode: same
+      EndDate: same
+      Fill: same
+      Font: same
+      FontColor:
+        to: Color
+        basis: catalog-name-match # FontColor and Color are both Color; named catalog counterpart, runtime equivalence unverified.
+      FontItalic:
+        to: Italic
+        basis: catalog-name-match # FontItalic and Italic are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontSize:
+        to: Size
+        basis: catalog-name-match # FontSize and Size are both Number; named catalog counterpart, runtime equivalence unverified.
+      FontStrikethrough:
+        to: Strikethrough
+        basis: catalog-name-match # FontStrikethrough and Strikethrough are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontUnderline:
+        to: Underline
+        basis: catalog-name-match # FontUnderline and Underline are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontWeight: same
+      Format:
+        to: Format
+        values:
+          "\"LongAbbreviated\"": "DatePickerFormat.LongAbbreviated"
+          "DatePickerCanvas.Format.LongAbbreviated": "DatePickerFormat.LongAbbreviated"
+          "'DatePickerCanvas.Format'.LongAbbreviated": "DatePickerFormat.LongAbbreviated"
+          "\"Short\"": "DatePickerFormat.Short"
+          "DatePickerCanvas.Format.Short": "DatePickerFormat.Short"
+          "'DatePickerCanvas.Format'.Short": "DatePickerFormat.Short"
+          "\"YearMonth\"": "DatePickerFormat.YearMonth"
+          "DatePickerCanvas.Format.YearMonth": "DatePickerFormat.YearMonth"
+          "'DatePickerCanvas.Format'.YearMonth": "DatePickerFormat.YearMonth"
+        basis: field-report-2026-10-08#6
+      Height: same
+      IsEditable: same
+      OnChange: same
+      PaddingBottom: same
+      PaddingLeft: same
+      PaddingRight: same
+      PaddingTop: same
+      Placeholder: same
+      SelectedDate:
+        to: DefaultDate
+        basis: version-knowledge-DatePicker@0.0.46
+      StartDate: same
+      StartOfWeek:
+        to: StartOfWeek
+        values:
+          "\"Friday\"": "StartOfWeek.Friday"
+          "DatePickerCanvas.StartOfWeek.Friday": "StartOfWeek.Friday"
+          "'DatePickerCanvas.StartOfWeek'.Friday": "StartOfWeek.Friday"
+          "\"Monday\"": "StartOfWeek.Monday"
+          "DatePickerCanvas.StartOfWeek.Monday": "StartOfWeek.Monday"
+          "'DatePickerCanvas.StartOfWeek'.Monday": "StartOfWeek.Monday"
+          "\"Saturday\"": "StartOfWeek.Saturday"
+          "DatePickerCanvas.StartOfWeek.Saturday": "StartOfWeek.Saturday"
+          "'DatePickerCanvas.StartOfWeek'.Saturday": "StartOfWeek.Saturday"
+          "\"Sunday\"": "StartOfWeek.Sunday"
+          "DatePickerCanvas.StartOfWeek.Sunday": "StartOfWeek.Sunday"
+          "'DatePickerCanvas.StartOfWeek'.Sunday": "StartOfWeek.Sunday"
+          "\"Thursday\"": "StartOfWeek.Thursday"
+          "DatePickerCanvas.StartOfWeek.Thursday": "StartOfWeek.Thursday"
+          "'DatePickerCanvas.StartOfWeek'.Thursday": "StartOfWeek.Thursday"
+          "\"Tuesday\"": "StartOfWeek.Tuesday"
+          "DatePickerCanvas.StartOfWeek.Tuesday": "StartOfWeek.Tuesday"
+          "'DatePickerCanvas.StartOfWeek'.Tuesday": "StartOfWeek.Tuesday"
+          "\"Wednesday\"": "StartOfWeek.Wednesday"
+          "DatePickerCanvas.StartOfWeek.Wednesday": "StartOfWeek.Wednesday"
+          "'DatePickerCanvas.StartOfWeek'.Wednesday": "StartOfWeek.Wednesday"
+        basis: field-report-2026-10-08#6
+      ValidationState:
+        to: ValidationState
+        values:
+          "\"Error\"": "ValidationState.Error"
+          "DatePickerCanvas.ValidationState.Error": "ValidationState.Error"
+          "'DatePickerCanvas.ValidationState'.Error": "ValidationState.Error"
+          "\"None\"": "ValidationState.None"
+          "DatePickerCanvas.ValidationState.None": "ValidationState.None"
+          "'DatePickerCanvas.ValidationState'.None": "ValidationState.None"
+        basis: catalog-name-match # @enum:DatePickerCanvas.ValidationState -> @enum:ValidationState: corresponding named catalog members; computed formulas require review.
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AccessibleLabel: AccessibleLabel
+      Appearance: Appearance
+      BasePaletteColor: BasePaletteColor
+      BorderColor: BorderColor
+      BorderRadius: ~ # No safe member-only counterpart; manual review.
+      BorderStyle: BorderStyle
+      BorderThickness: BorderThickness
+      ContentLanguage: ContentLanguage
+      DateTimeZone: DateTimeZone
+      DisplayMode: DisplayMode
+      EndDate: EndDate
+      Fill: Fill
+      Font: Font
+      FontColor: Color
+      FontItalic: Italic
+      FontSize: Size
+      FontStrikethrough: Strikethrough
+      FontUnderline: Underline
+      FontWeight: FontWeight
+      Format: Format
+      Height: Height
+      IsEditable: IsEditable
+      OnChange: OnChange
+      PaddingBottom: PaddingBottom
+      PaddingLeft: PaddingLeft
+      PaddingRight: PaddingRight
+      PaddingTop: PaddingTop
+      Placeholder: Placeholder
+      SelectedDate: SelectedDate
+      StartDate: StartDate
+      StartOfWeek: StartOfWeek
+      ValidationState: ValidationState
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+      Required: ~ # No safe member-only counterpart; manual review.
+    verified: false
+  DropDown:
+    target: ModernDropdown
+    add:
+      - property: "ItemDisplayText"
+        value: "=ThisItem.Value"
+        when: "single-column-items"
+        basis: "field-report-2026-10-08#10"
+    behaviour:
+      - "Draft FluentV9-to-Modern* conversion; catalog surface checks do not prove formula, styling or runtime equivalence."
+      - "Unauthored properties use target defaults. Compile in a scratch app and visually check; do not rely on Studio Update."
+      - "Member renames do not transform enum comparisons or record shapes in other formulas; review those formulas separately."
+    properties:
+      AccessibleLabel: same
+      Appearance:
+        to: Appearance
+        values:
+          "\"FilledDarker\"": "Appearance.FilledDarker"
+          "DropdownCanvas.Appearance.FilledDarker": "Appearance.FilledDarker"
+          "'DropdownCanvas.Appearance'.FilledDarker": "Appearance.FilledDarker"
+          "\"FilledLighter\"": "Appearance.FilledLighter"
+          "DropdownCanvas.Appearance.FilledLighter": "Appearance.FilledLighter"
+          "'DropdownCanvas.Appearance'.FilledLighter": "Appearance.FilledLighter"
+          "\"Outline\"": "Appearance.Outline"
+          "DropdownCanvas.Appearance.Outline": "Appearance.Outline"
+          "'DropdownCanvas.Appearance'.Outline": "Appearance.Outline"
+        basis: catalog-name-match # @enum:DropdownCanvas.Appearance -> @enum:Appearance: corresponding named catalog members; computed formulas require review.
+      BasePaletteColor: same
+      BorderColor: same
+      BorderRadius:
+        to: [RadiusTopLeft, RadiusTopRight, RadiusBottomLeft, RadiusBottomRight]
+        basis: field-report-2026-10-08#9
+      BorderStyle: same
+      BorderThickness: same
+      ContentLanguage: same
+      DefaultSelectedItems:
+        manual: "Use First(<DefaultSelectedItems formula>) as the Default record; review empty or multiple selections and reconcile the Items record shape."
+        targets:
+          - Default
+        basis: inferred
+      DisplayMode: same
+      Fill: same
+      FontSize:
+        to: Size
+        basis: catalog-name-match # FontSize and Size are both Number; named catalog counterpart, runtime equivalence unverified.
+      Height: same
+      Items: same
+      OnChange: same
+      PaddingBottom: same
+      PaddingLeft: same
+      PaddingRight: same
+      PaddingTop: same
+      Required: same
+      ValidationState:
+        to: ValidationState
+        values:
+          "\"Error\"": "ValidationState.Error"
+          "DropdownCanvas.ValidationState.Error": "ValidationState.Error"
+          "'DropdownCanvas.ValidationState'.Error": "ValidationState.Error"
+          "\"None\"": "ValidationState.None"
+          "DropdownCanvas.ValidationState.None": "ValidationState.None"
+          "'DropdownCanvas.ValidationState'.None": "ValidationState.None"
+        basis: catalog-name-match # @enum:DropdownCanvas.ValidationState -> @enum:ValidationState: corresponding named catalog members; computed formulas require review.
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AccessibleLabel: AccessibleLabel
+      Appearance: Appearance
+      BasePaletteColor: BasePaletteColor
+      BorderColor: BorderColor
+      BorderRadius: ~ # No safe member-only counterpart; manual review.
+      BorderStyle: BorderStyle
+      BorderThickness: BorderThickness
+      ContentLanguage: ContentLanguage
+      DefaultSelectedItems: ~ # No safe member-only counterpart; manual review.
+      DisplayMode: DisplayMode
+      Fill: Fill
+      FontSize: Size
+      Height: Height
+      Items: Items
+      OnChange: OnChange
+      PaddingBottom: PaddingBottom
+      PaddingLeft: PaddingLeft
+      PaddingRight: PaddingRight
+      PaddingTop: PaddingTop
+      Required: Required
+      ValidationState: ValidationState
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+      Selected: Selected
+      SelectedItems: ~ # No safe member-only counterpart; manual review.
+    verified: false
+  Radio:
+    target: ModernRadio
+    behaviour:
+      - "Draft FluentV9-to-Modern* conversion; catalog surface checks do not prove formula, styling or runtime equivalence."
+      - "Unauthored properties use target defaults. Compile in a scratch app and visually check; do not rely on Studio Update."
+      - "Member renames do not transform enum comparisons or record shapes in other formulas; review those formulas separately."
+    properties:
+      AccessibleLabel: same
+      BasePaletteColor: same
+      ContentLanguage: same
+      DefaultSelectedItems:
+        manual: "Use First(<DefaultSelectedItems formula>) as the Default record; review empty or multiple selections and reconcile the Items record shape."
+        targets:
+          - Default
+        basis: inferred
+      DisplayMode: same
+      Font: same
+      FontColor:
+        to: Color
+        basis: catalog-name-match # FontColor and Color are both Color; named catalog counterpart, runtime equivalence unverified.
+      FontItalic:
+        to: Italic
+        basis: catalog-name-match # FontItalic and Italic are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontSize:
+        to: Size
+        basis: catalog-name-match # FontSize and Size are both Number; named catalog counterpart, runtime equivalence unverified.
+      FontStrikethrough:
+        to: Strikethrough
+        basis: catalog-name-match # FontStrikethrough and Strikethrough are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontUnderline:
+        to: Underline
+        basis: catalog-name-match # FontUnderline and Underline are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontWeight: same
+      Height: same
+      Items: same
+      Layout:
+        to: Layout
+        values:
+          "\"Horizontal\"": "OptionLayout.Horizontal"
+          "RadioGroupCanvas.Layout.Horizontal": "OptionLayout.Horizontal"
+          "'RadioGroupCanvas.Layout'.Horizontal": "OptionLayout.Horizontal"
+          "\"HorizontalStacked\"": "OptionLayout.HorizontalStacked"
+          "RadioGroupCanvas.Layout.HorizontalStacked": "OptionLayout.HorizontalStacked"
+          "'RadioGroupCanvas.Layout'.HorizontalStacked": "OptionLayout.HorizontalStacked"
+          "\"Vertical\"": "OptionLayout.Vertical"
+          "RadioGroupCanvas.Layout.Vertical": "OptionLayout.Vertical"
+          "'RadioGroupCanvas.Layout'.Vertical": "OptionLayout.Vertical"
+        basis: catalog-name-match # @enum:RadioGroupCanvas.Layout -> @enum:OptionLayout: corresponding named catalog members; computed formulas require review.
+      OnChange: same
+      RadioSize: same
+      Required: same
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AccessibleLabel: AccessibleLabel
+      BasePaletteColor: BasePaletteColor
+      ContentLanguage: ContentLanguage
+      DefaultSelectedItems: ~ # No safe member-only counterpart; manual review.
+      DisplayMode: DisplayMode
+      Font: Font
+      FontColor: Color
+      FontItalic: Italic
+      FontSize: Size
+      FontStrikethrough: Strikethrough
+      FontUnderline: Underline
+      FontWeight: FontWeight
+      Height: Height
+      Items: Items
+      Layout: Layout
+      OnChange: OnChange
+      RadioSize: RadioSize
+      Required: Required
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+      Selected: Selected
+      SelectedItems: ~ # No safe member-only counterpart; manual review.
+    verified: false
+  Slider:
+    target: ModernSlider
+    behaviour:
+      - "Draft FluentV9-to-Modern* conversion; catalog surface checks do not prove formula, styling or runtime equivalence."
+      - "Unauthored properties use target defaults. Compile in a scratch app and visually check; do not rely on Studio Update."
+      - "Member renames do not transform enum comparisons or record shapes in other formulas; review those formulas separately."
+    properties:
+      AccessibleLabel: same
+      BasePaletteColor: same
+      ContentLanguage: same
+      DisplayMode: same
+      Height: same
+      Layout:
+        to: LayoutDirection
+        values:
+          "\"Horizontal\"": "LayoutDirection.Horizontal"
+          "Slider.Layout.Horizontal": "LayoutDirection.Horizontal"
+          "'Slider.Layout'.Horizontal": "LayoutDirection.Horizontal"
+          "\"Vertical\"": "LayoutDirection.Vertical"
+          "Slider.Layout.Vertical": "LayoutDirection.Vertical"
+          "'Slider.Layout'.Vertical": "LayoutDirection.Vertical"
+        basis: catalog-name-match # @enum:Slider.Layout -> @enum:LayoutDirection: corresponding named catalog members; computed formulas require review.
+      Max: same
+      Min: same
+      OnChange: same
+      Size:
+        to: Size
+        values:
+          "\"Medium\"": "SliderSize.Medium"
+          "Slider.Size.Medium": "SliderSize.Medium"
+          "'Slider.Size'.Medium": "SliderSize.Medium"
+          "\"Small\"": "SliderSize.Small"
+          "Slider.Size.Small": "SliderSize.Small"
+          "'Slider.Size'.Small": "SliderSize.Small"
+        basis: catalog-name-match # @enum:Slider.Size -> @enum:SliderSize: corresponding named catalog members; computed formulas require review.
+      Value:
+        to: Default
+        basis: inferred
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AccessibleLabel: AccessibleLabel
+      BasePaletteColor: BasePaletteColor
+      ContentLanguage: ContentLanguage
+      DisplayMode: DisplayMode
+      Height: Height
+      Layout: LayoutDirection
+      Max: Max
+      Min: Min
+      OnChange: OnChange
+      Size: Size
+      Value: Value
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+    verified: false
+  Toggle:
+    target: ModernToggle
+    behaviour:
+      - "Draft FluentV9-to-Modern* conversion; catalog surface checks do not prove formula, styling or runtime equivalence."
+      - "Unauthored properties use target defaults. Compile in a scratch app and visually check; do not rely on Studio Update."
+      - "Member renames do not transform enum comparisons or record shapes in other formulas; review those formulas separately."
+    properties:
+      AccessibleLabel: same
+      BasePaletteColor: same
+      Checked:
+        to: Default
+        basis: inferred
+      ContentLanguage: same
+      DisplayMode: same
+      Font: same
+      FontColor:
+        to: Color
+        basis: catalog-name-match # FontColor and Color are both Color; named catalog counterpart, runtime equivalence unverified.
+      FontItalic:
+        to: Italic
+        basis: catalog-name-match # FontItalic and Italic are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontSize:
+        to: Size
+        basis: catalog-name-match # FontSize and Size are both Number; named catalog counterpart, runtime equivalence unverified.
+      FontStrikethrough:
+        to: Strikethrough
+        basis: catalog-name-match # FontStrikethrough and Strikethrough are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontUnderline:
+        to: Underline
+        basis: catalog-name-match # FontUnderline and Underline are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontWeight: same
+      Height: same
+      Label: same
+      LabelPosition:
+        to: LabelPosition
+        values:
+          "\"Above\"": "ToggleLabelPosition.Above"
+          "Toggle.LabelPosition.Above": "ToggleLabelPosition.Above"
+          "'Toggle.LabelPosition'.Above": "ToggleLabelPosition.Above"
+          "\"After\"": "ToggleLabelPosition.After"
+          "Toggle.LabelPosition.After": "ToggleLabelPosition.After"
+          "'Toggle.LabelPosition'.After": "ToggleLabelPosition.After"
+          "\"Before\"": "ToggleLabelPosition.Before"
+          "Toggle.LabelPosition.Before": "ToggleLabelPosition.Before"
+          "'Toggle.LabelPosition'.Before": "ToggleLabelPosition.Before"
+        basis: catalog-name-match # @enum:Toggle.LabelPosition -> @enum:ToggleLabelPosition: corresponding named catalog members; computed formulas require review.
+      OnCheck: same
+      OnSelect:
+        drop: "ModernToggle has no click/tap handler; move the action to a supported event or control."
+        impact: behaviour
+        basis: inferred
+      OnUncheck: same
+      ToggleSize: same
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AccessibleLabel: AccessibleLabel
+      BasePaletteColor: BasePaletteColor
+      Checked: Checked
+      ContentLanguage: ContentLanguage
+      DisplayMode: DisplayMode
+      Font: Font
+      FontColor: Color
+      FontItalic: Italic
+      FontSize: Size
+      FontStrikethrough: Strikethrough
+      FontUnderline: Underline
+      FontWeight: FontWeight
+      Height: Height
+      Label: Label
+      LabelPosition: LabelPosition
+      OnCheck: OnCheck
+      OnSelect: ~ # No safe member-only counterpart; manual review.
+      OnUncheck: OnUncheck
+      ToggleSize: ToggleSize
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+    verified: false
+  TabList:
+    target: ModernTabList
+    behaviour:
+      - "Draft FluentV9-to-Modern* conversion; catalog surface checks do not prove formula, styling or runtime equivalence."
+      - "Unauthored properties use target defaults. Compile in a scratch app and visually check; do not rely on Studio Update."
+      - "Member renames do not transform enum comparisons or record shapes in other formulas; review those formulas separately."
+    properties:
+      AccessibleLabel: same
+      Alignment:
+        to: Alignment
+        values:
+          "\"Horizontal\"": "LayoutDirection.Horizontal"
+          "TabList.Alignment.Horizontal": "LayoutDirection.Horizontal"
+          "'TabList.Alignment'.Horizontal": "LayoutDirection.Horizontal"
+          "\"Vertical\"": "LayoutDirection.Vertical"
+          "TabList.Alignment.Vertical": "LayoutDirection.Vertical"
+          "'TabList.Alignment'.Vertical": "LayoutDirection.Vertical"
+        basis: catalog-name-match # @enum:TabList.Alignment -> @enum:LayoutDirection: corresponding named catalog members; computed formulas require review.
+      BasePaletteColor: same
+      ContentLanguage: same
+      DefaultSelectedItems:
+        manual: "Use First(<DefaultSelectedItems formula>) as the Default record; review empty or multiple selections and reconcile the Items record shape."
+        targets:
+          - Default
+        basis: studio-update-2026-10-06
+      DisplayMode: same
+      Font: same
+      FontColor:
+        to: Color
+        basis: catalog-name-match # FontColor and Color are both Color; named catalog counterpart, runtime equivalence unverified.
+      FontItalic:
+        to: Italic
+        basis: catalog-name-match # FontItalic and Italic are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontSize:
+        to: Size
+        basis: catalog-name-match # FontSize and Size are both Number; named catalog counterpart, runtime equivalence unverified.
+      FontStrikethrough:
+        to: Strikethrough
+        basis: catalog-name-match # FontStrikethrough and Strikethrough are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontUnderline:
+        to: Underline
+        basis: catalog-name-match # FontUnderline and Underline are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontWeight: same
+      Height: same
+      Items: same
+      OnChange: same
+      OnSelect: same
+      Size:
+        to: TabSize
+        values:
+          "\"Large\"": "TabSize.Large"
+          "TabList.Size.Large": "TabSize.Large"
+          "'TabList.Size'.Large": "TabSize.Large"
+          "\"Medium\"": "TabSize.Medium"
+          "TabList.Size.Medium": "TabSize.Medium"
+          "'TabList.Size'.Medium": "TabSize.Medium"
+          "\"Small\"": "TabSize.Small"
+          "TabList.Size.Small": "TabSize.Small"
+          "'TabList.Size'.Small": "TabSize.Small"
+        basis: catalog-name-match # @enum:TabList.Size -> @enum:TabSize: corresponding named catalog members; computed formulas require review.
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AccessibleLabel: AccessibleLabel
+      Alignment: Alignment
+      BasePaletteColor: BasePaletteColor
+      ContentLanguage: ContentLanguage
+      DefaultSelectedItems: ~ # No safe member-only counterpart; manual review.
+      DisplayMode: DisplayMode
+      Font: Font
+      FontColor: Color
+      FontItalic: Italic
+      FontSize: Size
+      FontStrikethrough: Strikethrough
+      FontUnderline: Underline
+      FontWeight: FontWeight
+      Height: Height
+      Items: Items
+      OnChange: OnChange
+      OnSelect: OnSelect
+      Size: TabSize
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+      Selected: Selected
+      SelectedItems: ~ # No safe member-only counterpart; manual review.
+    verified: false
+  Icon:
+    target: ModernIcon
+    behaviour:
+      - "Draft FluentV9-to-Modern* conversion; catalog surface checks do not prove formula, styling or runtime equivalence."
+      - "Unauthored properties use target defaults. Compile in a scratch app and visually check; do not rely on Studio Update."
+      - "Member renames do not transform enum comparisons or record shapes in other formulas; review those formulas separately."
+    properties:
+      ContentLanguage: same
+      DisplayMode: same
+      Height: same
+      Icon: same
+      IconColor: same
+      IconStyle:
+        to: IconStyle
+        values:
+          "\"Filled\"": "IconStyle.Filled"
+          "Icon.IconStyle.Filled": "IconStyle.Filled"
+          "'Icon.IconStyle'.Filled": "IconStyle.Filled"
+          "\"Outline\"": "IconStyle.Outline"
+          "Icon.IconStyle.Outline": "IconStyle.Outline"
+          "'Icon.IconStyle'.Outline": "IconStyle.Outline"
+        basis: catalog-name-match # @enum:Icon.IconStyle -> @enum:IconStyle: corresponding named catalog members; computed formulas require review.
+      Rotation: same
+      TabIndex:
+        drop: "Modern control has no keyboard order override; review focus traversal."
+        impact: cosmetic
+        basis: field-report-2026-10-08#9
+      Tooltip: same
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      ContentLanguage: ContentLanguage
+      DisplayMode: DisplayMode
+      Height: Height
+      Icon: Icon
+      IconColor: IconColor
+      IconStyle: IconStyle
+      Rotation: Rotation
+      TabIndex: ~ # No safe member-only counterpart; manual review.
+      Tooltip: Tooltip
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+    verified: false
+  NumberInput:
+    target: ModernNumberInput
+    behaviour:
+      - "Draft FluentV9-to-Modern* conversion; catalog surface checks do not prove formula, styling or runtime equivalence."
+      - "Unauthored properties use target defaults. Compile in a scratch app and visually check; do not rely on Studio Update."
+      - "Member renames do not transform enum comparisons or record shapes in other formulas; review those formulas separately."
+    properties:
+      AccessibleLabel: same
+      Align: same
+      Appearance:
+        to: Appearance
+        values:
+          "\"FilledDarker\"": "Appearance.FilledDarker"
+          "NumberInput.Appearance.FilledDarker": "Appearance.FilledDarker"
+          "'NumberInput.Appearance'.FilledDarker": "Appearance.FilledDarker"
+          "\"FilledLighter\"": "Appearance.FilledLighter"
+          "NumberInput.Appearance.FilledLighter": "Appearance.FilledLighter"
+          "'NumberInput.Appearance'.FilledLighter": "Appearance.FilledLighter"
+          "\"Outline\"": "Appearance.Outline"
+          "NumberInput.Appearance.Outline": "Appearance.Outline"
+          "'NumberInput.Appearance'.Outline": "Appearance.Outline"
+        basis: catalog-name-match # @enum:NumberInput.Appearance -> @enum:Appearance: corresponding named catalog members; computed formulas require review.
+      BasePaletteColor: same
+      BorderColor: same
+      BorderRadius:
+        to: [RadiusTopLeft, RadiusTopRight, RadiusBottomLeft, RadiusBottomRight]
+        basis: field-report-2026-10-08#9
+      BorderStyle: same
+      BorderThickness: same
+      ContentLanguage: same
+      DelayOutput:
+        drop: "ModernNumberInput has no output-delay setting; delayed versus immediate change notification is lost. Review OnChange timing."
+        impact: behaviour
+        basis: inferred
+      DisplayMode: same
+      FontSize:
+        to: Size
+        basis: catalog-name-match # FontSize and Size are both Number; named catalog counterpart, runtime equivalence unverified.
+      Height: same
+      Max: same
+      Min: same
+      OnChange: same
+      PaddingBottom: same
+      PaddingLeft: same
+      PaddingRight: same
+      PaddingTop: same
+      Precision:
+        to: Precision
+        values:
+          "\"0\"": "\"0\""
+          "NumberInput.Precision.0": "\"0\""
+          "'NumberInput.Precision'.0": "\"0\""
+          "\"1\"": "\"1\""
+          "NumberInput.Precision.1": "\"1\""
+          "'NumberInput.Precision'.1": "\"1\""
+          "\"2\"": "\"2\""
+          "NumberInput.Precision.2": "\"2\""
+          "'NumberInput.Precision'.2": "\"2\""
+          "\"3\"": "\"3\""
+          "NumberInput.Precision.3": "\"3\""
+          "'NumberInput.Precision'.3": "\"3\""
+          "\"4\"": "\"4\""
+          "NumberInput.Precision.4": "\"4\""
+          "'NumberInput.Precision'.4": "\"4\""
+          "\"5\"": "\"5\""
+          "NumberInput.Precision.5": "\"5\""
+          "'NumberInput.Precision'.5": "\"5\""
+          "\"Auto\"": "DecimalPrecision.Auto"
+          "NumberInput.Precision.Auto": "DecimalPrecision.Auto"
+          "'NumberInput.Precision'.Auto": "DecimalPrecision.Auto"
+        basis: catalog-name-match # @enum:NumberInput.Precision -> @enum:DecimalPrecision: corresponding named catalog members; computed formulas require review.
+      Step: same
+      ValidationState:
+        to: ValidationState
+        values:
+          "\"Error\"": "ValidationState.Error"
+          "NumberInput.ValidationState.Error": "ValidationState.Error"
+          "'NumberInput.ValidationState'.Error": "ValidationState.Error"
+          "\"None\"": "ValidationState.None"
+          "NumberInput.ValidationState.None": "ValidationState.None"
+          "'NumberInput.ValidationState'.None": "ValidationState.None"
+        basis: catalog-name-match # @enum:NumberInput.ValidationState -> @enum:ValidationState: corresponding named catalog members; computed formulas require review.
+      Value:
+        to: Default
+        basis: inferred
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AccessibleLabel: AccessibleLabel
+      Align: Align
+      Appearance: Appearance
+      BasePaletteColor: BasePaletteColor
+      BorderColor: BorderColor
+      BorderRadius: ~ # No safe member-only counterpart; manual review.
+      BorderStyle: BorderStyle
+      BorderThickness: BorderThickness
+      ContentLanguage: ContentLanguage
+      DelayOutput: ~ # No safe member-only counterpart; manual review.
+      DisplayMode: DisplayMode
+      FontSize: Size
+      Height: Height
+      Max: Max
+      Min: Min
+      OnChange: OnChange
+      PaddingBottom: PaddingBottom
+      PaddingLeft: PaddingLeft
+      PaddingRight: PaddingRight
+      PaddingTop: PaddingTop
+      Precision: Precision
+      Step: Step
+      ValidationState: ValidationState
+      Value: Value
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+    verified: false
+  Link:
+    target: ModernLink
+    behaviour:
+      - "Draft FluentV9-to-Modern* conversion; catalog surface checks do not prove formula, styling or runtime equivalence."
+      - "Unauthored properties use target defaults. Compile in a scratch app and visually check; do not rely on Studio Update."
+      - "Member renames do not transform enum comparisons or record shapes in other formulas; review those formulas separately."
+    properties:
+      AcceptsFocus:
+        drop: "ModernLink has no AcceptsFocus switch; explicit keyboard focus acceptance is lost. Review focus traversal."
+        impact: behaviour
+        basis: inferred
+      AccessibleLabel: same
+      Align: same
+      Appearance:
+        to: Type
+        values:
+          "\"Default\"": "LinkAppearance.Default"
+          "LinkCanvas.Appearance.Default": "LinkAppearance.Default"
+          "'LinkCanvas.Appearance'.Default": "LinkAppearance.Default"
+          "\"Subtle\"": "LinkAppearance.Subtle"
+          "LinkCanvas.Appearance.Subtle": "LinkAppearance.Subtle"
+          "'LinkCanvas.Appearance'.Subtle": "LinkAppearance.Subtle"
+        basis: catalog-name-match # @enum:LinkCanvas.Appearance -> @enum:LinkAppearance: corresponding named catalog members; computed formulas require review.
+      AutoHeight: same
+      BasePaletteColor: same
+      BorderColor: same
+      BorderRadius:
+        to: [RadiusTopLeft, RadiusTopRight, RadiusBottomLeft, RadiusBottomRight]
+        basis: field-report-2026-10-08#9
+      BorderRadiusBottomLeft:
+        to: RadiusBottomLeft
+        basis: catalog-name-match # BorderRadiusBottomLeft and RadiusBottomLeft are both Number; named catalog counterpart, runtime equivalence unverified.
+      BorderRadiusBottomRight:
+        to: RadiusBottomRight
+        basis: catalog-name-match # BorderRadiusBottomRight and RadiusBottomRight are both Number; named catalog counterpart, runtime equivalence unverified.
+      BorderRadiusTopLeft:
+        to: RadiusTopLeft
+        basis: catalog-name-match # BorderRadiusTopLeft and RadiusTopLeft are both Number; named catalog counterpart, runtime equivalence unverified.
+      BorderRadiusTopRight:
+        to: RadiusTopRight
+        basis: catalog-name-match # BorderRadiusTopRight and RadiusTopRight are both Number; named catalog counterpart, runtime equivalence unverified.
+      BorderStyle: same
+      BorderThickness: same
+      ContentLanguage: same
+      DisplayMode: same
+      Fill: same
+      Font: same
+      FontItalic:
+        to: Italic
+        basis: catalog-name-match # FontItalic and Italic are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontSize:
+        to: Size
+        basis: catalog-name-match # FontSize and Size are both Number; named catalog counterpart, runtime equivalence unverified.
+      FontStrikethrough:
+        to: Strikethrough
+        basis: catalog-name-match # FontStrikethrough and Strikethrough are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontUnderline:
+        to: Underline
+        basis: catalog-name-match # FontUnderline and Underline are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontWeight: same
+      Height: same
+      PaddingBottom: same
+      PaddingLeft: same
+      PaddingRight: same
+      PaddingTop: same
+      Text: same
+      URL: same
+      VerticalAlign: same
+      Visible: same
+      Width: same
+      Wrap: same
+      X: same
+      Y: same
+    references:
+      AcceptsFocus: ~ # No safe member-only counterpart; manual review.
+      AccessibleLabel: AccessibleLabel
+      Align: Align
+      Appearance: Type
+      AutoHeight: AutoHeight
+      BasePaletteColor: BasePaletteColor
+      BorderColor: BorderColor
+      BorderRadius: ~ # No safe member-only counterpart; manual review.
+      BorderRadiusBottomLeft: RadiusBottomLeft
+      BorderRadiusBottomRight: RadiusBottomRight
+      BorderRadiusTopLeft: RadiusTopLeft
+      BorderRadiusTopRight: RadiusTopRight
+      BorderStyle: BorderStyle
+      BorderThickness: BorderThickness
+      ContentLanguage: ContentLanguage
+      DisplayMode: DisplayMode
+      Fill: Fill
+      Font: Font
+      FontItalic: Italic
+      FontSize: Size
+      FontStrikethrough: Strikethrough
+      FontUnderline: Underline
+      FontWeight: FontWeight
+      Height: Height
+      PaddingBottom: PaddingBottom
+      PaddingLeft: PaddingLeft
+      PaddingRight: PaddingRight
+      PaddingTop: PaddingTop
+      Text: Text
+      URL: URL
+      VerticalAlign: VerticalAlign
+      Visible: Visible
+      Width: Width
+      Wrap: Wrap
+      X: X
+      Y: Y
+    verified: false
+  Spinner:
+    target: ModernSpinner
+    behaviour:
+      - "Draft FluentV9-to-Modern* conversion; catalog surface checks do not prove formula, styling or runtime equivalence."
+      - "Unauthored properties use target defaults. Compile in a scratch app and visually check; do not rely on Studio Update."
+      - "Member renames do not transform enum comparisons or record shapes in other formulas; review those formulas separately."
+    properties:
+      AccessibleLabel: same
+      Appearance:
+        to: Appearance
+        values:
+          "\"Inverted\"": "SpinnerAppearance.Inverted"
+          "Spinner.Appearance.Inverted": "SpinnerAppearance.Inverted"
+          "'Spinner.Appearance'.Inverted": "SpinnerAppearance.Inverted"
+          "\"Primary\"": "SpinnerAppearance.Primary"
+          "Spinner.Appearance.Primary": "SpinnerAppearance.Primary"
+          "'Spinner.Appearance'.Primary": "SpinnerAppearance.Primary"
+        basis: catalog-name-match # @enum:Spinner.Appearance -> @enum:SpinnerAppearance: corresponding named catalog members; computed formulas require review.
+      BasePaletteColor: same
+      ContentLanguage: same
+      DisplayMode: same
+      Font: same
+      FontColor:
+        to: Color
+        basis: catalog-name-match # FontColor and Color are both Color; named catalog counterpart, runtime equivalence unverified.
+      FontItalic:
+        to: Italic
+        basis: catalog-name-match # FontItalic and Italic are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontSize:
+        to: Size
+        basis: catalog-name-match # FontSize and Size are both Number; named catalog counterpart, runtime equivalence unverified.
+      FontStrikethrough:
+        to: Strikethrough
+        basis: catalog-name-match # FontStrikethrough and Strikethrough are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontUnderline:
+        to: Underline
+        basis: catalog-name-match # FontUnderline and Underline are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontWeight: same
+      Height: same
+      Label: same
+      LabelPosition:
+        to: LabelPosition
+        values:
+          "\"Above\"": "SpinnerLabelPosition.Above"
+          "Spinner.LabelPosition.Above": "SpinnerLabelPosition.Above"
+          "'Spinner.LabelPosition'.Above": "SpinnerLabelPosition.Above"
+          "\"After\"": "SpinnerLabelPosition.After"
+          "Spinner.LabelPosition.After": "SpinnerLabelPosition.After"
+          "'Spinner.LabelPosition'.After": "SpinnerLabelPosition.After"
+          "\"Before\"": "SpinnerLabelPosition.Before"
+          "Spinner.LabelPosition.Before": "SpinnerLabelPosition.Before"
+          "'Spinner.LabelPosition'.Before": "SpinnerLabelPosition.Before"
+          "\"Below\"": "SpinnerLabelPosition.Below"
+          "Spinner.LabelPosition.Below": "SpinnerLabelPosition.Below"
+          "'Spinner.LabelPosition'.Below": "SpinnerLabelPosition.Below"
+        basis: catalog-name-match # @enum:Spinner.LabelPosition -> @enum:SpinnerLabelPosition: corresponding named catalog members; computed formulas require review.
+      OnChange:
+        drop: "ModernSpinner has no change event handler; move the action to the owner of the changing value."
+        impact: behaviour
+        basis: inferred
+      SpinnerColor: same
+      SpinnerSize:
+        manual: "Choose Height and Width for the intended SpinnerSize after checking the rendered spinner; ModernSpinner Size is the font size and must not receive this enum."
+        targets:
+          - Height
+          - Width
+        basis: inferred
+      TrackColor: same
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AccessibleLabel: AccessibleLabel
+      Appearance: Appearance
+      BasePaletteColor: BasePaletteColor
+      ContentLanguage: ContentLanguage
+      DisplayMode: DisplayMode
+      Font: Font
+      FontColor: Color
+      FontItalic: Italic
+      FontSize: Size
+      FontStrikethrough: Strikethrough
+      FontUnderline: Underline
+      FontWeight: FontWeight
+      Height: Height
+      Label: Label
+      LabelPosition: LabelPosition
+      OnChange: ~ # No safe member-only counterpart; manual review.
+      SpinnerColor: SpinnerColor
+      SpinnerSize: ~ # No safe member-only counterpart; manual review.
+      TrackColor: TrackColor
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+    verified: false
+  Progress:
+    target: ModernProgressBar
+    behaviour:
+      - "Draft FluentV9-to-Modern* conversion; catalog surface checks do not prove formula, styling or runtime equivalence."
+      - "Unauthored properties use target defaults. Compile in a scratch app and visually check; do not rely on Studio Update."
+      - "Member renames do not transform enum comparisons or record shapes in other formulas; review those formulas separately."
+    properties:
+      AccessibleLabel: same
+      BasePaletteColor: same
+      ContentLanguage: same
+      DisplayMode: same
+      Height: same
+      Indeterminate: same
+      Max: same
+      OnChange:
+        drop: "ModernProgressBar has no change event handler; move the action to the owner of the changing value."
+        impact: behaviour
+        basis: inferred
+      ProgressColor:
+        to: ProgressColor
+        values:
+          "\"Brand\"": "ProgressColor.Brand"
+          "Progress.ProgressColor.Brand": "ProgressColor.Brand"
+          "'Progress.ProgressColor'.Brand": "ProgressColor.Brand"
+          "\"Error\"": "ProgressColor.Error"
+          "Progress.ProgressColor.Error": "ProgressColor.Error"
+          "'Progress.ProgressColor'.Error": "ProgressColor.Error"
+          "\"Success\"": "ProgressColor.Success"
+          "Progress.ProgressColor.Success": "ProgressColor.Success"
+          "'Progress.ProgressColor'.Success": "ProgressColor.Success"
+          "\"Warning\"": "ProgressColor.Warning"
+          "Progress.ProgressColor.Warning": "ProgressColor.Warning"
+          "'Progress.ProgressColor'.Warning": "ProgressColor.Warning"
+        basis: catalog-name-match # @enum:Progress.ProgressColor -> @enum:ProgressColor: corresponding named catalog members; computed formulas require review.
+      Shape:
+        to: Shape
+        values:
+          "\"Rounded\"": "ProgressShape.Rounded"
+          "Progress.Shape.Rounded": "ProgressShape.Rounded"
+          "'Progress.Shape'.Rounded": "ProgressShape.Rounded"
+          "\"Square\"": "ProgressShape.Square"
+          "Progress.Shape.Square": "ProgressShape.Square"
+          "'Progress.Shape'.Square": "ProgressShape.Square"
+        basis: catalog-name-match # @enum:Progress.Shape -> @enum:ProgressShape: corresponding named catalog members; computed formulas require review.
+      Thickness:
+        to: Thickness
+        values:
+          "\"Large\"": "ProgressThickness.Large"
+          "Progress.Thickness.Large": "ProgressThickness.Large"
+          "'Progress.Thickness'.Large": "ProgressThickness.Large"
+          "\"Medium\"": "ProgressThickness.Medium"
+          "Progress.Thickness.Medium": "ProgressThickness.Medium"
+          "'Progress.Thickness'.Medium": "ProgressThickness.Medium"
+        basis: catalog-name-match # @enum:Progress.Thickness -> @enum:ProgressThickness: corresponding named catalog members; computed formulas require review.
+      Value: same
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AccessibleLabel: AccessibleLabel
+      BasePaletteColor: BasePaletteColor
+      ContentLanguage: ContentLanguage
+      DisplayMode: DisplayMode
+      Height: Height
+      Indeterminate: Indeterminate
+      Max: Max
+      OnChange: ~ # No safe member-only counterpart; manual review.
+      ProgressColor: ProgressColor
+      Shape: Shape
+      Thickness: Thickness
+      Value: Value
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+    verified: false
+  InfoButton:
+    target: ModernInformationButton
+    behaviour:
+      - "Draft FluentV9-to-Modern* conversion; catalog surface checks do not prove formula, styling or runtime equivalence."
+      - "Unauthored properties use target defaults. Compile in a scratch app and visually check; do not rely on Studio Update."
+      - "Member renames do not transform enum comparisons or record shapes in other formulas; review those formulas separately."
+    properties:
+      AcceptsFocus:
+        drop: "ModernInformationButton has no AcceptsFocus switch; explicit keyboard focus acceptance is lost. Review focus traversal."
+        impact: behaviour
+        basis: inferred
+      AccessibleLabel: same
+      BasePaletteColor: same
+      Content: same
+      ContentLanguage: same
+      DisplayMode: same
+      Font: same
+      FontColor:
+        to: Color
+        basis: catalog-name-match # FontColor and Color are both Color; named catalog counterpart, runtime equivalence unverified.
+      FontItalic:
+        to: Italic
+        basis: catalog-name-match # FontItalic and Italic are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontSize:
+        to: Size
+        basis: catalog-name-match # FontSize and Size are both Number; named catalog counterpart, runtime equivalence unverified.
+      FontStrikethrough:
+        to: Strikethrough
+        basis: catalog-name-match # FontStrikethrough and Strikethrough are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontUnderline:
+        to: Underline
+        basis: catalog-name-match # FontUnderline and Underline are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontWeight: same
+      Height: same
+      IconColor: same
+      OnSelect: same
+      PaddingBottom: same
+      PaddingLeft: same
+      PaddingRight: same
+      PaddingTop: same
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AcceptsFocus: ~ # No safe member-only counterpart; manual review.
+      AccessibleLabel: AccessibleLabel
+      BasePaletteColor: BasePaletteColor
+      Content: Content
+      ContentLanguage: ContentLanguage
+      DisplayMode: DisplayMode
+      Font: Font
+      FontColor: Color
+      FontItalic: Italic
+      FontSize: Size
+      FontStrikethrough: Strikethrough
+      FontUnderline: Underline
+      FontWeight: FontWeight
+      Height: Height
+      IconColor: IconColor
+      OnSelect: OnSelect
+      PaddingBottom: PaddingBottom
+      PaddingLeft: PaddingLeft
+      PaddingRight: PaddingRight
+      PaddingTop: PaddingTop
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+    verified: false
+  Avatar:
+    target: ModernAvatar
+    behaviour:
+      - "Draft FluentV9-to-Modern* conversion; catalog surface checks do not prove formula, styling or runtime equivalence."
+      - "Unauthored properties use target defaults. Compile in a scratch app and visually check; do not rely on Studio Update."
+      - "Member renames do not transform enum comparisons or record shapes in other formulas; review those formulas separately."
+    properties:
+      AccessibleLabel: same
+      Appearance:
+        manual: "Choose AvatarColor for Appearance; Brand has a named match but Colorful and Neutral have no exact AvatarColor member. Review the palette and BasePaletteColor together."
+        targets:
+          - Appearance
+          - BasePaletteColor
+        basis: inferred
+      Badge:
+        manual: "Merge Badge and OutOfOffice into one PresenceBadge formula. Use the Out of office member when intended, and Do not disturb for DoNotDisturb; review the Boolean override and computed formulas."
+        targets:
+          - Badge
+        basis: inferred
+      BasePaletteColor: same
+      ContentLanguage: same
+      DisplayMode: same
+      Font: same
+      FontColor:
+        to: Color
+        basis: catalog-name-match # FontColor and Color are both Color; named catalog counterpart, runtime equivalence unverified.
+      FontItalic:
+        to: Italic
+        basis: catalog-name-match # FontItalic and Italic are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontSize:
+        to: Size
+        basis: catalog-name-match # FontSize and Size are both Number; named catalog counterpart, runtime equivalence unverified.
+      FontStrikethrough:
+        to: Strikethrough
+        basis: catalog-name-match # FontStrikethrough and Strikethrough are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontUnderline:
+        to: Underline
+        basis: catalog-name-match # FontUnderline and Underline are both Boolean; named catalog counterpart, runtime equivalence unverified.
+      FontWeight: same
+      Height: same
+      Image:
+        manual: "Extract or construct the intended Image value from the source Record; check its field shape, blank fallback and rendering."
+        targets:
+          - Image
+        basis: inferred
+      Name: same
+      OutOfOffice:
+        manual: "Merge Badge and OutOfOffice into one PresenceBadge formula. Use the Out of office member when intended, and Do not disturb for DoNotDisturb; review the Boolean override and computed formulas."
+        targets:
+          - Badge
+        basis: inferred
+      Shape:
+        to: Shape
+        values:
+          "\"Circular\"": "AvatarShape.Circular"
+          "Avatar.Shape.Circular": "AvatarShape.Circular"
+          "'Avatar.Shape'.Circular": "AvatarShape.Circular"
+          "\"Square\"": "AvatarShape.Square"
+          "Avatar.Shape.Square": "AvatarShape.Square"
+          "'Avatar.Shape'.Square": "AvatarShape.Square"
+        basis: catalog-name-match # @enum:Avatar.Shape -> @enum:AvatarShape: corresponding named catalog members; computed formulas require review.
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AccessibleLabel: AccessibleLabel
+      Appearance: ~ # No safe member-only counterpart; manual review.
+      Badge: Badge
+      BasePaletteColor: BasePaletteColor
+      ContentLanguage: ContentLanguage
+      DisplayMode: DisplayMode
+      Font: Font
+      FontColor: Color
+      FontItalic: Italic
+      FontSize: Size
+      FontStrikethrough: Strikethrough
+      FontUnderline: Underline
+      FontWeight: FontWeight
+      Height: Height
+      Image: ~ # No safe member-only counterpart; manual review.
+      Name: Name
+      OutOfOffice: ~ # No safe member-only counterpart; manual review.
+      Shape: Shape
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+    verified: false
+  Switch:
+    target: ModernToggle
+    behaviour:
+      - "Draft FluentV9-to-Modern* conversion; catalog surface checks do not prove formula, styling or runtime equivalence."
+      - "Unauthored properties use target defaults. Compile in a scratch app and visually check; do not rely on Studio Update."
+      - "Member renames do not transform enum comparisons or record shapes in other formulas; review those formulas separately."
+    properties:
+      AccessibleLabel: same
+      Checked:
+        to: Default
+        basis: inferred
+      ContentLanguage: same
+      DisplayMode: same
+      Height: same
+      Label: same
+      LabelPosition:
+        to: LabelPosition
+        values:
+          "\"Above\"": "ToggleLabelPosition.Above"
+          "Switch.LabelPosition.Above": "ToggleLabelPosition.Above"
+          "'Switch.LabelPosition'.Above": "ToggleLabelPosition.Above"
+          "\"After\"": "ToggleLabelPosition.After"
+          "Switch.LabelPosition.After": "ToggleLabelPosition.After"
+          "'Switch.LabelPosition'.After": "ToggleLabelPosition.After"
+          "\"Before\"": "ToggleLabelPosition.Before"
+          "Switch.LabelPosition.Before": "ToggleLabelPosition.Before"
+          "'Switch.LabelPosition'.Before": "ToggleLabelPosition.Before"
+        basis: catalog-name-match # @enum:Switch.LabelPosition -> @enum:ToggleLabelPosition: corresponding named catalog members; computed formulas require review.
+      OnChange:
+        manual: "Append OnChange to both OnCheck and OnUncheck after their existing formulas; review ordering and avoid duplicating shared actions."
+        targets:
+          - OnCheck
+          - OnUncheck
+        basis: inferred
+      OnCheck: same
+      OnSelect:
+        drop: "ModernToggle has no click/tap handler; move the action to a supported event or control."
+        impact: behaviour
+        basis: inferred
+      OnUncheck: same
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AccessibleLabel: AccessibleLabel
+      Checked: Checked
+      ContentLanguage: ContentLanguage
+      DisplayMode: DisplayMode
+      Height: Height
+      Label: Label
+      LabelPosition: LabelPosition
+      OnChange: ~ # No safe member-only counterpart; manual review.
+      OnCheck: OnCheck
+      OnSelect: ~ # No safe member-only counterpart; manual review.
+      OnUncheck: OnUncheck
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+    verified: false
+  SpinButton:
+    target: ModernNumberInput
+    behaviour:
+      - "Draft FluentV9-to-Modern* conversion; catalog surface checks do not prove formula, styling or runtime equivalence."
+      - "Unauthored properties use target defaults. Compile in a scratch app and visually check; do not rely on Studio Update."
+      - "Member renames do not transform enum comparisons or record shapes in other formulas; review those formulas separately."
+    properties:
+      AccessibleLabel: same
+      BasePaletteColor: same
+      ContentLanguage: same
+      DelayOutput:
+        drop: "ModernNumberInput has no output-delay setting; delayed versus immediate change notification is lost. Review OnChange timing."
+        impact: behaviour
+        basis: inferred
+      DisplayMode: same
+      FontSize:
+        to: Size
+        basis: catalog-name-match # FontSize and Size are both Number; named catalog counterpart, runtime equivalence unverified.
+      Height: same
+      Max: same
+      Min: same
+      OnChange: same
+      Precision:
+        manual: "Choose DecimalPrecision 0 through 5 or Auto from the numeric Precision; review unsupported numbers and computed formulas before converting."
+        targets:
+          - Precision
+        basis: inferred
+      Step: same
+      Value:
+        to: Default
+        basis: inferred
+      Visible: same
+      Width: same
+      X: same
+      Y: same
+    references:
+      AccessibleLabel: AccessibleLabel
+      BasePaletteColor: BasePaletteColor
+      ContentLanguage: ContentLanguage
+      DelayOutput: ~ # No safe member-only counterpart; manual review.
+      DisplayMode: DisplayMode
+      FontSize: Size
+      Height: Height
+      Max: Max
+      Min: Min
+      OnChange: OnChange
+      Precision: Precision
+      Step: Step
+      Value: Value
+      Visible: Visible
+      Width: Width
+      X: X
+      Y: Y
+    verified: false

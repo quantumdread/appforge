@@ -1,0 +1,36 @@
+# Studio export provenance — 2026-08-26, a private delivery app (source not published)
+#
+# Origin: before/after Studio code-view exports around the "update control
+# versions" / per-screen "Update all" action, captured to characterize the
+# stale-materialization bug (cli/upstream-bug-report.md finding 7).
+#
+# Version migrations observed (materialized-stale → tenant-current):
+#   Button@0.0.45     → ModernButton@1.0.0      (FontSize→Size, BorderRadius→Radius*, 'ButtonCanvas.Appearance'.X → ButtonAppearance.X)
+#   TextInput@0.0.54  → ModernTextInput@1.1.1   (Value→Default; gains TriggerOutput, MaxLength, Align, VerticalAlign)
+#   DatePicker@0.0.46 → ModernDatePicker@1.0.1  (SelectedDate→DefaultDate)
+#   CheckBox@0.0.30   → ModernCheckbox@1.0.0    (Checked→Default)
+#
+# Catalog impact: ModernButton / ModernTextInput / ModernDatePicker were already
+# extractor-cataloged with the migrated vocabulary (verified against
+# control-properties.yml, 2026-08-26). ModernCheckbox is absent from the
+# 2026-05-10 manifest entirely → ingested as dump_sourced below-instance.
+# Studio emission counts as verification; property list is a LOWER BOUND.
+
+# Representative emitted instance (one of three identical-shape ModernCheckbox
+# instances in the export):
+# Formulas replaced with neutral equivalents of the same kind; property names and literal values are as emitted.
+- chkSelected:
+    Control: ModernCheckbox@1.0.0
+    Properties:
+      AccessibleLabel: =ThisItem.Title
+      Default: =!IsBlank(LookUp(DemoSelections, ItemId = ThisItem.ID))
+      FontWeight: =""
+      Height: =28
+      Label: =""
+      OnCheck: |-
+        =Patch(DemoSelections, Defaults(DemoSelections), {ItemId: ThisItem.ID, Title: ThisItem.Title, Quantity: 1})
+      OnUncheck: =Remove(DemoSelections, LookUp(DemoSelections, ItemId = ThisItem.ID))
+      Size: =0
+      Width: =32
+      X: =10
+      Y: =14

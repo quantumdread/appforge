@@ -1,0 +1,264 @@
+Screens:
+  Screen7:
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    Children:
+      - GalleryScroll1:
+          Control: GroupContainer
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutOverflowY: =LayoutOverflow.Scroll
+            PaddingBottom: =24
+            Width: =Parent.Width
+          Children:
+            - TopNav4:
+                Control: GroupContainer
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(255, 255, 255, 1)
+                  FillPortions: =0
+                  Height: =If(App.Width < 640, 104, 56)
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  Width: =Parent.Width
+                Children:
+                  - TitleRow4:
+                      Control: GroupContainer
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(255, 255, 255, 1)
+                        FillPortions: =0
+                        Height: =56
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        LayoutGap: =12
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        PaddingLeft: =If(App.Width < 640, 16, 24)
+                        PaddingRight: =If(App.Width < 640, 16, 24)
+                        Width: =Parent.Width
+                      Children:
+                        - AppTitle4:
+                            Control: ModernText
+                            Properties:
+                              FillPortions: =If(App.Width < 640, 1, 0)
+                              Font: =Font.'Segoe UI'
+                              FontWeight: =FontWeight.Semibold
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              PaddingBottom: =0
+                              PaddingTop: =0
+                              Size: =If(App.Width < 640, 13, 16)
+                              Text: ="Contoso Art Studio"
+                              Width: =If(App.Width < 640, 0, 200)
+                        - NavTabsDesktop4:
+                            Control: ModernTabList
+                            Properties:
+                              AlignInContainer: =AlignInContainer.Center
+                              Appearance: =TabListAppearance.Subtle
+                              Default: |-
+                                ={Value: "Gallery"}
+                              FillPortions: =1
+                              Height: =56
+                              Items: =["Home", "Resources", "Events", "Gallery"]
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Visible: =App.Width >= 640
+                        - IconChat4:
+                            Control: ModernIcon
+                            Properties:
+                              Height: =24
+                              Icon: =Icon.Message
+                              IconColor: =RGBA(0, 0, 0, 1)
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =24
+                        - IconShare4:
+                            Control: ModernIcon
+                            Properties:
+                              Height: =24
+                              Icon: =Icon.Share
+                              IconColor: =RGBA(0, 0, 0, 1)
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =24
+                        - IconSettings4:
+                            Control: ModernIcon
+                            Properties:
+                              Height: =24
+                              Icon: =Icon.Settings
+                              IconColor: =RGBA(0, 0, 0, 1)
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =24
+                        - Avatar5:
+                            Control: ModernAvatar
+                            Properties:
+                              Height: =32
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              Width: =32
+                  - NavTabsMobile4:
+                      Control: ModernTabList
+                      Properties:
+                        Appearance: =TabListAppearance.Subtle
+                        BasePaletteColor: =RGBA(0, 65, 179, 1)
+                        Default: |-
+                          ={Value: "Gallery"}
+                        Height: =If(App.Width < 640, 48, 0)
+                        Items: |-
+                          =Table({Value: "Home"}, {Value: "Resources"}, {Value: "Events"}, {Value: "Gallery"})
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Width: =Parent.Width
+            - NavDivider4:
+                Control: ModernText
+                Properties:
+                  Fill: =RGBA(237, 237, 237, 1)
+                  Height: =2
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =0
+                  PaddingTop: =0
+                  Text: =""
+                  Width: =Parent.Width
+            - TitleBand3:
+                Control: GroupContainer
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(255, 255, 255, 1)
+                  FillPortions: =0
+                  Height: =If(App.Width < 640, 152, 128)
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =8
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =12
+                  PaddingLeft: =If(App.Width < 640, 16, 40)
+                  PaddingRight: =If(App.Width < 640, 16, 40)
+                  PaddingTop: =32
+                  Width: =Parent.Width
+                Children:
+                  - PageTitle2:
+                      Control: ModernText
+                      Properties:
+                        AutoHeight: =true
+                        FontWeight: =FontWeight.Bold
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Size: =If(App.Width < 640, 22, 28)
+                        Text: ="Featured artwork"
+                        Width: =Parent.Width - If(App.Width < 640, 32, 80)
+                  - PageSubtitle2:
+                      Control: ModernText
+                      Properties:
+                        AutoHeight: =true
+                        Color: =RGBA(96, 94, 92, 1)
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Size: =If(App.Width < 640, 12, 14)
+                        Text: ="Browse standout pieces from the Contoso Art Studio community."
+                        Width: =Parent.Width - If(App.Width < 640, 32, 80)
+            - FilterRow1:
+                Control: GroupContainer
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(255, 255, 255, 1)
+                  FillPortions: =0
+                  Height: =60
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =12
+                  PaddingLeft: =If(App.Width < 640, 16, 40)
+                  PaddingRight: =If(App.Width < 640, 16, 40)
+                  Width: =Parent.Width
+                Children:
+                  - FilterTabs1:
+                      Control: ModernTabList
+                      Properties:
+                        Appearance: =TabListAppearance.FilledCircular
+                        Default: |-
+                          ={Value: "All"}
+                        Height: =36
+                        Items: =["All", "Paintings", "Sketches", "Digital"]
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Width: =If(App.Width < 640, Parent.Width - 32, 460)
+            - GalleryGrid1:
+                Control: GroupContainer
+                Variant: GridLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(255, 255, 255, 1)
+                  FillPortions: =0
+                  Height: =(RoundUp(6 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0) * 300) + ((RoundUp(6 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0) - 1) * 16) + 8 + 48
+                  LayoutGap: =16
+                  LayoutGridColumnMinWidth: =(Parent.Width - 2 * If(App.Width < 640, 16, 40) - (If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)) - 1) * 16) / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)) - 4
+                  LayoutGridColumns: =If(App.Width < 640, 1, If(App.Width < 1024, 2, 3))
+                  LayoutGridRowMinHeight: =300
+                  LayoutGridRows: =RoundUp(6 / If(App.Width < 640, 1, If(App.Width < 1024, 2, 3)), 0)
+                  LayoutMinHeight: =16
+                  LayoutMinWidth: =16
+                  PaddingBottom: =48
+                  PaddingLeft: =If(App.Width < 640, 16, 40)
+                  PaddingRight: =If(App.Width < 640, 16, 40)
+                  PaddingTop: =0
+                  Width: =Parent.Width
+                Children:
+                  - ArtCard_11:
+                      Control: ModernCard
+                      Properties:
+                        HeaderImage: =SampleCardHeaderImageWorkshop
+                        Subtitle: ="Watercolor · Emma Carter"
+                        Title: ="Watercolor Wonders"
+                  - ArtCard_21:
+                      Control: ModernCard
+                      Properties:
+                        HeaderImage: =SampleCardHeaderImageGallery
+                        Image: =SampleCardImageShapes3D
+                        Subtitle: ="Digital · Liam Brooks"
+                        Title: ="Sketch & Story"
+                  - ArtCard_31:
+                      Control: ModernCard
+                      Properties:
+                        HeaderImage: =SampleCardHeaderImageDemo
+                        Image: =SampleCardImageFluidTexture
+                        Subtitle: ="Acrylic · Ava Mitchell"
+                        Title: ="Abstract Study"
+                  - ArtCard_41:
+                      Control: ModernCard
+                      Properties:
+                        HeaderImage: =SampleCardHeaderImageDesigner
+                        Subtitle: ="Mixed media · Noah Bennett"
+                        Title: ="Gallery Highlights"
+                  - ArtCard_51:
+                      Control: ModernCard
+                      Properties:
+                        HeaderImage: =SampleCardHeaderImageM365
+                        Subtitle: ="Digital · Sophia Reed"
+                        Title: ="Live Demo Piece"
+                  - ArtCard_61:
+                      Control: ModernCard
+                      Properties:
+                        HeaderImage: =SampleCardHeaderImageWorkshop
+                        Subtitle: ="Watercolor · Mason Clark"
+                        Title: ="Studio Collection"

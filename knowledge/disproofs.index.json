@@ -1,0 +1,312 @@
+{
+  "schema": "appforge-disproof-index/1",
+  "hash_algorithm": "sha256",
+  "entries": [
+    {
+      "id": "disproof-camera-brightness-augmentation",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "augmentation:Camera.Brightness"
+      },
+      "row_sha256": "df3cb32c9749f1ecfb4d2a15ba98ac1ccb0cb99e660373aaa3cba3e770a9f4a3"
+    },
+    {
+      "id": "disproof-camera-brightness-dump-property",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "dump-property:Camera.Brightness"
+      },
+      "row_sha256": "df3cb32c9749f1ecfb4d2a15ba98ac1ccb0cb99e660373aaa3cba3e770a9f4a3"
+    },
+    {
+      "id": "disproof-camera-contrast-augmentation",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "augmentation:Camera.Contrast"
+      },
+      "row_sha256": "cfb18c2b2a147c5df70abc94f180aa1bd2255470c3c999bb81d247326be7c2b5"
+    },
+    {
+      "id": "disproof-camera-contrast-dump-property",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "dump-property:Camera.Contrast"
+      },
+      "row_sha256": "cfb18c2b2a147c5df70abc94f180aa1bd2255470c3c999bb81d247326be7c2b5"
+    },
+    {
+      "id": "disproof-camera-zoom-augmentation",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "augmentation:Camera.Zoom"
+      },
+      "row_sha256": "3d8acf6c6e3f261c4a3f3462b9725fb77b51f027d39abea1f0050e02c2638086"
+    },
+    {
+      "id": "disproof-camera-zoom-dump-property",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "dump-property:Camera.Zoom"
+      },
+      "row_sha256": "3d8acf6c6e3f261c4a3f3462b9725fb77b51f027d39abea1f0050e02c2638086"
+    },
+    {
+      "id": "disproof-classic-checkbox-value-augmentation",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "augmentation:Classic/CheckBox.Value"
+      },
+      "row_sha256": "6d514a15b90649433d1602d18e7cd1408c1627297d663189e1a966182fd5fd16"
+    },
+    {
+      "id": "disproof-classic-checkbox-value-dump-property",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "dump-property:Classic/CheckBox.Value"
+      },
+      "row_sha256": "6d514a15b90649433d1602d18e7cd1408c1627297d663189e1a966182fd5fd16"
+    },
+    {
+      "id": "disproof-classic-combobox-onnavigate-augmentation",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "augmentation:Classic/ComboBox.OnNavigate"
+      },
+      "row_sha256": "5dc0ee93f3662d395947151737aeb8ee232c20ceb55d6c53f37abd30503bc673"
+    },
+    {
+      "id": "disproof-classic-combobox-onnavigate-dump-property",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "dump-property:Classic/ComboBox.OnNavigate"
+      },
+      "row_sha256": "5dc0ee93f3662d395947151737aeb8ee232c20ceb55d6c53f37abd30503bc673"
+    },
+    {
+      "id": "disproof-classic-slider-readonly-augmentation",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "augmentation:Classic/Slider.ReadOnly"
+      },
+      "row_sha256": "53444d97f0f36dac90974175ea4ad75f609ace5c65777312a4e94c6e1cb91161"
+    },
+    {
+      "id": "disproof-classic-slider-readonly-dump-property",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "dump-property:Classic/Slider.ReadOnly"
+      },
+      "row_sha256": "53444d97f0f36dac90974175ea4ad75f609ace5c65777312a4e94c6e1cb91161"
+    },
+    {
+      "id": "disproof-combobox-textinputplaceholder-augmentation",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "augmentation:ComboBox.TextInputPlaceholder"
+      },
+      "row_sha256": "cbe0b77e7e58bde42bbee4103ebbc57fd1ee4d98a67e2b80a4ea117197ee7ef9"
+    },
+    {
+      "id": "disproof-combobox-textinputplaceholder-dump-property",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "dump-property:ComboBox.TextInputPlaceholder"
+      },
+      "row_sha256": "cbe0b77e7e58bde42bbee4103ebbc57fd1ee4d98a67e2b80a4ea117197ee7ef9"
+    },
+    {
+      "id": "disproof-datepicker-defaultdate-augmentation",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "augmentation:DatePicker.DefaultDate"
+      },
+      "row_sha256": "e3d2820e1883569a2349a8672730972efdf5d0eaabbc04701d36523f93d43887"
+    },
+    {
+      "id": "disproof-datepicker-defaultdate-dump-property",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "dump-property:DatePicker.DefaultDate"
+      },
+      "row_sha256": "e3d2820e1883569a2349a8672730972efdf5d0eaabbc04701d36523f93d43887"
+    },
+    {
+      "id": "disproof-icon-accessiblelabel-augmentation",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "augmentation:Icon.AccessibleLabel"
+      },
+      "row_sha256": "2caea2f927051e9a1f8939d37a487e2ff90f193b896619293bfeb97acd892eb1"
+    },
+    {
+      "id": "disproof-icon-accessiblelabel-dump-property",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "dump-property:Icon.AccessibleLabel"
+      },
+      "row_sha256": "2caea2f927051e9a1f8939d37a487e2ff90f193b896619293bfeb97acd892eb1"
+    },
+    {
+      "id": "disproof-icon-basepalettecolor-augmentation",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "augmentation:Icon.BasePaletteColor"
+      },
+      "row_sha256": "602080d17e45f21a41d657261768bf130ad1f66621b01e39507fdc5373f7ae33"
+    },
+    {
+      "id": "disproof-icon-basepalettecolor-dump-property",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "dump-property:Icon.BasePaletteColor"
+      },
+      "row_sha256": "602080d17e45f21a41d657261768bf130ad1f66621b01e39507fdc5373f7ae33"
+    },
+    {
+      "id": "disproof-infobutton-iconsize-augmentation",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "augmentation:InfoButton.IconSize"
+      },
+      "row_sha256": "7f06bce4282e7e4ec5e1a0c08f5188b0d925e5ec06d1e40ceed1a8d34b4666fa"
+    },
+    {
+      "id": "disproof-infobutton-iconsize-dump-property",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "dump-property:InfoButton.IconSize"
+      },
+      "row_sha256": "7f06bce4282e7e4ec5e1a0c08f5188b0d925e5ec06d1e40ceed1a8d34b4666fa"
+    },
+    {
+      "id": "disproof-label-delayoutput-augmentation",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "augmentation:Label.DelayOutput"
+      },
+      "row_sha256": "f3d65854f062db84e75be79c8f260802232c258ad99d648b5e48b1f39cae6897"
+    },
+    {
+      "id": "disproof-label-delayoutput-dump-property",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "dump-property:Label.DelayOutput"
+      },
+      "row_sha256": "f3d65854f062db84e75be79c8f260802232c258ad99d648b5e48b1f39cae6897"
+    },
+    {
+      "id": "disproof-radio-onselect-augmentation",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "augmentation:Radio.OnSelect"
+      },
+      "row_sha256": "6ff92dbaa0fe713a2921c2fcef5944194f346590c458c910901b6561f48bdf6b"
+    },
+    {
+      "id": "disproof-radio-onselect-dump-property",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "dump-property:Radio.OnSelect"
+      },
+      "row_sha256": "6ff92dbaa0fe713a2921c2fcef5944194f346590c458c910901b6561f48bdf6b"
+    },
+    {
+      "id": "disproof-table-size-augmentation",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "augmentation:Table.Size"
+      },
+      "row_sha256": "3b089bb78b8a9ffee732ebe1d043a10cd70347d4c0e820dffb04da8b27064465"
+    },
+    {
+      "id": "disproof-table-size-dump-property",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "dump-property:Table.Size"
+      },
+      "row_sha256": "3b089bb78b8a9ffee732ebe1d043a10cd70347d4c0e820dffb04da8b27064465"
+    },
+    {
+      "id": "disproof-textinput-delayoutput-augmentation",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "augmentation:TextInput.DelayOutput"
+      },
+      "row_sha256": "ad85766f4bf8bf99fff2c08a1d6b681e1ef1d845281202ba4c564cfed7cf1905"
+    },
+    {
+      "id": "disproof-textinput-delayoutput-dump-property",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "dump-property:TextInput.DelayOutput"
+      },
+      "row_sha256": "ad85766f4bf8bf99fff2c08a1d6b681e1ef1d845281202ba4c564cfed7cf1905"
+    },
+    {
+      "id": "disproof-classic-toggle-rail-family",
+      "match": {
+        "kind": "property-prefix",
+        "control": "Classic/Toggle",
+        "prefix": "Rail"
+      },
+      "row_sha256": "573cfbfe167b12922642334628a9ba05fc398643169e51277c2ba92d2916deec"
+    },
+    {
+      "id": "disproof-classic-toggle-value-family",
+      "match": {
+        "kind": "property-prefix",
+        "control": "Classic/Toggle",
+        "prefix": "Value"
+      },
+      "row_sha256": "573cfbfe167b12922642334628a9ba05fc398643169e51277c2ba92d2916deec"
+    },
+    {
+      "id": "disproof-icon-left-is-valid-enum-name",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "rule:icon-left-is-valid-enum-name"
+      },
+      "row_sha256": "b23a27cc48b5bfa89e2ad5c9aaa55a6dbef6e6e7a494d70e894f6dfe02302e4c"
+    },
+    {
+      "id": "disproof-icon-right-is-valid-enum-name",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "rule:icon-right-is-valid-enum-name"
+      },
+      "row_sha256": "b23a27cc48b5bfa89e2ad5c9aaa55a6dbef6e6e7a494d70e894f6dfe02302e4c"
+    },
+    {
+      "id": "disproof-coauthoring-sync-drops-property-formulas",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "rule:coauthoring-sync-drops-property-formulas"
+      },
+      "row_sha256": "38466dd78e346fe36bd7f682100e0624eae9b12adb634b42cb814a3e21116f41"
+    },
+    {
+      "id": "disproof-sharepoint-delegates-isblank",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "rule:sharepoint-delegates-isblank"
+      },
+      "row_sha256": "9daa3e13aa087d7b96d0af341215d8667cf227532b0618dbd0792967a6a99f5e"
+    },
+    {
+      "id": "disproof-sharepoint-out-in-step-3-is-delegable",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "rule:sharepoint-out-in-step-3-is-delegable"
+      },
+      "row_sha256": "bfc41073143b5b2debf0909df4e165c74cc971efe8a1ce09b5209befbc649e66"
+    },
+    {
+      "id": "disproof-modern-text-input-onselect-extractor-declaration",
+      "match": {
+        "kind": "exact",
+        "claim_ref": "rule:modern-text-input-onselect-extractor-declaration"
+      },
+      "row_sha256": "8c228bfd1a66b4a92b3bd0ee6d2ce6aedf07329beb273da1b0321c885950e573"
+    }
+  ]
+}

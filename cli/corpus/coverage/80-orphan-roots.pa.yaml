@@ -1,0 +1,15 @@
+- orphanUnknown:
+    Control: CoverageOrphanUnknown
+- orphanImage:
+    Control: Image
+    Properties:
+      OnSelect: =Set(gblOrphanSelected, true)
+      TabIndex: =2
+Screens:
+  OrphanCoverageScreen:
+    Children:
+      - screenLabel:
+          Control: Label
+          Properties:
+            Text: ="Screen-owned control"
+            Wrap: =false

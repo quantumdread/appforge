@@ -1,0 +1,14 @@
+{
+  "name": "appforge",
+  "description": "AppForge: Power Apps canvas YAML validation, control and Power Fx reference, and issue reporting for MCP clients.",
+  "owner": {
+    "name": "quantumdread"
+  },
+  "plugins": [
+    {
+      "name": "appforge",
+      "source": "./",
+      "description": "Power Apps YAML validation, reference tools and public bug reporting."
+    }
+  ]
+}

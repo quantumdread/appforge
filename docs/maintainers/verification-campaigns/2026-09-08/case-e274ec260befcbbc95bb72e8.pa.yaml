@@ -1,0 +1,7 @@
+Screens:
+  VerificationScreen:
+    Children:
+      - ctlProbe:
+          Control: Classic/Icon
+          Properties:
+            FocusedBorderColor: =RGBA(0, 120, 212, 1)

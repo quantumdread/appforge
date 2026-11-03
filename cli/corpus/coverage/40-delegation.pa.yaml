@@ -1,0 +1,27 @@
+Screens:
+  DelegationCoverage:
+    Children:
+      - galDelegationCoverage:
+          Control: Gallery
+          Properties:
+            AccessibleLabel: ="Delegation coverage"
+            Items: |-
+              =FirstN(CoverageSharePoint, 10)
+            Default: |-
+              =ForAll(CoverageSharePoint, Patch(CoverageSharePoint, ThisRecord))
+            LoadingSpinnerColor: |-
+              =Search(CoverageUnmapped, covSearch.Text, Title)
+            BorderColor: |-
+              =Search(CoverageSharePoint, covSearch.Text, Title)
+            TemplateFill: |-
+              =Filter(CoverageSharePoint, "x" in Title)
+            TemplatePadding: |-
+              =Filter(CoverageSharePoint, IsBlank(Title))
+            TemplateSize: |-
+              =Filter(CoverageSharePoint, Len(Title) > 3)
+            Transition: |-
+              =Filter(CoverageSharePoint, ID > 10)
+            Visible: |-
+              =Filter(CoverageSql, IsBlank(Name))
+            WrapCount: |-
+              =Search(CoverageExcel, covSearch.Text, Name)
