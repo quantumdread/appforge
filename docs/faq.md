@@ -48,7 +48,7 @@ AppForge checks the whole app, and if it finds a **REFUSE** (something that woul
 your assistant is told what to fix. After a change, AppForge also reminds your assistant to check that the result
 matches what was intended.
 
-To change it, open `/config` in Claude Code and find AppForge's **compile gate** setting:
+To change it in Claude Code, run `/plugin configure appforge@appforge` (the **compile gate** setting is also listed in `/config`):
 
 - **block:** the default.
 - **warn:** never stops a change, but reports what it found.
@@ -72,10 +72,15 @@ Power Apps changes often, and not everything is documented. AppForge records whe
 and accepted by Studio, observed in Studio, documented by Microsoft, or only inferred. It tells you which, so you
 know how much to rely on an answer.
 
-## Does it work with GitHub Copilot, or only Claude?
+## Does it work with Codex or GitHub Copilot, or only Claude?
 
-Any AI assistant that supports MCP servers can use AppForge. Claude Code has the easiest setup, because AppForge
-installs there as a plugin. See [Getting started](getting-started.md).
+Any AI assistant that supports MCP servers can use AppForge's tools: Codex, VS Code with GitHub Copilot, Claude
+Desktop and others. See [Getting started](getting-started.md) for each one.
+
+Claude Code gets a little more, because AppForge installs there as a plugin: the `/appforge:edit-app` and
+`/appforge:report-issue` commands, and the automatic safety check before changes are applied. In other assistants,
+ask for the same things in words, for example *"Follow AppForge's edit-app workflow to …"* or *"Check this with
+AppForge before applying it"*.
 
 ## Does it cost anything?
 

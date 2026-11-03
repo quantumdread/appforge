@@ -30,14 +30,37 @@ You don't need to be a developer to use it.
 
 ### 1. Install (once)
 
-You need [Node.js](https://nodejs.org/) (LTS). In Claude Code, type:
+You need [Node.js](https://nodejs.org/) (LTS) first. Then pick your assistant.
+
+**Claude Code** — one line:
 
 ```text
 /plugin install appforge --marketplace quantumdread/appforge
 ```
 
-Using another assistant, such as VS Code with GitHub Copilot or Claude Desktop? Follow the
-[Getting started guide](docs/getting-started.md).
+**Codex (OpenAI)** — download AppForge from this page (**Code → Download ZIP**) and unzip it somewhere you'll keep,
+for example `Documents/AppForge`. Then, in a terminal:
+
+```text
+codex mcp add appforge -- node "C:/Users/you/Documents/AppForge/server/dist-local/appforge-mcp.mjs"
+```
+
+Use your own path. Codex asks before each AppForge tool call; approve it, or allow AppForge's tools in your Codex
+settings.
+
+**VS Code with GitHub Copilot** — download and unzip as above, then open the Command Palette (Ctrl+Shift+P), run
+**MCP: Add Server**, choose **Command (stdio)**, and enter `node` followed by the path in quotes.
+
+**Claude Desktop and other assistants** — see the [Getting started guide](docs/getting-started.md).
+
+**What you get where**
+
+| | Claude Code | Codex, Copilot and others |
+|---|---|---|
+| AppForge checks, control and Power Fx knowledge, app survey, templates | Yes | Yes |
+| Guided change to a live app | `/appforge:edit-app` | Ask: *"Follow AppForge's edit-app workflow (`skills/edit-app/SKILL.md` in your AppForge folder) to …"* |
+| Automatic safety check before every change is applied | Yes, built in | Not automatic: ask your assistant to check with AppForge before applying |
+| Report a problem | `/appforge:report-issue` | Ask: *"Prepare an AppForge issue report about …"* |
 
 ### 2. Try this: no setup needed
 
@@ -60,19 +83,24 @@ What properties does a modern Text Input have, and what does each one do?
 ### 3. Connect your live app (recommended)
 
 To let your assistant work on an app that's open in Studio, add Microsoft's **canvas-apps** plugin. It also needs the
-[.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0).
+[.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0). In Claude Code:
 
 ```text
 /plugin marketplace add microsoft/power-platform-skills
 /plugin install canvas-apps@power-platform-skills
 ```
 
-Restart Claude Code. Then:
+In VS Code, search the Extensions view for `@agentPlugins canvas apps`. For other assistants, see
+[Microsoft's canvas-apps plugin](https://github.com/microsoft/power-platform-skills/tree/main/plugins/canvas-apps)
+for how to add its canvas-authoring server.
+
+Restart your assistant. Then:
 
 1. In Power Apps Studio, open your app and turn on **Settings → Updates → Coauthoring**. Keep the tab open.
 2. Ask: *"Connect the Canvas Apps MCP server to my app."* Paste the Studio address when asked.
 
-From now on, AppForge checks every change before it reaches your app, and stops anything that would break it.
+In Claude Code, AppForge now checks every change before it reaches your app, and stops anything that would break it.
+In other assistants, ask for an AppForge check before each change is applied.
 
 ### 4. Try this: on your live app
 
@@ -99,6 +127,8 @@ Survey this app and tell me what it does and what to fix first.
 With `/appforge:edit-app`, your assistant reads the app, makes the change and checks it with AppForge. Then it
 **asks for your OK**, applies the change, and checks the result in Studio.
 
+Not in Claude Code? Replace `/appforge:edit-app` with *"Follow AppForge's edit-app workflow to …"*.
+
 More ideas: [Things you can ask](docs/things-you-can-ask.md).
 
 ### Good to know
@@ -106,9 +136,10 @@ More ideas: [Things you can ask](docs/things-you-can-ask.md).
 - **Keep Studio open, and don't resume an expired session.** If Studio says the session expired, reload the app;
   resuming can undo a change.
 - **Make big changes in steps,** a few screens at a time.
-- **You choose how strict AppForge is:** it stops changes that would break (default), only warns, or is off. Set this
-  in `/config` (AppForge compile gate).
-- **Report wrong stops.** If AppForge stops something that's actually fine, use `/appforge:report-issue`.
+- **You choose how strict AppForge is (Claude Code):** it stops changes that would break (default), only warns, or is
+  off. Set it with `/plugin configure appforge@appforge`; it's also listed in `/config`.
+- **Report wrong stops.** If AppForge stops something that's actually fine, use `/appforge:report-issue`, or ask your
+  assistant to prepare an AppForge issue report.
 
 ## Your app stays yours
 

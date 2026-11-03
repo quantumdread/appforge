@@ -45,6 +45,10 @@ Other apps need AppForge on your computer and one line of setup.
    `appforge-mcp.mjs`. For example: `C:\Users\you\Documents\AppForge\server\dist-local\appforge-mcp.mjs`.
 3. **Add it to your app** as a local (stdio) MCP server named `appforge`. The command is `node`, followed by that full
    path.
+   - **Codex (OpenAI):** in a terminal, run
+     `codex mcp add appforge -- node "C:/Users/you/Documents/AppForge/server/dist-local/appforge-mcp.mjs"`
+     with your own path. Codex asks before each AppForge tool call; approve it, or allow AppForge's tools in your
+     Codex settings.
    - **VS Code with GitHub Copilot:** open the Command Palette (Ctrl+Shift+P), run **MCP: Add Server**, choose
      **Command (stdio)**, and enter `node` followed by the path in quotes.
    - **Claude Desktop:** open **Settings → Developer → Edit Config**, add an `appforge` entry like the one below,
@@ -100,7 +104,7 @@ Your assistant then follows these steps for you.
 **The automatic safety gate.** With the AppForge plugin installed, every time your assistant is about to apply
 changes through Microsoft's plugin, AppForge checks the whole app first. If something would break (a **REFUSE**), the
 change is stopped and your assistant is told what to fix. You don't have to ask for this; it always runs. You can make
-it softer in `/config`, where AppForge's **compile gate** setting is listed:
+it softer with `/plugin configure appforge@appforge` (the **compile gate** setting is also listed in `/config`):
 
 - **block:** the default. Stops changes that would break.
 - **warn:** lets every change through, but tells you and your assistant what AppForge found.
