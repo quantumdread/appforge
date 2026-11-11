@@ -175,6 +175,7 @@ describe('survey-envelope/1 builder', () => {
       'near_miss_buckets',
     ]);
     expect(envelope.rule_counts).toEqual([
+      { rule_id: 'superseded-control-type', count: 1 },
       { rule_id: 'unknown-control', count: 1 },
       { rule_id: 'unknown-property', count: 1 },
     ]);

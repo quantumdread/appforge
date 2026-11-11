@@ -1031,7 +1031,7 @@ describe('survey process dispatch boundary', () => {
     ]).toEqual(['directory/src-stripped/v1', 'msapp/src-stripped/v1']);
     expect(msappReport.baseline).toMatchObject({
       basis_matches: true,
-      accepted_total: 1,
+      accepted_total: 2, // 3.18: + superseded-control-type advisory
       migration_required: false,
     });
     expect(msappReport.gate).toEqual(directoryReport.gate);

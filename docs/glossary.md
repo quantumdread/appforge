@@ -8,8 +8,8 @@ Power Apps tools and knowledge.
 **MCP (Model Context Protocol).** The standard way AI assistants plug in extra tools. AppForge is an *MCP server*: a
 small program on your computer that your assistant can call.
 
-**Plugin.** A packaged add-on for Claude Code. The AppForge plugin installs the AppForge server and the
-`/appforge:report-issue` command in one step.
+**Plugin.** A packaged add-on for Claude Code. The AppForge plugin installs the AppForge server, the automatic
+safety check and the `/appforge:edit-app` and `/appforge:report-issue` commands in one step.
 
 **Node.js.** A free program that runs AppForge in the background. You install it once and never open it yourself.
 

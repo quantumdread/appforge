@@ -156,6 +156,7 @@
         "duplicate-formula-in-gallery",
         "repeated-color-literal",
         "version-pin-in-control-type",
+        "superseded-control-type",
         "a11y-tabindex-positive",
         "a11y-inputs-missing-accessiblelabel",
         "fillportions-with-fixed-size",

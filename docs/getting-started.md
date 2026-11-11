@@ -33,7 +33,8 @@ coding experience.
 
 3. Follow the prompts, then start a new session so the plugin loads.
 
-That's it. The plugin includes the AppForge tools and the `/appforge:report-issue` command.
+That's it. The plugin includes the AppForge tools, the automatic safety check before every change to a live app,
+and the `/appforge:edit-app` and `/appforge:report-issue` commands.
 
 ## Option B: other AI apps
 

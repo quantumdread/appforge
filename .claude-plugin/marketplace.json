@@ -8,7 +8,7 @@
     {
       "name": "appforge",
       "source": "./",
-      "description": "Power Apps YAML validation, reference tools and public bug reporting."
+      "description": "Power Apps canvas expert: compile safety check, guided live edits, app surveys, control and Power Fx reference."
     }
   ]
 }

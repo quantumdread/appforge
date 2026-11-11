@@ -1,7 +1,7 @@
 {
   "name": "appforge",
-  "version": "3.17.0",
-  "description": "Validate Power Apps YAML, look up controls and Power Fx, and prepare public bug reports.",
+  "version": "3.18.0",
+  "description": "Power Apps canvas expert: checks every change before Microsoft's canvas-apps plugin applies it, guided live edits (/appforge:edit-app), app surveys, control and Power Fx reference.",
   "author": {
     "name": "Daryl Tunster",
     "url": "https://github.com/quantumdread"

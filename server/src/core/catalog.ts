@@ -153,7 +153,9 @@ export type AnalyzerCatalogData = {
   modernization?: Readonly<Record<string, ModernizationEntry>>;
   modernizationDeferred?: readonly { source: string; reason: string }[];
   evidenceClasses: readonly EvidenceClassSummary[];
-  controls: ReadonlyArray<{ type: string; variants: readonly string[]; family?: string | null; source?: string | null }>;
+  controls: ReadonlyArray<{ type: string; variants: readonly string[]; family?: string | null; source?: string | null;
+    /** Replacement the authoring service names for a superseded control (extracted 2026-11-11 onward). */
+    superseded_by?: string | null; listed?: boolean }>;
   controlProperties: Readonly<Record<string, {
     output_properties?: readonly string[];
     input_properties?: Readonly<Record<string, string>>;

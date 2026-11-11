@@ -293,15 +293,20 @@ When calculating width for Labels/Buttons with dynamic text:
 ```
 
 ### CheckBox Sizing
+Use `ModernCheckbox` for new checkboxes (the bare `CheckBox` type is superseded). For a checkbox with no label, set
+`Width: =28`.
+<!-- verified: true, verified_at: 2026-11-11, verified_by: compile_canvas -->
 ```yaml
 - chkOption:
-    Control: CheckBox@0.0.30
+    Control: ModernCheckbox
     Properties:
-      Height: =28    # NOT 40 (default is too tall)
-      Width: =28     # Icon-only
-      # OR with label:
+      Label: ="Option text"
+      AccessibleLabel: ="Option text"
+      Height: =28
       Width: =Len("Option text") * 7 + 40
 ```
+
+Keep the height at 28, not 40 (the default is too tall).
 
 **Container rule:** When CheckBox is inside a container, ensure container `Height >= 32`
 

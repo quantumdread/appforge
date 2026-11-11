@@ -28,7 +28,7 @@
   "gate": {
     "summary": {
       "pass": 3,
-      "warn": 4,
+      "warn": 5,
       "refuse": 2,
       "controls_seen": 6,
       "files": 1
@@ -37,7 +37,7 @@
       {
         "file": "dirty.pa.yaml",
         "pass": 3,
-        "warn": 4,
+        "warn": 5,
         "refuse": 2,
         "controls_seen": 6
       }
@@ -110,7 +110,7 @@
       "type": "Button",
       "variant": null,
       "property": null,
-      "detail": "1 control type(s) carry @version pins across 1 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. This repository authors bare control types (generator convention). Files: dirty.pa.yaml. Pinned: btnLegacy",
+      "detail": "1 control type(s) carry @version pins across 1 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. Pins are optional in authored YAML: the compile path strips them, so new code can use bare control types. Files: dirty.pa.yaml. Pinned: btnLegacy",
       "fix": null,
       "did_you_mean": null,
       "controls": [
@@ -124,6 +124,39 @@
       "confidence_basis": "rule-family-default",
       "claim_ref": null,
       "group_id": "5ec1f44f6c829bbc",
+      "baseline_status": "new",
+      "adjudication": null,
+      "members_changed": null,
+      "edits": [],
+      "campaign_ref": null,
+      "queue_refs": []
+    },
+    {
+      "level": "WARN",
+      "rule": "superseded-control-type",
+      "file": "dirty.pa.yaml",
+      "line": 4,
+      "control": "btnLegacy",
+      "type": "Button",
+      "variant": null,
+      "property": null,
+      "detail": "4 control(s) use types Microsoft has superseded: Button (1) → ModernButton, TextInput (3) → ModernTextInput. Existing controls keep working; Microsoft recommends the Modern type for new controls. Controls: btnLegacy, txtAliasOne, txtAliasTwo, txtAliasThree",
+      "fix": "use the Modern type for new controls; convert existing ones only when you are already changing them",
+      "did_you_mean": null,
+      "controls": [
+        "btnLegacy",
+        "txtAliasOne",
+        "txtAliasTwo",
+        "txtAliasThree"
+      ],
+      "near_miss": false,
+      "origin": "analyzer",
+      "fingerprint": "1c3c78caf1977aa0",
+      "severity": "MAINTAINABILITY",
+      "confidence": "medium",
+      "confidence_basis": "rule-family-default",
+      "claim_ref": null,
+      "group_id": "ef3c5299ccf82df3",
       "baseline_status": "new",
       "adjudication": null,
       "members_changed": null,
@@ -384,11 +417,45 @@
       },
       "descriptor_coverage": "none",
       "effort_class": "judgment",
-      "remediation_summary": "1 control type(s) carry @version pins across 1 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. This repository authors bare control types (generator convention). Files: dirty.pa.yaml. Pinned: btnLegacy",
+      "remediation_summary": "1 control type(s) carry @version pins across 1 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. Pins are optional in authored YAML: the compile path strips them, so new code can use bare control types. Files: dirty.pa.yaml. Pinned: btnLegacy",
       "remediation": {
-        "what": "1 control type(s) carry @version pins across 1 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. This repository authors bare control types (generator convention). Files: dirty.pa.yaml. Pinned: btnLegacy",
+        "what": "1 control type(s) carry @version pins across 1 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. Pins are optional in authored YAML: the compile path strips them, so new code can use bare control types. Files: dirty.pa.yaml. Pinned: btnLegacy",
         "why": "Rule family: versioning.",
         "how": "No rule-provided fix is available."
+      },
+      "action_state": "active"
+    },
+    {
+      "group_id": "ef3c5299ccf82df3",
+      "grouping_key": "file",
+      "member_fingerprints": [
+        "1c3c78caf1977aa0"
+      ],
+      "dominant_severity": "MAINTAINABILITY",
+      "family": "versioning",
+      "priority": {
+        "band": "later",
+        "score": 19,
+        "inputs": {
+          "severity": "MAINTAINABILITY",
+          "confidence": "medium",
+          "blast": {
+            "controls": 4,
+            "screens": 1,
+            "factor": 0.27411205180725307
+          },
+          "effort_class": "judgment",
+          "descriptor_coverage": "none"
+        },
+        "formula": "priority/1"
+      },
+      "descriptor_coverage": "none",
+      "effort_class": "judgment",
+      "remediation_summary": "use the Modern type for new controls; convert existing ones only when you are already changing them",
+      "remediation": {
+        "what": "4 control(s) use types Microsoft has superseded: Button (1) → ModernButton, TextInput (3) → ModernTextInput. Existing controls keep working; Microsoft recommends the Modern type for new controls. Controls: btnLegacy, txtAliasOne, txtAliasTwo, txtAliasThree",
+        "why": "Rule family: versioning.",
+        "how": "use the Modern type for new controls; convert existing ones only when you are already changing them"
       },
       "action_state": "active"
     },
@@ -610,6 +677,18 @@
       "dependency_notes": []
     },
     {
+      "group_id": "ef3c5299ccf82df3",
+      "band": "later",
+      "score": 19,
+      "action_state": "active",
+      "what": "4 control(s) use types Microsoft has superseded: Button (1) → ModernButton, TextInput (3) → ModernTextInput. Existing controls keep working; Microsoft recommends the Modern type for new controls. Controls: btnLegacy, txtAliasOne, txtAliasTwo, txtAliasThree",
+      "why": "Rule family: versioning.",
+      "how": "use the Modern type for new controls; convert existing ones only when you are already changing them",
+      "descriptor_coverage": "none",
+      "effort_class": "judgment",
+      "dependency_notes": []
+    },
+    {
       "group_id": "5e18ba6213e71ccd",
       "band": "later",
       "score": 15,
@@ -626,7 +705,7 @@
       "band": "later",
       "score": 15,
       "action_state": "active",
-      "what": "1 control type(s) carry @version pins across 1 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. This repository authors bare control types (generator convention). Files: dirty.pa.yaml. Pinned: btnLegacy",
+      "what": "1 control type(s) carry @version pins across 1 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. Pins are optional in authored YAML: the compile path strips them, so new code can use bare control types. Files: dirty.pa.yaml. Pinned: btnLegacy",
       "why": "Rule family: versioning.",
       "how": "No rule-provided fix is available.",
       "descriptor_coverage": "none",

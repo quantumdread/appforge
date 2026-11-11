@@ -13,11 +13,11 @@
 ## Gate
 
 - Decision: **BLOCK**
-- Summary: PASS 3; WARN 4; REFUSE 2; controls 6; files 1
+- Summary: PASS 3; WARN 5; REFUSE 2; controls 6; files 1
 
 ### Per file
 
-- dirty.pa.yaml — PASS 3; WARN 4; REFUSE 2; controls 6
+- dirty.pa.yaml — PASS 3; WARN 5; REFUSE 2; controls 6
 
 ## Active remediation
 
@@ -39,7 +39,13 @@
   - How: set AccessibleLabel on each input to what the screen reader should announce
   - Effort: judgment; descriptor coverage: none
 
-- **later · 15** — 1 control type(s) carry @version pins across 1 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. This repository authors bare control types (generator convention). Files: dirty.pa.yaml. Pinned: btnLegacy (action_state: active)
+- **later · 19** — 4 control(s) use types Microsoft has superseded: Button (1) → ModernButton, TextInput (3) → ModernTextInput. Existing controls keep working; Microsoft recommends the Modern type for new controls. Controls: btnLegacy, txtAliasOne, txtAliasTwo, txtAliasThree (action_state: active)
+  - Group: ef3c5299ccf82df3
+  - Why: Rule family: versioning.
+  - How: use the Modern type for new controls; convert existing ones only when you are already changing them
+  - Effort: judgment; descriptor coverage: none
+
+- **later · 15** — 1 control type(s) carry @version pins across 1 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. Pins are optional in authored YAML: the compile path strips them, so new code can use bare control types. Files: dirty.pa.yaml. Pinned: btnLegacy (action_state: active)
   - Group: 5ec1f44f6c829bbc
   - Why: Rule family: versioning.
   - How: No rule-provided fix is available.
@@ -92,9 +98,20 @@
 - Property: not applicable
 - Fingerprint: 5ff7b80c43475b0c; group: 5ec1f44f6c829bbc
 - Status: baseline new
-- Detail: 1 control type(s) carry @version pins across 1 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. This repository authors bare control types (generator convention). Files: dirty.pa.yaml. Pinned: btnLegacy
+- Detail: 1 control type(s) carry @version pins across 1 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. Pins are optional in authored YAML: the compile path strips them, so new code can use bare control types. Files: dirty.pa.yaml. Pinned: btnLegacy
 - Fix: not provided by the rule
 - Aggregate controls: btnLegacy
+
+### superseded-control-type — dirty.pa.yaml:4
+
+- Severity: MAINTAINABILITY; analyzer level: WARN; confidence: medium (rule-family-default)
+- Control: btnLegacy (Button)
+- Property: not applicable
+- Fingerprint: 1c3c78caf1977aa0; group: ef3c5299ccf82df3
+- Status: baseline new
+- Detail: 4 control(s) use types Microsoft has superseded: Button (1) → ModernButton, TextInput (3) → ModernTextInput. Existing controls keep working; Microsoft recommends the Modern type for new controls. Controls: btnLegacy, txtAliasOne, txtAliasTwo, txtAliasThree
+- Fix: use the Modern type for new controls; convert existing ones only when you are already changing them
+- Aggregate controls: btnLegacy, txtAliasOne, txtAliasTwo, txtAliasThree
 
 ### a11y-tabindex-positive — dirty.pa.yaml:8
 

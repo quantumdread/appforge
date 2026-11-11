@@ -100,7 +100,7 @@ export const validateYaml = {
     }
     const controls = countControlDeclarations(files);
     if (controls > MAX_HOSTED_CONTROLS) {
-      return error(`Input too large for the hosted service: ${controls} controls exceeds the ${MAX_HOSTED_CONTROLS}-control cap per request. Split the validation into batches of screens, or run the local CLI (node cli/validate.mjs <dir>), which has no such cap.`);
+      return error(`Input too large for one request: ${controls} controls exceeds the ${MAX_HOSTED_CONTROLS}-control cap per request. Split the validation into batches of screens, or run the local CLI (node cli/validate.mjs <dir>), which has no such cap.`);
     }
 
     const result = validateFiles(files, { datasources: normalizedDatasources });

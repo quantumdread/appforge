@@ -17,7 +17,37 @@ Use the bare `ModernButton` type on the compile path. `ModernButton@1.0.0` is le
 
 ## TextInput Controls
 
-### Modern TextInput
+> **Superseded names (2026-11-11).** The authoring service now says not to use the bare `TextInput`, `CheckBox` and
+> `DatePicker` types for new controls, and to use `ModernTextInput`, `ModernCheckbox` and `ModernDatePicker` instead.
+> The bare types still compile in apps that already have them, so their sections stay below. The Modern types have
+> different property names: check each section, not just the type.
+
+### ModernTextInput (use for new controls)
+Properties:
+- `Default` - Initial text
+- `Text` - The current text (output; read it as `txtSearch.Text`)
+- `Placeholder` - Hint text when empty
+- `Type` - `=TextInputType.Multiline`, `.SingleLine`, `.Password` or `.Search`
+- `OnChange` - Event when text changes
+- There is no `Value`, `Mode`, `FontSize` or `FontColor`; use `Size` and `Color`
+
+Example:
+<!-- verified: true, verified_at: 2026-11-11, verified_by: compile_canvas -->
+```yaml
+- txtSearch:
+    Control: ModernTextInput
+    Properties:
+      AccessibleLabel: ="Search"
+      Default: =""
+      Placeholder: ="Enter search text"
+      Type: =TextInputType.Multiline
+      OnChange: |-
+        =Set(varSearchText, txtSearch.Text)
+      Width: =200
+      Height: =40
+```
+
+### TextInput (superseded; still valid in existing apps)
 Properties:
 - `Value` - The current text value (NOT Default)
 - `Placeholder` - Hint text when empty (NOT HintText or Hint)
@@ -113,17 +143,39 @@ Use for:
 
 ## CheckBox Controls
 
-### Modern CheckBox@0.0.30
+### ModernCheckbox (use for new controls)
+Properties:
+- `Default` - Initial checked state (Boolean)
+- `Checked` - Current state (output; read it as `chkModern.Checked`)
+- `Label` - Label text
+- `OnCheck` - Event when checked
+- `OnUncheck` - Event when unchecked
+- There is no input `Checked`, `Text` or `OnSelect`
+
+Example:
+<!-- verified: true, verified_at: 2026-11-11, verified_by: compile_canvas -->
+```yaml
+- chkModern:
+    Control: ModernCheckbox
+    Properties:
+      AccessibleLabel: ="Accept terms"
+      Default: =false
+      Label: ="Accept terms"
+      OnCheck: |-
+        =Set(varAccepted, true)
+```
+
+### CheckBox (superseded; still valid in existing apps)
 Properties:
 - `Checked` - Boolean value (NOT Default)
 - `Text` - Label text
 - `OnCheck` - Event when checked
 - `OnUncheck` - Event when unchecked
 
-Example:
+Example (existing apps only):
 ```yaml
 - chkModern:
-    Control: CheckBox@0.0.30
+    Control: CheckBox
     Properties:
       Checked: =false
       Text: ="Accept terms"
@@ -141,7 +193,29 @@ Properties:
 
 ## DatePicker Controls
 
-### Modern DatePicker@0.0.46
+### ModernDatePicker (use for new controls)
+Properties:
+- `DefaultDate` - Initial date
+- `SelectedDate` - Selected date (output; read it as `dpStart.SelectedDate`)
+- `Format` - `=DatePickerFormat.Short`, `.LongAbbreviated` or `.YearMonth`
+- `StartOfWeek` - for example `=StartOfWeek.Monday`
+- `OnChange` - Event when the date changes
+
+Example:
+<!-- verified: true, verified_at: 2026-11-11, verified_by: compile_canvas -->
+```yaml
+- dpStart:
+    Control: ModernDatePicker
+    Properties:
+      AccessibleLabel: ="Start date"
+      DefaultDate: =Today()
+      Format: =DatePickerFormat.Short
+      StartOfWeek: =StartOfWeek.Monday
+      OnChange: |-
+        =Set(varStartDate, dpStart.SelectedDate)
+```
+
+### DatePicker (superseded; still valid in existing apps)
 Properties:
 - `SelectedDate` - Selected date value
 - `Format` - Date format
@@ -158,18 +232,17 @@ Properties:
 
 ## Common Property Differences Summary
 
-| Classic Control | Modern Control | Classic Property | Modern Property |
-|----------------|----------------|------------------|-----------------|
-| Classic/TextInput | TextInput | Default | Value |
-| Classic/TextInput | TextInput | HintText | Placeholder |
-| Classic/TextInput | TextInput | Text (read) | Value (read/write) |
-| Classic/CheckBox | CheckBox | Default | Checked |
-| Classic/DatePicker | DatePicker | DefaultDate | SelectedDate |
-| Classic/Icon | Icon | Icon (enum) | Icon (string or enum) |
+| Classic control | Superseded bare type | Current Modern type | Initial value | Read the current value |
+|-----------------|----------------------|---------------------|---------------|------------------------|
+| Classic/TextInput | TextInput | ModernTextInput | `Default` (Classic, Modern); `Value` (bare) | `.Text` (Classic, Modern); `.Value` (bare) |
+| Classic/TextInput | TextInput | ModernTextInput | Hint: `HintText` (Classic); `Placeholder` (bare, Modern) | |
+| Classic/CheckBox | CheckBox | ModernCheckbox | `Default` (Classic, Modern); `Checked` (bare) | `.Value` (Classic); `.Checked` (bare, Modern) |
+| Classic/DatePicker | DatePicker | ModernDatePicker | `DefaultDate` (Classic, Modern) | `.SelectedDate` |
+| Classic/Icon | Icon | ModernIcon | Icon (enum on Classic, text on Modern) | |
 
 ## Best Practices
 1. **Gallery Orientation**: Always use Vertical for stacked items, Horizontal for side-by-side
-2. **TextInput Access**: Modern uses `.Value`, Classic uses `.Text` for reading current value
+2. **TextInput Access**: ModernTextInput and Classic/TextInput read `.Text`; the superseded bare TextInput reads `.Value`
 3. **Icon References**: Use Icon enumeration for Classic/Icon (e.g., `Icon.Information`)
 4. **Property Names**: Check control version to use correct property names
 5. **Event Handlers**: Modern controls may have different event names than Classic

@@ -1,7 +1,7 @@
 # AppForge MCP overview
 
 AppForge exposes a control catalog, source checks, references, and app analysis
-to MCP clients. Version 3.15.0 has 21 tools. Run the committed local stdio bundle
+to MCP clients. It has 21 tools. Run the committed local stdio bundle
 or host the Worker yourself; see [installation](getting-started.md).
 The [tool table](developer-guide.md#the-21-tools) lists every registered tool.
 

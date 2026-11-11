@@ -3,6 +3,28 @@
 Release notes for AppForge. Version numbers continue from the project's private development history; this
 repository starts at 3.16.0.
 
+## 3.18.0 — superseded-control advisory; Modern examples (2026-11-11)
+
+- **New advisory: `superseded-control-type` (WARN, never blocks).** Once per app it lists the controls that use a
+  type Microsoft has superseded, with the replacement and a count, for example `Button (1) → ModernButton`. Existing
+  controls keep working; it recommends the Modern type for new controls only. App surveys rank it as a later item.
+- **Modern examples, compile-verified 2026-11-11.**
+  - **Docs:** `modern-control-properties.md` has ModernTextInput, ModernCheckbox and ModernDatePicker sections next to
+    the superseded ones, which stay for existing apps. The property names differ: ModernCheckbox sets `Default` and
+    `Label` and reads `.Checked`; ModernTextInput sets `Default` and `Type` and reads `.Text`.
+  - **Template:** `form-template-1.yaml` now uses ModernDatePicker, ModernRadio, ModernTextInput, ModernNumberInput,
+    ModernCombobox and ModernButton.
+  - **Icons:** ModernIcon accepts `OnSelect`. The old "modern icons cannot be clicked" warning now applies only to the
+    superseded bare `Icon` type.
+  - **Layout:** the checkbox sizing example in `screen-layout-rules.md` uses ModernCheckbox.
+- **Clearer first-run messages.**
+  - **Old catalog note:** when the catalog is old, the assistant is told to keep the gate, tell the user and suggest
+    updating AppForge or reporting the gap, instead of re-extracting the catalog itself.
+  - **Version pins:** the pin advisory no longer refers to "this repository".
+  - **Size limits:** oversized input now reads "Input too large for one request".
+  - **Descriptions:** the plugin description, getting-started guide and glossary describe the compile gate,
+    `/appforge:edit-app` and issue reporting. The README has a fallback install for older Claude Code.
+
 ## 3.17.0 — control catalog refreshed (2026-11-11)
 
 - **Catalog refreshed from the live Power Apps service (2026-11-11).** It now has 133 controls, up from 127.

@@ -190,7 +190,7 @@ function normalizeInput(value: unknown): {
   const controls = countControlDeclarations(files);
   if (controls > MAX_HOSTED_CONTROLS) {
     throw new SurveyToolInputError(
-      `${controls} controls exceeds the hosted ${MAX_HOSTED_CONTROLS}-control cap; `
+      `${controls} controls exceeds the per-request ${MAX_HOSTED_CONTROLS}-control cap; `
       + 'run the local CLI (node cli/validate.mjs survey <dir>), which has no such cap',
     );
   }

@@ -2251,6 +2251,10 @@ describe('survey artifact publication', () => {
     const value = outputCase(realpathSync.native(outside), ENVELOPE_A);
     const warning = value.report.findings.find(finding => finding.severity !== 'BLOCK');
     expect(warning).toBeDefined();
+    // Keep one advisory finding (3.18 added a second, superseded-control-type,
+    // to this fixture) so the duplicate and BLOCK cases below stay isolated.
+    value.report.findings = value.report.findings
+      .filter(finding => finding === warning || finding.severity === 'BLOCK');
     value.report.findings.push(structuredClone(warning!));
     value.report.findings.push({
       ...structuredClone(warning!),

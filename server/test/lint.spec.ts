@@ -91,6 +91,7 @@ describe('lint profile membership', () => {
     'block-scalar-required',
     'bare-color-name',
     'enum-value-invalid',
+    'superseded-control-type',
     'fillportions-with-fixed-size',
     'missing-layout-min',
     'missing-align-in-container',
@@ -384,8 +385,19 @@ describe('WARN lint rules', () => {
     const pinned = lint(yaml.replace('Control: Label', 'Control: Label@1.0.0'))
       .find(issue => issue.rule === 'version-pin-in-control-type');
     expect(pinned).toMatchObject({ level: 'WARN', controls: ['lblX'] });
-    expect(pinned!.detail).toBe('1 control type(s) carry @version pins across 1 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. This repository authors bare control types (generator convention). Files: t.pa.yaml. Pinned: lblX');
+    expect(pinned!.detail).toBe('1 control type(s) carry @version pins across 1 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. Pins are optional in authored YAML: the compile path strips them, so new code can use bare control types. Files: t.pa.yaml. Pinned: lblX');
     expect(pinned!.detail).not.toContain('mark staleness');
+  });
+
+  it('advises once per bundle on superseded control types and stays silent for Modern and classic ones', () => {
+    const yaml = wrap('Text: ="hello"');
+    expect(ids(lint(yaml))).not.toContain('superseded-control-type');
+    expect(ids(lint(yaml.replace('Control: Label', 'Control: ModernText')))).not.toContain('superseded-control-type');
+    const findings = lint(yaml.replace('Control: Label', 'Control: Text'))
+      .filter(issue => issue.rule === 'superseded-control-type');
+    expect(findings).toHaveLength(1);
+    expect(findings[0]).toMatchObject({ level: 'WARN', controls: ['lblX'] });
+    expect(findings[0].detail).toBe('1 control(s) use types Microsoft has superseded: Text (1) → ModernText. Existing controls keep working; Microsoft recommends the Modern type for new controls. Controls: lblX');
   });
 
   it('keeps fillportions-with-fixed-size silent for an AutoLayout row with fixed heights', () => {

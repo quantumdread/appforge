@@ -2,7 +2,7 @@
 # TAGS: form, input, fields, textinput, datepicker, combobox, dropdown, radio, number, submit, save, reset
 # DESCRIPTION: A wrapping horizontal AutoLayout container holding multiple form field groups. Each field is a rounded container with a bold label on top and the input below. Fields wrap to new rows automatically (LayoutWrap: true). Includes Date, Radio, Text, Number, ComboBox, and LongText fields. Action buttons (Reset + Save) are right-aligned at the bottom.
 # USE WHEN: Any screen with multiple input fields, data entry forms, edit screens, or record creation. The wrapping layout adapts to different numbers of fields automatically.
-# COMPONENTS: GroupContainer@1.5.0, Label@2.5.1, DatePicker@0.0.46, Radio@0.0.25, TextInput@0.0.54, NumberInput@2.9.12, ComboBox@0.0.51, Button@0.0.45
+# COMPONENTS: GroupContainer, Label, ModernDatePicker, ModernRadio, ModernTextInput, ModernNumberInput, ModernCombobox, ModernButton
 # ============================================
 - fullFormContainer:
     Control: GroupContainer@1.5.0
@@ -70,11 +70,11 @@
                         Size: =11
                         Text: ="Appointment Date*"
                   - datePickerIn:
-                      Control: DatePicker@0.0.46
+                      Control: ModernDatePicker
                       Properties:
                         AccessibleLabel: ="Appointment date"
                         AlignInContainer: =AlignInContainer.Stretch
-                        Appearance: ='DatePickerCanvas.Appearance'.FilledLighter
+                        Appearance: =Appearance.FilledLighter
                         Fill: =Color.Transparent
                         Height: =40
                         LayoutMinHeight: =16
@@ -121,12 +121,12 @@
                         Size: =11
                         Text: ="Service Type*"
                   - radioIn_1:
-                      Control: Radio@0.0.25
+                      Control: ModernRadio
                       Properties:
                         AccessibleLabel: ="Service type"
                         AlignInContainer: =AlignInContainer.Stretch
                         Height: =40
-                        Layout: ='RadioGroupCanvas.Layout'.Horizontal
+                        Layout: =OptionLayout.Horizontal
                         LayoutMinHeight: =16
                         LayoutMinWidth: =16
                   - lblError_1:
@@ -171,11 +171,11 @@
                         Size: =11
                         Text: ="Service Name*"
                   - textInput:
-                      Control: TextInput@0.0.54
+                      Control: ModernTextInput
                       Properties:
                         AccessibleLabel: ="Service name"
                         AlignInContainer: =AlignInContainer.Stretch
-                        Appearance: ='TextInputCanvas.Appearance'.FilledLighter
+                        Appearance: =Appearance.FilledLighter
                         Height: =40
                         LayoutMinHeight: =16
                         LayoutMinWidth: =16
@@ -221,11 +221,11 @@
                         Size: =11
                         Text: ="Service Fee*"
                   - NumberInput:
-                      Control: NumberInput@2.9.12
+                      Control: ModernNumberInput
                       Properties:
                         AccessibleLabel: ="Service fee"
                         AlignInContainer: =AlignInContainer.Stretch
-                        Appearance: ='NumberInput.Appearance'.FilledLighter
+                        Appearance: =Appearance.FilledLighter
                         Height: =40
                         LayoutMinHeight: =16
                         LayoutMinWidth: =16
@@ -271,11 +271,11 @@
                         Size: =11
                         Text: ="Service Personnel*"
                   - comboBoxInput:
-                      Control: ComboBox@0.0.51
+                      Control: ModernCombobox
                       Properties:
                         AccessibleLabel: ="Service personnel"
                         AlignInContainer: =AlignInContainer.Stretch
-                        Appearance: ='ComboboxCanvas.Appearance'.FilledLighter
+                        Appearance: =Appearance.FilledLighter
                         Height: =40
                         LayoutMinHeight: =16
                         LayoutMinWidth: =16
@@ -321,15 +321,15 @@
                         Size: =11
                         Text: ="Service Description*"
                   - textInput_1:
-                      Control: TextInput@0.0.54
+                      Control: ModernTextInput
                       Properties:
                         AccessibleLabel: ="Service description"
                         AlignInContainer: =AlignInContainer.Stretch
-                        Appearance: ='TextInputCanvas.Appearance'.FilledLighter
+                        Appearance: =Appearance.FilledLighter
                         Height: =60
                         LayoutMinHeight: =16
                         LayoutMinWidth: =16
-                        Mode: ='TextInputCanvas.Mode'.Multiline
+                        Type: =TextInputType.Multiline
                   - lblError_5:
                       Control: Label@2.5.1
                       Properties:
@@ -363,20 +363,20 @@
             RadiusTopRight: =0
           Children:
             - ButtonCanvas1_1:
-                Control: Button@0.0.45
+                Control: ModernButton
                 Properties:
-                  Appearance: ='ButtonCanvas.Appearance'.Outline
+                  Appearance: =ButtonAppearance.Outline
                   Icon: ="ArrowReset"
-                  Layout: ='ButtonCanvas.Layout'.IconAfter
+                  Layout: =ButtonLayout.IconAfter
                   LayoutMinHeight: =16
                   LayoutMinWidth: =16
                   Text: ="Reset"
                   Width: =200
             - ButtonCanvas1:
-                Control: Button@0.0.45
+                Control: ModernButton
                 Properties:
                   Icon: ="Save"
-                  Layout: ='ButtonCanvas.Layout'.IconAfter
+                  Layout: =ButtonLayout.IconAfter
                   LayoutMinHeight: =16
                   LayoutMinWidth: =16
                   Text: ="Save"

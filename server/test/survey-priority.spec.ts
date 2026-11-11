@@ -94,6 +94,7 @@ const EXPECTED_REMEDY_KIND = {
   'duplicate-formula-in-gallery': 'prose',
   'repeated-color-literal': 'prose',
   'version-pin-in-control-type': 'deterministic',
+  'superseded-control-type': 'deterministic',
   'a11y-tabindex-positive': 'human-value',
   'a11y-inputs-missing-accessiblelabel': 'human-value',
   'fillportions-with-fixed-size': 'prose',
@@ -435,8 +436,8 @@ describe('group priority inputs', () => {
 });
 
 describe('registry remedy classification', () => {
-  it('matches the independent full 73-rule fixture', () => {
-    expect(Object.keys(EXPECTED_REMEDY_KIND)).toHaveLength(73);
+  it('matches the independent full 74-rule fixture', () => {
+    expect(Object.keys(EXPECTED_REMEDY_KIND)).toHaveLength(74);
     expect(Object.fromEntries(
       Object.entries(RULE_METADATA).map(([id, metadata]) => [id, metadata.remedyKind]),
     )).toEqual(EXPECTED_REMEDY_KIND);

@@ -415,8 +415,38 @@ const versionPinInControlType: LintRule = {
     // One analyzed bundle is one app; attach the aggregate to its first authored pin.
     return [{
       ...issue(this, pinned[0], null,
-        `${pinned.length} control type(s) carry @version pins across ${files.length} file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. This repository authors bare control types (generator convention). Files: ${files.join(', ')}. Pinned: ${names}`),
+        `${pinned.length} control type(s) carry @version pins across ${files.length} file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. Pins are optional in authored YAML: the compile path strips them, so new code can use bare control types. Files: ${files.join(', ')}. Pinned: ${names}`),
       controls: pinned.map(control => control.name),
+    }];
+  },
+};
+
+/**
+ * Superseded control types (catalog `superseded_by`, from the authoring
+ * service's own notice: "Do not use CheckBox unless it's already present in
+ * this app. Use the updated ModernCheckbox instead"). Existing uses stay valid,
+ * so this is advice only: one WARN per app bundle, never REFUSE.
+ */
+const supersededControlType: LintRule = {
+  id: 'superseded-control-type', level: 'WARN', docRef: 'modern-control-properties.md',
+  check(bundle, context) {
+    const replacement = new Map<string, string>();
+    for (const entry of catalogOf(context).controls) {
+      if (entry.superseded_by) replacement.set(entry.type, entry.superseded_by);
+    }
+    if (!replacement.size) return [];
+    const hits = nodesOf(bundle).filter(control => control.type && replacement.has(control.type));
+    if (!hits.length) return [];
+    const byType = new Map<string, number>();
+    for (const control of hits) byType.set(control.type!, (byType.get(control.type!) ?? 0) + 1);
+    const types = [...byType].sort(([a], [b]) => a.localeCompare(b))
+      .map(([type, count]) => `${type} (${count}) → ${replacement.get(type)}`).join(', ');
+    const names = hits.slice(0, 5).map(control => control.name).join(', ') + (hits.length > 5 ? ', …' : '');
+    return [{
+      ...issue(this, hits[0], null,
+        `${hits.length} control(s) use types Microsoft has superseded: ${types}. Existing controls keep working; Microsoft recommends the Modern type for new controls. Controls: ${names}`,
+        'use the Modern type for new controls; convert existing ones only when you are already changing them'),
+      controls: hits.map(control => control.name),
     }];
   },
 };
@@ -1520,7 +1550,7 @@ const unknownOutputReference: LintRule = {
 
 const CORE_LINT_RULES: LintRule[] = [
   formulaMissingEquals, blockScalarRequired, inlineFormulaPasteHygiene, bareColorName, enumValueInvalid, duplicateProperty,
-  versionPinInControlType,
+  versionPinInControlType, supersededControlType,
   a11yTabIndexPositive, a11yInteractiveNotFocusable, a11yIconButtonNoLabel, a11yInputsMissingAccessibleLabel,
   duplicateFormula, duplicateFormulaInGallery, repeatedColorLiteral, heavyOnStart,
   delegationFirstNOnSource, delegationForAllWrites, delegationSearchCaveat,

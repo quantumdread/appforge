@@ -1145,7 +1145,7 @@ describe('survey_app final JSON-RPC response bound', () => {
       .toThrow('survey output lower bound reached its response budget');
     expect(saturated).toEqual({
       stage: 'report',
-      finding_candidates: 1,
+      finding_candidates: 2, // 3.18: the bare Button also draws the superseded-control-type advisory
       lower_bound_bytes: 393,
     });
 
@@ -1157,7 +1157,7 @@ describe('survey_app final JSON-RPC response bound', () => {
       snapshot,
       input,
       options,
-      new SurveyOutputBudget(393 * 2),
+      new SurveyOutputBudget(393 * 3),
     )).not.toThrow();
   });
 
@@ -1676,12 +1676,12 @@ describe('survey_app representative response measurements', () => {
         input_bytes: 85_432,
         metadata_bytes: 22,
         controls: 501,
-        findings: 2_002,
-        report_bytes: 2_896_849,
-        markdown_bytes: 1_352_677,
-        envelope_bytes: 2_163,
-        inner_text_bytes: 5_841_235,
-        final_jsonrpc_bytes: 6_432_800,
+        findings: 2_003,
+        report_bytes: 2_903_574,
+        markdown_bytes: 1_357_679,
+        envelope_bytes: 2_237,
+        inner_text_bytes: 5_859_346,
+        final_jsonrpc_bytes: 6_452_717,
       },
       {
         measurement_schema: 'task8-v1',
@@ -1691,12 +1691,12 @@ describe('survey_app representative response measurements', () => {
         input_bytes: 11_904,
         metadata_bytes: 16_384,
         controls: 256,
-        findings: 384,
-        report_bytes: 18_105_617,
-        markdown_bytes: 9_097_700,
-        envelope_bytes: 2_105,
-        inner_text_bytes: 27_539_206,
-        final_jsonrpc_bytes: 27_659_930,
+        findings: 385,
+        report_bytes: 18_110_551,
+        markdown_bytes: 9_101_215,
+        envelope_bytes: 2_179,
+        inner_text_bytes: 27_549_947,
+        final_jsonrpc_bytes: 27_671_361,
       },
       {
         measurement_schema: 'task8-v1',
@@ -1706,12 +1706,12 @@ describe('survey_app representative response measurements', () => {
         input_bytes: 46_932,
         metadata_bytes: 21,
         controls: 1_001,
-        findings: 3,
-        report_bytes: 19_322,
-        markdown_bytes: 15_049,
-        envelope_bytes: 2_182,
-        inner_text_bytes: 51_901,
-        final_jsonrpc_bytes: 56_762,
+        findings: 4,
+        report_bytes: 32_606,
+        markdown_bytes: 26_091,
+        envelope_bytes: 2_256,
+        inner_text_bytes: 88_111,
+        final_jsonrpc_bytes: 96_278,
       },
       {
         measurement_schema: 'task8-v1',
@@ -1721,12 +1721,12 @@ describe('survey_app representative response measurements', () => {
         input_bytes: 130,
         metadata_bytes: 65_552,
         controls: 2,
-        findings: 1,
-        report_bytes: 110_739,
-        markdown_bytes: 103_992,
-        envelope_bytes: 2_023,
-        inner_text_bytes: 260_774,
-        final_jsonrpc_bytes: 274_377,
+        findings: 2,
+        report_bytes: 112_999,
+        markdown_bytes: 105_046,
+        envelope_bytes: 2_097,
+        inner_text_bytes: 264_983,
+        final_jsonrpc_bytes: 278_895,
       },
       {
         measurement_schema: 'task8-v1',

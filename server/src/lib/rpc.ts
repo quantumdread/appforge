@@ -41,7 +41,7 @@ export const TOOLS = [
 // ─── Generated server instructions ────────────────────────────────────────
 const CATALOG_AGE_DAYS = Math.floor((Date.now() - Date.parse(CATALOG_VERSION)) / 86_400_000);
 const STALENESS = CATALOG_AGE_DAYS > 45
-  ? ` WARNING: catalog is ${CATALOG_AGE_DAYS} days old — re-extract via cli/extractor.mjs after Power Apps monthly releases.`
+  ? ` Note: the control catalog is ${CATALOG_AGE_DAYS} days old, so newer Power Apps controls or properties may be missing. If AppForge rejects a control or property the user believes exists, keep the gate, tell the user, and suggest updating AppForge or reporting it with report_issue.`
   : '';
 export const INSTRUCTIONS =
   `AppForge MCP v${SERVER_INFO.version} — ${TOOLS.length} tools across catalog, validation, child-order comparison, modernization, renaming, templates, rules, PowerFx, survey, issue reporting and the verification queue. ` +

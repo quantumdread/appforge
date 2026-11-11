@@ -35,7 +35,7 @@ export const compareChildOrderTool = {
     const total = files.reduce((n, file) => n + file.content.length, 0);
     if (total > 1_500_000) return error('Input too large: exceeds the 1.5 MB cap across expected and actual. Compare fewer screens, or use node cli/validate.mjs compare-order <expected-dir> <actual-dir>.');
     const controls = countControlDeclarations(files);
-    if (controls > MAX_HOSTED_CONTROLS) return error(`Input too large for the hosted service: ${controls} controls exceeds the ${MAX_HOSTED_CONTROLS}-control cap per request. Use the local compare-order CLI.`);
+    if (controls > MAX_HOSTED_CONTROLS) return error(`Input too large for one request: ${controls} controls exceeds the ${MAX_HOSTED_CONTROLS}-control cap per request. Use the local compare-order CLI.`);
     try {
       const result = compareChildOrder(input.expected, input.actual);
       return { content: [{ type: 'text', text: JSON.stringify({ ...result, human_summary: childOrderSummary(result) }, null, 2) }] };

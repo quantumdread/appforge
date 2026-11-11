@@ -31,7 +31,7 @@ describe('hosted control cap', () => {
     const over = validateYaml.handler({ files: split(MAX_HOSTED_CONTROLS + 1) });
     expect(over.isError).toBe(true);
     expect(over.content[0].text).toBe(
-      `Input too large for the hosted service: ${MAX_HOSTED_CONTROLS + 1} controls exceeds the ${MAX_HOSTED_CONTROLS}-control cap per request. Split the validation into batches of screens, or run the local CLI (node cli/validate.mjs <dir>), which has no such cap.`,
+      `Input too large for one request: ${MAX_HOSTED_CONTROLS + 1} controls exceeds the ${MAX_HOSTED_CONTROLS}-control cap per request. Split the validation into batches of screens, or run the local CLI (node cli/validate.mjs <dir>), which has no such cap.`,
     );
   });
 
@@ -42,7 +42,7 @@ describe('hosted control cap', () => {
     );
     expect(over.isError).toBe(true);
     expect(over.content[0].text).toBe(
-      `survey input error: ${MAX_HOSTED_CONTROLS + 1} controls exceeds the hosted ${MAX_HOSTED_CONTROLS}-control cap; run the local CLI (node cli/validate.mjs survey <dir>), which has no such cap`,
+      `survey input error: ${MAX_HOSTED_CONTROLS + 1} controls exceeds the per-request ${MAX_HOSTED_CONTROLS}-control cap; run the local CLI (node cli/validate.mjs survey <dir>), which has no such cap`,
     );
   });
 });

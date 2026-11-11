@@ -339,7 +339,7 @@ describe('cross-surface fixture preconditions', () => {
     expect(shape).toEqual({
       screens: 3,
       // v3.1.5: the Overview inline `;` handler is now WARN inline-formula-paste-hygiene.
-      warn_findings: 6,
+      warn_findings: 7, // 3.18: + superseded-control-type
       refuse_findings: 1,
       bound_source_groups: 1,
       bound_source_members: 2,

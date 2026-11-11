@@ -7,7 +7,7 @@
 ## Control: Classic/Icon@2.5.0
 
 **Use Classic/Icon when you need OnSelect (clickable icons).**
-Modern Icon@0.0.7 has NO OnSelect property - it's display-only!
+The superseded bare Icon@0.0.7 has NO OnSelect property and is display-only. The current `ModernIcon` does accept `OnSelect` (compile-verified 2026-11-11); see [modern-icons-reference.md](modern-icons-reference.md).
 
 ## Schema
 
@@ -250,7 +250,7 @@ Modern Icon@0.0.7 has NO OnSelect property - it's display-only!
 
 | Scenario | Use |
 |----------|-----|
-| Clickable icon (needs OnSelect) | `Classic/Icon@2.5.0` |
+| Clickable icon (needs OnSelect) | `Classic/Icon@2.5.0` or `ModernIcon` |
 | Display-only icon (no interaction) | `Icon@0.0.7` |
 | Icon in gallery with click | `Classic/Icon@2.5.0` |
 | Decorative/status indicator | `Icon@0.0.7` |
@@ -274,13 +274,15 @@ Modern Icon@0.0.7 has NO OnSelect property - it's display-only!
 
 ## Example: Display-Only Icon (Modern)
 
+`ModernIcon` replaces the superseded bare `Icon` type; see [modern-icons-reference.md](modern-icons-reference.md).
+<!-- verified: true, verified_at: 2026-11-11, verified_by: compile_canvas -->
 ```yaml
 - iconStatus:
-    Control: Icon@0.0.7
+    Control: ModernIcon
     Properties:
-      Icon: ="Check"
+      Icon: ="Checkmark"
       IconColor: =RGBA(47, 163, 111, 1)
-      IconStyle: ='Icon.IconStyle'.Filled
+      IconStyle: =IconStyle.Filled
       Rotation: =0
       Height: =20
       Width: =20

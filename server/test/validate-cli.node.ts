@@ -64,7 +64,7 @@ describe('local validate CLI file enumeration', () => {
   it('keeps branch-point JSON, text, version, and baseline bytes exact apart from the specified J3 pin inventory', () => {
     // Preserve frozen fixtures; only the specified pin-inventory prose changes.
     const oldAdvice = '1 control type(s) carry @version pins — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. This repository authors bare control types (generator convention). Pinned: pinned';
-    const newAdvice = `1 control type(s) carry @version pins across 1 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. This repository authors bare control types (generator convention). Files: ${LEGACY_BYTE_TARGET}. Pinned: pinned`;
+    const newAdvice = `1 control type(s) carry @version pins across 1 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. Pins are optional in authored YAML: the compile path strips them, so new code can use bare control types. Files: ${LEGACY_BYTE_TARGET}. Pinned: pinned`;
     const expected = (fixture: string) => materializeLegacyCliFixture(fixture, LEGACY_BYTE_TARGET, ANALYZER_CORE_VERSION)
       .replaceAll(JSON.stringify(oldAdvice), JSON.stringify(newAdvice))
       .replaceAll(oldAdvice, newAdvice);

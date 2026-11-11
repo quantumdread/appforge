@@ -38,6 +38,9 @@ You need [Node.js](https://nodejs.org/) (LTS) first. Then pick your assistant.
 /plugin install appforge --marketplace quantumdread/appforge
 ```
 
+If that line isn't recognised, your Claude Code is older: type `/plugin marketplace add quantumdread/appforge`,
+then `/plugin install appforge@appforge`.
+
 **Codex (OpenAI)** — download AppForge from this page (**Code → Download ZIP**) and unzip it somewhere you'll keep,
 for example `Documents/AppForge`. Then, in a terminal:
 

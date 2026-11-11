@@ -7,6 +7,21 @@ import {
   NEAR_MISS_YAML_INPUT,
 } from './fixtures/legacy-bytes';
 
+// v3.18 adds one per-app advisory for superseded control types (bare Button and
+// the like). These frozen bytes predate it: assert it fired exactly once, strip
+// it, and keep comparing everything else byte-for-byte.
+const SUPERSEDED = 'superseded-control-type';
+function withoutSuperseded(text: string): string {
+  const body = JSON.parse(text);
+  const warn: { rule: string; file: string }[] = body.issues?.warn ?? [];
+  const hits = warn.filter(issue => issue.rule === SUPERSEDED);
+  expect(hits).toHaveLength(1);
+  body.issues.warn = warn.filter(issue => issue.rule !== SUPERSEDED);
+  body.summary.warn -= 1;
+  body.per_file.find((entry: { file: string }) => entry.file === hits[0].file).warn -= 1;
+  return JSON.stringify(body, null, 2);
+}
+
 describe('validate_yaml tool', () => {
   it('keeps the Plan 4 branch-point validate_yaml response byte-identical', () => {
     const response = validateYaml.handler({
@@ -14,8 +29,8 @@ describe('validate_yaml tool', () => {
     });
     // Frozen fixture; only J3's per-app version-pin inventory prose changes.
     const oldAdvice = '1 control type(s) carry @version pins — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. This repository authors bare control types (generator convention). Pinned: pinned';
-    const newAdvice = '1 control type(s) carry @version pins across 1 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. This repository authors bare control types (generator convention). Files: legacy-byte.pa.yaml. Pinned: pinned';
-    expect(response.content[0].text).toBe(LEGACY_VALIDATE_YAML_RESPONSE.replaceAll(oldAdvice, newAdvice));
+    const newAdvice = '1 control type(s) carry @version pins across 1 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. Pins are optional in authored YAML: the compile path strips them, so new code can use bare control types. Files: legacy-byte.pa.yaml. Pinned: pinned';
+    expect(withoutSuperseded(response.content[0].text)).toBe(LEGACY_VALIDATE_YAML_RESPONSE.replaceAll(oldAdvice, newAdvice));
   });
 
   it('keeps the unknown-property near-miss response byte-identical', () => {
@@ -30,7 +45,7 @@ describe('validate_yaml tool', () => {
       { name: 'a.pa.yaml', content: '- Shared:\n    Control: Button\n' },
       { name: 'b.pa.yaml', content: '- Shared:\n    Control: Button\n' },
     ] });
-    expect(response.content[0].text).toBe(`{
+    expect(withoutSuperseded(response.content[0].text)).toBe(`{
   "gate_decision": "BLOCK",
   "summary": {
     "pass": 0,

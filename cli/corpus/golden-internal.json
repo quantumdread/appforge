@@ -378,7 +378,7 @@
             "type": "Image",
             "property": null,
             "did_you_mean": null,
-            "detail": "203 control type(s) carry @version pins across 13 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. This repository authors bare control types (generator convention). Files: coverage/30-a11y-centralization-gallery.pa.yaml, templates/card-template-1.yaml, templates/card-template-2.yaml, templates/card-template-3.yaml, templates/custom-button.yaml, templates/data-table.yaml, templates/form-template-1.yaml, templates/kpi-cards.yaml, templates/screen-table-template-1.yaml, templates/sidebar-collapsible.yaml, templates/tab-bar.yaml, templates/table-template-1.yaml, mcp-test-fixtures/survey/dirty.pa.yaml. Pinned: imgPositiveCoverage, Container_Cards_1, gal_Card_1, imgTemplateBG_1, rootContainer_2, …",
+            "detail": "195 control type(s) carry @version pins across 13 file(s) — observed, not judged: a suffix alone establishes neither lag nor incompatibility; see the version-lag inventory for evidence-backed migrations. Pins are optional in authored YAML: the compile path strips them, so new code can use bare control types. Files: coverage/30-a11y-centralization-gallery.pa.yaml, templates/card-template-1.yaml, templates/card-template-2.yaml, templates/card-template-3.yaml, templates/custom-button.yaml, templates/data-table.yaml, templates/form-template-1.yaml, templates/kpi-cards.yaml, templates/screen-table-template-1.yaml, templates/sidebar-collapsible.yaml, templates/tab-bar.yaml, templates/table-template-1.yaml, mcp-test-fixtures/survey/dirty.pa.yaml. Pinned: imgPositiveCoverage, Container_Cards_1, gal_Card_1, imgTemplateBG_1, rootContainer_2, …",
             "fix": null,
             "line": 7
           }
@@ -1180,7 +1180,7 @@
         }
       },
       "templates/form-template-1.yaml": {
-        "sha256": "f9da6606e42600445a6ed7d4e95c94f1f57a0777a8996dc36758e96094e54846",
+        "sha256": "172540a4e193f20137fc27c09c9273589e33ff13c7f0fc6c306199b047bae0e9",
         "issues": [
           {
             "level": "WARN",

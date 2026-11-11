@@ -1,6 +1,43 @@
 # PowerApps Modern Icon Reference
 
-## CRITICAL: Modern Icons Have NO OnSelect!
+## Current type: ModernIcon (2026-11-11)
+
+The authoring service now marks the bare `Icon` type below as superseded and says to use `ModernIcon` for new
+icons. Existing `Icon` controls keep working, so the rest of this page stays for them.
+
+ModernIcon differences, from the 2026-11-11 catalog:
+- `IconStyle` uses the `IconStyle` enum: `=IconStyle.Filled` or `=IconStyle.Outline` (not `'Icon.IconStyle'`).
+- `Icon` is text, for example `="Home"`, as on the bare type.
+- **ModernIcon accepts `OnSelect`** (compile-verified 2026-11-11; the click itself was not exercised in play mode).
+  The "no OnSelect" warning further down applies only to the superseded bare `Icon` type.
+
+<!-- verified: true, verified_at: 2026-11-11, verified_by: compile_canvas -->
+```yaml
+- icoStatus:
+    Control: ModernIcon
+    Properties:
+      Icon: ="Checkmark"
+      IconColor: =RGBA(47, 163, 111, 1)
+      IconStyle: =IconStyle.Filled
+      Rotation: =0
+      Height: =20
+      Width: =20
+```
+
+Clickable ModernIcon:
+<!-- verified: true, verified_at: 2026-11-11, verified_by: compile_canvas -->
+```yaml
+- icoClickProbe:
+    Control: ModernIcon
+    Properties:
+      Icon: ="Home"
+      OnSelect: =Set(varIconClicked, true)
+      Height: =24
+      Width: =24
+```
+A clickable icon also needs an `AccessibleLabel` so screen readers can name it; AppForge warns when it is missing.
+
+## CRITICAL: The superseded bare `Icon` type has NO OnSelect
 
 **Modern Icon@0.0.7 is DISPLAY-ONLY - it cannot respond to clicks!**
 
@@ -223,7 +260,7 @@ Circle
 ## IMPORTANT: Do NOT Use
 
 These properties do NOT exist on modern Icon@0.0.7:
-- ❌ `OnSelect` - **MODERN ICONS CANNOT BE CLICKED!**
+- ❌ `OnSelect` - **the bare Icon type cannot be clicked** (ModernIcon can; see the top of this page)
 - ❌ `Color` (use `IconColor` instead)
 - ❌ `HoverColor`
 - ❌ `PressedColor`
@@ -234,7 +271,7 @@ These icon formats do NOT work on modern icons:
 - ❌ `Icon: =Icon.Home` (Classic format)
 - ❌ `Icon: Icon.Home` (Missing equals sign)
 
-**If you need OnSelect, use Classic/Icon@2.5.0 instead!**
+**If you need OnSelect, use ModernIcon or Classic/Icon@2.5.0, not the bare Icon type.**
 
 ## Migration from Classic to Modern
 
