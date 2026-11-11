@@ -80,6 +80,13 @@ export function parseDescribe(text) {
     const ln = lines[i]; let m;
     if ((m = ln.match(/^# Control (.+)$/))) { c.type = m[1].trim(); continue; }
     if ((m = ln.match(/^Part of the control family (\w+)\.$/))) { c.family = m[1]; continue; }
+    // Since 2026-11 the service marks the bare-named FluentV9 generation as
+    // superseded: "Do not use CheckBox unless it's already present in this app.
+    // Use the updated ModernCheckbox instead ...". Such controls stay valid in
+    // existing apps, so record the replacement rather than dropping them.
+    if ((m = ln.match(/^Do not use (\S+) unless it's already present in this app\. Use the updated (\S+) instead\b/))) {
+      c.supersededBy = m[2]; continue;
+    }
     if (ln === 'The `Variant` keyword is required and must be one of the following:'
       || ln === 'The `Variant` keyword is optional and can be one of the following:') { section = 'variants'; continue; }
     if (ln === 'Input Properties:') { section = 'input'; sawInput = true; continue; }
@@ -247,6 +254,15 @@ const connectText = await mcp.tool('connect', {
 });
 console.error(connectText.split('\n').find(l => l.trim()) ?? 'connected');
 
+// Read the catalog being replaced first: every control it holds that the list
+// no longer offers is re-described below and kept while it still describes.
+const oldManifest = join(outputDir, 'control-manifest.yml');
+const oldProperties = join(outputDir, 'control-properties.yml');
+const previous = previousContent(
+  existsSync(oldManifest) ? readFileSync(oldManifest, 'utf8') : '',
+  existsSync(oldProperties) ? readFileSync(oldProperties, 'utf8') : '',
+);
+
 console.error('listing controls...');
 const listText = await mcp.tool('list_controls');
 // The header carried a claimed count ("Available Controls: N") when this was
@@ -255,7 +271,11 @@ const listText = await mcp.tool('list_controls');
 // skipped every run — a self-check that silently stopped checking. Accept either
 // header, and when no count is advertised say so instead of implying a pass.
 const claimed = parseInt(listText.match(/(?:Available|Power Apps) Controls:\s*(\d+)/)?.[1] ?? '0', 10);
-const types = [...listText.matchAll(/^\s*-\s+(\S.*)$/gm)].map(m => m[1].trim());
+// The list also names the open app's own canvas components under a
+// "Canvas Components:" heading (seen 2026-11-11 as "- cStepBar - "). They are
+// app-specific, not catalog controls, so only the section above it is read.
+const controlsSection = listText.replace(/\r/g, '').split(/^Canvas Components:\s*$/m)[0];
+const types = [...controlsSection.matchAll(/^\s*-\s+(\S.*)$/gm)].map(m => m[1].trim());
 if (claimed && claimed !== types.length) {
   throw new Error(`pagination check failed: claimed ${claimed}, parsed ${types.length}`);
 }
@@ -265,7 +285,14 @@ if (!claimed) {
 if (!types.length) {
   throw new Error('list_controls returned no control names — refusing to write an empty catalog');
 }
-console.error(`extracting ${types.length} controls...`);
+// Observed 2026-11-11: list_controls stopped listing 20 superseded bare-named
+// FluentV9 controls (CheckBox, ComboBox, Table, ...) that describe_control still
+// describes and existing apps still use. Dropping them would REFUSE valid apps,
+// so previously catalogued controls are carried forward as `listed: false`.
+const listedSet = new Set(types);
+const carried = previous.controlExamples.filter(t => !listedSet.has(t));
+console.error(`extracting ${types.length} listed controls` +
+  (carried.length ? ` + ${carried.length} previously catalogued but unlisted...` : '...'));
 
 const enums = {}, parentCtx = {}, controls = [], allWarns = [];
 const unknownMetadataKeys = new Set();
@@ -282,14 +309,19 @@ const stripEnums = (obj) => Object.fromEntries(Object.entries(obj).map(([k, v]) 
   return [k, v];
 }));
 
-const skipped = [];
-for (const type of types) {
+const skipped = [], lost = [];
+for (const [type, listed] of [...types.map(t => [t, true]), ...carried.map(t => [t, false])]) {
+  // An unlisted control that no longer describes is not skipped quietly: it
+  // was in the catalog, so losing it fails the content gate below.
+  const miss = (reason, mark) => {
+    (listed ? skipped : lost).push({ type, reason });
+    process.stderr.write(mark);
+  };
   let text;
   try {
     text = await mcp.tool('describe_control', { controlName: type });
   } catch (e) {
-    skipped.push({ type, reason: e.message.slice(0, 200) });
-    process.stderr.write('x');
+    miss(e.message.slice(0, 200), 'x');
     continue;
   }
   const parsed = parseDescribe(text);
@@ -297,10 +329,14 @@ for (const type of types) {
   for (const key of parsed.unknownMetadataKeys) unknownMetadataKeys.add(key);
   defaultsSeen += parsed.defaultsSeen;
   if (error) {
-    skipped.push({ type, reason: error });
-    process.stderr.write('?');
+    miss(error, '?');
     continue;
   }
+  if (!listed && c.type !== type) {
+    miss(`describe_control returned "${c.type}"`, '?');
+    continue;
+  }
+  if (!listed) c.listed = false;
   allWarns.push(...warns);
   c.baseInput = stripEnums(c.baseInput);
   for (const v of Object.keys(c.variantInput)) c.variantInput[v] = stripEnums(c.variantInput[v]);
@@ -329,13 +365,10 @@ if (skipped.length) {
 }
 
 // Validate content BEFORE either output is created or replaced.
-const oldManifest = join(outputDir, 'control-manifest.yml');
-const oldProperties = join(outputDir, 'control-properties.yml');
-const previous = previousContent(
-  existsSync(oldManifest) ? readFileSync(oldManifest, 'utf8') : '',
-  existsSync(oldProperties) ? readFileSync(oldProperties, 'utf8') : '',
-);
 const failures = checkContent(controls, enums, previous);
+if (lost.length) failures.push({ check: 'catalogued-control-lost',
+  message: `${lost.length} previously catalogued control(s) are neither listed nor describable; never dropped automatically`,
+  examples: [...lost.map(l => `${l.type}: ${l.reason}`), '<no second example>'].slice(0, 2) });
 if (failures.length) {
   for (const f of failures) console.error(`! content gate [${f.check}]: ${f.message}\n  examples: ${f.examples.map(x => JSON.stringify(x)).join('; ')}`);
   throw new Error(`content gate refused catalog (${failures.length} failed checks); output untouched`);
@@ -357,11 +390,14 @@ const manifest = [
   `  controls_total_in_tenant: ${types.length}`,
   `  controls_in_this_file: ${controls.length}`,
   `  controls_skipped: ${skipped.length}`,
+  `  controls_unlisted_carried: ${controls.filter(c => c.listed === false).length}`,
   `  is_partial: ${skipped.length > 0}`,
   '',
   'controls:',
   ...controls.sort((a, b) => a.type.localeCompare(b.type))
-    .map(c => `  - type: ${q(c.type)}\n    family: ${c.family}\n    version: null\n    variants: ${list(c.variants)}`)
+    .map(c => `  - type: ${q(c.type)}\n    family: ${c.family}\n    version: null\n    variants: ${list(c.variants)}` +
+      (c.listed === false ? '\n    listed: false' : '') +
+      (c.supersededBy ? `\n    superseded_by: ${q(c.supersededBy)}` : ''))
 ].join('\n') + '\n';
 writeFileSync(join(outputDir, 'control-manifest.yml'), manifest);
 
@@ -409,7 +445,7 @@ writeFileSync(join(outputDir, 'control-properties.yml'), props.join('\n') + '\n'
 
 console.error(`✓ wrote ${controls.length} controls to ${outputDir}`);
 if (allWarns.length) console.error(`  with ${allWarns.length} warning(s) above`);
-return { controls, enums, skipped, warnings: allWarns, serverVersion, defaultsSeen,
+return { controls, enums, skipped, lost, warnings: allWarns, serverVersion, defaultsSeen,
   unknownMetadataKeys: [...unknownMetadataKeys].sort() };
 } finally {
   mcp.close();

@@ -1,6 +1,6 @@
 {
   "name": "appforge",
-  "version": "3.16.0",
+  "version": "3.17.0",
   "description": "Validate Power Apps YAML, look up controls and Power Fx, and prepare public bug reports.",
   "author": {
     "name": "Daryl Tunster",

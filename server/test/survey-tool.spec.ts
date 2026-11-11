@@ -21,6 +21,7 @@ import {
   createWorker,
   serializeSurveyAppJsonRpcResponse,
 } from '../src/index';
+import { CATALOG_VERSION } from '../src/generated/catalog';
 import { sha256 } from '../src/core/sha256';
 import { assertEmittableReport } from '../src/core/survey/emittable-report';
 import { buildReport } from '../src/core/survey/build-report';
@@ -1670,7 +1671,7 @@ describe('survey_app representative response measurements', () => {
       {
         measurement_schema: 'task8-v1',
         name: 'high_issue_density',
-        catalog_version: '2026-09-20T09:08:09.714Z',
+        catalog_version: CATALOG_VERSION,
         code_units: 85_432,
         input_bytes: 85_432,
         metadata_bytes: 22,
@@ -1685,7 +1686,7 @@ describe('survey_app representative response measurements', () => {
       {
         measurement_schema: 'task8-v1',
         name: 'long_names_detail_expansion',
-        catalog_version: '2026-09-20T09:08:09.714Z',
+        catalog_version: CATALOG_VERSION,
         code_units: 11_904,
         input_bytes: 11_904,
         metadata_bytes: 16_384,
@@ -1700,7 +1701,7 @@ describe('survey_app representative response measurements', () => {
       {
         measurement_schema: 'task8-v1',
         name: 'aggregate_membership',
-        catalog_version: '2026-09-20T09:08:09.714Z',
+        catalog_version: CATALOG_VERSION,
         code_units: 46_932,
         input_bytes: 46_932,
         metadata_bytes: 21,
@@ -1715,7 +1716,7 @@ describe('survey_app representative response measurements', () => {
       {
         measurement_schema: 'task8-v1',
         name: 'inventories',
-        catalog_version: '2026-09-20T09:08:09.714Z',
+        catalog_version: CATALOG_VERSION,
         code_units: 130,
         input_bytes: 130,
         metadata_bytes: 65_552,
@@ -1730,7 +1731,7 @@ describe('survey_app representative response measurements', () => {
       {
         measurement_schema: 'task8-v1',
         name: 'near_misses',
-        catalog_version: '2026-09-20T09:08:09.714Z',
+        catalog_version: CATALOG_VERSION,
         code_units: 41_932,
         input_bytes: 41_932,
         metadata_bytes: 21,
@@ -1745,7 +1746,7 @@ describe('survey_app representative response measurements', () => {
       {
         measurement_schema: 'task8-v1',
         name: 'four_byte_unicode',
-        catalog_version: '2026-09-20T09:08:09.714Z',
+        catalog_version: CATALOG_VERSION,
         code_units: 1_500_000,
         input_bytes: 3_000_000,
         metadata_bytes: 23,

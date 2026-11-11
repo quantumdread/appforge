@@ -1,0 +1,95 @@
+# Control CheckBox
+Part of the control family FluentV9.
+Do not use CheckBox unless it's already present in this app. Use the updated ModernCheckbox instead for any new instances in this app.
+
+Control creation keywords:
+```yaml
+Control: CheckBox
+```
+
+Containment:
+- Declared nesting: supports=False, replicates=False
+- YAML children supported: False; Canvas Component descendants supported: False
+Omitted restrictions do not imply unrestricted composition; flags, variants and compilation still apply. Mapped identities may be structural, not independently creatable controls.
+
+Input Properties:
+  - AccessibleLabel: Text
+      Default: ""
+  - BasePaletteColor: Color
+  - CheckboxSize: Number
+      Default: 16
+  - Checked: Boolean
+      Default: false
+  - ContentLanguage: Text
+      Default: ""
+  - DisplayMode: Enum
+      Default: DisplayMode.Edit
+      Enum name: DisplayMode
+      Enum values: Disabled, Edit, View
+  - Font: Enum
+      Default: ""
+      Enum name: Font
+      Enum values: Arial, Courier New, Dancing Script, Georgia, Great Vibes, Lato, Lato Black, Lato Hairline, Lato Light, Open Sans, Open Sans Condensed, Patrick Hand, Segoe UI, Verdana
+  - FontColor: Color
+  - FontItalic: Boolean
+      Default: false
+  - FontSize: Number
+      Default: 0
+  - FontStrikethrough: Boolean
+      Default: false
+  - FontUnderline: Boolean
+      Default: false
+  - FontWeight: Enum
+      Default: ""
+      Enum name: FontWeight
+      Enum values: Bold, Lighter, Normal, Semibold
+  - Height: Number
+      Default: 32
+  - Label: Text
+      Default: "Checkbox"
+  - OnCheck: Boolean
+      Default: false
+  - OnSelect: Boolean
+      Default: false
+  - OnUncheck: Boolean
+      Default: false
+  - Visible: Boolean
+      Default: true
+  - Width: Number
+      Default: 160
+  - X: Number
+      Default: 0
+  - Y: Number
+      Default: 0
+
+Additional input properties if a child of a Vertical or Horizontal GroupContainer:
+  - AlignInContainer: Enum
+      Default: AlignInContainer.SetByContainer
+      Enum name: AlignInContainer
+      Enum values: Center, End, SetByContainer, Start, Stretch
+  - FillPortions: Number
+      Default: 0
+  - LayoutMaxHeight: Number
+      Default: 0
+  - LayoutMaxWidth: Number
+      Default: 0
+  - LayoutMinHeight: Number
+      Default: 32
+  - LayoutMinWidth: Number
+      Default: 160
+
+Additional input properties if a child of a Grid GroupContainer:
+  - LayoutGridColumnEnd: Number
+  - LayoutGridColumnStart: Number
+  - LayoutGridRowEnd: Number
+  - LayoutGridRowStart: Number
+
+Output Properties:
+  - Checked: Boolean - Whether the checkbox is checked.
+  - ContentLanguage: Text - The language of the control's content, if different from the control's container.
+  - DisplayMode: Enum - Visual and interaction state of the control.
+  - Height: Number - Height of the visual.
+  - Visible: Boolean - Show or hide the visual.
+  - Width: Number - Width of the visual.
+  - X: Number - Horizontal position of the visual.
+  - Y: Number - Vertical position of the value.

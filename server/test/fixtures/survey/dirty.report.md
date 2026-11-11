@@ -7,7 +7,7 @@
 - Fingerprint basis: directory/src-stripped/v1
 - Surveyed at: 2026-08-29T12:00:00.000Z
 - Analyzer version: golden
-- Catalog: 2026-09-20T09:08:09.714Z; extracted 2026-09-20T09:08:09.714Z; 0 days old
+- Catalog: 2026-11-11T17:13:45.157Z; extracted 2026-11-11T17:13:45.157Z; 0 days old
 - Files: dirty.pa.yaml (a18bdb5f227546011620d5b0dafd742cb329b8c7d27447705fe9b1d933df1699)
 
 ## Gate
@@ -70,7 +70,7 @@
 - Status: baseline new
 - Detail: property-not-in-catalog
 - Fix: Classic/Button has TabIndex; use Classic/Button if this control needs it
-- Catalog caveat: BLOCK is against catalog 2026-09-20T09:08:09.714Z, extracted 2026-09-20T09:08:09.714Z (0 days stale).
+- Catalog caveat: BLOCK is against catalog 2026-11-11T17:13:45.157Z, extracted 2026-11-11T17:13:45.157Z (0 days stale).
 
 ### unknown-property — dirty.pa.yaml:23
 
@@ -82,7 +82,7 @@
 - Detail: property-not-in-catalog
 - Fix: not provided by the rule
 - Did you mean: Text
-- Catalog caveat: BLOCK is against catalog 2026-09-20T09:08:09.714Z, extracted 2026-09-20T09:08:09.714Z (0 days stale).
+- Catalog caveat: BLOCK is against catalog 2026-11-11T17:13:45.157Z, extracted 2026-11-11T17:13:45.157Z (0 days stale).
 - Near miss: yes (`near_miss: true`)
 
 ### version-pin-in-control-type — dirty.pa.yaml:4

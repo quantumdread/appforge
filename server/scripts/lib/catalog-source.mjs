@@ -9,17 +9,24 @@ export function parseManifest(text) {
     if ((m = ln.match(/^extracted_at: (.+)$/))) extractedAt = m[1].trim();
     if ((m = ln.match(/^  - type: (?:"([^"]+)"|(\S+))/))) {
       const type = m[1] ?? m[2];
-      let family = null, version = null, variants = [];
-      for (let j = i + 1; j < Math.min(i + 6, lines.length); j++) {
+      let family = null, version = null, variants = [], listed = true, supersededBy = null;
+      for (let j = i + 1; j < Math.min(i + 8, lines.length); j++) {
+        if (lines[j].match(/^  - type:/)) break;
         const fm = lines[j].match(/^    family: (\S+)/);
         const vm = lines[j].match(/^    version: (\S+)/);
         const vs = lines[j].match(/^    variants: \[([^\]]*)\]/);
+        const lm = lines[j].match(/^    listed: (true|false)\s*$/);
+        const sm = lines[j].match(/^    superseded_by: (?:"([^"]+)"|(\S+))/);
         if (fm) family = fm[1];
         if (vm) version = vm[1] === 'null' ? null : vm[1];
         if (vs) variants = vs[1].split(',').map(s => s.trim()).filter(Boolean);
-        if (lines[j].match(/^  - type:/)) break;
+        if (lm) listed = lm[1] === 'true';
+        if (sm) supersededBy = sm[1] ?? sm[2];
       }
-      controls.push({ type, family, version, variants });
+      // Superseded controls (listed: false) stay valid in existing apps; only
+      // emit the two fields when present so unchanged entries keep their shape.
+      controls.push({ type, family, version, variants,
+        ...(listed ? {} : { listed: false }), ...(supersededBy ? { superseded_by: supersededBy } : {}) });
     }
   }
   // Re-parse for the source block (small and easy)

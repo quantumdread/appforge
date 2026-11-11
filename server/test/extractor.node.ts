@@ -296,4 +296,67 @@ describe('extraction writing boundary', () => {
     }
     expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[duplicate-control-key]'));
   });
+
+  // Observed 2026-11-11: list_controls stopped listing the superseded bare-named
+  // FluentV9 controls, while describe_control still describes them.
+  const previousManifest = (extra: string[]) => [...names, ...extra].map(n => `  - type: ${n}`).join('\n') + '\n';
+
+  it('carries a previously catalogued, now unlisted control forward with its replacement', async () => {
+    const options = setup();
+    writeFileSync(resolve(options.outputDir, 'control-manifest.yml'), previousManifest(['CheckBox']));
+    const original = options.mcp.tool.getMockImplementation()!;
+    options.mcp.tool.mockImplementation(async (name, args) =>
+      name === 'describe_control' && args.controlName === 'CheckBox' ? fixture('CheckBox.txt', '2026-11-11') : original(name, args));
+    const run = await main(options);
+    expect(run.skipped).toEqual([]);
+    expect(run.lost).toEqual([]);
+    const manifest = parseManifest(readFileSync(resolve(options.outputDir, 'control-manifest.yml'), 'utf8'));
+    expect(manifest.counts).toMatchObject({ controls_total_in_tenant: names.length, controls_in_this_file: names.length + 1,
+      controls_unlisted_carried: 1, is_partial: false });
+    expect(manifest.controls.find(c => c.type === 'CheckBox')).toEqual({ type: 'CheckBox', family: 'FluentV9',
+      version: null, variants: [], listed: false, superseded_by: 'ModernCheckbox' });
+    for (const n of names) expect(manifest.controls.find(c => c.type === n)).not.toHaveProperty('listed');
+    const props = parseProperties(readFileSync(resolve(options.outputDir, 'control-properties.yml'), 'utf8'));
+    expect(props.controls.CheckBox.input_properties).toHaveProperty('CheckboxSize');
+  });
+
+  it('ignores the open app\'s canvas components listed after the controls', async () => {
+    const options = setup();
+    const original = options.mcp.tool.getMockImplementation()!;
+    options.mcp.tool.mockImplementation(async (name, args) => name === 'list_controls'
+      ? `${await original(name, args)}\r\nCanvas Components:\r\n\r\n- cStepBar - \r\n- cProbe - \r\n` : original(name, args));
+    const run = await main(options);
+    expect(run.skipped).toEqual([]);
+    expect(options.mcp.tool.mock.calls.filter(([n]) => n === 'describe_control').map(([, a]) => a.controlName)).toEqual(names);
+    expect(readFileSync(resolve(options.outputDir, 'control-manifest.yml'), 'utf8')).toContain('is_partial: false');
+  });
+
+  it('refuses to drop a previously catalogued control that no longer describes, leaving both files untouched', async () => {
+    const options = setup();
+    const manifestPath = resolve(options.outputDir, 'control-manifest.yml');
+    writeFileSync(manifestPath, previousManifest(['Gone']));
+    const original = options.mcp.tool.getMockImplementation()!;
+    options.mcp.tool.mockImplementation(async (name, args) => {
+      if (name === 'describe_control' && args.controlName === 'Gone') throw new Error('HTTP 500');
+      return original(name, args);
+    });
+    await expect(main(options)).rejects.toThrow('content gate refused catalog');
+    expect(readFileSync(manifestPath, 'utf8')).toBe(previousManifest(['Gone']));
+    expect(existsSync(resolve(options.outputDir, 'control-properties.yml'))).toBe(false);
+    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[catalogued-control-lost]'));
+  });
+});
+
+describe('superseded controls (2026-11-11 describe format)', () => {
+  it('records the replacement named in the service notice', () => {
+    const { c, error } = parseDescribe(fixture('CheckBox.txt', '2026-11-11'));
+    expect(error).toBeNull();
+    expect(c.type).toBe('CheckBox');
+    expect(c.supersededBy).toBe('ModernCheckbox');
+    expect(Object.keys(c.baseInput)).toContain('Checked');
+  });
+
+  it('leaves current controls without a replacement', () => {
+    expect(parseDescribe(fixture('ModernAvatar.txt')).c).not.toHaveProperty('supersededBy');
+  });
 });

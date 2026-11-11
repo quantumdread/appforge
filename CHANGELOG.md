@@ -3,6 +3,25 @@
 Release notes for AppForge. Version numbers continue from the project's private development history; this
 repository starts at 3.16.0.
 
+## 3.17.0 — control catalog refreshed (2026-11-11)
+
+- **Catalog refreshed from the live Power Apps service (2026-11-11).** It now has 133 controls, up from 127.
+  - **New:** ModernAttachments, ModernBadge, NativePdfViewer, NativePenInput, Geolocation and DataWedgeScanner.
+  - **Changed:** ModernDataGrid and ModernRating gained `ContentLanguage`.
+  - **Removed:** nothing.
+- **Superseded controls stay valid.** Microsoft's service no longer lists 20 bare-named modern controls: Avatar, Badge,
+  Button, CheckBox, ComboBox, DatePicker, DropDown, Icon, InfoButton, Link, NumberInput, Progress, Radio, Slider,
+  Spinner, Table, TabList, Text, TextInput and Toggle.
+  - **Still accepted:** the service still describes them, and existing apps still use them, so AppForge accepts them
+    as before.
+  - **Marked:** the catalog records each one as `listed: false`, with the replacement Microsoft names, such as
+    `superseded_by: ModernCheckbox`. For new controls, prefer the Modern names.
+- **The extractor (`cli/extractor.mjs`) is safer to re-run.**
+  - **Unlisted controls:** it re-describes every control the previous catalog held that the list no longer offers,
+    and keeps each one that still describes.
+  - **Lost controls:** it refuses to write a catalog that would lose one.
+  - **Components:** it ignores the open app's own canvas components.
+
 ## 3.16.0 — first public release (2026-11-03)
 
 What this release contains:
