@@ -8,7 +8,7 @@ icons. Existing `Icon` controls keep working, so the rest of this page stays for
 ModernIcon differences, from the 2026-11-11 catalog:
 - `IconStyle` uses the `IconStyle` enum: `=IconStyle.Filled` or `=IconStyle.Outline` (not `'Icon.IconStyle'`).
 - `Icon` is text, for example `="Home"`, as on the bare type.
-- **ModernIcon accepts `OnSelect`** (compile-verified 2026-11-11; the click itself was not exercised in play mode).
+- **ModernIcon accepts `OnSelect`** (compile-verified 2026-11-11; the action ran in Preview on 2026-10-06, see `generator-rules.md` §3a).
   The "no OnSelect" warning further down applies only to the superseded bare `Icon` type.
 
 <!-- verified: true, verified_at: 2026-11-11, verified_by: compile_canvas -->

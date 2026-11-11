@@ -26,8 +26,8 @@ describe('persona reference documents', () => {
 
   it('discovers all five personas as prompts for a calling session', () => {
     const listed = JSON.parse(listRuleDocuments.handler().content[0].text);
-    expect(listed.count).toBe(36); // 31 existing references plus five persona documents.
-    expect(listed.documents).toHaveLength(36);
+    expect(listed.count).toBe(37); // 32 references (incl. svg-images, 2026-11-11) plus five persona documents.
+    expect(listed.documents).toHaveLength(37);
     expect(listed.documents.filter((name: string) => name.startsWith('persona-'))).toEqual([
       'persona-diagnostician', 'persona-diagnostician-artifacts',
       'persona-documenter', 'persona-documenter-artifacts', 'persona-renovator',

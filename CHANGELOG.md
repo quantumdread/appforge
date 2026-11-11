@@ -3,6 +3,23 @@
 Release notes for AppForge. Version numbers continue from the project's private development history; this
 repository starts at 3.16.0.
 
+## 3.19.0 — blank-safe zero guards; modern text width; SVG doc (2026-11-11)
+
+- **New WARN `zero-guard-misses-blank`.** It flags a division whose divisor is guarded only with `= 0` or `<> 0`.
+  A blank value is not equal to 0, but division treats it as 0, so the guard lets it through. That happens, for
+  example, before data has loaded: Studio evaluates formulas early. The fix it suggests is `Coalesce(x, 0) = 0`,
+  `x > 0` or `IfError`. It stays silent when the formula already uses IsBlank, Coalesce, IsBlankOrError or IfError.
+- **New WARN `modern-text-width-below-text`.** It flags `ModernText` or `Text` whose literal text cannot fit on one line
+  (estimated at 0.5 × Size per character) and whose Height cannot hold a second line, so a scrollbar appears. It stays
+  silent inside auto-layout unless a horizontal parent fixes the width.
+- **Both come from a field report** on a live dashboard (2026-11-11). Troubleshooting and the validator checklist
+  describe them.
+- **New doc: `svg-images.md`.** It shows SVG charts and animation in canvas apps through a data URI, in an Image
+  control or an HTML text `<img>`; inline `<svg>` in HTML text renders blank. Static charts, a CSS spinner and animated
+  bars and a progress ring were compile-verified, and the maker watched them render.
+- **Docs:** the legacy version list in `component-rules.md` now marks `Text@0.0.51` and the other unprefixed types as
+  superseded, so they are not mistaken for current modern controls.
+
 ## 3.18.0 — superseded-control advisory; Modern examples (2026-11-11)
 
 - **New advisory: `superseded-control-type` (WARN, never blocks).** Once per app it lists the controls that use a

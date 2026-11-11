@@ -85,6 +85,8 @@ describe('lint profile membership', () => {
     'modern-text-height-below-size',
     'index-literal-position',
     'filter-constant-or-column',
+    'zero-guard-misses-blank',
+    'modern-text-width-below-text',
   ];
   const WORKER_ONLY_ADDITIONS = [
     'formula-missing-equals',

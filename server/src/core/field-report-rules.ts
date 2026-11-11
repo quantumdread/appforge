@@ -355,8 +355,105 @@ const modernTextHeightBelowSize: LintRule = {
   },
 };
 
+/** A plain or dotted reference (`varTotal`, `ThisItem.Count`, `lblX.Text`) starting at `start`; never a call. */
+function referenceAt(structure: FormulaStructure, start: number): { key: string; end: number } | null {
+  const tokens = structure.tokens;
+  const first = tokens[start];
+  if (!first || (first.kind !== 'identifier' && first.kind !== 'quoted-identifier')) return null;
+  if (tokens[start - 1]?.text === '.') return null;
+  if (/^(?:true|false|Blank)$/iu.test(first.text)) return null;
+  const parts = [first.text];
+  let end = start + 1;
+  while (tokens[end]?.text === '.' && (tokens[end + 1]?.kind === 'identifier' || tokens[end + 1]?.kind === 'quoted-identifier')) {
+    parts.push(tokens[end + 1].text);
+    end += 2;
+  }
+  if (tokens[end]?.text === '(') return null;
+  return { key: parts.join('.').toLowerCase(), end };
+}
+
+const isZero = (text: string | undefined) => text !== undefined && /^0+(?:\.0+)?$/u.test(text);
+const BLANK_AWARE = new Set(['iferror', 'isblank', 'isblankorerror', 'coalesce', 'iserror']);
+
+const zeroGuardMissesBlank: LintRule = {
+  id: 'zero-guard-misses-blank', level: 'WARN', docRef: 'troubleshooting.md',
+  check(bundle) {
+    const out: Issue[] = [];
+    for (const control of formulaNodes(bundle)) for (const property of control.properties) {
+      const structure = inspectFormulaStructure(property.value, true);
+      if (!structure?.isFormula) continue;
+      if (structure.calls.some(call => BLANK_AWARE.has(call.name))) continue;
+      const tokens = structure.tokens;
+      const divisors = new Set<string>();
+      const zeroCompared = new Set<string>();
+      for (let index = 0; index < tokens.length; index++) {
+        const ref = referenceAt(structure, index);
+        if (!ref) continue;
+        if (tokens[index - 1]?.text === '/') divisors.add(ref.key);
+        const op = tokens[ref.end]?.text;
+        if ((op === '=' || op === '<>') && isZero(tokens[ref.end + 1]?.text) && tokens[ref.end + 2]?.text !== '.') zeroCompared.add(ref.key);
+        const before = tokens[index - 1]?.text;
+        if ((before === '=' || before === '<>') && isZero(tokens[index - 2]?.text)) zeroCompared.add(ref.key);
+      }
+      const guarded = [...divisors].filter(key => zeroCompared.has(key));
+      if (!guarded.length) continue;
+      out.push(finding(this, control, property,
+        `Division by ${guarded.join(', ')} is guarded with "= 0" or "<> 0" only. A blank value is not equal to 0, but division treats it as 0, so the guard lets it through and the formula fails with division by zero (for example before data has loaded; Studio evaluates formulas early).`,
+        'guard with Coalesce(x, 0) = 0, IsBlank(x) || x = 0, or x > 0, or wrap the division in IfError'));
+    }
+    return out;
+  },
+};
+
+const modernTextWidthBelowText: LintRule = {
+  id: 'modern-text-width-below-text', level: 'WARN', docRef: 'sizing-reference.md',
+  check(bundle, context) {
+    const out: Issue[] = [];
+    for (const control of controlNodes(bundle)) {
+      if (control.type !== 'ModernText' && control.type !== 'Text') continue;
+      const prop = (name: string) => control.properties.find(property => property.name === name);
+      if (/^=?\s*true$/iu.test(prop('AutoHeight')?.value.trim() ?? '')) continue;
+      const single = (name: string) => {
+        const property = prop(name);
+        if (!property) return null;
+        const structure = inspectFormulaStructure(property.value);
+        const range = structure?.statements[0]?.range;
+        return structure && range && structure.statements.length === 1 ? { structure, range } : null;
+      };
+      const literal = (name: string, fallback: number | null = null): number | null => {
+        if (!prop(name)) return fallback;
+        const found = single(name);
+        return found ? numericLiteral(found.structure, found.range) : null;
+      };
+      const text = single('Text');
+      if (!text || text.range.end - text.range.start !== 1) continue;
+      const token = text.structure.tokens[text.range.start];
+      if (token.kind !== 'string') continue;
+      const characters = [...token.text.slice(1, -1).replaceAll('""', '"')].length;
+      // Width is owned by the layout inside auto-layout containers unless a
+      // horizontal parent fixes it with FillPortions 0; stay silent there.
+      const parent = context.parentOf(control);
+      const direction = parent ? context.layoutDirectionOf(parent) : null;
+      if (parent?.type === 'GroupContainer' && parent.variant === 'AutoLayout' && direction === null) continue;
+      if (direction === 'vertical' || (direction === 'horizontal' && literal('FillPortions') !== 0)) continue;
+      const width = literal('Width'), height = literal('Height'), size = literal('Size');
+      const left = literal('PaddingLeft', 0), right = literal('PaddingRight', 0);
+      const top = literal('PaddingTop', 0), bottom = literal('PaddingBottom', 0);
+      if (width === null || height === null || size === null || left === null || right === null || top === null || bottom === null) continue;
+      const estimated = Math.ceil(characters * size * 0.5);
+      if (estimated <= width - left - right) continue;
+      if (height >= 3 * size + top + bottom) continue;
+      out.push(finding(this, control, prop('Width')!,
+        `The text needs about ${estimated}px at Size ${size} but Width leaves ${width - left - right}px, so it wraps to a second line that Height does not fit; modern text then shows a scrollbar. Estimate: 0.5 × Size per character.`,
+        'widen the control (about 0.5 × Size per character plus padding), reduce Size, or enable AutoHeight'));
+    }
+    return out;
+  },
+};
+
 export const FIELD_REPORT_RULES: LintRule[] = [
   commentRule(true), commentRule(false), componentInputCalledAsFunction,
   addColumnsStringColumnName, sortByColumnsOnAddedColumn, selectParentInGallery,
   filterConstantOrColumn, indexLiteralPosition, modernTextHeightBelowSize,
+  zeroGuardMissesBlank, modernTextWidthBelowText,
 ];

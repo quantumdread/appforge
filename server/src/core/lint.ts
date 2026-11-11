@@ -1619,6 +1619,8 @@ export const CLI_RULE_IDS = [
   'modern-text-height-below-size',
   'index-literal-position',
   'filter-constant-or-column',
+  'zero-guard-misses-blank',
+  'modern-text-width-below-text',
 ] as const;
 const CLI_RULE_ID_SET: ReadonlySet<string> = new Set(CLI_RULE_IDS);
 

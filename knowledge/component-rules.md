@@ -270,8 +270,10 @@ ComponentDefinitions:
 
 This table records legacy Studio paste-path versions; it is not control-choice or generation guidance. Follow `generator-rules.md` §3a for new controls. Compile-path YAML uses bare control types such as `Control: Label` and `Control: Classic/Button`; version pins compile but are stripped on round-trip. Do not put version pins in document examples. <!-- verified: true, verified_at: 2026-07-19, verified_by: compile_canvas -->
 
-### Modern Controls
-- `Text@0.0.51`
+### Unprefixed controls (legacy pins; never generate the superseded ones)
+`Text`, `Button`, `Icon`, `TextInput`, `Radio`, `DatePicker`, `Slider` and `CheckBox` below are the superseded FluentV9 types. Do not generate them, with or without a pin: use `ModernText`, `ModernButton`, `ModernIcon` and the other `Modern*` types (see `generator-rules.md` §3a). Studio lists them under "controls that can be updated".
+
+- `Text@0.0.51` - superseded by `ModernText`
 - `Button@0.0.45` - Recorded superseded metadata; `ModernButton` is the separate React type
 - `Icon@0.0.7`
 - `TextInput@0.0.54`

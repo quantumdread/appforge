@@ -56,6 +56,8 @@ const ROWS: Record<string, Row> = {
   'select-parent-in-gallery': ['behaviour', 'CORRECTNESS_RISK', false, 'none', 'prose'],
   'modern-text-height-below-size': ['layout', 'CORRECTNESS_RISK', false, 'none', 'prose'],
   'index-literal-position': ['formula', 'CORRECTNESS_RISK', false, 'none', 'prose'],
+  'zero-guard-misses-blank': ['formula', 'CORRECTNESS_RISK', false, 'none', 'prose'],
+  'modern-text-width-below-text': ['layout', 'CORRECTNESS_RISK', false, 'none', 'prose'],
   'filter-constant-or-column': ['delegation', 'CORRECTNESS_RISK', false, 'none', 'prose'],
   // ── gate refusals ────────────────────────────────────────────────────────
   'formula-missing-equals':        ['syntax', 'BLOCK', false, 'none', 'prose'],

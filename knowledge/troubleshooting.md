@@ -121,6 +121,25 @@ Runtime observation, 2026-10-06 ([delivery errata A1](../docs/delivery-errata/20
 
 Runtime observation, 2026-10-06 ([delivery errata A2](../docs/delivery-errata/2026-10-06-canvas-coauthoring-errata.md)): "The second argument to the 'Index' function must be between 1 and 1…" was shown for a literal position beyond the table's length. Hidden controls still evaluate formulas, so `Visible: =false` does not protect `Index(t, 2)`. Use `First(t)` or `Last(FirstN(t, n))`; these avoid the out-of-range error on a short table. `index-literal-position` warns for literal positions at least 2 unless a literal table proves sufficient rows. Positions from `Sequence(CountRows(...))` remain dynamic and silent.
 
+### Division by zero although the formula checks for zero
+
+Field report (2026-11-11, a dashboard built through the canvas-authoring MCP): chart formulas guarded with
+`If(x = 0, 0, a / x)` raised a division-by-zero error. Studio evaluated them before the data had loaded, so `x` was
+blank. Microsoft documents both halves: division treats blank as 0, but blank is not equal to 0, so the guard lets it
+through ([error handling](https://learn.microsoft.com/power-platform/power-fx/error-handling)). Guard with
+`Coalesce(x, 0) = 0`, `IsBlank(x) || x = 0` or `x > 0`, or wrap the division in `IfError`. The WARN
+`zero-guard-misses-blank` flags a divisor whose only guard is `= 0` or `<> 0` in the same formula.
+
+### Grey scrollbar inside modern text that is too narrow
+
+Field report (2026-11-11): `ModernText` labels with a large `Size` showed grey scrollbars until they were widened. Text
+too long for one line wraps, and a fixed `Height` that holds only one line then scrolls. The WARN
+`modern-text-width-below-text` estimates 0.5 × `Size` per character for literal text with literal `Width`, `Height` and
+`Size`. It fires when that exceeds the width minus horizontal padding, and `Height` is below two lines (3 × `Size` plus
+vertical padding). The estimate is a heuristic: check rendering for the font. Widen the control, reduce `Size`, or
+enable `AutoHeight`.
+<!-- verified: false — field report only (2026-11-11); heuristic not runtime-calibrated -->
+
 ### Newly inserted controls move after Studio saves
 
 Sync observations, 2026-10-06 ([delivery errata B1](../docs/delivery-errata/2026-10-06-canvas-coauthoring-errata.md)): a compile and immediate sync had the correct order, but Studio appended inserted controls when it saved. After every compile that inserts controls, save in Studio and sync to a separate scratch folder. Run `compare_child_order` with the complete local source as `expected` and that fresh sync as `actual`, or `node cli/validate.mjs compare-order <expected-dir> <scratch-sync-dir> --json`. The comparison ignores property ordering and pruned defaults; `appended_at_end` identifies the insert symptom. Recompile the complete source while it reports `reordered`, then save, sync and compare again until `identical` is true (the reports needed two or three compiles). Investigate `membership-changed` before retrying. Reload Studio before editing. A successful compile alone does not establish saved child order; follow the deployment authorization procedure for each tenant write.
