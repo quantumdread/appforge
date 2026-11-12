@@ -15,7 +15,7 @@
  * The hook is permissive on malformed/inapplicable hook input. Once validation
  * starts, REFUSE and validator-infrastructure failures block in block mode.
  */
-import { statSync } from 'node:fs';
+import { readdirSync, statSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -97,7 +97,17 @@ process.stdin.on('end', () => {
 
   console.error(`${TAG} validating ${dir} against the catalog before compile_canvas...`);
 
-  const r = spawnSync(process.execPath, [VALIDATOR, dir, '--json'], { encoding: 'utf8' });
+  // An untouched copy synced before the change, in a sibling folder named
+  // "before" (the edit-app layout), lets the validator tell new controls apart.
+  const before = resolve(dir, '..', 'before');
+  let hasBefore = false;
+  try {
+    hasBefore = resolve(dir) !== before && statSync(before).isDirectory()
+      && readdirSync(before, { recursive: true }).some(name => String(name).endsWith('.pa.yaml'));
+  } catch { hasBefore = false; }
+  if (hasBefore) console.error(`${TAG} comparing with the earlier copy in ${before}`);
+  const args = [VALIDATOR, dir, '--json', ...(hasBefore ? ['--before', before] : [])];
+  const r = spawnSync(process.execPath, args, { encoding: 'utf8' });
   if (r.error) infrastructureFailure(`validator failed to launch: ${r.error.message} — fix the toolchain before compiling`, r.stderr);
   if (r.stderr) process.stderr.write(r.stderr);
 

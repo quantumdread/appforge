@@ -87,12 +87,16 @@ describe('lint profile membership', () => {
     'filter-constant-or-column',
     'zero-guard-misses-blank',
     'modern-text-width-below-text',
-  ];
-  const WORKER_ONLY_ADDITIONS = [
+    'new-control-superseded-type',
     'formula-missing-equals',
     'block-scalar-required',
-    'bare-color-name',
     'enum-value-invalid',
+    'bare-color-name',
+  ];
+  // v3.20: the four REFUSE rules moved into the CLI profile, which the compile
+  // gate runs (gap logged 2026-10-06). The bundled superseded advice stays
+  // Worker-only (frozen CLI bytes); the gate reports new controls instead.
+  const WORKER_ONLY_ADDITIONS = [
     'superseded-control-type',
     'fillportions-with-fixed-size',
     'missing-layout-min',
@@ -102,7 +106,7 @@ describe('lint profile membership', () => {
     'long-inline-formula',
   ];
 
-  it('pins the local CLI profile to its exact 45-rule contract', () => {
+  it('pins the local CLI profile to its exact 52-rule contract', () => {
     expect(CLI_RULE_IDS).toEqual(EXPECTED_CLI_RULE_IDS);
     expect(bindLintRules(ANALYZER_CATALOG_DATA, 'cli').map(rule => rule.id))
       .toEqual(EXPECTED_CLI_RULE_IDS);

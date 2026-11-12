@@ -592,7 +592,7 @@ syncBuiltinESMExports();
   it('pins the exact precompile-hook bytes', () => {
     const hookPath = resolve(SCRIPT, '..', 'precompile-hook.mjs');
     expect(createHash('sha256').update(readFileSync(hookPath)).digest('hex'))
-      .toBe('3df301be07b24065e25f689cf4d64b0259f211ea8fd4defd92a548ea89b97b02');
+      .toBe('c2538458e5e86e19e4cccdca28548163d1acaffedf41430e96a8754de8310789');
   });
 
   it('keeps legacy validation working when only the survey modules are missing', () => {

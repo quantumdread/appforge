@@ -116,6 +116,7 @@ const ROWS: Record<string, Row> = {
   'repeated-color-literal':       ['centralization', 'MAINTAINABILITY', false, 'color-literal', 'prose'],
   'version-pin-in-control-type':  ['versioning', 'MAINTAINABILITY', false, 'file', 'deterministic'],
   'superseded-control-type':      ['versioning', 'MAINTAINABILITY', false, 'file', 'deterministic'],
+  'new-control-superseded-type':  ['versioning', 'MAINTAINABILITY', false, 'none', 'deterministic'],
   'a11y-tabindex-positive':       ['accessibility', 'MAINTAINABILITY', false, 'none', 'human-value'],
   'a11y-inputs-missing-accessiblelabel': ['accessibility', 'MAINTAINABILITY', false, 'file', 'human-value'],
   'fillportions-with-fixed-size': ['layout', 'MAINTAINABILITY', false, 'none', 'prose'],

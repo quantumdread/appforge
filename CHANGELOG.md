@@ -3,6 +3,26 @@
 Release notes for AppForge. Version numbers continue from the project's private development history; this
 repository starts at 3.16.0.
 
+## 3.20.0 — the existing app is not a template; compile gate REFUSE gap closed (2026-11-12)
+
+- **The existing app is not a template.** New rule in `generator-rules.md` §3a (item 8) and in `/appforge:edit-app`:
+  when adding to an app, build new controls and formulas from AppForge's rules, not by copying neighbouring screens.
+  Match the look by reusing the app's values. Copy existing controls only when the user asks for that. This
+  overrides the authoring service's "unless it's already present in this app" notice.
+- **New WARN `new-control-superseded-type`.** Given an untouched copy of the app from before the change, it names
+  each control the change adds with a superseded type (for example a new `Button` instead of `ModernButton`), one
+  finding per control. Supply the copy as `before_files` to `validate_yaml`, as `--before <folder>` to
+  `cli/validate.mjs`, or as a sibling folder named `before` next to the compile folder: the compile gate picks it up
+  by itself. Without a copy it stays silent; `superseded-control-type` then advises on the whole app as before.
+- **`/appforge:edit-app`** now keeps that `before` copy, passes it to `validate_yaml`, and says not to copy patterns
+  from the app.
+- **Field report** (2026-11-12): a new dashboard screen got bare `Button` and `Text` controls because the app already
+  used them.
+- **The compile gate now runs four REFUSE rules it skipped:** `block-scalar-required` (an unquoted formula containing
+  `: `, which compile rejects as "found invalid mapping"), `formula-missing-equals`, `enum-value-invalid` and
+  `bare-color-name`. They ran in `validate_yaml` but not in the CLI profile that the gate uses (gap noted 2026-10-06).
+  Field report, 2026-11-12: an `AccessibleLabel` with `": "` passed the gate, then failed to compile.
+
 ## 3.19.0 — blank-safe zero guards; modern text width; SVG doc (2026-11-11)
 
 - **New WARN `zero-guard-misses-blank`.** It flags a division whose divisor is guarded only with `= 0` or `<> 0`.

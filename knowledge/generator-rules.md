@@ -154,6 +154,16 @@ Choose controls in this order:
 5. **Galleries: current layouts are Gallery presets.** Use `Gallery` with `ModernText` and other current controls inside it, and put row taps on `Gallery.OnSelect`. The three compile-verified `BrowseLayout_*_ver5.0` presets in `current_variants` are current Studio layouts omitted by the extractor. Inside a gallery in a component definition, do not use `Select(Parent)`, even on a direct gallery child; put the action on the gallery's `OnSelect` or the control's own `OnSelect`. Direct children of screen-level galleries may still use `Select(Parent)` (runtime comparison, 2026-10-06, items 7–8). Use `ModernTabList` or `Table` when either does the whole job.
 6. **Practice (owner, 2026-10-06):** prefer `ModernCombobox` over `ModernDropdown`; use checkboxes for choices where several may apply.
 7. **Modern radio uses `OnChange`.** On `ModernRadio`, use `OnChange`, not `OnSelect`; the current catalog confirms the event. The 2026-05-10 compile stamp is historical radio evidence, not a verification of this map.
+8. **The existing app is not a template (owner, 2026-11-12).** When you add to an app, build the new parts from these
+   rules, not by copying what neighbouring screens do. Superseded control types, workarounds and formula patterns
+   already in the app stay where they are, and new controls do not inherit them. The authoring service's notice "do not
+   use X unless it's already present in this app" does not apply here: an existing `Button` is no reason for a new
+   one. Match the app's look by reusing its values (colours, fonts, sizes, named formulas), with current controls.
+   Copy existing controls or patterns only when the user asks for that, for example "make it look exactly like the
+   other screen" or "keep the old buttons", and say so in the plan. Field report, 2026-11-12: a new dashboard screen
+   got bare `Button` and `Text` controls because the app already used them. With the earlier copy of the app
+   (`before_files`, or a sibling `before` folder at the compile gate), AppForge warns about each new control that uses
+   a superseded type (`new-control-superseded-type`).
 
 ## 4) Properties, Events, Variants — Tiered Allow-List
 

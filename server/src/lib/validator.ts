@@ -2,6 +2,7 @@
 export {
   APP_TYPE,
   buildAppBundle,
+  controlNamesOf,
   COMPONENT_DEFINITION_TYPE,
   MAX_CONTROL_TREE_DEPTH,
   controlNodes,

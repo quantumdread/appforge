@@ -964,6 +964,11 @@ export function buildAppBundle(files: Array<{ name: string; content: string }>):
   return buildAppBundleWithDiagnostics(files).bundle;
 }
 
+/** Every control name in a set of PA-YAML files: the `existingControls` lint context for an earlier copy of the app. */
+export function controlNamesOf(files: Array<{ name: string; content: string }>): string[] {
+  return [...controlNodes(buildAppBundle(files))].map(control => control.name);
+}
+
 function unrecognizedSpans(
   recognized: boolean[],
   observer?: (start: number, end: number) => void,

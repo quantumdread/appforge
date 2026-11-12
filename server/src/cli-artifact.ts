@@ -128,6 +128,7 @@ export {
   APP_TYPE,
   COMPONENT_DEFINITION_TYPE,
   buildAppBundle,
+  controlNamesOf,
   controlNodes,
   fileDerivedScreenName,
   walkPaYaml,

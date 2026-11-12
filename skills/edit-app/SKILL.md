@@ -32,6 +32,9 @@ unless they ask for it.
 - Create a new, empty folder for this change, inside the current workspace, for example
   `appforge-work/<app>-<date-time>/source`.
 - Call `sync_canvas` with its absolute path.
+- Copy the synced folder to a sibling folder named `before` (`appforge-work/<app>-<date-time>/before`) and never edit
+  it. AppForge compares against it to tell the controls you add from the ones already there; the compile gate finds
+  it automatically.
 - Always sync before editing, and never edit an older copy: the app may have changed in Studio since.
 
 ## 3. Understand before changing
@@ -41,6 +44,10 @@ unless they ask for it.
   don't guess property names.
 - For formulas, use `get_powerfx_function` or `search_powerfx`, and check delegation for any data source with many rows.
 - For new screens or layouts, check `get_yaml_rules` (generator rules) and `list_templates`.
+- **The existing app is not a template.** Build new controls and formulas from AppForge's rules, not by copying
+  neighbouring screens: if the app uses older control types or patterns, new parts still use the current ones. Match
+  the app's look by reusing its colours, fonts and sizes. Copy existing controls only when the user asks for that, and
+  say so in the plan.
 - For larger or unclear work (several screens, or an app the user doesn't know well), run AppForge `survey_app` on the
   synced files first and summarise what you found.
 - If the request is ambiguous or touches more than a few controls, agree the plan with the user before editing.
@@ -55,7 +62,10 @@ unless they ask for it.
 
 ## 5. Validate with AppForge
 
-- Call `validate_yaml` with **all** files in the folder together, so cross-file checks run.
+- Call `validate_yaml` with **all** files in the folder together, so cross-file checks run, and the `before` folder's
+  files as `before_files`.
+- **`new-control-superseded-type`:** a control you added uses an outdated type. Switch it to the type the finding
+  names, unless the user asked to match the existing controls.
 - **REFUSE:** fix it and validate again. Never compile with a REFUSE outstanding, and never work around one. If you
   believe a REFUSE is wrong, tell the user and suggest `/appforge:report-issue`.
 - **WARN:** fix the ones that are clearly safe to fix. List the rest for the user in plain words, with why each

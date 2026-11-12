@@ -28,6 +28,7 @@ export default defineConfig({
       'test/adjudicate-campaign.node.ts',
       'test/verification-campaign.node.ts',
       'test/validate-cli.node.ts',
+      'test/new-control-gate.node.ts',
       'test/compile-gate.node.ts',
       'test/adjudicate.node.ts',
       'test/release-check.node.ts',

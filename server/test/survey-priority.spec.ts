@@ -42,7 +42,7 @@ const maintainabilityInput: PriorityCalculationInputs = {
   descriptor_coverage: 'none',
 };
 
-// Independent substance fixture: deliberately duplicates all 76 classifications
+// Independent substance fixture: deliberately duplicates all 77 classifications
 // so an incorrect registry edit must also change this separately reviewed table.
 const EXPECTED_REMEDY_KIND = {
   'yaml-comment-truncates-formula': 'prose',
@@ -97,6 +97,7 @@ const EXPECTED_REMEDY_KIND = {
   'repeated-color-literal': 'prose',
   'version-pin-in-control-type': 'deterministic',
   'superseded-control-type': 'deterministic',
+  'new-control-superseded-type': 'deterministic',
   'a11y-tabindex-positive': 'human-value',
   'a11y-inputs-missing-accessiblelabel': 'human-value',
   'fillportions-with-fixed-size': 'prose',
@@ -438,8 +439,8 @@ describe('group priority inputs', () => {
 });
 
 describe('registry remedy classification', () => {
-  it('matches the independent full 76-rule fixture', () => {
-    expect(Object.keys(EXPECTED_REMEDY_KIND)).toHaveLength(76);
+  it('matches the independent full 77-rule fixture', () => {
+    expect(Object.keys(EXPECTED_REMEDY_KIND)).toHaveLength(77);
     expect(Object.fromEntries(
       Object.entries(RULE_METADATA).map(([id, metadata]) => [id, metadata.remedyKind]),
     )).toEqual(EXPECTED_REMEDY_KIND);

@@ -52,6 +52,12 @@ export type LintContext = {
    * core trusts every value here as a real DatasourceType.
    */
   exportDatasources?: Readonly<Record<string, DatasourceType>>;
+  /**
+   * Control names in an untouched copy of the app synced before this change
+   * (`controlNamesOf(beforeFiles)`). When present, a control whose name is
+   * not in it counts as added by this change (or renamed).
+   */
+  existingControls?: readonly string[];
 };
 
 /** Keep every lint resolver on the same explicit → export → convention ladder. */
@@ -435,7 +441,11 @@ const supersededControlType: LintRule = {
       if (entry.superseded_by) replacement.set(entry.type, entry.superseded_by);
     }
     if (!replacement.size) return [];
-    const hits = nodesOf(bundle).filter(control => control.type && replacement.has(control.type));
+    // With an earlier copy, controls added by this change are reported one by
+    // one under new-control-superseded-type; this rule keeps the existing ones.
+    const existing = context.existingControls ? new Set(context.existingControls) : null;
+    const hits = nodesOf(bundle).filter(control => control.type && replacement.has(control.type)
+      && (!existing || existing.has(control.name)));
     if (!hits.length) return [];
     const byType = new Map<string, number>();
     for (const control of hits) byType.set(control.type!, (byType.get(control.type!) ?? 0) + 1);
@@ -448,6 +458,29 @@ const supersededControlType: LintRule = {
         'use the Modern type for new controls; convert existing ones only when you are already changing them'),
       controls: hits.map(control => control.name),
     }];
+  },
+};
+
+/**
+ * A control added by this change (absent from the earlier copy passed as
+ * `existingControls`) that uses a superseded type. Usually the type was copied
+ * from neighbouring controls, or taken from the authoring service's "unless
+ * it's already present in this app" notice. Silent without an earlier copy.
+ */
+const newControlSupersededType: LintRule = {
+  id: 'new-control-superseded-type', level: 'WARN', docRef: 'generator-rules.md',
+  check(bundle, context) {
+    if (!context.existingControls) return [];
+    const existing = new Set(context.existingControls);
+    const replacement = new Map<string, string>();
+    for (const entry of catalogOf(context).controls) {
+      if (entry.superseded_by) replacement.set(entry.type, entry.superseded_by);
+    }
+    return nodesOf(bundle)
+      .filter(control => control.type && replacement.has(control.type) && !existing.has(control.name))
+      .map(control => issue(this, control, null,
+        `${control.name} is new in this change (it is not in the earlier copy of the app) and uses ${control.type}, which Microsoft has superseded by ${replacement.get(control.type!)}. Other controls in the app using ${control.type} are no reason to copy it: new controls use the current type unless the user asked to match the existing ones. If ${control.name} was renamed rather than added, ignore this.`,
+        `use ${replacement.get(control.type!)}; keep ${control.type} only when the user asked to match the existing controls`));
   },
 };
 
@@ -1550,7 +1583,7 @@ const unknownOutputReference: LintRule = {
 
 const CORE_LINT_RULES: LintRule[] = [
   formulaMissingEquals, blockScalarRequired, inlineFormulaPasteHygiene, bareColorName, enumValueInvalid, duplicateProperty,
-  versionPinInControlType, supersededControlType,
+  versionPinInControlType, supersededControlType, newControlSupersededType,
   a11yTabIndexPositive, a11yInteractiveNotFocusable, a11yIconButtonNoLabel, a11yInputsMissingAccessibleLabel,
   duplicateFormula, duplicateFormulaInGallery, repeatedColorLiteral, heavyOnStart,
   delegationFirstNOnSource, delegationForAllWrites, delegationSearchCaveat,
@@ -1621,6 +1654,12 @@ export const CLI_RULE_IDS = [
   'filter-constant-or-column',
   'zero-guard-misses-blank',
   'modern-text-width-below-text',
+  'new-control-superseded-type',
+  // v3.20: the compile gate runs this profile; these REFUSE rules were missing from it.
+  'formula-missing-equals',
+  'block-scalar-required',
+  'enum-value-invalid',
+  'bare-color-name',
 ] as const;
 const CLI_RULE_ID_SET: ReadonlySet<string> = new Set(CLI_RULE_IDS);
 

@@ -42,6 +42,7 @@ const {
   KNOWN_VARIABLE_PREFIXES,
   REPEATED_COLOR_MIN,
   blankInertSpans,
+  controlNamesOf,
   extractBoundSource,
   findingFingerprint,
   findingFingerprintIdentity,
@@ -253,6 +254,7 @@ function main() {
   let datasourcesValue = null;
   let baselineValue = null;
   let writeBaselineValue = null;
+  let beforeValue = null;
   const targets = [];
 
   for (let index = 2; index < process.argv.length; index++) {
@@ -289,6 +291,21 @@ function main() {
       if (parsed.consumedNext) index++;
       continue;
     }
+    if (arg === '--before' || arg.startsWith('--before=')) {
+      const equalsPrefix = '--before=';
+      const value = arg.startsWith(equalsPrefix) ? arg.slice(equalsPrefix.length) : process.argv[index + 1];
+      if (!value || value.startsWith('--')) {
+        console.error('--before requires a folder or file path.');
+        process.exit(2);
+      }
+      if (beforeValue !== null) {
+        console.error('--before may only be specified once.');
+        process.exit(2);
+      }
+      beforeValue = value;
+      if (!arg.startsWith(equalsPrefix)) index++;
+      continue;
+    }
     if (arg.startsWith('--')) {
       console.error(`Unknown option: ${arg}`);
       process.exit(2);
@@ -301,7 +318,7 @@ function main() {
     return;
   }
   if (!targets.length) {
-    console.error('usage: validate.mjs <file-or-dir> [more-files...] [--json] [--datasources <json-file>] [--baseline <json-file> | --write-baseline <json-file>] [--version]');
+    console.error('usage: validate.mjs <file-or-dir> [more-files...] [--json] [--datasources <json-file>] [--baseline <json-file> | --write-baseline <json-file>] [--before <folder>] [--version]');
     process.exit(2);
   }
   if (baselineValue !== null && writeBaselineValue !== null) {
@@ -356,11 +373,24 @@ function main() {
     process.exit(2);
   }
 
+  let existingControls;
+  if (beforeValue !== null) {
+    try {
+      const beforeFiles = [...yamlFilesIn(resolve(beforeValue))]
+        .map(file => ({ name: file, content: readFileSync(file, 'utf8') }));
+      if (!beforeFiles.length) throw new Error('no .pa.yaml files found');
+      existingControls = controlNamesOf(beforeFiles);
+    } catch (error) {
+      console.error(`Unable to load --before: ${error instanceof Error ? error.message : String(error)}`);
+      process.exit(2);
+    }
+  }
+
   let allReports;
   try {
     allReports = validateCliFiles(
       files.map(file => ({ name: file, content: readFileSync(file, 'utf8') })),
-      { datasources },
+      { datasources, ...(existingControls ? { existingControls } : {}) },
     );
   } catch (error) {
     console.error(`Unable to analyze target: ${error instanceof Error ? error.message : String(error)}`);
