@@ -3,6 +3,15 @@
 Release notes for AppForge. Version numbers continue from the project's private development history; this
 repository starts at 3.16.0.
 
+## 3.20.1 — looping SVG animation (2026-11-12)
+
+- **Looping SVG animation** (`svg-images.md`, new section). Two ways to make a chart replay on its own, both
+  compile-verified and watched in Studio: SMIL that restarts from its own end (`begin='0s;a0.end+4s'`, with every other
+  animation starting from `a0.begin`), and a CSS cycle that grows and then holds (`animation: grow 6s infinite`). The
+  CSS example has a working Pause button, for WCAG 2.2.2.
+- **Correction:** changing the SVG text (the `<!-- run n -->` comment) does not make the image replay, even when a
+  Timer changes it. The doc said this was untested; it now says it does not work.
+
 ## 3.20.0 — the existing app is not a template; compile gate REFUSE gap closed (2026-11-12)
 
 - **The existing app is not a template.** New rule in `generator-rules.md` §3a (item 8) and in `/appforge:edit-app`:
