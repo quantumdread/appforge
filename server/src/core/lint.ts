@@ -1010,6 +1010,52 @@ const delegationFirstNOnSource: LintRule = {
   },
 };
 
+const datagridItemsSource = (control: ControlNode, context: LintContext) => {
+  const items = control.properties.find(property => property.name === 'Items');
+  const source = items ? extractAuthoredSource(items.value) : null;
+  if (!items || !source) return null;
+  const reference = datasourceReference(context, source);
+  return isInMemoryReference(reference) ? null : { items, source, reference };
+};
+
+const datagridPaginationNone: LintRule = {
+  id: 'datagrid-pagination-none', level: 'WARN',
+  docRef: 'delegation-reference.md §Modern data grid paging',
+  check(bundle, context) {
+    const out: Issue[] = [];
+    for (const control of nodesOf(bundle)) {
+      if (control.type !== 'ModernDataGrid') continue;
+      const bound = datagridItemsSource(control, context);
+      if (!bound) continue;
+      const pagination = control.properties.find(property => property.name === 'Pagination');
+      if (pagination && !/(?:^|[.\s=])None\s*$/u.test(pagination.value.trim())) continue;
+      out.push(issue(this, control, pagination ?? bound.items,
+        `${control.name} shows '${bound.source}' with Pagination ${pagination ? 'None' : 'not set (None by default)'}: the grid loads at most the app's data row limit (500 by default, 2,000 at most) and never fetches more rows.${assumedBoundSourceNote(bound.reference)}`,
+        'set Pagination to Auto (loads 100 rows at a time as the user scrolls, while Items is delegable) or Number (pages; PageSize 0 means 100)'));
+    }
+    return out;
+  },
+};
+
+const datagridDelegateSearchUnused: LintRule = {
+  id: 'datagrid-delegate-search-unused', level: 'WARN',
+  docRef: 'delegation-reference.md §Modern data grid paging',
+  check(bundle) {
+    const out: Issue[] = [];
+    for (const control of nodesOf(bundle)) {
+      if (control.type !== 'ModernDataGrid') continue;
+      const delegate = control.properties.find(property => property.name === 'DelegateSearch');
+      if (!delegate || !/^=?\s*true\s*$/iu.test(delegate.value.trim())) continue;
+      const items = control.properties.find(property => property.name === 'Items');
+      if (items && /\bSearchText\b/u.test(withoutLiterals(items.value))) continue;
+      out.push(issue(this, control, delegate,
+        `${control.name} has DelegateSearch on, so the grid no longer filters by its own search box; Items has to do it with SearchText. Items never reads SearchText, so typing in the search box changes nothing.`,
+        'filter Items by Self.SearchText with a function your source delegates (for SharePoint, StartsWith), or turn DelegateSearch off'));
+    }
+    return out;
+  },
+};
+
 /** A name that holds in-memory rows: a known variable prefix, or mapped `collection`. */
 const isInMemoryTarget = (context: LintContext, name: string): boolean =>
   isInMemoryReference(datasourceReference(context, name));
@@ -1589,7 +1635,7 @@ const CORE_LINT_RULES: LintRule[] = [
   delegationFirstNOnSource, delegationForAllWrites, delegationSearchCaveat,
   delegationSharepointSearch, delegationSharepointIn, delegationSharepointIsBlank,
   delegationSharepointTextFunctions, delegationSharepointIdOperator,
-  delegationSqlIsBlank, delegationExcelAny,
+  delegationSqlIsBlank, delegationExcelAny, datagridPaginationNone, datagridDelegateSearchUnused,
   perfLookupInGalleryTemplate, perfOnStartNoConcurrent, perfCrossScreenReference, perfControlBudget,
   fillportionsWithFixedSize, missingLayoutMin, missingAlignInContainer, labelMissingWrap, scrollChildFillportions, longInlineFormula,
   ...NAVIGATION_APP_RULES,
@@ -1655,6 +1701,8 @@ export const CLI_RULE_IDS = [
   'zero-guard-misses-blank',
   'modern-text-width-below-text',
   'new-control-superseded-type',
+  'datagrid-pagination-none',
+  'datagrid-delegate-search-unused',
   // v3.20: the compile gate runs this profile; these REFUSE rules were missing from it.
   'formula-missing-equals',
   'block-scalar-required',

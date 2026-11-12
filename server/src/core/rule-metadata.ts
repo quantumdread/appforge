@@ -82,6 +82,8 @@ const ROWS: Record<string, Row> = {
   'layoutmaxwidth-collapses-children': ['layout', 'CORRECTNESS_RISK', false, 'none', 'prose'],
   // ── correctness risk ────────────────────────────────────────────────────
   'delegation-firstn-on-source':          ['delegation', 'CORRECTNESS_RISK', true, 'bound-source', 'prose'],
+  'datagrid-pagination-none':             ['delegation', 'CORRECTNESS_RISK', true, 'bound-source', 'prose'],
+  'datagrid-delegate-search-unused':      ['delegation', 'CORRECTNESS_RISK', false, 'none', 'prose'],
   'delegation-forall-writes':             ['delegation', 'CORRECTNESS_RISK', true, 'bound-source', 'prose'],
   'delegation-forall-truncation':         ['delegation', 'CORRECTNESS_RISK', true, 'bound-source', 'prose'],
   'write-followed-by-unconditional-navigation': ['write-error', 'CORRECTNESS_RISK', false, 'none', 'prose'],

@@ -88,6 +88,8 @@ describe('lint profile membership', () => {
     'zero-guard-misses-blank',
     'modern-text-width-below-text',
     'new-control-superseded-type',
+    'datagrid-pagination-none',
+    'datagrid-delegate-search-unused',
     'formula-missing-equals',
     'block-scalar-required',
     'enum-value-invalid',
@@ -106,7 +108,7 @@ describe('lint profile membership', () => {
     'long-inline-formula',
   ];
 
-  it('pins the local CLI profile to its exact 52-rule contract', () => {
+  it('pins the local CLI profile to its exact 54-rule contract', () => {
     expect(CLI_RULE_IDS).toEqual(EXPECTED_CLI_RULE_IDS);
     expect(bindLintRules(ANALYZER_CATALOG_DATA, 'cli').map(rule => rule.id))
       .toEqual(EXPECTED_CLI_RULE_IDS);

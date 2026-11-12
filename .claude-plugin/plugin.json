@@ -1,6 +1,6 @@
 {
   "name": "appforge",
-  "version": "3.20.1",
+  "version": "3.21.0",
   "description": "Power Apps canvas expert: checks every change before Microsoft's canvas-apps plugin applies it, guided live edits (/appforge:edit-app), app surveys, control and Power Fx reference.",
   "author": {
     "name": "Daryl Tunster",

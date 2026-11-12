@@ -132,6 +132,8 @@
         "unknown-output-reference",
         "layoutmaxwidth-collapses-children",
         "delegation-firstn-on-source",
+        "datagrid-pagination-none",
+        "datagrid-delegate-search-unused",
         "delegation-forall-writes",
         "delegation-forall-truncation",
         "write-followed-by-unconditional-navigation",

@@ -225,6 +225,40 @@ ClearCollect(colResults, Filter(SharePointList, ID in colMatchingIDs.ID))
 
 ---
 
+## Modern data grid paging
+
+<!-- verified: false — from Reza Dorrani's walkthrough (2026-11-12); the properties are in the extracted catalog, the behaviour is not yet compile-observed -->
+
+`ModernDataGrid` has native paging. The properties are in the catalog since 2026-11-12; Studio may need a recent
+authoring version for them.
+
+| Property | What it does |
+|---|---|
+| `Pagination: =Pagination.None` (default) | Loads at most the app's data row limit (500 by default, 2,000 at most) and never more. |
+| `Pagination: =Pagination.Auto` | Loads 100 rows at a time as the user scrolls, like a gallery, while `Items` is delegable. |
+| `Pagination: =Pagination.Number` | Page buttons. `PageSize` sets rows per page; `0` means 100. |
+| `ItemsCount`, `CurrentPage`, `AllItemsLoaded` | Outputs: rows loaded so far, the current page, and whether every row has loaded. |
+| `Searchable` | The built-in search box searches **only the rows already loaded**, not the whole source. |
+| `DelegateSearch: =true` | The grid stops filtering by itself; `Items` must filter by `Self.SearchText` with a function the source delegates (for SharePoint, `StartsWith`, not `Search`). |
+
+- **Sorting** a column is done by the source (server side), not just over the loaded rows.
+- **Wrapping text in a column turns off row virtualization**, and with it the paging and delegation benefits.
+- **WARNs:** `datagrid-pagination-none` (a grid over a bound source without paging) and
+  `datagrid-delegate-search-unused` (`DelegateSearch` on but `Items` never reads `SearchText`).
+
+```yaml
+- grdWork:
+    Control: ModernDataGrid
+    Properties:
+      Items: =Filter('Work Tracker', StartsWith(Title, Self.SearchText))
+      Pagination: =Pagination.Number
+      PageSize: =25
+      Searchable: =true
+      DelegateSearch: =true
+```
+
+---
+
 ## Warning Signs
 
 - **Yellow triangle** next to control

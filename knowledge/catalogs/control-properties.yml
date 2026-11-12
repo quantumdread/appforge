@@ -2,7 +2,7 @@
 # DO NOT HAND-EDIT. Re-run the extractor instead.
 
 schema_version: 1
-extracted_at: 2026-11-11T17:13:45.157Z
+extracted_at: 2026-11-12T11:10:59.163Z
 
 enums:
   AddressInput.AddressDataSource: [AzureMaps, BingMaps, Default]
@@ -15,7 +15,9 @@ enums:
   Avatar.Badge: [Available, Away, Blocked, Busy, DoNotDisturb, None, Offline, OutOfOffice, Unknown]
   Avatar.Shape: [Circular, Square]
   AvatarColor: [Anchor, Beige, Blue, Brand, Brass, Brown, Cornflower, Cranberry, DarkGreen, DarkRed, Forest, Gold, Grape, Lavender, LightTeal, Lilac, Magenta, Marigold, Mink, Navy, Peach, Pink, Platinum, Plum, Pumpkin, Purple, Red, RoyalBlue, Seafoam, Steel, Teal]
-  AvatarShape: [Circular, Square]
+  AvatarGroupLayout: [Spread, Stack]
+  AvatarGroupOverflowIndicator: [Auto, Count, Icon]
+  AvatarShape: [Circular, Rounded, Square]
   BadgeAppearance: [Filled, Ghost, Outline, Tint]
   BadgeCanvas.Appearance: [Filled, Ghost, Outline, Tint]
   BadgeCanvas.Shape: [Circular, Rounded, Square]
@@ -86,7 +88,10 @@ enums:
   NumberInput.ValidationState: [Error, None]
   OptionLayout: [Horizontal, HorizontalStacked, Vertical]
   Overflow: [Hidden, Scroll]
+  Pagination: [Auto, None, Number]
   PenMode: [Draw, Erase]
+  PersonaTextAlignment: [Center, Start]
+  PersonaTextPosition: [After, Before, Below]
   PowerAppsOneGrid.DateOnlyFormat: [LongDate, None, ShortDate]
   PowerAppsOneGrid.DateTimeFormat: [LongDate, None, ShortDate, ShortDateTime]
   PowerAppsOneGrid.EnableMultipleSelection: [Disable, Enable]
@@ -2935,6 +2940,53 @@ controls:
     parent_context: [grid_layout_child, vertical_horizontal_autolayout_child]
     output_properties: [AccessibleLabel, BasePaletteColor, BorderColor, BorderStyle, BorderThickness, Color, ContentLanguage, DisplayMode, Fill, Font, FontWeight, Height, Italic, PaddingBottom, PaddingLeft, PaddingRight, PaddingTop, RadiusBottomLeft, RadiusBottomRight, RadiusTopLeft, RadiusTopRight, Size, Strikethrough, Tooltip, Underline, Visible, Width, X, Y]
 
+  ModernAvatarGroup:
+    family: React
+    variants: []
+    input_properties:
+      AccessibleLabel: Text
+      Appearance: "@enum:AvatarColor"
+      AvatarSize: Number
+      BasePaletteColor: Color
+      BorderColor: Color
+      BorderStyle: "@enum:BorderStyle"
+      BorderThickness: Number
+      ContentLanguage: Text
+      Default: Record
+      DisplayMode: "@enum:DisplayMode"
+      Gap: Number
+      Height: Number
+      ItemColor: Text
+      ItemImage: Text
+      ItemInitials: Text
+      ItemName: Text
+      ItemPresence: Text
+      Items: Table
+      ItemTooltip: Text
+      Layout: "@enum:AvatarGroupLayout"
+      MaxInlineItems: Number
+      OnChange: Event
+      OnSelect: Event
+      OverflowButtonLabel: Text
+      OverflowIndicator: "@enum:AvatarGroupOverflowIndicator"
+      PaddingBottom: Number
+      PaddingLeft: Number
+      PaddingRight: Number
+      PaddingTop: Number
+      RadiusBottomLeft: Number
+      RadiusBottomRight: Number
+      RadiusTopLeft: Number
+      RadiusTopRight: Number
+      Shape: "@enum:AvatarShape"
+      ShowPresence: Boolean
+      Tooltip: Text
+      Visible: Boolean
+      Width: Number
+      X: Number
+      Y: Number
+    parent_context: [grid_layout_child, vertical_horizontal_autolayout_child]
+    output_properties: [AccessibleLabel, BasePaletteColor, BorderColor, BorderStyle, BorderThickness, ContentLanguage, DisplayMode, Height, PaddingBottom, PaddingLeft, PaddingRight, PaddingTop, RadiusBottomLeft, RadiusBottomRight, RadiusTopLeft, RadiusTopRight, Selected, Tooltip, Visible, Width, X, Y]
+
   ModernBadge:
     family: React
     variants: []
@@ -3060,6 +3112,67 @@ controls:
     parent_context: [grid_layout_child, vertical_horizontal_autolayout_child]
     output_properties: [AccessibleLabel, BorderRadius, ContentLanguage, Description, DescriptionColor, DescriptionSize, DisplayMode, DropShadow, Fill, HeaderImage, HeaderImageAccessibleLabel, Height, Image, ImageAccessibleLabel, ImagePlacement, ImagePosition, ImageRatio, LayoutDirection, Subtitle, SubtitleColor, SubtitleSize, Title, TitleColor, TitleSize, Visible, Width, X, Y]
 
+  ModernCardGallery:
+    family: React
+    variants: []
+    input_properties:
+      AccessibleLabel: Text
+      CardBorderRadius: Number
+      CardDropShadow: "@enum:DropShadow"
+      CardFill: Color
+      CardHeight: Number
+      CardImagePlacement: "@enum:ImagePlacement"
+      CardImagePosition: "@enum:ImagePosition"
+      CardImageRatio: Number
+      CardLayoutDirection: "@enum:LayoutDirection"
+      ContentLanguage: Text
+      Default: Record
+      Description: Text
+      DescriptionColor: Color
+      DescriptionSize: Number
+      DisplayMode: "@enum:DisplayMode"
+      EmptyStateText: Text
+      Fill: Color
+      Gap: Number
+      GroupBy: Text
+      HeaderImage: Image
+      HeaderImageAccessibleLabel: Text
+      Height: Number
+      Image: Image
+      ImageAccessibleLabel: Text
+      ItemAccessibleLabel: Text
+      Items: Table
+      LoadingStateText: Text
+      MaxColumns: Number
+      MinCardWidth: Number
+      OnChange: Event
+      OnSelect: Event
+      PaddingBottom: Number
+      PaddingLeft: Number
+      PaddingRight: Number
+      PaddingTop: Number
+      Selectable: Boolean
+      SelectedCardBorderColor: Color
+      SelectedCardBorderThickness: Number
+      SelectedCardFill: Color
+      SelectMultiple: Boolean
+      ShowScrollbar: Boolean
+      ShowSelector: Boolean
+      Subtitle: Text
+      SubtitleColor: Color
+      SubtitleSize: Number
+      TabIndex: Number
+      Title: Text
+      TitleColor: Color
+      TitleSize: Number
+      Tooltip: Text
+      Visible: Boolean
+      Width: Number
+      X: Number
+      Y: Number
+    parent_context: [grid_layout_child, vertical_horizontal_autolayout_child]
+    output_properties: [AccessibleLabel, CardFill, ContentLanguage, DescriptionColor, DisplayMode, Fill, Height, IsLoading, PaddingBottom, PaddingLeft, PaddingRight, PaddingTop, Selected, SelectedCardBorderColor, SelectedCardFill, SelectedItems, SubtitleColor, TabIndex, TitleColor, Tooltip, Visible, Width, X, Y]
+
   ModernCheckbox:
     family: React
     variants: []
@@ -3144,14 +3257,30 @@ controls:
       AccessibleLabel: Text
       AllowExternalSelectedItems: Boolean
       BasePaletteColor: Color
+      BorderColor: Color
+      BorderStyle: "@enum:BorderStyle"
+      BorderThickness: Number
       Color: Color
       ContentLanguage: Text
       DefaultSelectedItems: Table
+      DelegateSearch: Boolean
       DisplayMode: "@enum:DisplayMode"
+      DropShadow: "@enum:DropShadow"
+      Fill: Color
       Font: "@enum:Font"
       Height: Number
       Items: Table
       OnChange: Event
+      PaddingBottom: Number
+      PaddingLeft: Number
+      PaddingRight: Number
+      PaddingTop: Number
+      PageSize: Number
+      Pagination: "@enum:Pagination"
+      RadiusBottomLeft: Number
+      RadiusBottomRight: Number
+      RadiusTopLeft: Number
+      RadiusTopRight: Number
       Required: Boolean
       Searchable: Boolean
       SelectMultiple: Boolean
@@ -3165,11 +3294,11 @@ controls:
       X: Number
       Y: Number
     parent_context: [grid_layout_child, vertical_horizontal_autolayout_child]
-    output_properties: [AccessibleLabel, BasePaletteColor, Color, ContentLanguage, DisplayMode, Font, Height, SearchText, Selected, SelectedItems, Size, Visible, Width, X, Y]
+    output_properties: [AccessibleLabel, AllItemsLoaded, BasePaletteColor, BorderColor, BorderStyle, BorderThickness, Color, ContentLanguage, CurrentPage, DisplayMode, DropShadow, Fill, Font, Height, ItemsCount, PaddingBottom, PaddingLeft, PaddingRight, PaddingTop, RadiusBottomLeft, RadiusBottomRight, RadiusTopLeft, RadiusTopRight, SearchText, Selected, SelectedItems, Size, Visible, Width, X, Y]
 
   ModernDataGridColumn:
     family: React
-    variants: [Boolean, Button, ComplexOptionSet, ComplexType, Currency, DateTime, Email, Image, Number, Phone, Textual, Url]
+    variants: [Boolean, Button, ComplexOptionSet, ComplexType, Currency, DateTime, Email, Image, Number, OptionSetArray, Phone, Textual, Url]
     input_properties:
       ContentLanguage: Text
       FieldDisplayName: Text
@@ -3211,6 +3340,10 @@ controls:
       Number:
         Icon: Text
         Value: Number
+      OptionSetArray:
+        Icon: Text
+        Text: Text
+        Wrap: Boolean
       Phone:
         Icon: Text
         Text: Text
@@ -3463,6 +3596,61 @@ controls:
       Y: Number
     parent_context: [grid_layout_child, vertical_horizontal_autolayout_child]
     output_properties: [AccessibleLabel, Align, Appearance, BasePaletteColor, BorderColor, BorderStyle, BorderThickness, Color, ContentLanguage, DisplayMode, Fill, Font, FontWeight, Height, HintText, Italic, Max, Min, PaddingBottom, PaddingLeft, PaddingRight, PaddingTop, Precision, RadiusBottomLeft, RadiusBottomRight, RadiusTopLeft, RadiusTopRight, Size, Step, Strikethrough, Underline, ValidationState, Value, Visible, Width, X, Y]
+
+  ModernPersona:
+    family: React
+    variants: []
+    input_properties:
+      AccessibleLabel: Text
+      Align: "@enum:Align"
+      Appearance: "@enum:AvatarColor"
+      BasePaletteColor: Color
+      BorderColor: Color
+      BorderStyle: "@enum:BorderStyle"
+      BorderThickness: Number
+      Caption: Text
+      CaptionColor: Color
+      CaptionSize: Number
+      Color: Color
+      ContentLanguage: Text
+      Details: Text
+      DetailsColor: Color
+      DetailsSize: Number
+      DisplayMode: "@enum:DisplayMode"
+      Font: "@enum:Font"
+      FontWeight: "@enum:FontWeight"
+      Height: Number
+      Image: Image
+      Italic: Boolean
+      LineHeight: Number
+      Name: Text
+      NameColor: Color
+      NameSize: Number
+      OnSelect: Event
+      OutOfOffice: Boolean
+      PaddingBottom: Number
+      PaddingLeft: Number
+      PaddingRight: Number
+      PaddingTop: Number
+      Presence: "@enum:PresenceBadge"
+      RadiusBottomLeft: Number
+      RadiusBottomRight: Number
+      RadiusTopLeft: Number
+      RadiusTopRight: Number
+      Shape: "@enum:AvatarShape"
+      Size: Number
+      Strikethrough: Boolean
+      TextAlignment: "@enum:PersonaTextAlignment"
+      TextPosition: "@enum:PersonaTextPosition"
+      Tooltip: Text
+      Underline: Boolean
+      VerticalAlign: "@enum:VerticalAlign"
+      Visible: Boolean
+      Width: Number
+      X: Number
+      Y: Number
+    parent_context: [grid_layout_child, vertical_horizontal_autolayout_child]
+    output_properties: [AccessibleLabel, Align, BasePaletteColor, BorderColor, BorderStyle, BorderThickness, Color, ContentLanguage, DisplayMode, Font, FontWeight, Height, Italic, LineHeight, PaddingBottom, PaddingLeft, PaddingRight, PaddingTop, RadiusBottomLeft, RadiusBottomRight, RadiusTopLeft, RadiusTopRight, Size, Strikethrough, Tooltip, Underline, VerticalAlign, Visible, Width, X, Y]
 
   ModernProgressBar:
     family: React
@@ -4834,7 +5022,7 @@ controls:
 
   TypedDataCard:
     family: Classic
-    variants: [BlankCard, ClassicAllowedValuesNumberEdit, ClassicAllowedValuesStringEdit, ClassicAttachmentsEdit, ClassicAttachmentsView, ClassicBlankPolymorphicEdit, ClassicComboBoxEdit, ClassicComboBoxMultiSelectEdit, ClassicComboBoxMultiSelectView, ClassicComboBoxOptionSetMultiEdit, ClassicComboBoxOptionSetMultiView, ClassicComboBoxOptionSetSingleEdit, ClassicComboBoxOptionSetSingleView, ClassicComboBoxView, ClassicCurrencyEdit, ClassicDateEdit, ClassicDateTimeEdit, ClassicEmailView, ClassicFileEdit, ClassicFileView, ClassicImageView, ClassicLargeImageView, ClassicLargePicture, ClassicLookupEdit, ClassicLookupView, ClassicNotes, ClassicNumberEdit, ClassicPercentageView, ClassicPhoneView, ClassicPicture, ClassicRatingEdit, ClassicRatingView, ClassicRichTextEditorEdit, ClassicRichTextEditorView, ClassicSliderEdit, ClassicSmartEmailEdit, ClassicTextualEdit, ClassicTextualMultilineEdit, ClassicTextualView, ClassicTimeEdit, ClassicToggleEdit, ClassicToggleView, ClassicUrlEdit, ClassicUrlView, ClassicUSCurrencyView, ClassicYesNoRadioEdit, ComboBoxEdit, ComboBoxMultiSelectEdit, ComboBoxMultiSelectView, ComboBoxOptionSetMultiEdit, ComboBoxOptionSetMultiView, ComboBoxOptionSetSingleEdit, ComboBoxOptionSetSingleView, ComboBoxView, CurrencyEdit, DateEdit, DateTimeEdit, FileEdit, FileView, ImageView, LargeImageView, LargePicture, ModernAllowedValuesNumberEdit, ModernAllowedValuesStringEdit, ModernAttachmentsEdit, ModernAttachmentsView, ModernComboBoxEdit, ModernComboBoxMultiSelectEdit, ModernComboBoxMultiSelectView, ModernComboBoxOptionSetMultiEdit, ModernComboBoxOptionSetMultiView, ModernComboBoxOptionSetSingleEdit, ModernComboBoxOptionSetSingleView, ModernComboBoxView, ModernCurrencyEdit, ModernDateEdit, ModernEmailView, ModernNumberEdit, ModernPhoneView, ModernRatingEdit, ModernRatingView, ModernSliderEdit, ModernTextualEdit, ModernTextualMultilineEdit, ModernTextualView, ModernToggleEdit, ModernToggleView, ModernUrlEdit, ModernUrlView, ModernUSCurrencyView, ModernYesNoRadioEdit, NumberEdit, PcfCoreComboBoxEditCard, PcfCoreComboBoxMultiSelectEditCard, PcfCoreComboBoxMultiSelectViewCard, PcfCoreComboBoxOptionSetMultiEditCard, PcfCoreComboBoxOptionSetMultiViewCard, PcfCoreComboBoxOptionSetSingleEditCard, PcfCoreComboBoxOptionSetSingleViewCard, PcfCoreComboBoxViewCard, PcfCoreCurrencyEditCard, PcfCoreDateEditCard, PcfCoreDateTimeEditCard, PcfCoreNumberEditCard, PcfCoreRatingEditCard, PcfCoreRatingViewCard, PcfCoreSliderEditCard, PcfCoreTextualEditCard, PcfCoreTextualMultiLineEditCard, PcfCoreTextualViewCard, PcfCoreToggleEditCard, PcfCoreToggleViewCard, PcfCoreUrlEditCard, Picture, RatingEdit, RatingView, SliderEdit, TextualEdit, TextualMultilineEdit, TextualView, ToggleEdit, ToggleView, UrlEdit]
+    variants: [BlankCard, ClassicAllowedValuesNumberEdit, ClassicAllowedValuesStringEdit, ClassicAttachmentsEdit, ClassicAttachmentsView, ClassicBlankPolymorphicEdit, ClassicComboBoxEdit, ClassicComboBoxMultiSelectEdit, ClassicComboBoxMultiSelectView, ClassicComboBoxOptionSetMultiEdit, ClassicComboBoxOptionSetMultiView, ClassicComboBoxOptionSetSingleEdit, ClassicComboBoxOptionSetSingleView, ClassicComboBoxView, ClassicCurrencyEdit, ClassicDateEdit, ClassicDateTimeEdit, ClassicEmailView, ClassicFileEdit, ClassicFileView, ClassicImageView, ClassicLargeImageView, ClassicLargePicture, ClassicLookupEdit, ClassicLookupView, ClassicNotes, ClassicNumberEdit, ClassicPercentageView, ClassicPhoneView, ClassicPicture, ClassicRatingEdit, ClassicRatingView, ClassicRichTextEditorEdit, ClassicRichTextEditorView, ClassicSliderEdit, ClassicSmartEmailEdit, ClassicTextualEdit, ClassicTextualMultilineEdit, ClassicTextualView, ClassicTimeEdit, ClassicToggleEdit, ClassicToggleView, ClassicUrlEdit, ClassicUrlView, ClassicUSCurrencyView, ClassicYesNoRadioEdit, ComboBoxEdit, ComboBoxMultiSelectEdit, ComboBoxMultiSelectView, ComboBoxOptionSetMultiEdit, ComboBoxOptionSetMultiView, ComboBoxOptionSetSingleEdit, ComboBoxOptionSetSingleView, ComboBoxView, CurrencyEdit, DateEdit, DateTimeEdit, FileEdit, FileView, ImageView, LargeImageView, LargePicture, ModernAllowedValuesNumberEdit, ModernAllowedValuesStringEdit, ModernAttachmentsEdit, ModernAttachmentsView, ModernComboBoxEdit, ModernComboBoxMultiSelectEdit, ModernComboBoxMultiSelectView, ModernComboBoxOptionSetMultiEdit, ModernComboBoxOptionSetMultiView, ModernComboBoxOptionSetSingleEdit, ModernComboBoxOptionSetSingleView, ModernComboBoxView, ModernCurrencyEdit, ModernDateEdit, ModernDateTimeEdit, ModernEmailView, ModernNumberEdit, ModernPhoneView, ModernRatingEdit, ModernRatingView, ModernSliderEdit, ModernTextualEdit, ModernTextualMultilineEdit, ModernTextualView, ModernToggleEdit, ModernToggleView, ModernUrlEdit, ModernUrlView, ModernUSCurrencyView, ModernYesNoRadioEdit, NumberEdit, PcfCoreComboBoxEditCard, PcfCoreComboBoxMultiSelectEditCard, PcfCoreComboBoxMultiSelectViewCard, PcfCoreComboBoxOptionSetMultiEditCard, PcfCoreComboBoxOptionSetMultiViewCard, PcfCoreComboBoxOptionSetSingleEditCard, PcfCoreComboBoxOptionSetSingleViewCard, PcfCoreComboBoxViewCard, PcfCoreCurrencyEditCard, PcfCoreDateEditCard, PcfCoreDateTimeEditCard, PcfCoreNumberEditCard, PcfCoreRatingEditCard, PcfCoreRatingViewCard, PcfCoreSliderEditCard, PcfCoreTextualEditCard, PcfCoreTextualMultiLineEditCard, PcfCoreTextualViewCard, PcfCoreToggleEditCard, PcfCoreToggleViewCard, PcfCoreUrlEditCard, Picture, RatingEdit, RatingView, SliderEdit, TextualEdit, TextualMultilineEdit, TextualView, ToggleEdit, ToggleView, UrlEdit]
     input_properties:
       BorderColor: Color
       BorderStyle: "@enum:BorderStyle"
@@ -5586,6 +5774,16 @@ controls:
         Height: Number
         Required: Boolean
         Update: Date
+        WidthFit: Boolean
+        Y: Number
+      ModernDateTimeEdit:
+        DataField: Text
+        Default: DateTime
+        DisplayMode: "@enum:DisplayMode"
+        DisplayName: Text
+        Height: Number
+        Required: Boolean
+        Update: DateTime
         WidthFit: Boolean
         Y: Number
       ModernEmailView:

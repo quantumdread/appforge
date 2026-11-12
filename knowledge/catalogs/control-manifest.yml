@@ -2,14 +2,14 @@
 # DO NOT HAND-EDIT. Re-run the extractor instead.
 
 schema_version: 1
-extracted_at: 2026-11-11T17:13:45.157Z
+extracted_at: 2026-11-12T11:10:59.163Z
 server_version: 1.1.0.0
 source:
   cluster_category: prod
   mcp: canvas-authoring
 counts:
-  controls_total_in_tenant: 113
-  controls_in_this_file: 133
+  controls_total_in_tenant: 116
+  controls_in_this_file: 136
   controls_skipped: 0
   controls_unlisted_carried: 20
   is_partial: false
@@ -317,6 +317,10 @@ controls:
     family: React
     version: null
     variants: []
+  - type: ModernAvatarGroup
+    family: React
+    version: null
+    variants: []
   - type: ModernBadge
     family: React
     version: null
@@ -326,6 +330,10 @@ controls:
     version: null
     variants: []
   - type: ModernCard
+    family: React
+    version: null
+    variants: []
+  - type: ModernCardGallery
     family: React
     version: null
     variants: []
@@ -344,7 +352,7 @@ controls:
   - type: ModernDataGridColumn
     family: React
     version: null
-    variants: [Boolean, Button, ComplexOptionSet, ComplexType, Currency, DateTime, Email, Image, Number, Phone, Textual, Url]
+    variants: [Boolean, Button, ComplexOptionSet, ComplexType, Currency, DateTime, Email, Image, Number, OptionSetArray, Phone, Textual, Url]
   - type: ModernDatePicker
     family: React
     version: null
@@ -366,6 +374,10 @@ controls:
     version: null
     variants: []
   - type: ModernNumberInput
+    family: React
+    version: null
+    variants: []
+  - type: ModernPersona
     family: React
     version: null
     variants: []
@@ -572,7 +584,7 @@ controls:
   - type: TypedDataCard
     family: Classic
     version: null
-    variants: [BlankCard, ClassicAllowedValuesNumberEdit, ClassicAllowedValuesStringEdit, ClassicAttachmentsEdit, ClassicAttachmentsView, ClassicBlankPolymorphicEdit, ClassicComboBoxEdit, ClassicComboBoxMultiSelectEdit, ClassicComboBoxMultiSelectView, ClassicComboBoxOptionSetMultiEdit, ClassicComboBoxOptionSetMultiView, ClassicComboBoxOptionSetSingleEdit, ClassicComboBoxOptionSetSingleView, ClassicComboBoxView, ClassicCurrencyEdit, ClassicDateEdit, ClassicDateTimeEdit, ClassicEmailView, ClassicFileEdit, ClassicFileView, ClassicImageView, ClassicLargeImageView, ClassicLargePicture, ClassicLookupEdit, ClassicLookupView, ClassicNotes, ClassicNumberEdit, ClassicPercentageView, ClassicPhoneView, ClassicPicture, ClassicRatingEdit, ClassicRatingView, ClassicRichTextEditorEdit, ClassicRichTextEditorView, ClassicSliderEdit, ClassicSmartEmailEdit, ClassicTextualEdit, ClassicTextualMultilineEdit, ClassicTextualView, ClassicTimeEdit, ClassicToggleEdit, ClassicToggleView, ClassicUrlEdit, ClassicUrlView, ClassicUSCurrencyView, ClassicYesNoRadioEdit, ComboBoxEdit, ComboBoxMultiSelectEdit, ComboBoxMultiSelectView, ComboBoxOptionSetMultiEdit, ComboBoxOptionSetMultiView, ComboBoxOptionSetSingleEdit, ComboBoxOptionSetSingleView, ComboBoxView, CurrencyEdit, DateEdit, DateTimeEdit, FileEdit, FileView, ImageView, LargeImageView, LargePicture, ModernAllowedValuesNumberEdit, ModernAllowedValuesStringEdit, ModernAttachmentsEdit, ModernAttachmentsView, ModernComboBoxEdit, ModernComboBoxMultiSelectEdit, ModernComboBoxMultiSelectView, ModernComboBoxOptionSetMultiEdit, ModernComboBoxOptionSetMultiView, ModernComboBoxOptionSetSingleEdit, ModernComboBoxOptionSetSingleView, ModernComboBoxView, ModernCurrencyEdit, ModernDateEdit, ModernEmailView, ModernNumberEdit, ModernPhoneView, ModernRatingEdit, ModernRatingView, ModernSliderEdit, ModernTextualEdit, ModernTextualMultilineEdit, ModernTextualView, ModernToggleEdit, ModernToggleView, ModernUrlEdit, ModernUrlView, ModernUSCurrencyView, ModernYesNoRadioEdit, NumberEdit, PcfCoreComboBoxEditCard, PcfCoreComboBoxMultiSelectEditCard, PcfCoreComboBoxMultiSelectViewCard, PcfCoreComboBoxOptionSetMultiEditCard, PcfCoreComboBoxOptionSetMultiViewCard, PcfCoreComboBoxOptionSetSingleEditCard, PcfCoreComboBoxOptionSetSingleViewCard, PcfCoreComboBoxViewCard, PcfCoreCurrencyEditCard, PcfCoreDateEditCard, PcfCoreDateTimeEditCard, PcfCoreNumberEditCard, PcfCoreRatingEditCard, PcfCoreRatingViewCard, PcfCoreSliderEditCard, PcfCoreTextualEditCard, PcfCoreTextualMultiLineEditCard, PcfCoreTextualViewCard, PcfCoreToggleEditCard, PcfCoreToggleViewCard, PcfCoreUrlEditCard, Picture, RatingEdit, RatingView, SliderEdit, TextualEdit, TextualMultilineEdit, TextualView, ToggleEdit, ToggleView, UrlEdit]
+    variants: [BlankCard, ClassicAllowedValuesNumberEdit, ClassicAllowedValuesStringEdit, ClassicAttachmentsEdit, ClassicAttachmentsView, ClassicBlankPolymorphicEdit, ClassicComboBoxEdit, ClassicComboBoxMultiSelectEdit, ClassicComboBoxMultiSelectView, ClassicComboBoxOptionSetMultiEdit, ClassicComboBoxOptionSetMultiView, ClassicComboBoxOptionSetSingleEdit, ClassicComboBoxOptionSetSingleView, ClassicComboBoxView, ClassicCurrencyEdit, ClassicDateEdit, ClassicDateTimeEdit, ClassicEmailView, ClassicFileEdit, ClassicFileView, ClassicImageView, ClassicLargeImageView, ClassicLargePicture, ClassicLookupEdit, ClassicLookupView, ClassicNotes, ClassicNumberEdit, ClassicPercentageView, ClassicPhoneView, ClassicPicture, ClassicRatingEdit, ClassicRatingView, ClassicRichTextEditorEdit, ClassicRichTextEditorView, ClassicSliderEdit, ClassicSmartEmailEdit, ClassicTextualEdit, ClassicTextualMultilineEdit, ClassicTextualView, ClassicTimeEdit, ClassicToggleEdit, ClassicToggleView, ClassicUrlEdit, ClassicUrlView, ClassicUSCurrencyView, ClassicYesNoRadioEdit, ComboBoxEdit, ComboBoxMultiSelectEdit, ComboBoxMultiSelectView, ComboBoxOptionSetMultiEdit, ComboBoxOptionSetMultiView, ComboBoxOptionSetSingleEdit, ComboBoxOptionSetSingleView, ComboBoxView, CurrencyEdit, DateEdit, DateTimeEdit, FileEdit, FileView, ImageView, LargeImageView, LargePicture, ModernAllowedValuesNumberEdit, ModernAllowedValuesStringEdit, ModernAttachmentsEdit, ModernAttachmentsView, ModernComboBoxEdit, ModernComboBoxMultiSelectEdit, ModernComboBoxMultiSelectView, ModernComboBoxOptionSetMultiEdit, ModernComboBoxOptionSetMultiView, ModernComboBoxOptionSetSingleEdit, ModernComboBoxOptionSetSingleView, ModernComboBoxView, ModernCurrencyEdit, ModernDateEdit, ModernDateTimeEdit, ModernEmailView, ModernNumberEdit, ModernPhoneView, ModernRatingEdit, ModernRatingView, ModernSliderEdit, ModernTextualEdit, ModernTextualMultilineEdit, ModernTextualView, ModernToggleEdit, ModernToggleView, ModernUrlEdit, ModernUrlView, ModernUSCurrencyView, ModernYesNoRadioEdit, NumberEdit, PcfCoreComboBoxEditCard, PcfCoreComboBoxMultiSelectEditCard, PcfCoreComboBoxMultiSelectViewCard, PcfCoreComboBoxOptionSetMultiEditCard, PcfCoreComboBoxOptionSetMultiViewCard, PcfCoreComboBoxOptionSetSingleEditCard, PcfCoreComboBoxOptionSetSingleViewCard, PcfCoreComboBoxViewCard, PcfCoreCurrencyEditCard, PcfCoreDateEditCard, PcfCoreDateTimeEditCard, PcfCoreNumberEditCard, PcfCoreRatingEditCard, PcfCoreRatingViewCard, PcfCoreSliderEditCard, PcfCoreTextualEditCard, PcfCoreTextualMultiLineEditCard, PcfCoreTextualViewCard, PcfCoreToggleEditCard, PcfCoreToggleViewCard, PcfCoreUrlEditCard, Picture, RatingEdit, RatingView, SliderEdit, TextualEdit, TextualMultilineEdit, TextualView, ToggleEdit, ToggleView, UrlEdit]
   - type: Video
     family: Classic
     version: null

@@ -3,6 +3,23 @@
 Release notes for AppForge. Version numbers continue from the project's private development history; this
 repository starts at 3.16.0.
 
+## 3.21.0 — catalog refresh (card gallery, avatar group, persona); data grid paging WARNs (2026-11-12)
+
+- **Catalog refresh (2026-11-12).** Three new modern controls are live in the service: `ModernCardGallery`,
+  `ModernAvatarGroup` and `ModernPersona`. Earlier versions refused apps that used them as unknown controls.
+- **`ModernDataGrid`** gained paging (`Pagination`, `PageSize`, `CurrentPage`, `ItemsCount`, `AllItemsLoaded`),
+  `DelegateSearch`, `Fill`, `DropShadow`, borders, padding and corner radii.
+- **New variants:** `ModernDataGridColumn` `OptionSetArray`, `TypedDataCard` `ModernDateTimeEdit`. `AvatarShape` gained
+  `Rounded`.
+- **Nothing removed.** The metrics card shown in Microsoft's announcement is not in the service yet for this
+  environment, so it is not in the catalog.
+- **New WARN `datagrid-pagination-none`.** A modern data grid over a data source with paging left at None loads only
+  the app's data row limit (500 by default) and silently never shows the rest. Set `Pagination` to Auto or Number.
+- **New WARN `datagrid-delegate-search-unused`.** With `DelegateSearch` on, the grid leaves search to `Items`; if
+  `Items` never reads `SearchText`, the search box does nothing.
+- **Docs:** `delegation-reference.md` has a new "Modern data grid paging" section (from a walkthrough video; the
+  behaviour is `verified: false` until compile-observed).
+
 ## 3.20.1 — looping SVG animation (2026-11-12)
 
 - **Looping SVG animation** (`svg-images.md`, new section). Two ways to make a chart replay on its own, both
